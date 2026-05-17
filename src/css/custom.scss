@@ -1,0 +1,144 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Zebra Handheld RFID IOTC — Global CSS
+ *
+ * Layout, typography, and component patterns inherited from the ConfigCat
+ * Docusaurus theme. Color palette swapped to Zebra brand:
+ *   primary (light): #004C97 (Zebra navy blue)
+ *   primary (dark):  #6CB4EE (light blue for dark mode contrast)
+ *
+ * Module imports (sidebar.scss, toc.scss, cards.scss, api.scss, proxy.scss)
+ * are inherited from the ConfigCat skeleton and provide the ConfigCat aesthetic
+ * for sidebar icons, table-of-contents active indicators, and Reference page
+ * styling. They reference CSS variables defined below so the palette swap
+ * automatically cascades.
+ */
+
+@use 'proxy';
+@use 'api';
+@use 'sidebar';
+@use 'toc';
+@use 'cards';
+
+:root {
+  /* === Zebra brand primary (was ConfigCat orange #f08d2a) === */
+  --ifm-color-primary:          #004C97;
+  --ifm-color-primary-dark:     #004088;
+  --ifm-color-primary-darker:   #003A7E;
+  --ifm-color-primary-darkest:  #002E63;
+  --ifm-color-primary-light:    #1A5EAA;
+  --ifm-color-primary-lighter:  #2C6AB5;
+  --ifm-color-primary-lightest: #4E84C9;
+
+  --ifm-code-font-size: 95%;
+  --ifm-background-color: #fff;
+
+  --menu-secondary-color: var(--ifm-menu-color);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 76, 151, 0.08);
+  --bordered-img-color: rgb(226, 226, 226);
+}
+
+[data-theme='dark'] {
+  /* === Zebra dark-mode primary === */
+  --ifm-color-primary:          #6CB4EE;
+  --ifm-color-primary-dark:     #54A8EB;
+  --ifm-color-primary-darker:   #3A9AE7;
+  --ifm-color-primary-darkest:  #1582D5;
+  --ifm-color-primary-light:    #87C2F2;
+  --ifm-color-primary-lighter:  #9ECEF5;
+  --ifm-color-primary-lightest: #C5E4FB;
+
+  --menu-secondary-color: rgb(192, 192, 192);
+  --docusaurus-highlighted-code-line-bg: rgba(108, 180, 238, 0.12);
+  --bordered-img-color: rgb(138, 138, 138);
+}
+
+.theme-code-block-highlighted-line {
+  display: table-row !important;
+}
+
+.youtube-container {
+  height: 0;
+  margin: 0;
+  margin-bottom: 30px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  position: relative;
+}
+
+.youtube-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+}
+
+li > h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+.bordered-img {
+  border: 1px solid var(--bordered-img-color);
+  margin-bottom: 1rem;
+}
+
+.zoomed-in-img {
+  border: 1px solid var(--bordered-img-color);
+}
+
+table td:first-child {
+  white-space: nowrap;
+}
+
+.bottom-spaced {
+  margin-bottom: 1em;
+}
+
+span[class*='codeLineNumber'] {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+main article img:not(.no-auto-height) {
+  height: auto;
+}
+
+ul.feature-list {
+  --ifm-list-left-padding: 1.25em;
+  -moz-padding-start: 1em;
+}
+
+[data-theme='dark'] .monochrome-image.theme-aware {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+/* === Diátaxis content-type badges (Zebra IOTC-specific) === */
+.badge-explanation { background-color: #E3EEF8; color: #003A7E; }
+.badge-tutorial    { background-color: #E8F5E8; color: #1B5E20; }
+.badge-howto       { background-color: #FFF3E0; color: #E65100; }
+.badge-reference   { background-color: #FCE4EC; color: #880E4F; }
+
+[data-theme='dark'] .badge-explanation { background-color: #1A2332; color: #87C2F2; }
+[data-theme='dark'] .badge-tutorial    { background-color: #1B2D1B; color: #A5D6A7; }
+[data-theme='dark'] .badge-howto       { background-color: #2D2417; color: #FFAB91; }
+[data-theme='dark'] .badge-reference   { background-color: #2D1A22; color: #F8BBD0; }
