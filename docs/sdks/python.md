@@ -1,7 +1,7 @@
 ---
 id: tutorial-read-your-first-tag-with-python
-title: Tutorial: Read Your First Tag with Python
-sidebar_label: Tutorial: Read Your First Tag with Python
+title: "Tutorial: Read Your First Tag with Python"
+sidebar_label: "Tutorial: Read Your First Tag with Python"
 ---
 
 # Tutorial: Read Your First Tag with Python

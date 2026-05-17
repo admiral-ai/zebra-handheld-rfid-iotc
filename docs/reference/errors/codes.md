@@ -1,7 +1,7 @@
 ---
 id: codes
 title: Command Response Error Codes
-sidebar_label: Error Codes (0–28)
+sidebar_label: "Error Codes (0–28)"
 ---
 
 # Command Response Error Codes

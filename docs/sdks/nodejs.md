@@ -1,7 +1,7 @@
 ---
 id: tutorial-read-your-first-tag-with-node-js
-title: Tutorial: Read Your First Tag with Node.js
-sidebar_label: Tutorial: Read Your First Tag with Node.js
+title: "Tutorial: Read Your First Tag with Node.js"
+sidebar_label: "Tutorial: Read Your First Tag with Node.js"
 ---
 
 # Tutorial: Read Your First Tag with Node.js

@@ -1,7 +1,7 @@
 ---
 id: 6-3-how-to-check-ethernet-status-cradle-connected
-title: 6.3 How to Check Ethernet Status (Cradle-Connected)
-sidebar_label: 6.3 How to Check Ethernet Status (Cradle-Connected)
+title: "6.3 How to Check Ethernet Status (Cradle-Connected)"
+sidebar_label: "6.3 How to Check Ethernet Status (Cradle-Connected)"
 ---
 
 # 6.3 How to Check Ethernet Status (Cradle-Connected)

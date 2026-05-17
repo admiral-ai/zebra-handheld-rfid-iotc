@@ -1,7 +1,7 @@
 ---
 id: tutorial-read-your-first-tag-with-c-net
-title: Tutorial: Read Your First Tag with C# (.NET)
-sidebar_label: Tutorial: Read Your First Tag with C# (.NET)
+title: "Tutorial: Read Your First Tag with C# (.NET)"
+sidebar_label: "Tutorial: Read Your First Tag with C# (.NET)"
 ---
 
 # Tutorial: Read Your First Tag with C# (.NET)
