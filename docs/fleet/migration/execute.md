@@ -1,15 +1,28 @@
 ---
 id: execute
-title: 14.6 How to Execute a Phased Fleet Migration
-sidebar_label: 14.6 How to Execute a Phased Fleet Migration
+title: How to Execute a Phased Migration
+sidebar_label: How to Execute a Phased Migration
 ---
 
-# 14.6 How to Execute a Phased Fleet Migration
+```json
+{
+  "command": "set_os",
+  "requestId": "fw-1",
+  "OSUpdateDetails": {
+    "url": "https://updates.example.com/iotc-v1.1.fw",
+    "authenticationType": "NONE",
+    "verificationType": "VERIFY_HOST_PEER"
+  }
+}
+```
 
-<div className="badge-howto">HOWTO</div>
+Watch for reconnection via `mqttConnEVT: CONNECTED` and resumed `heartBeatEVT`.
 
-**Audience:** Fleet Operator
+| Wave | % of fleet | Wait | Pass criteria |
+|---|---:|---|---|
+| 1 | 1–5% canary | 24h | Reconnect; baseline match per `get_config` |
+| 2 | 10% | 24h | Same |
+| 3 | 50% | 12h | Same |
+| 4 | 100% | — | Same |
 
-Canary 1-5% → 10% → 50% → 100%. `set_os` with OSUpdateDetails. Error codes 4/8/13/14.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Error codes to watch: 4 (in progress), 8 (low flash), 13 (failed), 14 (battery low).

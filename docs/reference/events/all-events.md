@@ -3,13 +3,16 @@ id: all-events
 title: Events Reference — Full Schemas
 sidebar_label: Events Reference — Full Schemas
 ---
+> 📕 **REFERENCE**
 
-# Events Reference — Full Schemas
+Five events with canonical schemas drawn from `schemas/events/*.json`:
 
-<div className="badge-reference">REFERENCE</div>
+| Event | Top-level fields |
+|---|---|
+| `dataEVT` | `type`, `timestamp`, `data.tagData[]`, `data.barcodeData[]` (see [§10.2](/rfid/tag-data/dataevt-schema)) |
+| `heartBeatEVT` | `eventName`, `timestamp`, `eventNumber`, `upTime`, `data.inventoryStatus`, `data.batteryAlert` |
+| `alerts` | `type`, `timestamp`, `state` (SET/CLEAR/ONESHOT), `id` (BATTERY/FIRMWARE_UPDATE/NETWORK_EVENT/TEMPERATURE/POWER), `priority` (CRITICAL/HIGH/MEDIUM/LOW), `alertDetails` |
+| `alert_short` | `id` (~50-entry enum), `timestamp`, `type` (NOTIFICATION/ALERT), `priority` (CRITICAL/HIGH/LOW), `messageID`, `description` |
+| `mqttConnEVT` | `connectionState` (CONNECTED/DISCONNECTED), `timestamp`, `deviceModel`, `deviceSerialNo`, `apiVersion`, `mqttVersion` |
 
-**Audience:** API Consumer
-
-Five events: dataEVT, heartBeatEVT, alerts, alert_short, mqttConnEVT. exceptionEVT NOT documented.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+`exceptionEVT` is **not currently a documented event**.

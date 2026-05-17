@@ -1,15 +1,41 @@
 ---
 id: alerts
-title: 11.5 About Alert Events
-sidebar_label: 11.5 About Alert Events
+title: About Alert Events
+sidebar_label: About Alert Events
 ---
 
-# 11.5 About Alert Events
+> 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~5 min
 
-<div className="badge-explanation">EXPLANATION</div>
+`alerts` events are threshold-driven notifications a reader emits when monitored state transitions occur. Two payload formats coexist: `alerts` (full payload, application-facing) and `alert_short` (compact payload, MDM-facing).
 
-**Audience:** Fleet Operator
+### Alert IDs
 
-Five alert id values: BATTERY, FIRMWARE_UPDATE, NETWORK_EVENT, TEMPERATURE, POWER. States SET/CLEAR/ONESHOT. Priorities CRITICAL/HIGH/MEDIUM/LOW.
+The documented `alerts.id` enum (per `schemas/events/alerts.json`):
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+| `id` | Trigger |
+|---|---|
+| `BATTERY` | Battery charge or health state change |
+| `POWER` | Power source change (USB ↔ battery, etc.) |
+| `NETWORK_EVENT` | Wi-Fi or Ethernet interface state change |
+| `FIRMWARE_UPDATE` | Update started, progress, completed |
+| `TEMPERATURE` | Threshold crossed |
+
+(The `alerts.md` description lists additional categories — `GPI_EVENT`, `ANTENNA_EVENT` — but the schema enum is the authoritative current set.)
+
+### State semantics
+
+| `state` | Meaning |
+|---|---|
+| `SET` | Condition is currently active. Paired with a later `CLEAR` when resolved. |
+| `CLEAR` | Previously-set condition has resolved. |
+| `ONESHOT` | One-time event, no `CLEAR` companion. |
+
+### Priority levels
+
+`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`. Used to route the alert in the application: route `CRITICAL` to PagerDuty/Opsgenie immediately; collect `LOW` into batch dashboards.
+
+### `alerts` vs `alert_short`
+
+`alerts` carries structured `alertDetails` — for example, a `BATTERY` alert includes `batteryAlert.status`, `stateOfHealth`, `chargePercentage`. `alert_short` carries a predefined `id` from a ~50-entry enum (`BATTERY_LOW_SET`, `BATTERY_CRITICAL_SET`, `FIRMWARE_DOWNLOAD_SUCCESS`, `WIFI_CONFIG_FAIL`, `MQTT_ROOT_CERT_INSTALL_SUCCESS`, etc.) with a one-line `description` — designed for the SOTI MobiControl dashboard's row format.
+
+**Related:** 📕 [§16.6 alerts / alert_short schemas](#chapter-16--mqtt-api-reference) · 📙 [§11.3 Configure Events](/observability/events/configure) · 📙 [§13.2 SOTI Provisioning](/fleet/provisioning/soti-connect)

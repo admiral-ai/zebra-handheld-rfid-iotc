@@ -1,15 +1,30 @@
 ---
 id: device-status
-title: Device Status — MGMT Group 1
-sidebar_label: Device Status — MGMT Group 1
+title: "Device Status (MGMT)"
+sidebar_label: "Device Status (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# Device Status — MGMT Group 1
+#### `get_version` (T4)
 
-<div className="badge-reference">REFERENCE</div>
+Returns reader identity and version metadata.
 
-**Audience:** API Consumer
+**Request:** `{"command": "get_version", "requestId": "<id>"}`
 
-Endpoints: get_status, get_version, get_current_region. T4 tier (simple, no payload beyond command + requestId).
+**Response fields:** `readerVersion.firmwareVersion`, `readerVersion.model`, `readerVersion.serialNumber`, `readerVersion.sku`, `readerVersion.detailedVersions.scannerFirmware`, `readerVersion.detailedVersions.radioFirmware`, `readerVersion.detailedVersions.iotcVersion`.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+**See Also:** 📘 [§2.2](/foundations/architecture/components) · 📙 [§4.1](/getting-started/prerequisites/requirements)
+
+#### `get_status` (T4)
+
+Returns operational snapshot.
+
+**Response fields:** `deviceStatus.powerSource`, `radioActivity`, `radioConnection`, `systemTime`, `temperature`, `ntp.{offset,reach}`, `terminalConnection.{status,type}`, `batteryStatus.{capacity,stateOfHealth,chargePercentage,chargeStatus}`.
+
+#### `get_current_region` (T4)
+
+Returns regulatory region settings.
+
+**Response fields:** `currentRegion.country`, `regulatoryStandard`, `maxTxPowerSupported`, `minTxPowerSupported`, `lbtEnabled`, `frequencyHopping`, `channelData[]`.
+
+Region is read-only over MQTT — configure via 123RFID Desktop. Code 6 (`IOT_STATUS_REGION_NOT_CONFIGURED`) is returned by the internal `cloud_connect` operation when no region is configured.

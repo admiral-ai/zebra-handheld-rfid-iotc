@@ -1,15 +1,67 @@
 ---
 id: post-filters-configure
-title: 9.3b How to Configure Post-Filters
-sidebar_label: 9.3b How to Configure Post-Filters
+title: How to Configure Post-Filters
+sidebar_label: How to Configure Post-Filters
 ---
 
-# 9.3b How to Configure Post-Filters
+> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+### View current post-filters
 
-**Audience:** Solution Builder
+```json
+{"command": "get_post_filter", "requestId": "pf-1"}
+```
 
-set_post_filter operations ADD/MODIFY/DELETE; match methods PREFIX/SUFFIX/REGEX; report INCLUDE/EXCLUDE.
+### Add a PREFIX inclusion filter
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+```json
+{
+  "command": "set_post_filter",
+  "requestId": "pf-2",
+  "postFilterPayload": {
+    "operation": "ADD",
+    "dataEndpoint": "DATA_EP1",
+    "matchPattern": "E28000",
+    "matchPatternMethod": "PREFIX",
+    "reportOperation": "INCLUDE"
+  }
+}
+```
+
+### Add a SUFFIX exclusion filter
+
+```json
+{
+  "command": "set_post_filter",
+  "requestId": "pf-3",
+  "postFilterPayload": {
+    "operation": "ADD",
+    "dataEndpoint": "DATA_EP2",
+    "matchPattern": "FFFF",
+    "matchPatternMethod": "SUFFIX",
+    "reportOperation": "EXCLUDE"
+  }
+}
+```
+
+### Add a REGEX filter
+
+```json
+{
+  "command": "set_post_filter",
+  "requestId": "pf-4",
+  "postFilterPayload": {
+    "operation": "ADD",
+    "dataEndpoint": "DATA_EP1",
+    "matchPattern": "^E280[0-9A-F]{20}$",
+    "matchPatternMethod": "REGEX",
+    "reportOperation": "INCLUDE"
+  }
+}
+```
+
+### Modify or delete
+
+`operation: MODIFY` updates an existing filter; `operation: DELETE` removes one.
+
+**Related:** 📘 [§9.3a Post-Filters](/rfid/operating-mode/post-filters-about) · 📕 [§16.3 set_post_filter](#chapter-16--mqtt-api-reference)

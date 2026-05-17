@@ -1,15 +1,35 @@
 ---
 id: trigger-composition
-title: 9.5 About Trigger Composition
-sidebar_label: 9.5 About Trigger Composition
+title: About Trigger Composition
+sidebar_label: About Trigger Composition
 ---
 
-# 9.5 About Trigger Composition
+> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
 
-<div className="badge-explanation">EXPLANATION</div>
+The handheld sled has a physical trigger button. Its behaviour with respect to RFID inventory is **composed** from two independent enums — `radioConditions.start.trigger` and `radioConditions.stop.trigger` — set inside `set_operating_mode.operatingMode`.
 
-**Audience:** Solution Builder
+### The two enums
 
-Trigger behavior is composed from radioConditions.start.trigger and radioConditions.stop.trigger (IMMEDIATE/PRESSED/RELEASED). Common compositions: press-and-hold, toggle, pulse.
+Both `start.trigger` and `stop.trigger` accept the same enum: `IMMEDIATE`, `PRESSED`, `RELEASED`.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+- `IMMEDIATE` — fires as soon as the command is applied (start) or based on threshold conditions (stop).
+- `PRESSED` — fires on physical trigger press.
+- `RELEASED` — fires on physical trigger release.
+
+### Common compositions
+
+| Behaviour | start | stop |
+|---|---|---|
+| Press-and-hold | `PRESSED` | `RELEASED` |
+| Toggle | `PRESSED` | `PRESSED` |
+| Pulse with auto-stop | `PRESSED` | `IMMEDIATE` (+ `stopTimeout`) |
+| Operator-initiated, count-bounded | `PRESSED` | `IMMEDIATE` (+ `tagCount`) |
+| Always running | `IMMEDIATE` | `IMMEDIATE` (+ `inventoryCount`) |
+
+The three behaviour modes Phase 2 v1 documented as separate "trigger modes" are these compositions — not enum values.
+
+### Interaction with MQTT-initiated control
+
+A `control_operation` START produces the same effect as if the trigger fired (subject to the `start.trigger` configuration). The trigger and the API are equivalent input sources; the most recent event wins.
+
+**Related:** 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📙 [§9.4 Start/Stop](/rfid/operating-mode/start-stop) · 📕 [§16.3 set_operating_mode](#chapter-16--mqtt-api-reference)

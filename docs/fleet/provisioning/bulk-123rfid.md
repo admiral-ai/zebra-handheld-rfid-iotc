@@ -1,15 +1,38 @@
 ---
 id: bulk-123rfid
-title: 13.3 How to Provision Readers in Bulk with 123RFID Desktop
-sidebar_label: 13.3 How to Provision Readers in Bulk with 123RFID Desktop
+title: How to Provision Readers in Bulk with 123RFID Desktop
+sidebar_label: How to Provision Readers in Bulk with 123RFID Desktop
 ---
 
-# 13.3 How to Provision Readers in Bulk with 123RFID Desktop
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min for 10 readers
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to provision multiple handheld readers using 123RFID Desktop profiles.
 
-**Audience:** Fleet Operator
+### Create a configuration profile
 
-Profile-based batch application — create, apply, export/import.
+1. Open 123RFID Desktop with one reference reader connected via USB.
+2. Configure the reference reader fully (region, Wi-Fi, MDM endpoint).
+3. Choose **File → Export Profile** and save the `.iotcprofile` file.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Apply to a batch of readers
+
+For each reader in the batch:
+
+1. Connect via USB.
+2. In 123RFID Desktop, choose **File → Import Profile** and select the saved profile.
+3. Click **Apply to Device**.
+4. Wait for confirmation; disconnect.
+
+A practiced operator can process ~1 reader per minute.
+
+### Export/import profiles
+
+Profiles are portable: the same `.iotcprofile` file works across compatible firmware versions. Store profiles in version control alongside other deployment artefacts.
+
+### Verify post-apply
+
+After provisioning, power on each reader and pair with its host device. The reader should connect to MQTT within seconds. Subscribe to `mqttConnEVT` with a wildcard to confirm all batch members are online.
+
+[DIAGRAM: D-13.3.A — profile export/import workflow]
+
+**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [§4.3 Single-Reader Bootstrap](/getting-started/prerequisites/bootstrap)

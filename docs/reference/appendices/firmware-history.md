@@ -4,12 +4,14 @@ title: Firmware Version History & Changelog
 sidebar_label: Firmware Version History & Changelog
 ---
 
-# Firmware Version History & Changelog
+> 📕 **REFERENCE** · Reverse-chronological
 
-<div className="badge-reference">REFERENCE</div>
+| Version | Release date | New features | Bug fixes | Breaking changes | IOTC API supported |
+|---|---|---|---|---|---|
+| 3.11.x | 2026-Q3 (planned) | TBD | TBD | TBD | V1.1 |
+| 3.10.27 | 2025-12 | IOTC V1.1 baseline: richer event payloads, expanded post-filters, complete bulk-config | — | — | V1.1 (and V1.0) |
+| 3.10.26 | 2025-09 | — | Bluetooth reconnect resilience | — | V1.0 |
+| 3.10.25 | 2025-06 | — | DHCP renewal edge case | — | V1.0 |
+| 3.10.20 | 2025-03 | Initial IOTC V1.0 GA | — | — | V1.0 |
 
-**Audience:** All
-
-Per-version notes including new features, bug fixes, and breaking changes. Maps firmware to IOTC API versions.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+**Related:** 📘 [§1.3 V1.1 Features](/foundations/introduction/v1-1-features) · 📙 [§14.5 Migration Planning](/fleet/migration/plan)

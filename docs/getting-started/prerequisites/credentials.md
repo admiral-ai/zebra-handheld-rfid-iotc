@@ -1,15 +1,37 @@
 ---
 id: credentials
-title: 4.2 How to Obtain IOTC Credentials & Tenant ID
-sidebar_label: 4.2 How to Obtain IOTC Credentials & Tenant ID
+title: How to Obtain IOTC Credentials & Tenant ID
+sidebar_label: How to Obtain IOTC Credentials & Tenant ID
 ---
 
-# 4.2 How to Obtain IOTC Credentials & Tenant ID
+> 📙 **HOW-TO** · Audience: New Integrator · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to obtain the IOTC credentials needed to connect a handheld reader to the Zebra-hosted MQTT broker. If you are connecting to a customer-hosted broker, follow [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) instead.
 
-**Audience:** New Integrator
+### Prerequisites
 
-Sign in at the Zebra developer portal; create a tenant; capture tenantId, MQTT username, and password.
+A Zebra developer account. Sign up at [developer.zebra.com](https://developer.zebra.com) if you do not have one.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Steps
+
+1. **Sign in** at the Zebra developer portal.
+2. **Navigate** to **My Account → IoT Connector → Tenants**.
+3. **Create a tenant** if you do not yet have one. Provide a tenant name (descriptive — this is for your reference); the portal assigns the `tenantId`.
+4. **Capture three values** from the tenant detail page: `tenantId`, MQTT username, MQTT password. Store them in your credentials vault.
+
+[DIAGRAM: D-4.2.A — annotated screenshot of the tenant detail page with the three values circled]
+
+### Verify
+
+Confirm the credentials work by attempting an MQTT CONNECT:
+
+```bash
+mosquitto_sub -h iotc-broker.zebra.com -p 8883 \
+  -u "<MQTT_USERNAME>" -P "<MQTT_PASSWORD>" \
+  --cafile zebra-broker-ca.pem \
+  -t "<TENANT_ID>/mgmt/clients/test/#" -v
+```
+
+If the command remains connected without error, the credentials are valid. If you receive `Connection refused`, double-check the username, password, and CA certificate path.
+
+**Related:** 📘 [§3.5 Auth Model](/foundations/mqtt/auth-model) · 📗 [§5.2 Connect to the MQTT Broker](/getting-started/quick-start/step-1-connect) · 📕 [§16.1 API Conventions](/reference/api-overview)

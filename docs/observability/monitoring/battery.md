@@ -1,15 +1,56 @@
 ---
 id: battery
-title: 12.2 How to Monitor Battery Lifecycle
-sidebar_label: 12.2 How to Monitor Battery Lifecycle
+title: How to Monitor Battery Lifecycle
+sidebar_label: How to Monitor Battery Lifecycle
 ---
 
-# 12.2 How to Monitor Battery Lifecycle
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+### Subscribe to battery state
 
-**Audience:** Fleet Operator
+Watch `heartBeatEVT.data.batteryAlert`:
 
-Watch heartBeatEVT.data.batteryAlert.chargePercentage and alerts with id: BATTERY. stateOfHealth enum: GOOD/AVERAGE/POOR.
+```json
+{
+  "data": {
+    "batteryAlert": {
+      "status": "DISCHARGING",
+      "stateOfHealth": "GOOD",
+      "chargePercentage": 78
+    }
+  }
+}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### React to battery alerts
+
+Watch the `alerts` event with `id: BATTERY`:
+
+```json
+{
+  "id": "BATTERY",
+  "state": "ONESHOT",
+  "priority": "LOW",
+  "alertDetails": {"batteryAlert": {"status": "CHARGING", "stateOfHealth": "GOOD", "chargePercentage": 100}}
+}
+```
+
+For SOTI-connected fleets, `alert_short` with predefined `id` values surfaces battery thresholds: `BATTERY_LOW_SET`, `BATTERY_LOW_CLEAR`, `BATTERY_CRITICAL_SET`, `BATTERY_FULL`.
+
+### Interpret `stateOfHealth`
+
+| Value | Meaning |
+|---|---|
+| `GOOD` | Battery is operating within nominal capacity |
+| `AVERAGE` | Capacity has degraded measurably; monitor for replacement |
+| `POOR` | Replacement recommended |
+
+### Drain characterisation
+
+Per-mode drain figures are deployment-specific. Measure drain over a representative shift in your environment. The canonical telemetry field is `heartBeatEVT.data.batteryAlert.chargePercentage` over time. Operational recommendations for battery-constrained deployments include increasing the heartbeat interval and stopping inventory between active scans.
+
+**Related:** 📘 [§11.5 Alert Events](/observability/events/alerts) · 📕 [§16.6 alerts schema](#chapter-16--mqtt-api-reference) · 📙 [§18.6 Battery Troubleshooting](/reference/troubleshooting/battery)
+
+---
+
+# Part VI — Fleet Operations (corrected)

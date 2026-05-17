@@ -1,12 +1,10 @@
 ---
 id: api-overview
 title: API Reference Overview & Conventions
-sidebar_label: Overview
+sidebar_label: API Reference Overview & Conventions
 ---
 
-# API Reference Overview & Conventions
-
-<div className="badge-reference">REFERENCE</div>
+> 📕 **REFERENCE**
 
 Every command in this API follows the same envelope:
 
@@ -30,7 +28,7 @@ Responses echo `command` and `requestId` and add `apiVersion` and `response`:
 }
 ```
 
-## Command-specific payload keys
+### Command-specific payload keys
 
 | Command | Required payload key |
 |---|---|
@@ -47,10 +45,10 @@ Responses echo `command` and `requestId` and add `apiVersion` and `response`:
 | `set_config` | `configData` |
 | `set_os` | `OSUpdateDetails` |
 
-## Topic format
+### Topic format
 
 Three-part: `<tenantId> / <topic> / <deviceSerialNumber>`. The middle `<topic>` is configured per endpoint.
 
-## Error envelope
+### Error envelope
 
-See [Error Response Format](/reference/errors/format) and [Command Response Error Codes](/reference/errors/codes).
+See [§17.1 Error Response Format](/reference/errors/format) and [§17.2 Command Response Error Codes](/reference/errors/codes).

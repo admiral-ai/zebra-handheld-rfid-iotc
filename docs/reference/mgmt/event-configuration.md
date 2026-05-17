@@ -1,15 +1,12 @@
 ---
 id: event-configuration
-title: Event Configuration — MGMT Group 7
-sidebar_label: Event Configuration — MGMT Group 7
+title: "Event Configuration (MGMT)"
+sidebar_label: "Event Configuration (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# Event Configuration — MGMT Group 7
+#### `config_events` (T2)
 
-<div className="badge-reference">REFERENCE</div>
+Configures the active endpoint's `eventConfiguration`. Payload key `eventConfiguration`. See [§11.3](/observability/events/configure).
 
-**Audience:** API Consumer
-
-Endpoint: config_events. Sixteen documented flags; heartbeatConfiguration; threshold fields.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+---

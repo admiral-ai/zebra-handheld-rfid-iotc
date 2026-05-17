@@ -1,15 +1,36 @@
 ---
 id: view
-title: 8.2 How to View Endpoint Configuration
-sidebar_label: 8.2 How to View Endpoint Configuration
+title: How to View Endpoint Configuration
+sidebar_label: How to View Endpoint Configuration
 ---
 
-# 8.2 How to View Endpoint Configuration
+> 📙 **HOW-TO** · Audience: All · Time: ~2 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to inspect the current MQTT endpoint configuration on a handheld reader.
 
-**Audience:** All
+### Issue the command
 
-`get_endpoint_config` returns activeEndpoints with full configuration objects plus savedEndpoints.epNames.
+```json
+{"command": "get_endpoint_config", "command_id": "ep-1"}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Interpret the response
+
+```json
+{
+  "response": "get_endpoint_config",
+  "command_id": "ep-1",
+  "data": {
+    "mgmt": {"host": "iotc-broker.zebra.com", "port": 8883, "tls": true},
+    "ctrl": {"host": "iotc-broker.zebra.com", "port": 8883, "tls": true},
+    "data": {"host": "iotc-broker.zebra.com", "port": 8883, "tls": true},
+    "mdm":  {"host": "soti.example.com", "port": 8883, "tls": true}
+  }
+}
+```
+
+Each interface block shows its broker target. For the full schema, see [§16.2](#chapter-16--mqtt-api-reference).
+
+[DIAGRAM: D-8.2.A — response annotated by interface block]
+
+**Related:** 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [§16.2 get_endpoint_config](#chapter-16--mqtt-api-reference) · 📙 [§8.3 How to Configure](/infrastructure/endpoints/configure)

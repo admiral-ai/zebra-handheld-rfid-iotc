@@ -1,15 +1,18 @@
 ---
 id: endpoint
-title: MQTT Endpoint Configuration — MGMT Group 3
-sidebar_label: MQTT Endpoint Configuration — MGMT Group 3
+title: "MQTT Endpoint Configuration (MGMT)"
+sidebar_label: "MQTT Endpoint Configuration (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# MQTT Endpoint Configuration — MGMT Group 3
+#### `get_endpoint_config` (T3)
 
-<div className="badge-reference">REFERENCE</div>
+Returns active endpoints (with full `configuration` blocks) and the list of saved endpoint names.
 
-**Audience:** API Consumer
+**Response fields:** `endpointResponse.activeEndpoints.epConfig[].configuration`, `endpointResponse.savedEndpoints.epNames[]`.
 
-Endpoints: get_endpoint_config, config_endpoint. Seven endpoint types: MGMT/MGMT_EVT/CTRL/DATA1/DATA2/SOTI/MDM.
+#### `config_endpoint` (T2)
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Operations: `add`, `update`, `delete`. Payload key `epConfig`. Endpoint types: `MGMT`, `MGMT_EVT`, `CTRL`, `DATA1`, `DATA2`, `SOTI`, `MDM`. Protocols: `MQTT`, `MQTT_TLS`. Verification: `NONE` / `VERIFY_PEER` / `VERIFY_HOST` / `VERIFY_HOST_PEER`.
+
+**Errors:** 10 (config exists), 23 (invalid enum), 25 (publish topics > 3), 26 (subscribe topics > 1), 27 (tenantId length).

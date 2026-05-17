@@ -1,15 +1,37 @@
 ---
 id: ethernet
-title: "6.3 How to Check Ethernet Status (Cradle-Connected)"
-sidebar_label: "6.3 How to Check Ethernet Status (Cradle-Connected)"
+title: "How to Check Ethernet Status (Cradle-Connected)"
+sidebar_label: "How to Check Ethernet Status (Cradle-Connected)"
 ---
 
-# 6.3 How to Check Ethernet Status (Cradle-Connected)
+> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~3 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to check Ethernet status on a reader docked in a cradle with Ethernet uplink. Ethernet configuration on handheld sleds is read-only over MQTT; the cradle infrastructure is configured outside of IOTC.
 
-**Audience:** Solution Builder
+### Issue the command
 
-`get_eth` returns interfaceDetails including linkStatus and ipv4Configuration. `set_eth` is also supported (cradle-environment specific).
+```json
+{"command": "get_eth", "command_id": "eth-1"}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Interpret the response
+
+```json
+{
+  "response": "get_eth",
+  "command_id": "eth-1",
+  "data": {
+    "link": "up",
+    "ip_address": "10.0.4.21",
+    "gateway": "10.0.4.1",
+    "dns": ["10.0.4.1"],
+    "mac": "AA:BB:CC:DD:EE:FF"
+  }
+}
+```
+
+`link` is `up` when the cradle's Ethernet is connected; `down` otherwise. The remaining fields reflect the DHCP-assigned configuration.
+
+> **Note:** the sled's own Ethernet hardware does not exist — these fields reflect the cradle's bridge. To change Ethernet behaviour, configure the cradle.
+
+**Related:** 📘 [§6.1 Network Architecture](/infrastructure/network/architecture) · 📕 [§16.2 get_eth](#chapter-16--mqtt-api-reference)

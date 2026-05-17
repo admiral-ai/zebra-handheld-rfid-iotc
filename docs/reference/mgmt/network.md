@@ -1,15 +1,30 @@
 ---
 id: network
-title: Network Configuration — MGMT Group 2
-sidebar_label: Network Configuration — MGMT Group 2
+title: "Network Configuration (MGMT)"
+sidebar_label: "Network Configuration (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# Network Configuration — MGMT Group 2
+#### `get_eth` (T4)
 
-<div className="badge-reference">REFERENCE</div>
+Returns Ethernet interface status.
 
-**Audience:** API Consumer
+**Response fields:** `ethConfig.interfaceDetails.{interfaceName, status, hostName, macAddress, linkStatus, ipv4Configuration}`. When disabled, only `interfaceName` and `status: Disabled`.
 
-Endpoints: get_eth, set_eth, get_wifi, set_wifi, delete_wifi_profile.
+#### `set_eth` (T2)
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Configures Ethernet (where supported). Refer to source schema for payload shape; documentation slot pending HW SME completion.
+
+#### `get_wifi` (T3)
+
+Returns Wi-Fi configuration and connection state.
+
+#### `set_wifi` (T2)
+
+Operations: `CREATE`, `MODIFY`. Payload key `wifiConfig`. See [§6.2 How-to](/infrastructure/network/wifi) for examples.
+
+**Errors:** 15 (SSID not found), 17 (SSID missed), 18 (SSID already exists), 19 (profile limit), 20 (Wi-Fi not supported), 23 (invalid enum), 2 (invalid payload).
+
+#### `delete_wifi_profile` (T3)
+
+Removes a saved Wi-Fi profile by ESSID. **Errors:** 15, 16 (active SSID), 17.

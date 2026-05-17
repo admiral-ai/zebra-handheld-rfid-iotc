@@ -1,15 +1,16 @@
 ---
 id: device-configuration
-title: Device Configuration — MGMT Group 5
-sidebar_label: Device Configuration — MGMT Group 5
+title: "Device Configuration (MGMT)"
+sidebar_label: "Device Configuration (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# Device Configuration — MGMT Group 5
+#### `get_config` (T4)
 
-<div className="badge-reference">REFERENCE</div>
+Returns full device snapshot (see [§20.1](/reference/appendices/config-schema)).
 
-**Audience:** API Consumer
+#### `set_config` (T1)
 
-Endpoints: get_config (full snapshot), set_config (narrow: wifiConfig + epConfig + applyAfterReboot only).
+Narrow write surface. Payload key `configData`. Sub-objects: `wifiConfig`, `epConfig`, `applyAfterReboot`.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+**Errors:** 2, 10, 17, 18, 23, 25, 26, 27 (see [§17.2](/reference/errors/codes)).

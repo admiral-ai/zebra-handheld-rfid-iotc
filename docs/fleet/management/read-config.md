@@ -1,15 +1,50 @@
 ---
 id: read-config
-title: 14.2 How to Read Full Device Configuration
-sidebar_label: 14.2 How to Read Full Device Configuration
+title: How to Read Full Device Configuration
+sidebar_label: How to Read Full Device Configuration
 ---
 
-# 14.2 How to Read Full Device Configuration
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~5 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to read the full configuration document from a handheld reader.
 
-**Audience:** Fleet Operator
+### Issue the command
 
-`get_config` returns currentConfig with readerVersion, deviceStatus, currentRegion, ethConfig, wifiConfig, installedCerts, epConfig.
+```json
+{"command": "get_config", "command_id": "gc-1"}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Parse the response
+
+The response is a nested JSON document. Top-level sections correspond to the individual `get_*` endpoint domains:
+
+```json
+{
+  "response": "get_config",
+  "command_id": "gc-1",
+  "data": {
+    "network": { ... },
+    "security": { ... },
+    "endpoints": { ... },
+    "rfid": { ... },
+    "events": { ... },
+    "mdm": { ... }
+  }
+}
+```
+
+### Section correspondence
+
+| Config section | Corresponds to individual endpoint |
+|---|---|
+| `network` | `get_wifi`, `get_eth` |
+| `security` | `get_installed_certificate` |
+| `endpoints` | `get_endpoint_config` |
+| `rfid` | `get_operating_mode`, `get_post_filter` |
+| `events` | (corresponds to `config_events` settings) |
+
+For the complete schema, see [§20.1](/reference/appendices/config-schema).
+
+[DIAGRAM: D-14.2.A — example `get_config` response annotated by section]
+
+**Related:** 📕 [§16.2 get_config](#chapter-16--mqtt-api-reference) · 📕 [§20.1 Config Schema](/reference/appendices/config-schema) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config)

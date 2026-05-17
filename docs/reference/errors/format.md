@@ -4,12 +4,20 @@ title: Error Response Format
 sidebar_label: Error Response Format
 ---
 
-# Error Response Format
+Every command response carries a `response` object with `code` (integer) and `description` (string). On success, `code: 0`. On error, `code` is one of 1–28 from the canonical table in [§17.2](/reference/errors/codes).
 
-<div className="badge-reference">REFERENCE</div>
+Envelope:
 
-**Audience:** API Consumer
+```json
+{
+  "command": "<command_name>",
+  "requestId": "<echo>",
+  "apiVersion": "V1.1",
+  "response": {
+    "code": <0..28>,
+    "description": "<verbatim from error_codes.json>"
+  }
+}
+```
 
-response object with code (0–28 integer) and description string. requestId echoed.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+When `code` is non-zero, the operation-specific response payload (e.g., `readerVersion`, `deviceStatus`, `epDetails`) is typically absent or empty.

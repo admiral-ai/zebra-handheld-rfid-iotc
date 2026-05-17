@@ -1,15 +1,50 @@
 ---
 id: architecture
-title: 10.1 About Tag Data Event Architecture
-sidebar_label: 10.1 About Tag Data Event Architecture
+title: About Tag Data Event Architecture
+sidebar_label: About Tag Data Event Architecture
 ---
 
-# 10.1 About Tag Data Event Architecture
+> 📘 **EXPLANATION** · Audience: All · Read time: ~6 min
 
-<div className="badge-explanation">EXPLANATION</div>
+Tag data flows from the antenna to the application through five stages. Knowing the path is the foundation for capacity planning, latency budgeting, and deduplication strategy.
 
-**Audience:** All
+### The flow
 
-Flow: antenna → singulation → SELECT/post-filter → dataEVT publish. reportFilter.duration governs aggregation. QoS configurable per endpoint.
+```
+RF antenna → Reader firmware (singulation) → Post-filter → MQTT publish → Broker → Application subscriber
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Each stage has its own latency and back-pressure characteristics. The total path budget from "tag energised" to "application receives event" is typically 50–500 ms depending on broker proximity.
+
+[DIAGRAM: D-10.1.A — tag data flow with latency annotations per stage]
+
+### Event generation rate
+
+The rate at which `dataEVT` events are emitted depends on:
+
+- **Tag population density** — more tags in the field generate more events.
+- **Operating mode** — higher-information modes are slower per tag (see [§9.1](/rfid/operating-mode/profiles)).
+- **RF power** — affects effective read range and therefore tag count in the field.
+- **Post-filters** — filtered-out tags do not generate events.
+
+Typical event rates: 100–700 events/second for active inventory in a moderate-density environment.
+
+[DIAGRAM: D-10.1.B — generation rate factors]
+
+### Deduplication considerations
+
+`dataEVT` events are emitted per **read**, not per **tag**. The same tag in the field can be read multiple times per second. Whether the application sees duplicates depends on configuration: the reader can emit one event per read (raw, high-volume) or coalesce reads of the same EPC within a configurable window (deduplicated, lower-volume).
+
+Applications that consume the raw stream must deduplicate themselves; applications that consume the coalesced stream can usually treat each event as a distinct sighting.
+
+### Why two channels
+
+[DIAGRAM: see §10.4]
+
+A reader can be configured to publish tag data on one of two topic channels (`data1event`, `data2event`). The motivation and configuration are covered in [§10.4](/rfid/tag-data/dual-channels).
+
+### QoS choices
+
+Tag data defaults to QoS 0 — at most once. For high-volume applications, QoS 0 is the right default: losing a single read out of hundreds is operationally invisible, while QoS 1's PUBACK overhead becomes significant. Applications requiring guaranteed delivery can configure QoS 1; the trade-off is detailed in [§3.3](/foundations/mqtt/qos).
+
+**Related:** 📘 [§3.3 QoS Levels](/foundations/mqtt/qos) · 📘 [§10.4 Dual Data Channels](/rfid/tag-data/dual-channels) · 📕 [§16.4 DATA Interface](#chapter-16--mqtt-api-reference) · 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema)

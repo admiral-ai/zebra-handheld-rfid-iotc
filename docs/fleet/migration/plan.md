@@ -1,15 +1,27 @@
 ---
 id: plan
-title: 14.5 How to Plan a Migration
-sidebar_label: 14.5 How to Plan a Migration
+title: How to Plan a Migration
+sidebar_label: How to Plan a Migration
 ---
 
-# 14.5 How to Plan a Migration
+> 📙 **HOW-TO** · Audience: Fleet Operator, Solution Builder · Time: ~2 hours planning
 
-<div className="badge-howto">HOWTO</div>
+A handheld-reader migration is firmware-version-based. The IOTC V1.0 and V1.1 API surfaces are both accepted on firmware 3.10.27+; "migration" therefore means rolling firmware forward and confirming the deployment continues to function.
 
-**Audience:** Fleet Operator, Solution Builder
+### Pre-migration baseline
 
-Pre-migration audit; baseline capture; risk register; go/no-go checklist. Firmware revert is NOT supported.
+For each reader in scope, issue `get_config` and store the response as the baseline. This captures the full state including endpoints, Wi-Fi profiles, certificates (by reference), and the active operating-mode configuration.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Risk register
+
+- Firmware revert is not supported on handheld readers — plan migration as a one-way operation.
+- A canary cohort (1–5%) must validate the new firmware before fleet-wide rollout.
+- `set_os` accepts the firmware URL and authentication; the reader downloads and reboots.
+
+### Go/no-go checklist
+
+- [ ] Baseline `get_config` captured for every reader
+- [ ] Canary cohort identified
+- [ ] Firmware URL reachable from the reader's network
+- [ ] Sufficient battery (else error code 14) and flash (else code 8) on canary devices
+- [ ] Rollback playbook (re-bootstrap via 123RFID) documented

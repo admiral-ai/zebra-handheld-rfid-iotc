@@ -1,15 +1,18 @@
 ---
 id: system-operations
-title: System Operations — MGMT Group 6
-sidebar_label: System Operations — MGMT Group 6
+title: "System Operations (MGMT)"
+sidebar_label: "System Operations (MGMT)"
 ---
+> 📕 **REFERENCE**
 
-# System Operations — MGMT Group 6
+#### `set_os` (T2)
 
-<div className="badge-reference">REFERENCE</div>
+Initiates firmware update. Payload key `OSUpdateDetails` with `url`, `authenticationType`, `verificationType`, optional cert reference.
 
-**Audience:** API Consumer
+**Errors:** 1 (accepted, async), 4 (in progress), 8 (low flash), 9 (file not found), 13 (failed), 14 (battery low).
 
-Endpoints: set_os (firmware update via OSUpdateDetails), reboot (error 5 if inventory in progress).
+> Firmware revert is not supported on handheld readers.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+#### `reboot` (T4)
+
+Restarts the reader. **Errors:** 5 (inventory in progress — stop first).

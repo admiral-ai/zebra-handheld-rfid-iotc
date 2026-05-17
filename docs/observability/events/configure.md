@@ -1,15 +1,69 @@
 ---
 id: configure
-title: 11.3 How to Configure Event Reporting
-sidebar_label: 11.3 How to Configure Event Reporting
+title: How to Configure Event Reporting
+sidebar_label: How to Configure Event Reporting
 ---
 
-# 11.3 How to Configure Event Reporting
+> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+### Path 1: `config_events` (shortcut for the active endpoint)
 
-**Audience:** Solution Builder
+```json
+{
+  "command": "config_events",
+  "requestId": "ev-1",
+  "eventConfiguration": {
+    "heartbeat": true,
+    "battery": true,
+    "power": true,
+    "network": true,
+    "firmwareUpdate": true,
+    "ntp": true,
+    "terminalConnection": true,
+    "heartbeatConfiguration": {
+      "interval": 60,
+      "inventoryStatus": true,
+      "batteryStatus": true
+    }
+  }
+}
+```
 
-Enable/disable flags via config_events; set heartbeat interval and threshold values; choose data channel.
+### Path 2: `config_endpoint` (per-endpoint full control)
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+```json
+{
+  "command": "config_endpoint",
+  "requestId": "ev-2",
+  "epConfig": {
+    "operation": "update",
+    "endpointName": "main-event",
+    "configuration": {
+      "epType": "MGMT_EVT",
+      "eventConfiguration": {
+        "heartbeat": true,
+        "battery": true,
+        "heartbeatConfiguration": {
+          "interval": 30,
+          "inventoryStatus": true,
+          "batteryStatus": true
+        }
+      }
+    }
+  }
+}
+```
+
+### Documented event flags
+
+All flags from `config_events.md` are accepted in `eventConfiguration`:
+`antenna`, `terminalConnection`, `firmwareUpdate`, `gpi`, `network`, `exceptions`, `ntp`, `userApp`, `heartbeat`, `power`, `battery`, `temperature`, `fileDownload`, `cpuUsage`, `flashUsage`, `ramUsage`.
+
+> Flags `antenna`, `exceptions`, `gpi`, `cpuUsage`, `userApp` are accepted but do not currently emit events on V1.1 firmware.
+
+### Threshold fields
+
+For threshold-based alerts, set the relevant threshold:
+- `cpuThreshold`, `ramThreshold`, `flashThreshold`, `temperatureThreshold`
+
+**Related:** 📘 [§11.1 Event Model](/observability/events/model) · 📕 [§16.2 config_events](#chapter-16--mqtt-api-reference) · 📕 [§16.6 events](#chapter-16--mqtt-api-reference)

@@ -1,15 +1,21 @@
 ---
 id: v1-1-features
-title: 1.3 About IOTC V1.1 Features
-sidebar_label: 1.3 About IOTC V1.1 Features
+title: About IOTC V1.1 Features
+sidebar_label: About IOTC V1.1 Features
 ---
 
-# 1.3 About IOTC V1.1 Features
+> 📘 **EXPLANATION** · Audience: All · Read time: ~3 min
 
-<div className="badge-explanation">EXPLANATION</div>
+IOTC V1.1 is the current API baseline for handheld RFID readers running firmware 3.10.27 or later. The V1.1 surface is what this documentation describes; V1.0 remains accepted by V1.1 firmware for backward compatibility.
 
-**Audience:** All
+### Per-endpoint version support
 
-IOTC V1.1 is the current API baseline. Every operation supports both V1.0 and V1.1; field-level deltas are noted per-endpoint in the Reference.
+Every operation in this API declares its supported versions. Across the documented operation set, every operation supports both `V1.0` and `V1.1` — there is no V1.0-only or V1.1-only operation. Field-level changes between versions, where they exist, are catalogued on the affected operation's Reference page in [§16](#chapter-16--mqtt-api-reference).
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### What this means for V1.0 clients
+
+A client written for V1.0 continues to function against V1.1 firmware. Field additions in V1.1 are additive — V1.0 clients ignore unknown fields. For projects that want to consume V1.1-only fields (richer event payloads, new metadata flags), update the client to expect the new fields.
+
+There is no firmware revert on handheld readers. Once on V1.1 firmware, the reader stays on V1.1.
+
+**Related:** 📕 [§16 API Reference](#chapter-16--mqtt-api-reference) · 📙 [§14.5 Migration Planning](/fleet/migration/plan) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history)

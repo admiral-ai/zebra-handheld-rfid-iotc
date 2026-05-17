@@ -4,12 +4,32 @@ title: General Questions
 sidebar_label: General Questions
 ---
 
-# General Questions
+> 📕 **REFERENCE**
 
-<div className="badge-reference">REFERENCE</div>
+**Q:** What hardware does IOTC for Handheld RFID support?
+**A:** The RFD40 (Standard and Premium) and RFD90 sleds running firmware 3.10.27 or later.
+**Details:** [§1.2 About Supported Hardware](/foundations/introduction/supported-hardware)
 
-**Audience:** All
+---
 
-Strict Q/A/Details format. What hardware is supported? Which MQTT version? Is there a REST API? Where to get credentials? Minimum firmware?
+**Q:** Which MQTT version does IOTC use?
+**A:** MQTT 3.1.1, exclusively.
+**Details:** [§3.1 About MQTT 3.1.1](/foundations/mqtt/primer)
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+---
+
+**Q:** Is there a REST API?
+**A:** No. Handheld IOTC communicates only over MQTT.
+**Details:** [§1.1 About Zebra IoT Connector for Handheld RFID](/foundations/introduction/about-iotc)
+
+---
+
+**Q:** Where do I get IOTC credentials?
+**A:** From the Zebra developer portal, under IoT Connector → Tenants.
+**Details:** [§4.2 How to Obtain IOTC Credentials & Tenant ID](/getting-started/prerequisites/credentials)
+
+---
+
+**Q:** What is the minimum firmware version?
+**A:** 3.10.27.
+**Details:** [§4.1 Hardware & Software Requirements](/getting-started/prerequisites/requirements)

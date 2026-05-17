@@ -1,15 +1,35 @@
 ---
 id: device-health
-title: 12.1 How to Check Device Status & Health
-sidebar_label: 12.1 How to Check Device Status & Health
+title: How to Check Device Status & Health
+sidebar_label: How to Check Device Status & Health
 ---
 
-# 12.1 How to Check Device Status & Health
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~5 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to check the health of a handheld reader on demand and continuously.
 
-**Audience:** Fleet Operator
+### On-demand: `get_status`
 
-On-demand via get_status; continuous via heartBeatEVT subscription. Combine for resilience.
+```json
+{"command": "get_status", "command_id": "status-1"}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [§16.2](#chapter-16--mqtt-api-reference).
+
+[DIAGRAM: D-12.1.A — `get_status` response annotated]
+
+### Continuous: subscribe to `heartBeatEVT`
+
+For a reader on its MGMT interface, subscribe to:
+
+```
+{tenantId}/mgmt/clients/<channel>/<deviceSerial>
+```
+
+and filter on `event == "heartBeatEVT"`. Heartbeats arrive at the configured interval (see [§11.3](/observability/events/configure)).
+
+### Combine the two
+
+`get_status` gives a point-in-time snapshot; `heartBeatEVT` gives a stream. Combine for resilience: query `get_status` at startup or on demand; trust `heartBeatEVT` for ongoing state. If they disagree, the more recent timestamp wins.
+
+**Related:** 📕 [§16.2 get_status](#chapter-16--mqtt-api-reference) · 📕 [§16.6 heartBeatEVT](#chapter-16--mqtt-api-reference) · 📘 [§11.4 Heartbeat Events](/observability/events/heartbeat)

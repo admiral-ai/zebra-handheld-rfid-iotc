@@ -1,15 +1,41 @@
 ---
 id: soti-connect
-title: 13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect
-sidebar_label: 13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect
+title: How to Set Up Zero-Touch Provisioning with SOTI Connect
+sidebar_label: How to Set Up Zero-Touch Provisioning with SOTI Connect
 ---
 
-# 13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~45 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to set up zero-touch provisioning for handheld readers using SOTI Connect.
 
-**Audience:** Fleet Operator
+### Prerequisites
 
-Configure MDM endpoint; enroll devices; distribute configuration profile; orchestrate firmware updates.
+A configured SOTI Connect instance with MQTT broker integration, administrator credentials, and the IOTC MDM connector enabled in SOTI Connect.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Step 1: Configure the MDM endpoint on readers
+
+During 123RFID Desktop bootstrap ([§4.3](/getting-started/prerequisites/bootstrap)), set the MDM endpoint URL to your SOTI Connect MQTT-broker hostname and credentials.
+
+### Step 2: Enroll devices in SOTI Connect
+
+In SOTI Connect's admin console, navigate to **Devices → Add Device**. Add each reader by serial number, or use the bulk-import feature with a CSV. SOTI Connect creates a device record but does not yet manage configuration.
+
+### Step 3: Create a configuration profile
+
+In SOTI Connect, **Profiles → New IOTC Profile**. Define the runtime configuration: Wi-Fi profiles, endpoint configurations, event reporting, default operating mode. This is the "golden config" that will be pushed to enrolled devices.
+
+### Step 4: Distribute the profile
+
+Assign the profile to one or more device groups. SOTI Connect pushes the profile to each enrolled reader the next time the reader checks in.
+
+### Step 5: Orchestrate firmware updates
+
+Use SOTI Connect's update-orchestration feature to schedule firmware updates by group and time window. The MDM platform invokes `set_os` on each target device per the schedule.
+
+[DIAGRAM: D-13.2.A — SOTI Connect ↔ reader fleet flow]
+
+### Verify
+
+Watch `alert_short` events on the MDM interface: a successfully managed reader emits a "managed" status alert. SOTI Connect's device-detail view shows the same.
+
+**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📕 [§16.5 MDM Interface](#chapter-16--mqtt-api-reference) · 📕 [§16.6 alert_short](#chapter-16--mqtt-api-reference) · 📙 [§8.3 Endpoint Configuration](/infrastructure/endpoints/configure)

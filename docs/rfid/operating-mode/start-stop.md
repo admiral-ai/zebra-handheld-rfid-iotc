@@ -1,15 +1,37 @@
 ---
 id: start-stop
-title: 9.4 How to Start and Stop RFID Operations
-sidebar_label: 9.4 How to Start and Stop RFID Operations
+title: How to Start and Stop RFID Operations
+sidebar_label: How to Start and Stop RFID Operations
 ---
 
-# 9.4 How to Start and Stop RFID Operations
+> 📙 **HOW-TO** · Audience: All · Time: ~5 min
 
-<div className="badge-howto">HOWTO</div>
+### Start an RFID inventory
 
-**Audience:** All
+```json
+{
+  "command": "control_operation",
+  "requestId": "op-1",
+  "ctrlOprPayload": {"controlType": "RFID", "operation": "START"}
+}
+```
 
-`control_operation` with `ctrlOprPayload: {controlType: "RFID"|"SCANNER", operation: "START"|"STOP"}`. Error code 11 (already running); error 12 (already idle — informational).
+If a `set_operating_mode` has not been issued, the reader uses its current configuration. If an inventory is already running, the response carries code 11 (`IOT_ERROR_INVENTORY_IN_PROGRESS`).
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Stop an RFID inventory
+
+```json
+{
+  "command": "control_operation",
+  "requestId": "op-2",
+  "ctrlOprPayload": {"controlType": "RFID", "operation": "STOP"}
+}
+```
+
+If no inventory is running, the response carries code 12 (`IOT_ERROR_NO_RADIO_OP_IN_PROGRESS`). **This is informational, not a failure** — the reader is already in the desired idle state.
+
+### Control the barcode scanner
+
+For models with a barcode scanner, `controlType: SCANNER` starts and stops the barcode subsystem analogously.
+
+**Related:** 📘 [§9.5 Trigger Composition](/rfid/operating-mode/trigger-composition) · 📕 [§16.3 control_operation](#chapter-16--mqtt-api-reference) · 📕 [§17.2 Error Codes](/reference/errors/codes)

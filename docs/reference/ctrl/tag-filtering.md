@@ -1,15 +1,11 @@
 ---
 id: tag-filtering
-title: Tag Filtering — CTRL Group 2
-sidebar_label: Tag Filtering — CTRL Group 2
+title: "Tag Filtering (CTRL)"
+sidebar_label: "Tag Filtering (CTRL)"
 ---
+> 📕 **REFERENCE**
 
-# Tag Filtering — CTRL Group 2
+#### `get_post_filter` (T3)
+#### `set_post_filter` (T2)
 
-<div className="badge-reference">REFERENCE</div>
-
-**Audience:** API Consumer
-
-Endpoints: get_post_filter, set_post_filter. ADD/MODIFY/DELETE on postFilterPayload. PREFIX/SUFFIX/REGEX.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Operations: `ADD`, `MODIFY`, `DELETE`. Target: `DATA_EP1` / `DATA_EP2`. Methods: `PREFIX`, `SUFFIX`, `REGEX`. Behaviour: `INCLUDE` / `EXCLUDE`. See [§9.3b](/rfid/operating-mode/post-filters-configure).

@@ -1,15 +1,10 @@
 ---
 id: verify
-title: 14.7 How to Verify a Successful Migration
-sidebar_label: 14.7 How to Verify a Successful Migration
+title: How to Verify a Successful Migration
+sidebar_label: How to Verify a Successful Migration
 ---
 
-# 14.7 How to Verify a Successful Migration
-
-<div className="badge-howto">HOWTO</div>
-
-**Audience:** Fleet Operator
-
-Firmware uniformity via get_version; configuration match via get_config diff; alert rate normality; smoke test V1.1-only fields.
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+1. `get_version` on every reader — confirm `firmwareVersion` matches target.
+2. `get_config` on every reader — diff against pre-migration baseline.
+3. Watch `alerts` rates over a representative shift — no firmware-related elevations.
+4. Define "migration complete" exit criteria: 100% on target firmware; configuration drift score nominal; alert rates within baseline.

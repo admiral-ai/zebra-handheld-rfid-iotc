@@ -1,15 +1,16 @@
 ---
 id: operating-mode
-title: Operating Mode — CTRL Group 1
-sidebar_label: Operating Mode — CTRL Group 1
+title: "Operating Mode (CTRL)"
+sidebar_label: "Operating Mode (CTRL)"
 ---
+> 📕 **REFERENCE**
 
-# Operating Mode — CTRL Group 1
+#### `get_operating_mode` (T4)
 
-<div className="badge-reference">REFERENCE</div>
+Returns current operating mode configuration.
 
-**Audience:** API Consumer
+#### `set_operating_mode` (T1)
 
-Endpoints: get_operating_mode, set_operating_mode (T1 complex — seven sub-objects).
+Most complex command. Payload key `operatingMode`. Sub-objects: `profiles`, `advancedConfigurations` (when `profiles: ADVANCED`), `accessOperations[]`, `radioConditions.{start, stop}`, `query`, `select[]`, `reportFilter`. See [§9.2](/rfid/operating-mode/configure) for examples.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+**Errors:** 11 (inventory in progress), 22 (advanced profile not set), 23, 24 (>32 prefilters), 28 (tag pattern length).

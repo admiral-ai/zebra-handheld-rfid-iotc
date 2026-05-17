@@ -1,15 +1,66 @@
 ---
 id: process
-title: 10.5 How to Process Tag Data in Your Application
-sidebar_label: 10.5 How to Process Tag Data in Your Application
+title: How to Process Tag Data in Your Application
+sidebar_label: How to Process Tag Data in Your Application
 ---
 
-# 10.5 How to Process Tag Data in Your Application
+> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~20 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to process incoming tag data on the application side. The patterns below apply regardless of language; the Quick Start tutorials in §5.8–§5.10 give starter implementations.
 
-**Audience:** Solution Builder
+### Deduplication
 
-Deduplication strategies, buffering/batching, real-time alerting, integration with inventory systems.
+Decide a time window appropriate to your use case. A common choice for inventory-counting applications is 1 second: any EPC seen within 1 second of its previous reading is treated as the same sighting.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+```python
+last_seen = {}
+DEDUPE_WINDOW_MS = 1000
+
+def on_tag(event):
+    epc = event["data"]["epc"]
+    now = event_timestamp_ms(event)
+    if epc in last_seen and now - last_seen[epc] < DEDUPE_WINDOW_MS:
+        return  # duplicate
+    last_seen[epc] = now
+    process_sighting(epc, now)
+```
+
+For batch-counting applications (e.g., "how many unique items in the store?"), use a sliding window of minutes or hours.
+
+### Buffering and batching for database writes
+
+Tag data arrives at hundreds of events/second from each reader. Writing each event to a database synchronously will not scale. Batch:
+
+1. Buffer events in memory (queue or array).
+2. Flush every N events or every T milliseconds, whichever first.
+3. Use bulk-insert APIs at the database.
+
+A typical batch size is 500 events / 2-second flush interval.
+
+### Real-time alerting
+
+For applications that need to react to specific EPCs (e.g., a high-value item appearing on a sales floor), maintain a hot-set of target EPCs and check on each event:
+
+```python
+TARGET_EPCS = {"E2003412...", "E2003412..."}
+
+def on_tag(event):
+    if event["data"]["epc"] in TARGET_EPCS:
+        send_alert(event)
+```
+
+### Integration with inventory management systems
+
+[DIAGRAM: D-10.5.A — typical pipeline: subscribe → dedupe → buffer → persist → alert]
+
+Common architecture: an MQTT consumer service deduplicates and batches; writes to a time-series database (Timescale, Influx) for analytics and to an operational database (Postgres, Mongo) for current-state queries; publishes alerts to an event bus (Kafka, EventBridge) for downstream subscribers.
+
+### Backpressure and resilience
+
+If the application cannot keep up, MQTT QoS 0 silently drops messages — the broker does not buffer. For high-availability requirements: increase consumer concurrency, run multiple consumers on different channels ([§10.4](/rfid/tag-data/dual-channels)), and consider configuring `dataEVT` at QoS 1 with sized retention. See [§3.3](/foundations/mqtt/qos).
+
+**Related:** 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [§10.3 Interpret Fields](/rfid/tag-data/interpret) · 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§15.2 AWS IoT Core](/fleet/cloud-integration/aws)
+
+---
+
+# Part V: Observability & Events

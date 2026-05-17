@@ -3,13 +3,11 @@ id: about
 title: MDM and SOTI Interfaces
 sidebar_label: MDM and SOTI Interfaces
 ---
+> 📕 **REFERENCE**
 
-# MDM and SOTI Interfaces
+Two distinct endpoint types:
 
-<div className="badge-reference">REFERENCE</div>
+- `epType: MDM` — generic MDM-platform endpoint.
+- `epType: SOTI` — SOTI MobiControl specialisation. The reader returns SOTI-shaped responses for `get_config` (see `get_config_response_soti.json`) and `get_wifi` (see `get_wifi_response_soti.json`).
 
-**Audience:** API Consumer
-
-Two distinct endpoint types: MDM (generic), SOTI (specialised with SOTI-shaped responses for get_config and get_wifi).
-
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+Configuration uses the same `config_endpoint` shape with the relevant `epType` selection.

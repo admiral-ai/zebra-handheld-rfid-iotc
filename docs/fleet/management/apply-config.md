@@ -1,15 +1,62 @@
 ---
 id: apply-config
-title: 14.3 How to Apply Bulk Configuration
-sidebar_label: 14.3 How to Apply Bulk Configuration
+title: How to Apply Bulk Configuration
+sidebar_label: How to Apply Bulk Configuration
 ---
 
-# 14.3 How to Apply Bulk Configuration
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+### Build the payload
 
-**Audience:** Fleet Operator
+```json
+{
+  "command": "set_config",
+  "requestId": "sc-1",
+  "configData": {
+    "applyAfterReboot": false,
+    "wifiConfig": {
+      "operation": "CREATE",
+      "essid": "MainWiFi",
+      "security": {"securityType": "WPA2Personal", "passphrase": "..."}
+    },
+    "epConfig": {
+      "operation": "add",
+      "endpointName": "main-mgmt",
+      "configuration": {
+        "epType": "MGMT",
+        "protocol": "MQTT_TLS",
+        "url": "broker.example.com",
+        "port": 8883,
+        "tenantId": "<TENANT_ID>",
+        "verificationType": "VERIFY_HOST_PEER",
+        "activate": true,
+        "mqttParams": { /* ... */ },
+        "securityParams": {"caCertificateFile": "broker-ca", "format": "PEM"}
+      }
+    }
+  }
+}
+```
 
-`set_config` with configData (wifiConfig, epConfig, applyAfterReboot). Recovery via 123RFID Desktop if connectivity lost.
+### Validation error codes
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+| Code | Trigger |
+|---|---|
+| 2 | `IOT_ERROR_INVALID_PAYLOAD` |
+| 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST` — endpoint name in use |
+| 17 | `IOT_ERROR_SSID_MISSED` — ESSID field missing |
+| 18 | `IOT_ERROR_SSID_ALREADY_EXIST` — CREATE on existing ESSID |
+| 23 | `IOT_ERROR_INVALID_ENUM` — unsupported enum value |
+| 25 | `IOT_ERROR_PUBLISH_TOPICS_EXCEEDED` — more than 3 publish topics |
+| 26 | `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED` — more than 1 subscribe topic |
+| 27 | `IOT_ERROR_INVALID_TENANTID_LENGTH` |
+
+### Recovery if connectivity is lost
+
+If a `set_config` change disconnects the reader, the recovery path is 123RFID Desktop via cradle — reset the MDM endpoint, the reader comes back online, and you can re-issue the corrected `set_config`.
+
+**Related:** 📘 [§14.1 Bulk Configuration](/fleet/management/about-bulk) · 📕 [§16.2 set_config](#chapter-16--mqtt-api-reference) · 📙 [§14.2 Read Config](/fleet/management/read-config)
+
+---
+
+## §14.5–§14.7 — Migration Cluster (revised)

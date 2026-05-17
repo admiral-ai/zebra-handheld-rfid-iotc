@@ -1,15 +1,103 @@
 ---
 id: wifi
-title: 6.2 How to Configure Wi-Fi Profiles
-sidebar_label: 6.2 How to Configure Wi-Fi Profiles
+title: How to Configure Wi-Fi Profiles
+sidebar_label: How to Configure Wi-Fi Profiles
 ---
 
-# 6.2 How to Configure Wi-Fi Profiles
+> 📙 **HOW-TO** · Audience: Solution Builder, Fleet Operator · Time: ~10 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to configure Wi-Fi profiles on a handheld reader over MQTT.
 
-**Audience:** Solution Builder, Fleet Operator
+### View the current configuration
 
-CREATE/MODIFY operations on `set_wifi`; security types WPA2Personal/WPA3Personal/WPA2Enterprise/WPA3Enterprise; 10-profile maximum.
+```json
+{"command": "get_wifi", "requestId": "wifi-1"}
+```
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+The response lists configured profiles with their ESSIDs, security types, and connection status.
+
+### Create a new Wi-Fi profile — WPA2Personal
+
+```json
+{
+  "command": "set_wifi",
+  "requestId": "wifi-2",
+  "wifiConfig": {
+    "operation": "CREATE",
+    "essid": "WarehouseWiFi",
+    "security": {
+      "securityType": "WPA2Personal",
+      "passphrase": "<wifi-password>"
+    },
+    "isPreferred": true,
+    "connect": true,
+    "ipv4Configuration": {"enableDhcp": true}
+  }
+}
+```
+
+**Security types:** `WPA2Personal`, `WPA3Personal`, `WPA2Enterprise`, `WPA3Enterprise`.
+
+### Create a new profile — WPA2Enterprise (EAP-TLS)
+
+Certificates must already be installed via `install_certificate` (see [§7.2](/infrastructure/security/certificate-management)) — reference them by logical `name`:
+
+```json
+{
+  "command": "set_wifi",
+  "requestId": "wifi-3",
+  "wifiConfig": {
+    "operation": "CREATE",
+    "essid": "EnterpriseWiFi",
+    "security": {
+      "securityType": "WPA2Enterprise",
+      "authentication": "tls",
+      "identity": "<eap-identity>",
+      "certificate": [
+        {"role": "ca_cert", "name": "enterprise-ca"},
+        {"role": "client_cert", "name": "enterprise-client"},
+        {"role": "client_key", "name": "enterprise-client-key"}
+      ]
+    },
+    "isPreferred": true,
+    "connect": false
+  }
+}
+```
+
+**Enterprise authentication methods:** `tls`, `ttls`, `peap`.
+
+### Modify an existing profile
+
+```json
+{
+  "command": "set_wifi",
+  "requestId": "wifi-4",
+  "wifiConfig": {
+    "operation": "MODIFY",
+    "essid": "WarehouseWiFi",
+    "security": {"securityType": "WPA2Personal", "passphrase": "<new-password>"}
+  }
+}
+```
+
+`MODIFY` fails with error code 15 (`IOT_ERROR_SSID_NOT_FOUND`) if the ESSID does not exist.
+
+### Delete a profile
+
+```json
+{
+  "command": "delete_wifi_profile",
+  "requestId": "wifi-5",
+  "wifiConfig": {"essid": "OldWiFi"}
+}
+```
+
+Cannot delete the currently active SSID (returns code 16 — `IOT_ERROR_DELETE_ACTIVE_SSID`).
+
+### Limits
+
+- **Maximum 10 saved Wi-Fi profiles** per reader. Exceeding returns code 19 (`IOT_ERROR_SSID_LIMIT_OVERFLOW`).
+- **ESSID is case-sensitive.** A mismatch on `MODIFY` triggers code 15.
+
+**Related:** 📘 [§6.1 Network Architecture](/infrastructure/network/architecture) · 📕 [§16.2 Wi-Fi endpoints](#chapter-16--mqtt-api-reference) · 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) (for EAP-TLS prerequisites)

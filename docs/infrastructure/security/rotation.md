@@ -1,15 +1,42 @@
 ---
 id: rotation
-title: 7.3 How to Rotate Certificates at Scale
-sidebar_label: 7.3 How to Rotate Certificates at Scale
+title: How to Rotate Certificates at Scale
+sidebar_label: How to Rotate Certificates at Scale
 ---
 
-# 7.3 How to Rotate Certificates at Scale
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min
 
-<div className="badge-howto">HOWTO</div>
+This guide shows you how to rotate TLS certificates across a fleet of handheld readers without downtime.
 
-**Audience:** Fleet Operator
+### Monitor for expiration
 
-Wave-based rollout pattern: canary 1-5% → 10% → 50% → 100% with cert-related exceptionEVT monitoring.
+Subscribe to the certificate-expiry `alerts` event. Configure the warning threshold via `config_events` — typically 30 days before expiration.
 
-> This page's full draft prose lives in `zebra-handheld-rfid-iotc-phase-2-drafts-v2.md` in the upstream documentation repository. The structural skeleton is complete; the prose is migrated section by section as part of Phase 5 (Publish).
+### Stage the new certificate to a canary cohort
+
+Select 1–5% of the fleet. Issue `install_certificate` for each canary reader with the new certificate under a **new alias** (e.g., `client-cert-2026`). Do not delete the old certificate.
+
+### Cut over the canary
+
+Update the canary readers' `config_endpoint` to reference the new certificate alias. Watch `mqttConnEVT` confirm secure reconnection.
+
+### Widen the rollout in waves
+
+| Wave | % of fleet | Wait before next wave | Pass criteria |
+|---|---:|---|---|
+| 1 | 1% (canary) | 24 hours | Zero cert-related `exceptionEVT` |
+| 2 | 10% | 24 hours | Same |
+| 3 | 50% | 12 hours | Same |
+| 4 | 100% | — | Same |
+
+[DIAGRAM: D-7.3.A — wave-based rollout timeline]
+
+### Handle install failures
+
+If `install_certificate` returns an error, the reader retains its existing certificate and remains operational. Log the failure, fix the cause, and retry. Do not delete the old certificate until the new one is verified working.
+
+### Verify and clean up
+
+Once 100% of the fleet is on the new alias, issue `delete_certificate` for the old alias.
+
+**Related:** 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) · 📙 [§13.4 Automation](/fleet/provisioning/automation) · 📕 [§16.6 alerts](#chapter-16--mqtt-api-reference) · 📙 [§14.6 Phased Rollout Pattern](/fleet/migration/execute)
