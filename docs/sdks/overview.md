@@ -4,9 +4,7 @@ title: SDKs & Language Tutorials
 sidebar_label: Overview
 ---
 
-# SDKs & Language Tutorials
-
-<div className="badge-explanation">EXPLANATION</div>
+> 📘 **EXPLANATION** · Audience: New Integrator · Use: choose a language before starting a tutorial
 
 This section contains three independent, parallel language tutorials. Each is a complete learning experience targeting one language and one MQTT library. They are not "pick one" — each one is self-contained, and you choose which to follow before you begin.
 

@@ -4,6 +4,8 @@ title: How to Verify a Successful Migration
 sidebar_label: How to Verify a Successful Migration
 ---
 
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min
+
 1. `get_version` on every reader — confirm `firmwareVersion` matches target.
 2. `get_config` on every reader — diff against pre-migration baseline.
 3. Watch `alerts` rates over a representative shift — no firmware-related elevations.

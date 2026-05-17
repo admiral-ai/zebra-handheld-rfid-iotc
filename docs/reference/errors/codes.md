@@ -4,6 +4,8 @@ title: Command Response Error Codes
 sidebar_label: Command Response Error Codes
 ---
 
+> 📕 **REFERENCE** · Audience: API Consumer · Use: look up codes appearing in command responses
+
 Canonical from `error_codes.json` — 29 entries (codes 0–28).
 
 | Code | `iot_status_code` | Description | Cause | Recommended action | Applies to |

@@ -4,6 +4,8 @@ title: Error Response Format
 sidebar_label: Error Response Format
 ---
 
+> 📕 **REFERENCE** · Audience: API Consumer · Use: parse error responses
+
 Every command response carries a `response` object with `code` (integer) and `description` (string). On success, `code: 0`. On error, `code` is one of 1–28 from the canonical table in [§17.2](/reference/errors/codes).
 
 Envelope:

@@ -4,6 +4,8 @@ title: MQTT Topic Quick Reference
 sidebar_label: MQTT Topic Quick Reference
 ---
 
+> 📕 **REFERENCE** · Audience: All · Use: printable cheat sheet
+
 Three-part topic structure: `<tenantId> / <topic> / <deviceSerialNumber>`. The middle `<topic>` is configured per endpoint via `publishTopics` and `subscribeTopics`.
 
 | Source-convention `topic` | Direction | Convention |

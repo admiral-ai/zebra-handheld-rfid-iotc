@@ -4,6 +4,8 @@ title: Supported RFID Tag Types & Standards
 sidebar_label: Supported RFID Tag Types & Standards
 ---
 
+> 📕 **REFERENCE** · Audience: Solution Builder
+
 EPC Gen2 / ISO 18000-63 UHF.
 
 ### Memory banks

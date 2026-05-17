@@ -132,7 +132,9 @@ ul.feature-list {
   filter: invert(1);
 }
 
-/* === Diátaxis content-type badges (Zebra IOTC-specific) === */
+/* === Diátaxis content-type badges (homepage card grid) ===
+   Used by src/pages/index.tsx FeatureCard component. Inside docs/ pages
+   the quadrant signal is the blockquote emoji style (> 📘/📗/📙/📕 ...). */
 .badge-explanation { background-color: #E3EEF8; color: #003A7E; }
 .badge-tutorial    { background-color: #E8F5E8; color: #1B5E20; }
 .badge-howto       { background-color: #FFF3E0; color: #E65100; }

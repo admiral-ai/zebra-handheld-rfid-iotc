@@ -4,6 +4,8 @@ title: How to Execute a Phased Migration
 sidebar_label: How to Execute a Phased Migration
 ---
 
+> 📙 **HOW-TO** · Audience: Fleet Operator · Time: days to weeks for a full fleet
+
 ```json
 {
   "command": "set_os",
