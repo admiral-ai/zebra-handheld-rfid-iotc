@@ -1,7 +1,7 @@
 ---
 id: config-schema
-title: `get_config` Response Schema
-sidebar_label: `get_config` Response Schema
+title: "get_config Response Schema"
+sidebar_label: "get_config Response Schema"
 ---
 
 > 📕 **REFERENCE**
