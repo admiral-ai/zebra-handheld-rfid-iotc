@@ -2,9 +2,7 @@
 
 > MQTT API documentation for Zebra RFD40 / RFD90 handheld RFID reader sleds. Built with [Docusaurus 3](https://docusaurus.io/).
 
-This Docusaurus project replicates the **design system** of the [ConfigCat documentation site](https://configcat.com/docs/getting-started/) — typography, sidebar icons, page anatomy, table-of-contents indicator, code-block style, footer, navbar — with the **color palette swapped** to Zebra Technologies' brand (navy `#004C97` in light mode; light blue `#6CB4EE` in dark mode).
-
-Content follows the **[Diátaxis framework](https://diataxis.fr/)** (Tutorials · How-to guides · Reference · Explanation) per the upstream Information Architecture v1.1.
+This documentation follows the **[Diátaxis framework](https://diataxis.fr/)** (Tutorials · How-to guides · Reference · Explanation) per the upstream Information Architecture v1.1.
 
 ---
 
@@ -78,7 +76,7 @@ zebra-handheld-rfid-iotc/
 
 ## Design system
 
-### Inherited from ConfigCat
+### Custom Design
 
 - **Layout & typography:** Docusaurus 3 classic preset with system font stack.
 - **Sidebar:** SCSS-driven, mask-based SVG category icons (20 named icon classes — `basics`, `guides`, `tools`, `status`, `api`, `sdk`, `analytics`, `team`, `integrations`, `faq`, `legacy`, `news`, `project-management`, `devops`, `overview`, etc.). Active link indicator: 3 px primary-color left border. Nested-level offsets at -2px / -14px / -26px / -38px.
@@ -88,7 +86,7 @@ zebra-handheld-rfid-iotc/
 - **Footer:** `style: 'dark'` with four columns (Documentation / Zebra Resources / Help & Resources / Engage).
 - **Image zoom:** Click any in-content image to zoom in.
 
-### Swapped for Zebra
+### Zebra Flavors
 
 - **Primary color (light):** `#004C97` Zebra navy
 - **Primary color (dark):** `#6CB4EE` light blue
@@ -137,7 +135,7 @@ After editing `docusaurus.config.ts` or `sidebars.ts`, restart the dev server.
 
 ## Deployment
 
-This project is intended to deploy to GitHub Pages at `https://admiral-ai.github.io/zebra-handheld-rfid-iotc/`. To deploy:
+This project is intended to deploy to GitHub Pages at `https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/`. To deploy:
 
 ```bash
 # Build
@@ -154,12 +152,11 @@ The `baseUrl` in `docusaurus.config.ts` is `/zebra-handheld-rfid-iotc/`. If host
 
 ## License
 
-Documentation content © Zebra Technologies Corporation and/or its affiliates. The Docusaurus build harness is © Meta Platforms, Inc. and contributors. The design system pattern derives from the [ConfigCat docs](https://github.com/configcat/docs) (MIT) with color-palette swap.
+Documentation content © Zebra Technologies Corporation and/or its affiliates. The Docusaurus build harness is © Meta Platforms, Inc. and contributors. The design system pattern derives from the Abdul Latheef Mohamed.
 
 ---
 
 ## Acknowledgements
 
 - **[Docusaurus](https://docusaurus.io/)** — the site generator
-- **[ConfigCat documentation team](https://configcat.com/docs/)** — design system inspiration; sidebar icon and TOC indicator patterns
 - **[Diátaxis](https://diataxis.fr/)** — content-type framework
