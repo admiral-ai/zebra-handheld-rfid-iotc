@@ -1,5 +1,5 @@
 ---
-id: 10-4-about-dual-data-channels
+id: dual-channels
 title: 10.4 About Dual Data Channels
 sidebar_label: 10.4 About Dual Data Channels
 ---

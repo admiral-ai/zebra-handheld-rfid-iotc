@@ -1,5 +1,5 @@
 ---
-id: 2-2-about-component-architecture
+id: components
 title: 2.2 About Component Architecture
 sidebar_label: 2.2 About Component Architecture
 ---

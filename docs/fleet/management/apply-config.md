@@ -1,5 +1,5 @@
 ---
-id: 14-3-how-to-apply-bulk-configuration
+id: apply-config
 title: 14.3 How to Apply Bulk Configuration
 sidebar_label: 14.3 How to Apply Bulk Configuration
 ---

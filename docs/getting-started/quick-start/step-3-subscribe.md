@@ -1,5 +1,5 @@
 ---
-id: step-3-subscribe-to-tag-data-events
+id: step-3-subscribe
 title: Step 3 — Subscribe to Tag Data Events
 sidebar_label: Step 3 — Subscribe to Tag Data Events
 ---

@@ -1,5 +1,5 @@
 ---
-id: third-party-mqtt-client-libraries
+id: libraries
 title: Third-Party MQTT Client Libraries
 sidebar_label: Third-Party MQTT Client Libraries
 ---

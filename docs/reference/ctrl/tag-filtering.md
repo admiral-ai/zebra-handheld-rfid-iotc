@@ -1,5 +1,5 @@
 ---
-id: tag-filtering-ctrl-group-2
+id: tag-filtering
 title: Tag Filtering — CTRL Group 2
 sidebar_label: Tag Filtering — CTRL Group 2
 ---

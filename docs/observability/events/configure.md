@@ -1,5 +1,5 @@
 ---
-id: 11-3-how-to-configure-event-reporting
+id: configure
 title: 11.3 How to Configure Event Reporting
 sidebar_label: 11.3 How to Configure Event Reporting
 ---

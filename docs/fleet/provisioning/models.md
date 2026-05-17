@@ -1,5 +1,5 @@
 ---
-id: 13-1-about-provisioning-models
+id: models
 title: 13.1 About Provisioning Models
 sidebar_label: 13.1 About Provisioning Models
 ---

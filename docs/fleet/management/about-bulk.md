@@ -1,5 +1,5 @@
 ---
-id: 14-1-about-bulk-configuration
+id: about-bulk
 title: 14.1 About Bulk Configuration
 sidebar_label: 14.1 About Bulk Configuration
 ---

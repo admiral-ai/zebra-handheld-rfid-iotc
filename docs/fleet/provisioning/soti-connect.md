@@ -1,5 +1,5 @@
 ---
-id: 13-2-how-to-set-up-zero-touch-provisioning-with-soti-connect
+id: soti-connect
 title: 13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect
 sidebar_label: 13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect
 ---

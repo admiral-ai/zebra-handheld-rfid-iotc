@@ -1,5 +1,5 @@
 ---
-id: 8-1-about-mqtt-endpoint-configuration
+id: about
 title: 8.1 About MQTT Endpoint Configuration
 sidebar_label: 8.1 About MQTT Endpoint Configuration
 ---

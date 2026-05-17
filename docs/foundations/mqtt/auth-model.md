@@ -1,5 +1,5 @@
 ---
-id: 3-5-about-the-authentication-authorization-model
+id: auth-model
 title: 3.5 About the Authentication & Authorization Model
 sidebar_label: 3.5 About the Authentication & Authorization Model
 ---

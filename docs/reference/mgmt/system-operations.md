@@ -1,5 +1,5 @@
 ---
-id: system-operations-mgmt-group-6
+id: system-operations
 title: System Operations — MGMT Group 6
 sidebar_label: System Operations — MGMT Group 6
 ---

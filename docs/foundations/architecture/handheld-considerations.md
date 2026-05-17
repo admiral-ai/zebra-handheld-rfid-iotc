@@ -1,5 +1,5 @@
 ---
-id: 2-5-about-handheld-specific-architecture-considerations
+id: handheld-considerations
 title: 2.5 About Handheld-Specific Architecture Considerations
 sidebar_label: 2.5 About Handheld-Specific Architecture Considerations
 ---

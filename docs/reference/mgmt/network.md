@@ -1,5 +1,5 @@
 ---
-id: network-configuration-mgmt-group-2
+id: network
 title: Network Configuration — MGMT Group 2
 sidebar_label: Network Configuration — MGMT Group 2
 ---

@@ -1,5 +1,5 @@
 ---
-id: 2-1-about-the-end-to-end-system
+id: end-to-end
 title: 2.1 About the End-to-End System
 sidebar_label: 2.1 About the End-to-End System
 ---

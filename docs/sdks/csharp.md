@@ -1,5 +1,5 @@
 ---
-id: tutorial-read-your-first-tag-with-c-net
+id: csharp
 title: "Tutorial: Read Your First Tag with C# (.NET)"
 sidebar_label: "Tutorial: Read Your First Tag with C# (.NET)"
 ---

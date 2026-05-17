@@ -1,5 +1,5 @@
 ---
-id: how-to-troubleshoot-bluetooth-host-device-issues
+id: bluetooth
 title: How to Troubleshoot Bluetooth & Host Device Issues
 sidebar_label: How to Troubleshoot Bluetooth & Host Device Issues
 ---

@@ -1,5 +1,5 @@
 ---
-id: step-5-read-your-first-tags
+id: step-5-read
 title: Step 5 — Read Your First Tags
 sidebar_label: Step 5 — Read Your First Tags
 ---

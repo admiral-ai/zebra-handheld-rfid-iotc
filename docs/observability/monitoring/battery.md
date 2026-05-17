@@ -1,5 +1,5 @@
 ---
-id: 12-2-how-to-monitor-battery-lifecycle
+id: battery
 title: 12.2 How to Monitor Battery Lifecycle
 sidebar_label: 12.2 How to Monitor Battery Lifecycle
 ---

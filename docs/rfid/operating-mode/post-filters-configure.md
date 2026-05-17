@@ -1,5 +1,5 @@
 ---
-id: 9-3b-how-to-configure-post-filters
+id: post-filters-configure
 title: 9.3b How to Configure Post-Filters
 sidebar_label: 9.3b How to Configure Post-Filters
 ---

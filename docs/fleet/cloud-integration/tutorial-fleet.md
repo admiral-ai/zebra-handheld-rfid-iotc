@@ -1,5 +1,5 @@
 ---
-id: 15-6-tutorial-provision-a-three-reader-fleet-with-tls-and-soti-connect-end-to-end
+id: tutorial-fleet
 title: "15.6 Tutorial: Provision a Three-Reader Fleet with TLS and SOTI Connect End-to-End"
 sidebar_label: "15.6 Tutorial: Provision a Three-Reader Fleet with TLS and SOTI Connect End-to-End"
 ---

@@ -1,5 +1,5 @@
 ---
-id: inventory-control-ctrl-group-3
+id: inventory-control
 title: Inventory Control — CTRL Group 3
 sidebar_label: Inventory Control — CTRL Group 3
 ---

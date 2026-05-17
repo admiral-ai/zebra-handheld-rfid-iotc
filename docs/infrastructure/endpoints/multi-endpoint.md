@@ -1,5 +1,5 @@
 ---
-id: 8-4-about-multi-endpoint-architectures
+id: multi-endpoint
 title: 8.4 About Multi-Endpoint Architectures
 sidebar_label: 8.4 About Multi-Endpoint Architectures
 ---

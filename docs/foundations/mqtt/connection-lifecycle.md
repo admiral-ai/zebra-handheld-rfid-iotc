@@ -1,5 +1,5 @@
 ---
-id: 3-4-about-connection-lifecycle-keep-alive
+id: connection-lifecycle
 title: 3.4 About Connection Lifecycle & Keep-Alive
 sidebar_label: 3.4 About Connection Lifecycle & Keep-Alive
 ---

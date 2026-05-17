@@ -1,5 +1,5 @@
 ---
-id: 1-4-about-the-structure-of-this-documentation
+id: documentation-guide
 title: 1.4 About the Structure of This Documentation
 sidebar_label: 1.4 About the Structure of This Documentation
 ---

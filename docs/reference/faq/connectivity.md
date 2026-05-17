@@ -1,5 +1,5 @@
 ---
-id: connectivity-network-faqs
+id: connectivity
 title: Connectivity & Network FAQs
 sidebar_label: Connectivity & Network FAQs
 ---

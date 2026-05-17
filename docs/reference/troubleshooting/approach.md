@@ -1,5 +1,5 @@
 ---
-id: how-to-approach-troubleshooting-systematically
+id: approach
 title: How to Approach Troubleshooting Systematically
 sidebar_label: How to Approach Troubleshooting Systematically
 ---

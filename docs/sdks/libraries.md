@@ -1,5 +1,5 @@
 ---
-id: recommended-mqtt-client-libraries
+id: libraries
 title: Recommended MQTT Client Libraries
 sidebar_label: Recommended MQTT Client Libraries
 ---

@@ -1,5 +1,5 @@
 ---
-id: 4-3-reader-bootstrap-with-123rfid-desktop
+id: bootstrap
 title: 4.3 Reader Bootstrap with 123RFID Desktop
 sidebar_label: 4.3 Reader Bootstrap with 123RFID Desktop
 ---

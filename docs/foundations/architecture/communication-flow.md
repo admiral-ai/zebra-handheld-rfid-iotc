@@ -1,5 +1,5 @@
 ---
-id: 2-3-about-communication-flow
+id: communication-flow
 title: 2.3 About Communication Flow
 sidebar_label: 2.3 About Communication Flow
 ---

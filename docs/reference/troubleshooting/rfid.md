@@ -1,5 +1,5 @@
 ---
-id: how-to-troubleshoot-rfid-operation-issues
+id: rfid
 title: How to Troubleshoot RFID Operation Issues
 sidebar_label: How to Troubleshoot RFID Operation Issues
 ---

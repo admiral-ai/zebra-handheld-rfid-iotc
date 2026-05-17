@@ -1,5 +1,5 @@
 ---
-id: 11-5-about-alert-events
+id: alerts
 title: 11.5 About Alert Events
 sidebar_label: 11.5 About Alert Events
 ---

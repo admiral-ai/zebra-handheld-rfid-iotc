@@ -1,5 +1,5 @@
 ---
-id: tutorial-read-your-first-tag-with-python
+id: python
 title: "Tutorial: Read Your First Tag with Python"
 sidebar_label: "Tutorial: Read Your First Tag with Python"
 ---

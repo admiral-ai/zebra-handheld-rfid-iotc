@@ -1,5 +1,5 @@
 ---
-id: 13-3-how-to-provision-readers-in-bulk-with-123rfid-desktop
+id: bulk-123rfid
 title: 13.3 How to Provision Readers in Bulk with 123RFID Desktop
 sidebar_label: 13.3 How to Provision Readers in Bulk with 123RFID Desktop
 ---

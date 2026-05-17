@@ -1,5 +1,5 @@
 ---
-id: 3-1-about-mqtt-3-1-1
+id: primer
 title: 3.1 About MQTT 3.1.1
 sidebar_label: 3.1 About MQTT 3.1.1
 ---

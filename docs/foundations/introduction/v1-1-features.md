@@ -1,5 +1,5 @@
 ---
-id: 1-3-about-iotc-v1-1-features
+id: v1-1-features
 title: 1.3 About IOTC V1.1 Features
 sidebar_label: 1.3 About IOTC V1.1 Features
 ---

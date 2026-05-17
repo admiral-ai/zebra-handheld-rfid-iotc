@@ -1,5 +1,5 @@
 ---
-id: 9-2-how-to-configure-the-operating-mode
+id: configure
 title: 9.2 How to Configure the Operating Mode
 sidebar_label: 9.2 How to Configure the Operating Mode
 ---

@@ -1,5 +1,5 @@
 ---
-id: 11-7-about-mqtt-connection-events
+id: mqtt-connection
 title: 11.7 About MQTT Connection Events
 sidebar_label: 11.7 About MQTT Connection Events
 ---

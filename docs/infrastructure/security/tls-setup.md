@@ -1,5 +1,5 @@
 ---
-id: 7-4-how-to-secure-the-mqtt-connection-with-tls
+id: tls-setup
 title: 7.4 How to Secure the MQTT Connection with TLS
 sidebar_label: 7.4 How to Secure the MQTT Connection with TLS
 ---

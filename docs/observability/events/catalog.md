@@ -1,5 +1,5 @@
 ---
-id: 11-2-event-types-catalog-index
+id: catalog
 title: "11.2 Event Types Catalog (Index)"
 sidebar_label: "11.2 Event Types Catalog (Index)"
 ---

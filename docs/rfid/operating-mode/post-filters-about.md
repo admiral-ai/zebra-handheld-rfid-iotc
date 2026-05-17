@@ -1,5 +1,5 @@
 ---
-id: 9-3a-about-post-filters
+id: post-filters-about
 title: 9.3a About Post-Filters
 sidebar_label: 9.3a About Post-Filters
 ---

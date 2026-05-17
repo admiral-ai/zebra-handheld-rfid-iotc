@@ -1,5 +1,5 @@
 ---
-id: mqtt-topic-quick-reference
+id: topic-quick-reference
 title: MQTT Topic Quick Reference
 sidebar_label: MQTT Topic Quick Reference
 ---

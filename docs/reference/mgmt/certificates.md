@@ -1,5 +1,5 @@
 ---
-id: certificate-management-mgmt-group-4
+id: certificates
 title: Certificate Management — MGMT Group 4
 sidebar_label: Certificate Management — MGMT Group 4
 ---

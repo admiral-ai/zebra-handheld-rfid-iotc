@@ -1,5 +1,5 @@
 ---
-id: regulatory-regional-information
+id: regulatory
 title: Regulatory & Regional Information
 sidebar_label: Regulatory & Regional Information
 ---

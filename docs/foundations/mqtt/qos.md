@@ -1,5 +1,5 @@
 ---
-id: 3-3-about-qos-levels-delivery-guarantees
+id: qos
 title: 3.3 About QoS Levels & Delivery Guarantees
 sidebar_label: 3.3 About QoS Levels & Delivery Guarantees
 ---

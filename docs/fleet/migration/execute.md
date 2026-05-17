@@ -1,5 +1,5 @@
 ---
-id: 14-6-how-to-execute-a-phased-fleet-migration
+id: execute
 title: 14.6 How to Execute a Phased Fleet Migration
 sidebar_label: 14.6 How to Execute a Phased Fleet Migration
 ---

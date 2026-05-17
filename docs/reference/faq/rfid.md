@@ -1,5 +1,5 @@
 ---
-id: rfid-operations-faqs
+id: rfid
 title: RFID Operations FAQs
 sidebar_label: RFID Operations FAQs
 ---

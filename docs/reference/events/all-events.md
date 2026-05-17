@@ -1,5 +1,5 @@
 ---
-id: events-reference-full-schemas
+id: all-events
 title: Events Reference — Full Schemas
 sidebar_label: Events Reference — Full Schemas
 ---

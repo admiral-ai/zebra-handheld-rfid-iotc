@@ -1,5 +1,5 @@
 ---
-id: 7-2-how-to-manage-tls-ssl-certificates
+id: certificate-management
 title: 7.2 How to Manage TLS/SSL Certificates
 sidebar_label: 7.2 How to Manage TLS/SSL Certificates
 ---

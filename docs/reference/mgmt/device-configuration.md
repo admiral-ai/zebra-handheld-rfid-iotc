@@ -1,5 +1,5 @@
 ---
-id: device-configuration-mgmt-group-5
+id: device-configuration
 title: Device Configuration — MGMT Group 5
 sidebar_label: Device Configuration — MGMT Group 5
 ---

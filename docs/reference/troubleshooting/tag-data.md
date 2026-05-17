@@ -1,5 +1,5 @@
 ---
-id: how-to-troubleshoot-tag-data-issues
+id: tag-data
 title: How to Troubleshoot Tag Data Issues
 sidebar_label: How to Troubleshoot Tag Data Issues
 ---

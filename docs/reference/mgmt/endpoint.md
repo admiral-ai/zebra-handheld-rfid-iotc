@@ -1,5 +1,5 @@
 ---
-id: mqtt-endpoint-configuration-mgmt-group-3
+id: endpoint
 title: MQTT Endpoint Configuration — MGMT Group 3
 sidebar_label: MQTT Endpoint Configuration — MGMT Group 3
 ---

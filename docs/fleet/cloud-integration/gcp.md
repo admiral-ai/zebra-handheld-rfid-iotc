@@ -1,5 +1,5 @@
 ---
-id: 15-4-how-to-integrate-with-google-cloud
+id: gcp
 title: 15.4 How to Integrate with Google Cloud
 sidebar_label: 15.4 How to Integrate with Google Cloud
 ---

@@ -1,5 +1,5 @@
 ---
-id: 10-3-how-to-interpret-tag-data-fields
+id: interpret
 title: 10.3 How to Interpret Tag Data Fields
 sidebar_label: 10.3 How to Interpret Tag Data Fields
 ---

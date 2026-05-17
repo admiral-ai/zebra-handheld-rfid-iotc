@@ -1,5 +1,5 @@
 ---
-id: 8-2-how-to-view-endpoint-configuration
+id: view
 title: 8.2 How to View Endpoint Configuration
 sidebar_label: 8.2 How to View Endpoint Configuration
 ---

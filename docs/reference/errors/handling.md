@@ -1,5 +1,5 @@
 ---
-id: how-to-handle-errors-in-application-code
+id: handling
 title: How to Handle Errors in Application Code
 sidebar_label: How to Handle Errors in Application Code
 ---

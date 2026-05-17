@@ -1,5 +1,5 @@
 ---
-id: 9-4-how-to-start-and-stop-rfid-operations
+id: start-stop
 title: 9.4 How to Start and Stop RFID Operations
 sidebar_label: 9.4 How to Start and Stop RFID Operations
 ---

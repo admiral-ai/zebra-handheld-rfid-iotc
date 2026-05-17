@@ -1,5 +1,5 @@
 ---
-id: 9-5-about-trigger-composition
+id: trigger-composition
 title: 9.5 About Trigger Composition
 sidebar_label: 9.5 About Trigger Composition
 ---

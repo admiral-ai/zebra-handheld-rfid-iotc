@@ -1,5 +1,5 @@
 ---
-id: 14-7-how-to-verify-a-successful-migration
+id: verify
 title: 14.7 How to Verify a Successful Migration
 sidebar_label: 14.7 How to Verify a Successful Migration
 ---

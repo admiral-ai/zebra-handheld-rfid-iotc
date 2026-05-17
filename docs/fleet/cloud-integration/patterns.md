@@ -1,5 +1,5 @@
 ---
-id: 15-1-about-integration-architecture-patterns
+id: patterns
 title: 15.1 About Integration Architecture Patterns
 sidebar_label: 15.1 About Integration Architecture Patterns
 ---

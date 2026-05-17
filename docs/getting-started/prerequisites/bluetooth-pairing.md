@@ -1,5 +1,5 @@
 ---
-id: 4-4-how-to-pair-the-reader-sled-via-bluetooth
+id: bluetooth-pairing
 title: 4.4 How to Pair the Reader Sled via Bluetooth
 sidebar_label: 4.4 How to Pair the Reader Sled via Bluetooth
 ---

@@ -1,5 +1,5 @@
 ---
-id: 6-4-how-to-troubleshoot-network-issues
+id: troubleshooting
 title: 6.4 How to Troubleshoot Network Issues
 sidebar_label: 6.4 How to Troubleshoot Network Issues
 ---

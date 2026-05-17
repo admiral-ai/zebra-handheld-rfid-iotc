@@ -1,5 +1,5 @@
 ---
-id: 12-3-how-to-monitor-connection-quality
+id: connection-quality
 title: 12.3 How to Monitor Connection Quality
 sidebar_label: 12.3 How to Monitor Connection Quality
 ---

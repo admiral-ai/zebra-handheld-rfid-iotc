@@ -1,5 +1,5 @@
 ---
-id: 11-4-about-heartbeat-events
+id: heartbeat
 title: 11.4 About Heartbeat Events
 sidebar_label: 11.4 About Heartbeat Events
 ---

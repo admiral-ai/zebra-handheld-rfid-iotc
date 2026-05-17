@@ -1,5 +1,5 @@
 ---
-id: 14-2-how-to-read-full-device-configuration
+id: read-config
 title: 14.2 How to Read Full Device Configuration
 sidebar_label: 14.2 How to Read Full Device Configuration
 ---

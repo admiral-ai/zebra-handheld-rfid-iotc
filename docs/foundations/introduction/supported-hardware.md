@@ -1,5 +1,5 @@
 ---
-id: 1-2-about-supported-hardware
+id: supported-hardware
 title: 1.2 About Supported Hardware
 sidebar_label: 1.2 About Supported Hardware
 ---

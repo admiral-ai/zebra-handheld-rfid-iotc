@@ -1,5 +1,5 @@
 ---
-id: mdm-and-soti-interfaces
+id: about
 title: MDM and SOTI Interfaces
 sidebar_label: MDM and SOTI Interfaces
 ---

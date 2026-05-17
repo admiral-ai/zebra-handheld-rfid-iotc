@@ -1,5 +1,5 @@
 ---
-id: tutorial-read-your-first-tag-with-node-js
+id: nodejs
 title: "Tutorial: Read Your First Tag with Node.js"
 sidebar_label: "Tutorial: Read Your First Tag with Node.js"
 ---

@@ -1,5 +1,5 @@
 ---
-id: firmware-version-history-changelog
+id: firmware-history
 title: Firmware Version History & Changelog
 sidebar_label: Firmware Version History & Changelog
 ---

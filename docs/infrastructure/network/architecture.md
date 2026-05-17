@@ -1,5 +1,5 @@
 ---
-id: 6-1-about-network-architecture-for-handheld-readers
+id: architecture
 title: 6.1 About Network Architecture for Handheld Readers
 sidebar_label: 6.1 About Network Architecture for Handheld Readers
 ---

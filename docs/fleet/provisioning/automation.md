@@ -1,5 +1,5 @@
 ---
-id: 13-4-how-to-automate-provisioning-workflows
+id: automation
 title: 13.4 How to Automate Provisioning Workflows
 sidebar_label: 13.4 How to Automate Provisioning Workflows
 ---

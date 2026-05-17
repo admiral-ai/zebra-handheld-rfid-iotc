@@ -1,5 +1,5 @@
 ---
-id: 1-5-key-terminology-glossary
+id: glossary
 title: 1.5 Key Terminology & Glossary
 sidebar_label: 1.5 Key Terminology & Glossary
 ---

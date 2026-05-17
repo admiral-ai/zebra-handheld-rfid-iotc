@@ -1,5 +1,5 @@
 ---
-id: 14-4-how-to-detect-and-remediate-configuration-drift
+id: drift
 title: 14.4 How to Detect and Remediate Configuration Drift
 sidebar_label: 14.4 How to Detect and Remediate Configuration Drift
 ---

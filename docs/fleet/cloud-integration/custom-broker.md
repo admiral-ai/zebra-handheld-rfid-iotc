@@ -1,5 +1,5 @@
 ---
-id: 15-5-how-to-integrate-with-a-custom-mqtt-broker
+id: custom-broker
 title: 15.5 How to Integrate with a Custom MQTT Broker
 sidebar_label: 15.5 How to Integrate with a Custom MQTT Broker
 ---

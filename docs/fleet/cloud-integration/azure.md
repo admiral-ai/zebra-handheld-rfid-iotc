@@ -1,5 +1,5 @@
 ---
-id: 15-3-how-to-integrate-with-azure-iot-hub
+id: azure
 title: 15.3 How to Integrate with Azure IoT Hub
 sidebar_label: 15.3 How to Integrate with Azure IoT Hub
 ---

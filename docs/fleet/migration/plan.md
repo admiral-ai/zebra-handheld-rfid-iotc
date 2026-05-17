@@ -1,5 +1,5 @@
 ---
-id: 14-5-how-to-plan-a-migration
+id: plan
 title: 14.5 How to Plan a Migration
 sidebar_label: 14.5 How to Plan a Migration
 ---

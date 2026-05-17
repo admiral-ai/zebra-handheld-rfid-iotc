@@ -1,5 +1,5 @@
 ---
-id: device-status-mgmt-group-1
+id: device-status
 title: Device Status — MGMT Group 1
 sidebar_label: Device Status — MGMT Group 1
 ---

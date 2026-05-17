@@ -1,5 +1,5 @@
 ---
-id: 12-4-how-to-build-a-fleet-health-dashboard
+id: fleet-dashboard
 title: 12.4 How to Build a Fleet Health Dashboard
 sidebar_label: 12.4 How to Build a Fleet Health Dashboard
 ---

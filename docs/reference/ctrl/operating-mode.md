@@ -1,5 +1,5 @@
 ---
-id: operating-mode-ctrl-group-1
+id: operating-mode
 title: Operating Mode — CTRL Group 1
 sidebar_label: Operating Mode — CTRL Group 1
 ---

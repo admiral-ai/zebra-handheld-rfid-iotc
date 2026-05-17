@@ -1,5 +1,5 @@
 ---
-id: fleet-management-faqs
+id: fleet
 title: Fleet Management FAQs
 sidebar_label: Fleet Management FAQs
 ---

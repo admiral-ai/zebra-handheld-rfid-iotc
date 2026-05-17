@@ -1,5 +1,5 @@
 ---
-id: 12-1-how-to-check-device-status-health
+id: device-health
 title: 12.1 How to Check Device Status & Health
 sidebar_label: 12.1 How to Check Device Status & Health
 ---

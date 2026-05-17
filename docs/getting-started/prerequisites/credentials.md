@@ -1,5 +1,5 @@
 ---
-id: 4-2-how-to-obtain-iotc-credentials-tenant-id
+id: credentials
 title: 4.2 How to Obtain IOTC Credentials & Tenant ID
 sidebar_label: 4.2 How to Obtain IOTC Credentials & Tenant ID
 ---

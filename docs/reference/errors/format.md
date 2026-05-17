@@ -1,5 +1,5 @@
 ---
-id: error-response-format
+id: format
 title: Error Response Format
 sidebar_label: Error Response Format
 ---

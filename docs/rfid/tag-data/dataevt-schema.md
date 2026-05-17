@@ -1,5 +1,5 @@
 ---
-id: 10-2-dataevt-payload-schema
+id: dataevt-schema
 title: 10.2 dataEVT Payload Schema
 sidebar_label: 10.2 dataEVT Payload Schema
 ---

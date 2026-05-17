@@ -1,5 +1,5 @@
 ---
-id: 6-3-how-to-check-ethernet-status-cradle-connected
+id: ethernet
 title: "6.3 How to Check Ethernet Status (Cradle-Connected)"
 sidebar_label: "6.3 How to Check Ethernet Status (Cradle-Connected)"
 ---

@@ -1,5 +1,5 @@
 ---
-id: supported-rfid-tag-types-standards
+id: tag-standards
 title: Supported RFID Tag Types & Standards
 sidebar_label: Supported RFID Tag Types & Standards
 ---

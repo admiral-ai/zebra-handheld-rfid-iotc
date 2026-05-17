@@ -1,5 +1,5 @@
 ---
-id: configuration-document-schema
+id: config-schema
 title: Configuration Document Schema
 sidebar_label: Configuration Document Schema
 ---

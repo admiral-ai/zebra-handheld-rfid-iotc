@@ -1,5 +1,5 @@
 ---
-id: how-to-troubleshoot-battery-power-issues
+id: battery
 title: How to Troubleshoot Battery & Power Issues
 sidebar_label: How to Troubleshoot Battery & Power Issues
 ---

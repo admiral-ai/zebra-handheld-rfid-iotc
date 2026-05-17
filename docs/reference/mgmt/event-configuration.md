@@ -1,5 +1,5 @@
 ---
-id: event-configuration-mgmt-group-7
+id: event-configuration
 title: Event Configuration — MGMT Group 7
 sidebar_label: Event Configuration — MGMT Group 7
 ---

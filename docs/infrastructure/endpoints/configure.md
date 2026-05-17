@@ -1,5 +1,5 @@
 ---
-id: 8-3-how-to-configure-mqtt-endpoints
+id: configure
 title: 8.3 How to Configure MQTT Endpoints
 sidebar_label: 8.3 How to Configure MQTT Endpoints
 ---

@@ -1,5 +1,5 @@
 ---
-id: 10-5-how-to-process-tag-data-in-your-application
+id: process
 title: 10.5 How to Process Tag Data in Your Application
 sidebar_label: 10.5 How to Process Tag Data in Your Application
 ---

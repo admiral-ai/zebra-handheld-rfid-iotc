@@ -1,5 +1,5 @@
 ---
-id: 4-1-hardware-software-requirements
+id: requirements
 title: 4.1 Hardware & Software Requirements
 sidebar_label: 4.1 Hardware & Software Requirements
 ---

@@ -1,5 +1,5 @@
 ---
-id: 7-1-about-the-security-model
+id: model
 title: 7.1 About the Security Model
 sidebar_label: 7.1 About the Security Model
 ---

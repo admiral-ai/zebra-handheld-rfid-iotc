@@ -1,5 +1,5 @@
 ---
-id: how-to-troubleshoot-connection-issues
+id: connection
 title: How to Troubleshoot Connection Issues
 sidebar_label: How to Troubleshoot Connection Issues
 ---

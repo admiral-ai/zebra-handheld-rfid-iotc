@@ -1,5 +1,5 @@
 ---
-id: 10-1-about-tag-data-event-architecture
+id: architecture
 title: 10.1 About Tag Data Event Architecture
 sidebar_label: 10.1 About Tag Data Event Architecture
 ---

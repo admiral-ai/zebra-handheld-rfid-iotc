@@ -1,5 +1,5 @@
 ---
-id: 15-2-how-to-integrate-with-aws-iot-core
+id: aws
 title: 15.2 How to Integrate with AWS IoT Core
 sidebar_label: 15.2 How to Integrate with AWS IoT Core
 ---

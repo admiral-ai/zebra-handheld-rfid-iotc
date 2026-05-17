@@ -1,5 +1,5 @@
 ---
-id: 6-2-how-to-configure-wi-fi-profiles
+id: wifi
 title: 6.2 How to Configure Wi-Fi Profiles
 sidebar_label: 6.2 How to Configure Wi-Fi Profiles
 ---

@@ -1,5 +1,5 @@
 ---
-id: 7-3-how-to-rotate-certificates-at-scale
+id: rotation
 title: 7.3 How to Rotate Certificates at Scale
 sidebar_label: 7.3 How to Rotate Certificates at Scale
 ---

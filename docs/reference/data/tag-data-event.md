@@ -1,5 +1,5 @@
 ---
-id: data-interface-dataevt
+id: tag-data-event
 title: Data Interface — dataEVT
 sidebar_label: Data Interface — dataEVT
 ---
