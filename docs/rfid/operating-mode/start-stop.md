@@ -1,7 +1,7 @@
 ---
 id: start-stop
-title: How to Start and Stop RFID Operations
-sidebar_label: How to Start and Stop RFID Operations
+title: Start, stop, and the trigger button
+sidebar_label: Start, stop, and the trigger button
 ---
 
 > 📙 **HOW-TO** · Audience: All · Time: ~5 min

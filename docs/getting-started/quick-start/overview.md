@@ -1,7 +1,7 @@
 ---
 id: overview
-title: Quick Start Overview
-sidebar_label: Quick Start Overview
+title: Your first 30 minutes — from unboxing to your first tag read
+sidebar_label: Your first 30 minutes — from unboxing to your first tag read
 ---
 
 > 📗 **TUTORIAL** · Audience: New Integrator · Time: ~45 min (full chapter)

@@ -1,7 +1,7 @@
 ---
 id: dataevt-schema
-title: dataEVT Payload Schema
-sidebar_label: dataEVT Payload Schema
+title: Where tag reads actually come from
+sidebar_label: Where tag reads actually come from
 ---
 
 > 📕 **REFERENCE** · Audience: API Consumer

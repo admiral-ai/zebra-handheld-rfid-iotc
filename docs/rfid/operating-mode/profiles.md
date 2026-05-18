@@ -1,7 +1,7 @@
 ---
 id: profiles
-title: About RFID Operating Mode Profiles
-sidebar_label: About RFID Operating Mode Profiles
+title: Choose how the reader reads tags
+sidebar_label: Choose how the reader reads tags
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~6 min

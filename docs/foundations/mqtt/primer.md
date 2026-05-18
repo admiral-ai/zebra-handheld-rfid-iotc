@@ -1,7 +1,7 @@
 ---
 id: primer
-title: About MQTT 3.1.1
-sidebar_label: About MQTT 3.1.1
+title: MQTT in five minutes
+sidebar_label: MQTT in five minutes
 ---
 
 > 📘 **EXPLANATION** · Audience: New Integrator (no prior MQTT) · Read time: ~6 min

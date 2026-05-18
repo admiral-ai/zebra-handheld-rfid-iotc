@@ -1,7 +1,7 @@
 ---
 id: glossary
-title: Key Terminology & Glossary
-sidebar_label: Key Terminology & Glossary
+title: Glossary, limits, and cheat sheets
+sidebar_label: Glossary, limits, and cheat sheets
 ---
 
 > 📕 **REFERENCE** · Audience: All · Use: lookup while reading

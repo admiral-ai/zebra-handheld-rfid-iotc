@@ -1,7 +1,7 @@
 ---
 id: architecture
-title: About Network Architecture for Handheld Readers
-sidebar_label: About Network Architecture for Handheld Readers
+title: Getting on the network (Wi-Fi & Ethernet)
+sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min

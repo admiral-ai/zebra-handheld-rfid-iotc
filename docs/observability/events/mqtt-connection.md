@@ -1,7 +1,7 @@
 ---
 id: mqtt-connection
-title: About MQTT Connection Events
-sidebar_label: About MQTT Connection Events
+title: Knowing when you're connected
+sidebar_label: Knowing when you're connected
 ---
 
 > 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~3 min

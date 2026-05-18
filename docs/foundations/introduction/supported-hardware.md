@@ -1,7 +1,7 @@
 ---
 id: supported-hardware
-title: "About Supported Hardware (RFD40 / RFD90 Series)"
-sidebar_label: "About Supported Hardware (RFD40 / RFD90 Series)"
+title: "Which sled do you have? (Monolithic vs Bipartite)"
+sidebar_label: "Which sled do you have? (Monolithic vs Bipartite)"
 ---
 
 > 📘 **EXPLANATION** · Audience: New Integrator, Solution Builder · Read time: ~4 min

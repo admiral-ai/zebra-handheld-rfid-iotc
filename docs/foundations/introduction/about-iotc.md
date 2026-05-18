@@ -1,7 +1,7 @@
 ---
 id: about-iotc
-title: About Zebra IoT Connector for Handheld RFID
-sidebar_label: About Zebra IoT Connector for Handheld RFID
+title: What the IoT Connector actually is
+sidebar_label: What the IoT Connector actually is
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min

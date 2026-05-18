@@ -1,7 +1,7 @@
 ---
 id: post-filters-about
-title: About Post-Filters
-sidebar_label: About Post-Filters
+title: Filter tags before vs after the read
+sidebar_label: Filter tags before vs after the read
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~4 min

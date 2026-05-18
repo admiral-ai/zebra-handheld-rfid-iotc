@@ -1,7 +1,7 @@
 ---
 id: about
-title: About MQTT Endpoint Configuration
-sidebar_label: About MQTT Endpoint Configuration
+title: How the MQTT plumbing fits together
+sidebar_label: How the MQTT plumbing fits together
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min

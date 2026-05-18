@@ -1,7 +1,7 @@
 ---
 id: heartbeat
-title: About Heartbeat Events
-sidebar_label: About Heartbeat Events
+title: Watch your reader's pulse
+sidebar_label: Watch your reader's pulse
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~4 min

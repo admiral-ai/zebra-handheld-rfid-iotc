@@ -1,7 +1,7 @@
 ---
 id: models
-title: About Provisioning Models
-sidebar_label: About Provisioning Models
+title: Going from one reader to a fleet
+sidebar_label: Going from one reader to a fleet
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~5 min

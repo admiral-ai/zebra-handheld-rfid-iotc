@@ -1,7 +1,7 @@
 ---
 id: about-bulk
-title: About Bulk Configuration
-sidebar_label: About Bulk Configuration
+title: Keeping a fleet in sync
+sidebar_label: Keeping a fleet in sync
 ---
 
 > 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~5 min

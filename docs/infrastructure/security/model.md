@@ -1,7 +1,7 @@
 ---
 id: model
-title: About the Security Model
-sidebar_label: About the Security Model
+title: Securing the connection (TLS & certificates)
+sidebar_label: Securing the connection (TLS & certificates)
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min

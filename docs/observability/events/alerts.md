@@ -1,7 +1,7 @@
 ---
 id: alerts
-title: About Alert Events
-sidebar_label: About Alert Events
+title: When the reader needs to interrupt you
+sidebar_label: When the reader needs to interrupt you
 ---
 
 > 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~5 min

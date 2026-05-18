@@ -1,7 +1,7 @@
 ---
 id: components
-title: About Component Architecture
-sidebar_label: About Component Architecture
+title: Reader, Host, Broker, Application — who does what
+sidebar_label: Reader, Host, Broker, Application — who does what
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
