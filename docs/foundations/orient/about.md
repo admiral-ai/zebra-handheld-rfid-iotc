@@ -1,7 +1,7 @@
 ---
 id: about
-title: About this documentation
-sidebar_label: About this documentation
+title: Start here
+sidebar_label: Start here
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~2 min

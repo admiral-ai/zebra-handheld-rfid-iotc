@@ -1,7 +1,7 @@
 ---
 id: misconceptions
-title: Common misconceptions
-sidebar_label: Common misconceptions
+title: Things people get wrong about IOTC
+sidebar_label: Things people get wrong about IOTC
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~6 min

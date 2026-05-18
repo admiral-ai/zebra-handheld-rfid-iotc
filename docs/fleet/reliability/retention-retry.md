@@ -1,7 +1,7 @@
 ---
 id: retention-retry
-title: Reliability, retention, and retry
-sidebar_label: Reliability, retention, retry
+title: What happens when the network drops
+sidebar_label: What happens when the network drops
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution builder, Fleet operator · Read time: ~7 min

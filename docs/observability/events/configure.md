@@ -1,7 +1,7 @@
 ---
 id: configure
-title: Event configuration
-sidebar_label: Event configuration
+title: Choose what the reader tells you
+sidebar_label: Choose what the reader tells you
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min

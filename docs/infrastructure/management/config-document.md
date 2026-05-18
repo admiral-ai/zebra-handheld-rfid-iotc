@@ -1,7 +1,7 @@
 ---
 id: config-document
-title: The configuration document and reconciliation
-sidebar_label: The configuration document
+title: The one big config document
+sidebar_label: The one big config document
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution builder, Fleet operator · Read time: ~7 min · Ties to: **Device Configuration** sub-tag of the API Reference

@@ -1,7 +1,7 @@
 ---
 id: symptom-index
-title: Symptom-first diagnostic index
-sidebar_label: Symptom Index
+title: Something’s broken — start here
+sidebar_label: Something’s broken — start here
 ---
 
 > 🩺 **FAILURE MODE INDEX** · Audience: All personas in incident response · Read time: as long as it takes

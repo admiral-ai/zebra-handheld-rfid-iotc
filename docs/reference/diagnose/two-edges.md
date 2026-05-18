@@ -1,7 +1,7 @@
 ---
 id: two-edges
-title: The two physical edges
-sidebar_label: The two physical edges
+title: Where things actually fail
+sidebar_label: Where things actually fail
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas in incident response · Read time: ~4 min

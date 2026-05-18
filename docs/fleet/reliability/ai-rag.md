@@ -1,7 +1,7 @@
 ---
 id: ai-rag
-title: AI and RAG consumption considerations
-sidebar_label: AI and RAG consumption
+title: Built for AI agents to read
+sidebar_label: Built for AI agents to read
 ---
 
 > 📘 **EXPLANATION** · Audience: Architect, Documentation owner · Read time: ~5 min

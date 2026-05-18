@@ -1,7 +1,7 @@
 ---
 id: native-mqtt-vs-openapi
-title: Native MQTT payloads vs OpenAPI schema renderings
-sidebar_label: Native MQTT vs OpenAPI schema
+title: The OpenAPI Illusion (and how to avoid it)
+sidebar_label: The OpenAPI Illusion (and how to avoid it)
 ---
 
 > 📘 **EXPLANATION** · Audience: API consumer, Solution builder · Read time: ~5 min

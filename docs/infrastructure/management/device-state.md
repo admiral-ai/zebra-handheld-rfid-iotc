@@ -1,7 +1,7 @@
 ---
 id: device-state
-title: Device state and identity
-sidebar_label: Device state and identity
+title: What your reader knows about itself
+sidebar_label: What your reader knows about itself
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min · Ties to: **Device Status** sub-tag of the API Reference

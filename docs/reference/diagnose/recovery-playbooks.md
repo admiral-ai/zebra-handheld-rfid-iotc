@@ -1,7 +1,7 @@
 ---
 id: recovery-playbooks
-title: Recovery playbooks
-sidebar_label: Recovery playbooks
+title: Playbooks for getting back online
+sidebar_label: Playbooks for getting back online
 ---
 
 > 📙 **HOW-TO** · Audience: All personas in incident response · Read time: ~10 min

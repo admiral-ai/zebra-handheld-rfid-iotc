@@ -1,7 +1,7 @@
 ---
 id: system-operations
-title: System operations — OS updates, firmware, and reboot
-sidebar_label: System operations
+title: Updating firmware and rebooting safely
+sidebar_label: Updating firmware and rebooting safely
 ---
 
 > 📘 **EXPLANATION** · Audience: Fleet operator, Solution builder · Read time: ~7 min · Ties to: **System Operations** sub-tag of the API Reference

@@ -1,7 +1,7 @@
 ---
 id: docs-and-api-ref
-title: Conceptual docs and the API Reference
-sidebar_label: Conceptual docs and the API Reference
+title: Where these docs end and the API Reference begins
+sidebar_label: Where these docs end and the API Reference begins
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~3 min
