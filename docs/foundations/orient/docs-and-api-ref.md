@@ -1,7 +1,7 @@
 ---
 id: docs-and-api-ref
-title: How to use these docs alongside the API Reference
-sidebar_label: Conceptual docs vs API Reference
+title: Conceptual docs and the API Reference
+sidebar_label: Conceptual docs and the API Reference
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~3 min

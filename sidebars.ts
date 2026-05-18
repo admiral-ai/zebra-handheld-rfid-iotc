@@ -32,12 +32,12 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'foundations/mqtt/primer',
-          label: '1.2 MQTT in five minutes',
+          label: '1.2 About MQTT 3.1.1',
         },
         {
           type: 'doc',
           id: 'foundations/orient/docs-and-api-ref',
-          label: '1.3 How to use the conceptual docs alongside the API Reference',
+          label: '1.3 Conceptual docs and the API Reference',
         },
       ],
     },
@@ -138,7 +138,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'rfid/operating-mode/profiles',
-          label: '5.1 Operating modes — the seven profiles and how to choose',
+          label: '5.1 Operating modes — the seven profiles',
         },
         {
           type: 'doc',
@@ -162,7 +162,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'observability/events/configure',
-          label: '6.1 Event configuration — choosing what the reader tells you',
+          label: '6.1 Event configuration',
         },
         {
           type: 'doc',
@@ -230,7 +230,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'reference/diagnose/two-edges',
-          label: '8.2 The two physical edges and where failures appear',
+          label: '8.2 The two physical edges',
         },
         {
           type: 'doc',
@@ -240,7 +240,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'reference/diagnose/misconceptions',
-          label: '8.4 Common misconceptions corrected',
+          label: '8.4 Common misconceptions',
         },
         {
           type: 'doc',

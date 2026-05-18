@@ -1,7 +1,7 @@
 ---
 id: configure
-title: How to Configure Event Reporting
-sidebar_label: How to Configure Event Reporting
+title: Event configuration
+sidebar_label: Event configuration
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min

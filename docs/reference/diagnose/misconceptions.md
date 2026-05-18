@@ -1,6 +1,6 @@
 ---
 id: misconceptions
-title: Common misconceptions corrected
+title: Common misconceptions
 sidebar_label: Common misconceptions
 ---
 
