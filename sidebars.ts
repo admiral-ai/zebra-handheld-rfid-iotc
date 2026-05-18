@@ -20,7 +20,7 @@ const sidebars: SidebarsConfig = {
   docs: [
     {
       type: 'category',
-      label: 'Part 1 — Get oriented',
+      label: 'Part 1: Get oriented',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -32,7 +32,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 2 — Foundations',
+      label: 'Part 2: Foundations',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -46,7 +46,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 3 — Quick start',
+      label: 'Part 3: Quick start',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 4 — Manage your reader',
+      label: 'Part 4: Manage your reader',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -71,7 +71,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 5 — Read tags',
+      label: 'Part 5: Read tags',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -83,7 +83,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 6 — Observe & monitor',
+      label: 'Part 6: Observe and monitor',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -97,7 +97,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 7 — Scale to a fleet',
+      label: 'Part 7: Scale to a fleet',
       collapsible: true,
       collapsed: true,
       className: 'sidebar-section-header',
@@ -110,7 +110,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 8 — Diagnose & reference',
+      label: 'Part 8: Diagnose and reference',
       collapsible: true,
       collapsed: true,
       className: 'sidebar-section-header',

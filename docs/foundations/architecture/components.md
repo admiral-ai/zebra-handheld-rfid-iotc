@@ -1,7 +1,7 @@
 ---
 id: components
-title: Reader, Host, Broker, Application — who does what
-sidebar_label: Reader, Host, Broker, Application — who does what
+title: "Roles: Reader, Host, Broker, Application"
+sidebar_label: "Roles: Reader, Host, Broker, Application"
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min

@@ -1,7 +1,7 @@
 ---
 id: communication-flow
-title: How a command travels from your app to a tag and back
-sidebar_label: How a command travels from your app to a tag and back
+title: How commands and responses flow
+sidebar_label: How commands and responses flow
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder, API Consumer · Read time: ~6 min

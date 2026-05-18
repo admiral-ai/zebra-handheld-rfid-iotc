@@ -1,7 +1,7 @@
 ---
 id: dataevt-schema
-title: Where tag reads actually come from
-sidebar_label: Where tag reads actually come from
+title: Where tag reads come from
+sidebar_label: Where tag reads come from
 ---
 
 > 📕 **REFERENCE** · Audience: API Consumer

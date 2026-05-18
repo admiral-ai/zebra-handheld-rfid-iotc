@@ -1,12 +1,12 @@
 ---
 id: symptom-index
-title: Something’s broken — start here
-sidebar_label: Something’s broken — start here
+title: Something's broken?
+sidebar_label: Something's broken?
 ---
 
-> 🩺 **FAILURE MODE INDEX** · Audience: All personas in incident response · Read time: as long as it takes
+> 🩺 **FAILURE MODE INDEX** · Audience: All personas in incident response
 
-Pick the symptom that matches what you are actually seeing. Each row links to a failure-mode (FM) page or a recovery playbook (RP). If your symptom is not listed, page through the alphabetical list — the closest neighbor is usually informative.
+Pick the symptom that matches what you are actually seeing. Each row links to a failure-mode (FM) page or a recovery playbook (RP). If your symptom is not listed, scan the alphabetical list. The closest neighbor is usually informative.
 
 ### Symptoms
 
@@ -18,22 +18,22 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | "Cannot connect at all" | Network | FM-NET-03 |
 | "Certificate appears installed but is not used" | Security | FM-SEC-02 |
 | "Command published but no response arrived" | Command/Response | FM-CMD-01 |
-| "control_operation start returns code 11" | Command/Response | FM-CMD-03 |
-| "dataEVT not received after START" | RFID | FM-RFID-01 |
+| "`control_operation` start returns code 11" | Command/Response | FM-CMD-03 |
+| "`dataEVT` not received after START" | RFID | FM-RFID-01 |
 | "Endpoint config disappeared after reboot" | Configuration | FM-CFG-03 |
-| "Firmware update stuck at 50%" | Firmware | FM-FW-01 |
-| "get_status shows radioConnection DISCONNECTED" | Device | FM-DEV-01 |
+| "Firmware update stuck at 50 percent" | Firmware | FM-FW-01 |
+| "`get_status` shows `radioConnection` DISCONNECTED" | Device | FM-DEV-01 |
 | "Heartbeats stopped" | Events | FM-EVT-04 |
 | "Intermittent disconnections every ~30 seconds" | Network | FM-NET-02 |
-| "mqttConnEVT.timestamp cannot be parsed as ISO-8601" | Events | FM-EVT-02 (it is HH:MM:SS by design) |
+| "`mqttConnEVT.timestamp` cannot be parsed as ISO-8601" | Events | FM-EVT-02 (it is `HH:MM:SS` by design) |
 | "Multiple readers conflict on same broker" | Network | FM-NET-05 |
 | "Phantom RF90_DATA_BROKER blocking new DATA endpoint" | Configuration | [RP-05](/reference/diagnose/recovery-playbooks) |
 | "Reader cannot reach broker after corporate VPN change" | Network | FM-NET-04 |
 | "Reader connects, then drops in seconds" | Network | FM-NET-01 |
 | "Reader never appears in 123RFID Desktop" | Device | FM-DEV-01 |
-| "reboot returns error code 5" | System | (stop inventory first — see [System operations](/infrastructure/management/system-operations)) |
-| "set_config returns code 0 but field is unchanged" | Configuration | FM-CFG-01 |
-| "set_os returns error code 14" | Firmware | (battery too low; charge sled before retry) |
+| "`reboot` returns error code 5" | System | Stop the inventory first. See [Updating firmware and rebooting](/infrastructure/management/system-operations). |
+| "`set_config` returns code 0 but field is unchanged" | Configuration | FM-CFG-01 |
+| "`set_os` returns error code 14" | Firmware | Battery is too low. Charge the sled before retry. |
 | "Tag reads return empty metadata fields" | RFID | FM-RFID-03 |
 | "Tag read rate is much lower than expected" | RFID | FM-RFID-02 |
 | "TLS handshake fails" | Security | FM-SEC-01 |
@@ -42,17 +42,19 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 
 ### Failure-mode pages
 
-Failure-mode pages by subsystem (full FM-* catalog):
+Failure-mode pages are catalogued by subsystem:
 
-- **FM-NET** — Network and transport
-- **FM-DEV** — Reader and Host-Bluetooth link (Bipartite-specific)
-- **FM-WIFI** — Wi-Fi (Monolithic-specific)
-- **FM-CMD** — Command/response correctness
-- **FM-EVT** — Event loss patterns
-- **FM-FW** — Firmware (`set_os`)
-- **FM-CFG** — Configuration
-- **FM-SEC** — Security/TLS
+- FM-NET: network and transport.
+- FM-DEV: reader and host Bluetooth link, Bipartite-specific.
+- FM-WIFI: Wi-Fi, Monolithic-specific.
+- FM-CMD: command and response correctness.
+- FM-EVT: event loss patterns.
+- FM-FW: firmware updates via `set_os`.
+- FM-CFG: configuration.
+- FM-SEC: security and TLS.
 
-These are catalogued by subsystem on a forthcoming page. For now, see [Recovery playbooks](/reference/diagnose/recovery-playbooks) and [The two physical edges](/reference/diagnose/two-edges) for top-of-funnel triage.
+These are catalogued by subsystem on a forthcoming page. For now, see [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) and [Where things fail](/reference/diagnose/two-edges) for top-of-funnel triage.
 
-**Related:** [The two physical edges](/reference/diagnose/two-edges) · [Recovery playbooks](/reference/diagnose/recovery-playbooks) · [Common misconceptions](/reference/diagnose/misconceptions).
+### Related
+
+[Where things fail](/reference/diagnose/two-edges) · [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) · [Common misconceptions](/reference/diagnose/misconceptions).

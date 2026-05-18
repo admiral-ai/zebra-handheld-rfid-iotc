@@ -1,7 +1,7 @@
 ---
 id: about-iotc
-title: What the IoT Connector actually is
-sidebar_label: What the IoT Connector actually is
+title: What the IoT Connector is
+sidebar_label: What the IoT Connector is
 ---
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min
