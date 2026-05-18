@@ -112,7 +112,6 @@ const sidebars: SidebarsConfig = {
         'fleet/provisioning/models',
         'fleet/management/about-bulk',
         'fleet/reliability/retention-retry',
-        'fleet/reliability/ai-rag',
       ],
     },
     {
