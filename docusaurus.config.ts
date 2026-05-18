@@ -5,14 +5,14 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Zebra Handheld RFID — IoT Connector',
   tagline: 'MQTT API Documentation for RFD40 / RFD90 Series Handheld RFID Reader Sleds',
-  url: 'https://admiral-ai.github.io',
+  url: 'https://al1913-zebra.github.io',
   baseUrl: '/zebra-handheld-rfid-iotc/',
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
   trailingSlash: true,
   favicon: 'img/favicon.png',
-  organizationName: 'admiral-ai',
+  organizationName: 'al1913-zebra',
   projectName: 'zebra-handheld-rfid-iotc',
   i18n: {
     defaultLocale: 'en',
@@ -83,7 +83,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/admiral-ai/zebra-handheld-rfid-iotc',
+          href: 'https://github.com/al1913-zebra/zebra-handheld-rfid-iotc',
           label: 'GitHub',
           position: 'right',
         },
@@ -122,7 +122,7 @@ const config: Config = {
         {
           title: 'Engage',
           items: [
-            { label: 'GitHub', href: 'https://github.com/admiral-ai/zebra-handheld-rfid-iotc' },
+            { label: 'GitHub', href: 'https://github.com/al1913-zebra/zebra-handheld-rfid-iotc' },
             { label: 'Developer Community', href: 'https://developer.zebra.com/community' },
             { label: 'LinkedIn', href: 'https://www.linkedin.com/company/zebra-technologies' },
             { label: 'YouTube', href: 'https://www.youtube.com/@ZebraTechnologies' },
@@ -174,7 +174,7 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           sidebarCollapsible: true,
-          editUrl: 'https://github.com/admiral-ai/zebra-handheld-rfid-iotc/tree/main/',
+          editUrl: 'https://github.com/al1913-zebra/zebra-handheld-rfid-iotc/tree/main/',
           routeBasePath: '/',
           breadcrumbs: true,
         },
