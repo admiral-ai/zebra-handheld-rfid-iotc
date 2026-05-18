@@ -6,35 +6,67 @@ sidebar_label: What the IoT Connector is
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min
 
-The Zebra IoT Connector (IOTC) for Handheld RFID is the MQTT-based management and data plane for RFD40 and RFD90 reader sleds. It lets applications configure readers, start and stop RFID operations, stream tag data, and monitor fleets — all over a single persistent MQTT connection rather than the request/response HTTP pattern used by fixed Zebra readers.
+The Zebra IoT Connector (IOTC) for Handheld RFID is **the MQTT-based management and data plane for RFD40 and RFD90 reader sleds**. It lets applications configure readers, run RFID inventory, stream tag data, and monitor fleets — over a single persistent MQTT connection rather than the request/response HTTP pattern used by fixed Zebra readers.
+
+In one sentence: IOTC turns a handheld sled into a network-addressable RFID node that speaks MQTT.
 
 ### The handheld product surface
 
-Handheld reader sleds are accessory devices that attach to a host mobile device (typically an Android phone or tablet) via Bluetooth. The host device provides network connectivity; the sled provides the RFID radio, antenna, trigger button, and (on some models) a barcode scanner. This shape matters: the sled is **not** a standalone network device, and its battery-powered nature shapes every connectivity decision in IOTC.
+Handheld reader sleds are accessory devices that attach to a host mobile device (typically an Android phone or tablet) via Bluetooth, *or* — on Premium and RFD90 — connect directly to Wi-Fi from in-firmware IOTC. The sled provides the RFID radio, a single internal antenna, the trigger button, and (on Premium/Premium Plus) an integrated barcode scanner. The sled is **not** a general-purpose computer: it runs no user applications, has no display, exposes no GPIO, and has one fixed antenna with no port-selection knob.
 
-For the full list of supported sleds and their capabilities, see [§1.2 About Supported Hardware](/foundations/introduction/supported-hardware).
+This shape is what every later chapter inherits. Battery-powered. Bluetooth- or Wi-Fi-attached. One antenna. MQTT-only. Region-locked at first-boot via 123RFID Desktop.
 
-### The three core interfaces
+For the supported-hardware specifics and the Monolithic ↔ Bipartite fork: [Which sled do you have?](/foundations/introduction/supported-hardware).
 
-IOTC organises a reader's surface into three logical interfaces, each represented by a distinct MQTT topic family:
+### The four MQTT interfaces
 
-- **Management (MGMT)** — device identity, network, security, configuration, firmware
-- **Control (CTRL)** — RFID radio operations: mode, filters, start/stop
-- **Data (DATA)** — high-throughput tag-data event streams
+IOTC organises a reader's surface into **four logical interfaces**, each carried on its own MQTT topic family:
 
-A fourth interface, **MDM**, exists for enterprise mobile-device-management integration with platforms such as SOTI Connect.
+| Interface | epType code | What flows on it | Voice |
+|---|---|---|---|
+| **Management** | `MGMT` | Identity, network, security, configuration, firmware. `get_status`, `set_wifi`, `install_certificate`, `set_config`, `set_os`, `reboot`. | Synchronous command/response |
+| **Management Events** | `MGMT_EVT` | Heartbeats, alerts, exceptions, NTP, network and firmware-update events. | Asynchronous event |
+| **Control** | `CTRL` | RFID operations: `set_operating_mode`, `control_operation start/stop`, `set_post_filter`. | Synchronous command/response |
+| **Data** | `DATA1`, `DATA2` | High-throughput `dataEVT` tag streams. Up to two concurrent data pipes per sled. | Asynchronous event |
 
-[DIAGRAM: D-1.1.A — single-frame deployment: tags → sled → host device → broker → application]
+Two further endpoint types act as combinations of these:
+
+- **`MDM`** — a *hybrid* endpoint that carries Management + Control + Data on a single topic family. Bootstrap default on every Premium/RFD90 sled. The reader you just connected via 123RFID Desktop is already publishing here.
+- **`SOTI`** — a vendor-specific variant of MDM used by SOTI Connect for fleet management.
+
+The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/orient/docs-and-api-ref).
+
+[DIAGRAM: D-2.1.A — four-interface diagram showing topic-family separation and which operations live in each]
+
+### Retention, batching, and reliability built into Data
+
+The Data interface is special because tag-read volume is bursty and can be high (hundreds of TPS during an inventory sweep). Two features mitigate this without involving the broker:
+
+- **Retention buffer.** The sled buffers up to **150,000 tag events** locally when the broker is unreachable, and replays them at up to **500 TPS** when the connection returns. Configurable via `set_config`.
+- **Batching.** Multiple tag events can be grouped into one MQTT message, reducing network and CPU cost.
+
+Retention is enabled by default. See [What happens when the network drops](/fleet/reliability/retention-retry).
 
 ### How handheld IOTC differs from fixed-reader IOTC
 
-Fixed Zebra readers (FXR90, FX9600) expose REST, WebSocket, and HTTP POST surfaces, support multiple external antennas with cable-loss compensation, and run device-application frameworks. Handheld sleds do none of this. They communicate **only over MQTT 3.1.1**, have **one internal antenna**, run **no user applications**, and reach the network **only through the host device**. The differences are not stylistic — they follow from the physics of a battery-powered, Bluetooth-connected accessory.
+The fixed-reader IOTC product (FX9600, FX7500, ATR7000) and the handheld product share the name and the spirit, but the architectures diverge on every axis that matters:
+
+| Axis | Fixed IOTC | Handheld IOTC |
+|---|---|---|
+| Transport surfaces | MQTT · REST · HTTP POST · WebSocket · TCP/IP · keyboard emulation | **MQTT 3.1.1 only** |
+| Antennas | Up to 8 external; cable-loss compensation; directionality | **1 internal**; no port selection |
+| User applications | Yes — Python and Node.js DA apps on-reader | **No** |
+| Network attach | Built-in Ethernet/Wi-Fi | Bluetooth-bridged (Standard) **or** native Wi-Fi 6 in firmware (Premium / RFD90) |
+| Bootstrap | Web console; in-band MQTT | 123RFID Desktop (Windows, USB) — out-of-band, one-time |
+| Region setting | In-band | **Out-of-band only via 123RFID Desktop** |
+
+These differences are not stylistic. They follow from the physics of a battery-powered, accessory-class device. A reader who arrives here assuming the fixed-reader REST surface will fail at the first command. A reader who assumes external antennas will look for ports that don't exist.
 
 ### Where to go next
 
-- New to MQTT? Read [§3.1 About MQTT 3.1.1](/foundations/mqtt/primer) first.
-- Want to read a tag in the next hour? Skip to [§5 Quick Start Tutorial](#chapter-5--quick-start-tutorial).
-- Looking up an endpoint? Go straight to [§16 API Reference](#chapter-16--mqtt-api-reference).
-- Architecting a fleet deployment? Read [§2 System Architecture](#chapter-2--system-architecture) and then [§13 Fleet Provisioning](#chapter-13--fleet-provisioning).
+- New to MQTT? Start at [MQTT in five minutes](/foundations/mqtt/primer).
+- Want a tag read in the next hour? Skip to [Your first 30 minutes](/getting-started/quick-start/overview).
+- Architecting a fleet? Read [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) → [Going from one reader to a fleet](/fleet/provisioning/models).
+- Coming from a fixed reader? Jump to [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) before writing any code.
 
-**Related:** 📘 [§2.4 Interface Model](/foundations/architecture/interface-model) · 📘 [§3.1 About MQTT 3.1.1](/foundations/mqtt/primer) · 📗 [§5 Quick Start](#chapter-5--quick-start-tutorial) · 📕 [§16 API Reference](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Which sled do you have?](/foundations/introduction/supported-hardware) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 MQTT API Reference (top nav)

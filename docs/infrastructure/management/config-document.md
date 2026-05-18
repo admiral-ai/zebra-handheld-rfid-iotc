@@ -4,56 +4,98 @@ title: The reader's configuration document
 sidebar_label: The reader's configuration document
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution builder, Fleet operator · Read time: ~7 min · Ties to the Device Configuration sub-tag of the API Reference
+> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~7 min · Ties to the Device Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Device Configuration. Operations: `get_config`, `set_config`.
+> Sub-tag: Device Configuration. Operations: `get_config` · `set_config`.
 
-### One document, many subsystems
+The reader's "configuration document" is the runtime view of every adjustable property that is not radio-operating-mode and not endpoint configuration. Network behavior, batching, retention, event thresholds, daylight-saving, NTP, default operating-mode profile — all of this lives in the configuration document. Two operations read and write it: `get_config` and `set_config`.
 
-The reader's saved configuration is exposed as a single JSON document under the `currentConfig` object. It contains every persistent setting on the device:
+### The asymmetry
 
-- `readerVersion`: identity (read-only mirror of `get_version`).
-- `deviceStatus`: last-known runtime status (read-only mirror).
-- `currentRegion`: regulatory configuration.
-- `ethConfig`: Ethernet (if present).
-- `wifiConfig`: Wi-Fi profiles.
-- `installedCerts`: installed certificate references.
-- `epConfig`: every configured MQTT endpoint.
+`get_config` returns a **comprehensive snapshot** of the device's adjustable state. It is a wide read.
 
-Read this document with `get_config`. Write to it with `set_config.configData`.
+`set_config` accepts a **narrow writeback** — you can update one or a few fields at a time without re-supplying the whole document. Fields you omit retain their current value.
 
-### Three configuration scopes
+This asymmetry is the entire mental model of the configuration document. Think of `get_config` as "show me everything" and `set_config` as "change exactly these." Production drift detection compares a stored canonical config against what `get_config` returns now; production reconciliation pushes only the diffing fields via `set_config`.
 
-| Scope | What it is | How it changes |
+### Three persistence scopes
+
+| Scope | Persists across | Set how |
 |---|---|---|
-| Factory | Boot-time defaults shipped with firmware. | Restored by reset, where supported. |
-| Saved | What persists across reboots. | Written by `set_config` and `config_endpoint`. |
-| Runtime | What is currently in effect. | Updated immediately for most fields. For reboot-required fields, runtime deviates from saved until the next reboot. |
+| **Factory** | A factory reset wipes everything else; only factory defaults remain. | Cannot be changed. |
+| **Saved** | Reboot. The reader replays the saved configuration on every boot. | `set_config` writes here when `persist: true`, or implicitly per the per-field default. |
+| **Runtime** | Power cycle. Discarded on reboot. | `set_config` with `persist: false` (where supported), or fields the schema marks runtime-only. |
 
-### Reboot persistence rule
+The persistence rule that surprises most teams: **all management-plane configurations survive `reboot`. Only radio-operating-mode state from the control endpoint is lost.** So if you set a Wi-Fi profile, install certificates, configure endpoints, and adjust retention thresholds — all of it is still there after a reboot. If you set an operating mode and start an inventory, only the inventory-running state is lost.
 
-Per the `reboot` operation contract, all management endpoint configurations are restored after reboot. Only radio operation configurations from control endpoint operations (active operating mode, in-progress inventory) are lost on reboot.
+### Drift and reconciliation
 
-Two consequences follow:
+In a managed fleet, the MDM platform (or your own controller) maintains a **canonical configuration per device class** — what every RFD40 Premium *should* look like. Two readers can drift from canonical:
 
-- A `set_config` followed by a `reboot` re-establishes the management plane in its new state.
-- An active inventory does not survive a reboot. The `reboot` operation is rejected with error code 5 if an inventory is running.
+- **Local edits** — somebody connected via 123RFID Desktop and changed a setting on one device.
+- **Failed pushes** — a `set_config` failed partway through; the device has the old values where the new ones should be.
 
-### Reconcile on reconnect
+The reconciliation pattern:
 
-Your application's view of `currentConfig` may drift from the sled's authoritative state. Drift sources:
+1. Pull current state with `get_config` on a schedule (commonly every heartbeat, or on-demand).
+2. Diff against the canonical configuration.
+3. For each differing field, push with `set_config`.
+4. Re-pull and verify.
 
-- Network gaps during which `set_config` calls were issued by another agent, such as an MDM or a technician.
-- Reader reboots.
-- Out-of-band edits via 123RFID Desktop or SOTI Connect.
+The cost of the wide read is amortised across many fields; the precision of the narrow write avoids overwriting fields you didn't intend to change.
 
-On every `mqttConnEVT.CONNECTED`, run the reconcile protocol. Call `get_status`, then `get_config`, then `get_operating_mode`, then `get_post_filter`. Update your local model before resuming normal operation.
+### Where related surfaces live
 
-### A note on `set_config.configData`
+The configuration document does **not** contain:
 
-The `set_config` operation is unusual among IOTC operations: its request payload field is `configData`, not the generic `payload` field used by some other operations. This is documented behavior. Do not paste a generic envelope.
+- **Endpoints** — those live in their own surface, addressed by `config_endpoint` / `get_endpoint_config`. See [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
+- **Operating mode** — that's `set_operating_mode` / `get_operating_mode`. See [Choose how the reader reads tags](/rfid/operating-mode/profiles).
+- **Event configuration** — `config_events` is a separate operation, even though event configuration appears nested in `config_endpoint` payloads as well. See [Choose what the reader tells you](/observability/events/configure).
+- **Certificates** — `install_certificate` / `get_installed_certificate` / `delete_certificate`. See [Securing the connection](/infrastructure/security/model).
 
-### Related
+This separation is intentional. The configuration document is for *device-wide adjustable state*; the other surfaces are for *roles that have their own lifecycle*.
 
-[What your reader knows about itself](/infrastructure/management/device-state) · [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · [Choose what the reader tells you](/observability/events/configure) · [Updating firmware and rebooting](/infrastructure/management/system-operations) · [Keeping a fleet in sync](/fleet/management/about-bulk).
+### Worked example — change batching threshold
+
+A `set_config` payload that adjusts only the tag-data batching count:
+
+```json
+{
+  "command": "set_config",
+  "requestId": "cfg-batch-001",
+  "config": {
+    "dataConfiguration": {
+      "batching": {
+        "tagCount": 50
+      }
+    }
+  }
+}
+```
+
+Every field not listed retains its current value. The response carries `response.code: 0` on success; error codes vary by what was attempted (see `mqtt-api-reference/set_config.md`).
+
+### When to fetch instead of cache
+
+A common application bug is to cache `get_config` output and apply diffs to the cache. **Don't.** Drift can happen from many directions — another operator, an MDM push, a reboot that re-applied a saved config. Always read fresh before computing a diff. The right pattern is:
+
+```
+current = get_config()
+target  = canonical_for(serial)
+diff    = target - current
+if diff:
+    set_config(diff)
+    verify = get_config()
+    assert verify matches target
+```
+
+The verify step costs one extra read but catches the case where `set_config` silently failed on a subset of fields.
+
+### What this chapter does not cover
+
+- **`config_events` and event-flag configuration** — that surface has its own chapter at [Choose what the reader tells you](/observability/events/configure).
+- **Bulk reconciliation across fleets** — [Keeping a fleet in sync](/fleet/management/about-bulk).
+- **Firmware updates** — `set_os` is part of [Updating firmware and rebooting](/infrastructure/management/system-operations), not the configuration document.
+
+**Related:** 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Choose what the reader tells you](/observability/events/configure) · 📘 [Keeping a fleet in sync](/fleet/management/about-bulk) · 📕 [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

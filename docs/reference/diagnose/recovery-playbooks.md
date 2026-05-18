@@ -6,85 +6,110 @@ sidebar_label: Playbooks for getting back online
 
 > 📙 **HOW-TO** · Audience: All personas in incident response · Read time: ~10 min
 
-Six recovery playbooks. Each is a tested sequence of steps that bring a failing sled back to a known-good state. Pick the playbook that matches your situation.
+Nine recovery playbooks. Each is a tested sequence of steps that brings a failing sled back to a known-good state. Pick the playbook that matches your situation. Run each step; verify the success check; move on.
 
-### RP-01: Recover lost connectivity
+### RP-01 — Connect a sled to 123RFID Desktop
 
-The sled is no longer reaching the broker.
+**When:** 123RFID Desktop can't find your sled.
 
-1. Confirm sled power and physical condition. Press the trigger and observe LED feedback.
-2. On Path A, open 123RFID Desktop, connect over USB, and verify Wi-Fi association in *Configure → Communication → Wi-Fi*. On Path B, confirm that host-sled Bluetooth pairing is still active.
-3. From the broker side, watch for `mqttConnEVT`. If silent for 10 minutes or more, suspect endpoint configuration. Verify that `url`, `port`, and `tenantId` match the broker's expectation.
-4. If still silent, reboot the sled. Stop any active inventory first.
-5. Watch for `mqttConnEVT.CONNECTED`. Run the reconcile protocol: `get_status`, then `get_config`, then `get_operating_mode`.
+1. Confirm the USB-C cable is data-capable (not charge-only). Many cheap cables are charge-only; substitute a known-good cable.
+2. Power-cycle the sled (hold trigger + power for 5 s).
+3. Confirm Bluetooth is enabled on the laptop if discovering wirelessly.
+4. Restart 123RFID Desktop.
+5. **Success check:** the sled appears in the Discovery view with its serial number and current firmware.
 
-### RP-02: Recover from configuration drift
+### RP-02 — Activate the bootstrap MDM endpoint
 
-A sled's saved configuration differs from your canonical configuration source of truth.
+**When:** Phase 2 of Quick Start completed but no MQTT command works.
 
-1. Snapshot the current state with `get_config`. Store as baseline.
-2. Compute the diff against canonical.
-3. If reboot-required fields differ, schedule a maintenance window. Push `set_config` with the canonical `configData`, then reboot (after stopping inventory).
-4. If only runtime fields differ, push and apply at runtime. No reboot is needed.
-5. Re-run `get_config` and confirm a match.
-6. Document the reconciliation.
+1. Open 123RFID Desktop, connect to the sled.
+2. In the Endpoints tab, locate the MDM endpoint. Confirm `activate: true`.
+3. Verify the broker URL, port, protocol match what was reachable in Phase 1.
+4. Save and re-activate. The sled may reboot.
+5. Watch broker logs for an incoming connection from the sled's IP.
+6. **Success check:** subscribe to `<tenantId>/MDM/#` and see at least one publish from the sled.
 
-### RP-03: Re-add a missing or corrupt endpoint configuration
+### RP-03 — Verify topic routing
 
-A sled's endpoint configuration disappeared (FM-CFG-03) or is wrong.
+**When:** `get_version` (or any command) returns no response within 5 s.
 
-1. Run `get_endpoint_config` for each expected endpoint name.
-2. Identify missing or misconfigured entries.
-3. Call `config_endpoint` with `operation: ADD` for missing entries, or `MODIFY` for misconfigured entries.
-4. Set `activate: true`. Reboot if the endpoint is new.
-5. Confirm via a fresh `get_endpoint_config`.
-6. Watch for `mqttConnEVT.CONNECTED` on the new connection.
+1. Confirm the publish topic exactly: `<tenantId>/MDM/clients/cmnd/<deviceSerialNumber>`. The reader subscribes to *this exact form*; off-by-one fails silently.
+2. With `mosquitto_sub -t '#' -v`, subscribe to everything. Re-publish the command.
+3. Find which topic the response arrives on. Update your subscriber to use that exact topic.
+4. If still no response, run `get_endpoint_config` on the MDM endpoint to confirm `publishTopics` matches what you expect.
+5. **Success check:** `get_version` returns within 5 s, with `requestId` matching.
 
-### RP-04: Roll back from a failed firmware update
+### RP-04 — Stop inventory cleanly
 
-A `firmwareUpdateEVT.status: FAILED` is observed, or a post-update `get_version` does not match expectations.
+**When:** Any operation returning code 5 or 11 ("inventory in progress" or "can't reboot during inventory").
 
-1. List the sleds that failed. Group by current firmware version (`get_version`).
-2. Stage the previous firmware image on a file server reachable from the sleds.
-3. For each sled, stop any active inventory first using `control_operation` with `operation: stop`.
-4. Issue `set_os` pointing at the previous image. The same operation rolls forward and back.
-5. Watch for `mqttConnEVT.CONNECTED` post-reboot. Confirm that `get_version` matches the target.
-6. If a sled is unreachable over MQTT after the rollback attempt, recover via 123RFID Desktop over USB.
+1. Publish `control_operation` with `ctrlOprPayload: { controlType: "RFID", operation: "STOP" }`.
+2. Wait for the response. Code 0 = stopped; code 12 = already stopped (also fine).
+3. Confirm with `get_status` — `deviceStatus.radioActivity` should be `INACTIVE`.
+4. Retry the original operation.
+5. **Success check:** the original operation returns code 0.
 
-> **Constraint.** The `reboot` operation, and by extension the apply phase of `set_os`, is rejected with error code 5 during active inventory. Always stop the inventory first.
+### RP-05 — Tag data not flowing
 
-### RP-05: Free the phantom `RF90_DATA_BROKER` slot
+**When:** `control_operation START` returned code 0, but no `dataEVT` arrives.
 
-This applies exactly once per sled, when migrating from the MDM hybrid endpoint to a dedicated DATA endpoint.
+1. Run `get_operating_mode`. Confirm `profiles` is one of the five supported values, **not `FAST_READ`** (currently not supported).
+2. Run `get_post_filter` on the active data endpoint. Look for `reportOperation: EXCLUDE` rules that may be filtering all tags.
+3. Run `get_endpoint_config`. Confirm the DATA1 (or active data) endpoint has `activate: true` and a `publishTopics` entry.
+4. Subscribe to `<tenantId>/DATA1/#` (or the active data topic) with a wildcard. Move tags into the read zone.
+5. **Success check:** `dataEVT` events stream past with `data.tagData[].EPCid` matching your tags.
 
-Factory-fresh RFD40 and RFD90 sleds ship with a hidden, pre-configured endpoint named `RF90_DATA_BROKER`. It occupies one of the two available DATA-pipe slots. Trying to add a new DATA endpoint without removing this phantom first fails with a slot-exhaustion error.
+### RP-06 — Recover from failed firmware update
 
-1. Confirm the phantom exists. Call `get_endpoint_config` for `RF90_DATA_BROKER`.
-2. Send the delete:
+**When:** `set_os` returned code 13 (Firmware update Failed) or the update appeared to start but didn't complete.
 
-   ```json
-   {
-     "command": "config_endpoint",
-     "requestId": "delete_phantom_01",
-     "epConfig": {
-       "operation": "delete",
-       "configuration": { "endpointName": "RF90_DATA_BROKER" }
-     }
-   }
-   ```
+1. Run `get_version`. The reader may have rolled back to the previous firmware automatically; verify which version is active now.
+2. Run `get_status`. Confirm `batteryStatus.chargePercentage` ≥ 50 and `powerSource` is `WALLCHARGER` or `USB` — battery-low gates firmware updates.
+3. Confirm flash space — `set_os` returns code 8 if insufficient flash. If unsure, `set_config` to reduce retention buffer to a smaller value temporarily.
+4. Verify the firmware URL is reachable from the sled's network — try downloading it from the sled's Wi-Fi segment.
+5. Re-issue `set_os` with the same URL.
+6. Watch `alert_short` for `FIRMWARE_DOWNLOAD_*` and `FIRMWARE_UPDATE_*` events.
+7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short. Then `get_version` confirms the new firmware.
 
-3. Wait for `{"code": 0, "description": "Success"}`.
-4. The slot is freed. You may now call `config_endpoint` with `operation: ADD` for a real DATA endpoint.
+### RP-07 — Diagnose silent-offline state
 
-### RP-06: Implement graceful degradation in the application
+**When:** Heartbeats stop arriving but the broker still shows the reader connected.
 
-This is preventive design, not just a response after a failure.
+1. Try a `get_status`. If it times out, the reader is unreachable.
+2. Check `mqttConnEVT` history — was there a DISCONNECTED event that you missed?
+3. Inspect broker-side metrics — most brokers expose last-seen-message timestamps per client.
+4. Wait for the keep-alive interval (default 5 min). The broker should issue an LWT-style disconnect by then.
+5. If the reader is genuinely stuck, physically reset (hold trigger + power for 10 s, or remove battery for sleds that allow it).
+6. **Success check:** heartbeats resume; `mqttConnEVT` shows CONNECTED.
 
-1. Define degraded states for your application: `NO_HEARTBEAT`, `NO_RESPONSE`, `NO_DATA`.
-2. For each state, choose a fallback. Options include caching last-known data, pausing writes, notifying the operator, or falling back to the host-side SDK on Path B.
-3. Subscribe to `mqttConnEVT` and `alertsEVT.NETWORK_EVENT` to drive state transitions.
-4. On recovery (a fresh `CONNECTED` event), run the reconcile protocol before resuming normal operation.
+### RP-08 — Reconcile drift
 
-### Related
+**When:** A reader's configuration differs from the canonical for its class.
 
-[Something's broken?](/reference/diagnose/symptom-index) · [Where things fail](/reference/diagnose/two-edges) · [Common misconceptions](/reference/diagnose/misconceptions) · [Updating firmware and rebooting](/infrastructure/management/system-operations) · [What happens when the network drops](/fleet/reliability/retention-retry).
+1. Run `get_config`, capture the snapshot.
+2. Run `get_endpoint_config`, capture the endpoint list.
+3. Run `get_operating_mode` (note: this is *expected* to differ after every reboot — radio-operation state doesn't persist).
+4. Diff each against canonical. For each differing field that *should* be persistent, push with the relevant `set_*` operation.
+5. Re-read each surface; verify against canonical.
+6. If the diff persists after reconcile, escalate — this implies the local change is overriding the push, possibly via 123RFID Desktop access.
+7. **Success check:** every surface matches canonical, save for operating-mode (which is re-applied on every boot anyway).
+
+### RP-09 — Stagger and retry rollout
+
+**When:** Fleet-wide firmware update failed on some readers.
+
+1. Identify which readers failed via `alert_short` `FIRMWARE_UPDATE_FAIL` events.
+2. Group failures by reason — battery-low, flash-insufficient, firmware-source-unreachable have different fixes.
+3. For battery-low readers (FM-FW-04): defer until charged; group them into a charging-station-mounted batch and retry.
+4. For flash-insufficient (FM-FW-02): `get_config` to find what's consuming flash. Adjust retention buffer downward via `set_config`, then retry.
+5. For source-unreachable (FM-FW-03): verify the firmware URL is reachable from the failing readers' Wi-Fi segment. Often a different segment than the successful readers'.
+6. Re-issue `set_os` against the failed subset only.
+7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short events arrive for all targeted readers within a sensible window.
+
+### What this chapter does not cover
+
+- **Why the failures happened** — explanation belongs in the matching FM page or concept chapter.
+- **Bipartite-specific recovery** — covered in FM-DEV-* entries off the symptom index.
+- **Recovery from regulatory-region misconfiguration** — requires factory reset + 123RFID Desktop reboot; out of scope for routine recovery.
+
+**Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📘 [Where things fail](/reference/diagnose/two-edges) · 📘 [Things people get wrong about IOTC](/reference/diagnose/misconceptions)

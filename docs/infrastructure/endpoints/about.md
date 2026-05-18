@@ -4,30 +4,105 @@ title: How the MQTT plumbing fits together
 sidebar_label: How the MQTT plumbing fits together
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min · Ties to the MQTT Endpoint Configuration sub-tag of the API Reference
 
-In IOTC, an "endpoint" is the broker connection target — host, port, TLS settings, credentials — for a specific interface. The word *endpoint* is overloaded: API endpoints are MQTT commands like `set_wifi`; MQTT endpoints are connection targets. This page concerns the latter.
+> **See in the API Reference**
+> Sub-tag: MQTT Endpoint Configuration. Operations: `get_endpoint_config` · `config_endpoint`.
 
-### Three endpoint types
+The word *endpoint* is overloaded. **API endpoints** are MQTT operation names — `get_status`, `config_endpoint`, `control_operation`. **MQTT endpoints** are broker connection targets — host, port, TLS settings, credentials, topic mapping. This chapter is about the second meaning: how the reader's broker connections are shaped, how many you can have, and how to choose between the hybrid bootstrap and the split-by-role production posture.
 
-A reader maintains three independent MQTT endpoint configurations:
+### Seven endpoint types
 
-- **MDM endpoint** — for enterprise MDM integration (SOTI Connect).
-- **CTRL endpoint** — for RFID control commands and responses.
-- **DATA endpoint** — for tag-data event streaming.
+Each `config_endpoint` operation creates or updates one MQTT endpoint of a specific `epType`:
 
-In the simplest deployment all three point at the same broker. In specialised deployments they may point at different brokers.
+| epType | What it carries | Direction | When to use |
+|---|---|---|---|
+| `MGMT` | Identity, network, security, config, firmware commands and responses | Bidirectional | Dedicated management channel |
+| `MGMT_EVT` | Heartbeats, alerts, exceptions, NTP, network/firmware events | Sled → app | Dedicated event channel |
+| `CTRL` | `set_operating_mode`, `control_operation`, `set_post_filter` | Bidirectional | Dedicated RFID control channel |
+| `DATA1` | `dataEVT` tag stream | Sled → app | Primary tag-data destination |
+| `DATA2` | Second `dataEVT` stream | Sled → app | Secondary tag-data destination |
+| `MDM` | Management + Control + Data combined | Bidirectional | Bootstrap default; MDM platform integration |
+| `SOTI` | SOTI MobiControl integration | Bidirectional | SOTI-managed fleets |
 
-### Why different endpoints for different interfaces
+The full field schema for each endpoint is in `mqtt-api-reference/config_endpoint.md`. The runtime list of what is currently active is fetched with `get_endpoint_config`.
 
-- **Isolation** — high-volume tag data does not contend with command-response latency.
-- **Authorization** — a data-consumer application can be granted access only to the DATA broker.
-- **Cost / scale** — tag-data brokers can be sized for throughput; MGMT brokers for connection count.
+### The topic format — always three parts
 
-[DIAGRAM: D-8.1.A — single-broker vs separate-broker topologies]
+Every IOTC topic is constructed at runtime as:
 
-### Relationship to topic hierarchy
+```
+<tenantId> / <topic> / <deviceSerialNumber>
+```
 
-Endpoint configuration determines *where* a reader connects. Topic hierarchy ([§3.2](/foundations/mqtt/topic-hierarchy)) determines *what* it publishes and subscribes to. The two are orthogonal.
+You configure **only the middle segment** in `publishTopics[].topic` and `subscribeTopics[].topic`. The reader prepends `tenantId` and appends `deviceSerialNumber` automatically. With tenant `zebra`, middle topic `CTRL/clients/cmnd`, serial `RFD40-24190525100255`, the wire topic is:
 
-**Related:** 📘 [§2.4 Interface Model](/foundations/architecture/interface-model) · 📘 [§8.4 Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [§8.3 Configure Endpoints](/infrastructure/endpoints/configure)
+```
+zebra/CTRL/clients/cmnd/RFD40-24190525100255
+```
+
+**Never** include `tenantId` or the serial in the `topic` field — they get added twice and the path becomes unroutable.
+
+### Hybrid (MDM) vs split (MGMT + CTRL + DATA)
+
+The MDM endpoint created by 123RFID Desktop at bootstrap is **hybrid**: it carries management commands, control commands, events, *and* tag data on one topic family. This is convenient for first-light but has three production costs:
+
+- **Backpressure leaks across roles.** A slow data consumer can starve management commands on the same session.
+- **No per-role QoS.** QoS is per-endpoint; you cannot apply QoS 1 to commands and QoS 0 to tag data on the same hybrid.
+- **Authorization sprawl.** Broker-side ACLs cannot separate operator access from data-pipeline access when everything lives under `MDM/`.
+
+Production deployments typically split into `MGMT` + `CTRL` + `DATA1`. Add `MGMT_EVT` if you need a dedicated event channel; add `DATA2` if you need a second data destination (e.g., one to a real-time analytics pipeline, one to an archive).
+
+The split is **additive** — adding `CTRL` does not remove the MDM endpoint. Phase 5 of the Quick Start walks the canonical add sequence.
+
+### Limits that matter
+
+| Constraint | Limit | Error code |
+|---|---|---|
+| `publishTopics` per endpoint | 3 | `25` (Max 3 publish topics exceeded) |
+| `subscribeTopics` per endpoint | 1 | `26` (Max 1 subscribe topic exceeded) |
+| `endpointName` uniqueness for `add` | required | `10` (Configuration already exists) |
+| Tenant ID length | bounded | `27` (Invalid tenant ID length) |
+| `epType` and other enums | per schema | `23` (Invalid enum value) |
+
+Operations on `config_endpoint` are `add`, `update`, `delete` (lowercase). For `delete`, only `endpointName` and `epType` are required.
+
+### Verification types
+
+The `verificationType` enum controls TLS handshake behavior:
+
+| Value | Verifies | Use |
+|---|---|---|
+| `NONE` | Nothing | Plain MQTT (port 1883); required field even then |
+| `VERIFY_PEER` | Server certificate against trusted CAs | Encryption without hostname check |
+| `VERIFY_HOST` | Hostname matches certificate | Hostname check without trust chain |
+| `VERIFY_HOST_PEER` | Both | Recommended for production |
+
+For TLS, certificate logical names referenced in `securityParams` must already be installed via `install_certificate`. See [Securing the connection (TLS & certificates)](/infrastructure/security/model).
+
+### Inspecting what's active
+
+`get_endpoint_config` returns:
+
+- `endpointResponse.activeEndpoints.epConfig[]` — every currently-active endpoint with its full configuration.
+- `endpointResponse.activeEndpoints.savedEndpoints.epNames[]` — names of every saved-but-inactive endpoint.
+
+You can also query a single endpoint:
+
+```json
+{
+  "command": "get_endpoint_config",
+  "requestId": "lookup-001",
+  "endpointDetails": { "endpointName": "ctrlEP" }
+}
+```
+
+`get_endpoint_config` is the right call **before** any `config_endpoint update` or `delete` — confirm the target exists, see its current configuration, then make the change.
+
+### What this chapter does not cover
+
+- **TLS setup and certificate installation** — [Securing the connection](/infrastructure/security/model).
+- **Per-endpoint event flag configuration** — `eventConfiguration` and `heartbeatConfiguration` within `config_endpoint` are covered in [Choose what the reader tells you](/observability/events/configure).
+- **Bulk endpoint configuration across a fleet** — [Keeping a fleet in sync](/fleet/management/about-bulk).
+
+**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [The reader's configuration document](/infrastructure/management/config-document) · 📕 [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

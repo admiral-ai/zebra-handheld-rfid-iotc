@@ -4,35 +4,96 @@ title: Securing the connection (TLS & certificates)
 sidebar_label: Securing the connection (TLS & certificates)
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min
+> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min · Ties to the Certificate Management sub-tag of the API Reference
 
-IOTC's security model has four layers, applied independently. Each defends against a different class of attack; together they form the security posture for an IOTC deployment.
+> **See in the API Reference**
+> Sub-tag: Certificate Management. Operations: `get_installed_certificate` · `install_certificate` · `delete_certificate`.
+
+IOTC's security model has four layers, applied independently. Each defends against a different class of attack; together they form the security posture for a deployment. This chapter explains the layers and the operations that drive certificate management.
 
 ### The four layers
 
-[DIAGRAM: D-7.1.A — layered stack: transport encryption / authentication / authorization / device identity]
-
-- **Transport encryption** — TLS 1.2 or 1.3 between client and broker. Protects against passive eavesdropping and active tampering.
-- **Authentication** — MQTT username/password, TLS client certificate, or both. Establishes who the client is.
-- **Authorization** — broker-enforced topic ACLs scoped to a tenant. Determines what the authenticated client can do.
-- **Device identity** — the serial number embedded in every topic path. Lets fleet-level policy reason about specific devices.
-
-### Threat model
-
-[DIAGRAM: D-7.1.B — threat model table]
-
-| Threat | Defended by | Notes |
+| Layer | Threat | IOTC mechanism |
 |---|---|---|
-| Passive eavesdropping on wire | TLS | Always enable in production |
-| Unauthorized command publish | Auth + ACL | Use TLS client certs for production |
-| Cross-tenant access | Tenant-scoped ACL | Enforced at broker |
-| Device spoofing | Per-device credentials | One credential per device for high-security |
-| Physical access to a sled | Not defended | Manage via custodial policy |
-| Bluetooth interception | Not defended | Consider in physical-security scope |
-| Compromised host device | Not defended | Manage host security via MDM |
+| **Transport** | Eavesdropping on the wire | TLS 1.2 / 1.3 (`protocol: MQTT_TLS`, port 8883) |
+| **Server identity** | A man-in-the-middle posing as your broker | `verificationType` set to `VERIFY_HOST_PEER` |
+| **Client identity** | An unauthorized reader connecting as yours | Client certificate (`install_certificate` type `client`) |
+| **Tenant boundary** | A neighboring tenant reading your topics | `tenantId` + broker-side ACLs |
 
-### When to enable what
+You cannot achieve "secure" by picking one. A TLS-encrypted connection without `VERIFY_HOST_PEER` defends against passive eavesdropping but not against an active impostor. A signed client certificate without TLS leaks every payload in clear text. The four layers are an *AND*, not an *OR*.
 
-For development: username/password with TLS. For production fleets: TLS client certificates plus username/password. For high-security or regulated environments: per-device certificates, MDM-managed host devices, and a custodial policy for sled inventory.
+### Five certificate types
 
-**Related:** 📘 [§3.5 Auth Model](/foundations/mqtt/auth-model) · 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) · 📙 [§7.4 Securing MQTT with TLS](/infrastructure/security/tls-setup)
+`install_certificate` takes a `type` field that selects the logical bucket the cert lives in:
+
+| Type | Used for |
+|---|---|
+| `mqtt` | MQTT broker connections — both client cert/key and the broker's CA cert |
+| `wifi` | Enterprise Wi-Fi (WPA2/WPA3 Enterprise with EAP-TLS) — CA, client cert, client key |
+| `filestore` | The HTTP file server used by `set_os` and `install_certificate` (HTTP source) |
+| `client` | Generic client-side certs |
+| `server` | Generic server-side certs |
+
+Certificates are stored on the device under logical names that you choose at install time (e.g., `mqtt_ca_cert`, `wifi_client_cert`, `filestore_ca_cert`). Other operations reference these names: `config_endpoint.securityParams.caCertificateFile`, `set_wifi.security.certificate[].name`, `set_os.OSUpdateDetails.caCertificateFile`.
+
+### Two installation sources
+
+`install_certificate.certSource` chooses how the certificate content arrives at the reader:
+
+- **`HTTP`** — the reader downloads from a remote URL. Requires `filestore` certificates to be installed first if the source itself is HTTPS. This is the production pattern: certificate authorities push to an HTTPS endpoint; readers pull on demand.
+- **`DIRECT`** — the certificate content is included inline in the MQTT payload (PEM string in `certificateBundle`). Simpler for first-light; less convenient at scale.
+
+When `certSource` is omitted, the reader defaults to `HTTP`.
+
+### Two install paths in practice
+
+**Out-of-band, via 123RFID Desktop.** The Wi-Fi certificate chain for an Enterprise SSID can be loaded from the bootstrap UI in Phase 2. This is the right pattern when a reader has not yet joined any network.
+
+**In-band, via `install_certificate`.** Once a reader is on the broker, MQTT certificate material for TLS and for the file store can be pushed via `install_certificate`. This is how MDM platforms (SOTI Connect, 42Gears SureMDM) provision certs at fleet scale.
+
+### Rotation
+
+Certificates expire. The rotation pattern is:
+
+1. **Install the new cert with a different logical name** (`mqtt_ca_cert_2026`, not `mqtt_ca_cert`).
+2. **Update endpoints to reference the new name** with `config_endpoint update`.
+3. **Verify the connection survives** — watch `mqttConnEVT` for clean reconnects on the new cert.
+4. **Delete the old cert** with `delete_certificate` once no endpoint references it.
+
+This pattern survives bad rolls — if the new cert turns out to be invalid, the reader is still using the old name and you can `config_endpoint update` back. Replacing the cert in place (same logical name) leaves no escape route.
+
+### The minimal payload — `install_certificate`
+
+```json
+{
+  "command": "install_certificate",
+  "requestId": "cert-install-001",
+  "certDetails": {
+    "name": "mqtt_ca_cert",
+    "type": "mqtt",
+    "certSource": "DIRECT",
+    "certificateBundle": {
+      "ca_cert": "-----BEGIN CERTIFICATE-----\nMIID...\n-----END CERTIFICATE-----"
+    }
+  }
+}
+```
+
+For HTTP-sourced installs, replace `certificateBundle` with a `url` array per certificate component (`ca_cert`, `client_cert`, `client_key`). Full schema in `mqtt-api-reference/install_certificate.md`.
+
+### Listing and removing
+
+- **`get_installed_certificate`** — returns the logical names of installed certificates by type. Use before `delete_certificate` to confirm the target exists.
+- **`delete_certificate`** — removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
+
+### Confirmation via `alert_short`
+
+Successful and failed certificate operations generate `alert_short` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/events/alerts).
+
+### What this chapter does not cover
+
+- **Broker-side ACLs** — that lives in your broker's documentation (Mosquitto, HiveMQ, AWS IoT Core, etc.).
+- **Region and regulatory** — different surface; see [What your reader knows about itself](/infrastructure/management/device-state).
+- **PKI design at organizational scale** — see the Ristić *Bulletproof TLS and PKI* reference and your security team.
+
+**Related:** 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📕 [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

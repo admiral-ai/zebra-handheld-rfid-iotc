@@ -4,35 +4,106 @@ title: Getting on the network (Wi-Fi & Ethernet)
 sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min · Ties to the Network Configuration sub-tag of the API Reference
 
-The network path between a handheld reader and the MQTT broker passes through five distinct media. Each is configured separately and each has its own failure profile.
+> **See in the API Reference**
+> Sub-tag: Network Configuration. Operations: `get_eth` · `get_wifi` · `set_wifi` · `delete_wifi_profile`.
 
-### The path
+A sled gets to the broker over **Wi-Fi** (Monolithic tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bipartite tier — RFD40 Standard). Ethernet does not exist on the sled itself; `get_eth` reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
+
+### What lives where
+
+On a Monolithic sled, Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
+
+- **Read** them with `get_wifi` (lists configured profiles).
+- **Add or modify** them with `set_wifi` (operation `CREATE` or `MODIFY`).
+- **Remove** them with `delete_wifi_profile`.
+
+On a Bipartite sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
+
+### `set_wifi` — supported security types
+
+The reader supports four `securityType` enum values:
+
+| Value | Use | Required credentials |
+|---|---|---|
+| `WPA2Personal` | Pre-shared-key Wi-Fi (consumer-grade) | passphrase |
+| `WPA3Personal` | Pre-shared-key with WPA3 SAE | passphrase |
+| `WPA2Enterprise` | Corporate / 802.1X with WPA2 | identity, password, **plus** certificate references (`ca_cert`, `client_cert`, `client_key`) |
+| `WPA3Enterprise` | Corporate / 802.1X with WPA3 | identity, password, **plus** certificate references |
+
+Enterprise modes also take an `authProtocol`: `tls`, `ttls`, or `peap`. For `tls`, the three certificate logical names must already be installed via `install_certificate` (type `wifi`).
+
+A minimal `set_wifi` payload for personal Wi-Fi:
+
+```json
+{
+  "command": "set_wifi",
+  "requestId": "wifi-001",
+  "wifiConfig": {
+    "operation": "CREATE",
+    "interface": { "isEnabled": true, "isPreferred": true },
+    "accessPoint": {
+      "essid": "IoT-WiFi",
+      "connect": true,
+      "isPreferred": true,
+      "security": {
+        "securityType": "WPA2Personal",
+        "passphrase": "<your-passphrase>"
+      },
+      "ipv4": { "enableDhcp": true }
+    }
+  }
+}
+```
+
+Field-level shape — including the enterprise variant — is in `mqtt-api-reference/set_wifi.md`.
+
+### Error codes that matter
+
+| Code | Meaning |
+|---|---|
+| `15` | SSID not found (used by `MODIFY` against a profile that doesn't exist) |
+| `18` | ESSID already exists (used by `CREATE` against a duplicate) |
+
+Both indicate a precondition mismatch. `CREATE` requires the ESSID to be new; `MODIFY` requires it to exist. Inspect with `get_wifi` first when in doubt.
+
+### `get_eth` — when it makes sense
+
+`get_eth` returns the *broker-side* Ethernet status: whether an Ethernet interface is up, its IP, link speed. On a handheld sled the result is typically "no Ethernet interface present" — the sled has no Ethernet port. The command remains useful when:
+
+- The sled is in a cradle that exposes Ethernet through a host (rare).
+- You are querying through a fixed-reader companion deployment.
+- You want to confirm the reader has not unexpectedly grown an interface (it hasn't).
+
+Most Quick Start integrations will never call `get_eth`. It is documented for completeness and for parity with the fixed-reader IOTC product.
+
+### IPv4: DHCP vs static
+
+`set_wifi.wifiConfig.accessPoint.ipv4` carries the IPv4 strategy:
+
+- `{"enableDhcp": true}` — most deployments. Let the AP / DHCP server hand out an address.
+- `{"enableDhcp": false, "ipAddress": "...", "subnetMask": "...", "gateway": "...", "dns": "..."}` — static. Required for some industrial deployments where IP-to-device mapping must be deterministic.
+
+Static IPv4 also requires the subnet to match what the AP serves; mismatches produce a connected radio that cannot route to the broker.
+
+### Five-segment path mental model
+
+From sled to broker:
 
 ```
-Sled → Bluetooth → Host device → Wi-Fi (or Cellular) → Internet → Broker
+Radio  →  Access Point  →  LAN  →  WAN / VPN  →  Broker
+  ↑              ↑           ↑          ↑            ↑
+  set_wifi    Wi-Fi env   IT-managed  IT-managed   broker config
 ```
 
-The sled itself has Wi-Fi hardware, but in typical handheld deployments the host device's network is the path used. The sled's Wi-Fi may be enabled for direct connection during 123RFID Desktop bootstrap or when docked in a cradle that bridges Wi-Fi independently of the host.
+Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/reference/diagnose/two-edges) for the edge-isolation diagnostic frame.
 
-### Direct vs relayed connectivity
+### What this chapter does not cover
 
-- **Direct (sled Wi-Fi):** The sled connects to Wi-Fi using profiles configured via `set_wifi`. Used during bootstrap, in cradles, or when no host device is paired.
-- **Relayed (via host):** The sled tunnels MQTT traffic over Bluetooth to the host; the host's network carries it to the broker. This is the normal handheld operating mode.
+- **TLS over MQTT** — see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
+- **The full configuration of an MQTT endpoint** — see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
+- **Network failure modes** — see [Where things fail](/reference/diagnose/two-edges).
+- **Bipartite host-bridge configuration** — host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
 
-The reader does not distinguish between these at the IOTC API layer — `get_status` reports its current network state regardless of path.
-
-[DIAGRAM: D-6.1.A — three deployment topologies: warehouse enterprise Wi-Fi, retail store with guest network, field operations with cellular host]
-
-### Common deployment topologies
-
-- **Warehouse:** enterprise Wi-Fi with WPA2-Enterprise (EAP-TLS), broker reachable over private link or VPN.
-- **Retail store:** corporate Wi-Fi with WPA2-Personal, broker reachable over the public internet on TCP/8883.
-- **Field operations:** cellular-tethered host device, broker reachable over the public internet.
-
-### Bandwidth and latency budgets
-
-Tag data dominates bandwidth. A reader in `inventory_rssi` mode reading 200 tags/second emits ~100 KB/s of MQTT payload (including headers). MGMT and CTRL traffic is negligible. Command/response round-trip latency is typically 50–200 ms over typical Wi-Fi; up to 1 s over cellular.
-
-**Related:** 📘 [§2.1 End-to-End System](/foundations/architecture/end-to-end) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📙 [§6.2 Wi-Fi Configuration](/infrastructure/network/wifi) · 📙 [§6.4 Network Troubleshooting](/infrastructure/network/troubleshooting)
+**Related:** 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

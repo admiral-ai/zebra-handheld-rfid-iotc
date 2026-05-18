@@ -6,38 +6,70 @@ sidebar_label: "Which sled do you have? (Monolithic vs Bipartite)"
 
 > 📘 **EXPLANATION** · Audience: New Integrator, Solution Builder · Read time: ~4 min
 
-This documentation covers the Zebra handheld RFID sled family — the RFD40 Premium, RFD40 Standard, and RFD90 — communicating with the IoT Connector over MQTT 3.1.1.
+The single most consequential decision in IOTC is which **architecture tier** your sled belongs to. The same SKU label hides two very different network topologies. **Get the tier wrong and every later chapter mis-maps.**
 
-### The handheld sled product family
+### Two tiers, one product line
 
-The **RFD40** is a compact UHF RFID sled for retail and light-industrial use. It comes in two trims: Premium (with barcode scanning) and Standard (RFID only). The **RFD90** is a longer-range, heavier-duty sled built for warehouse and field operations, with a higher-gain internal antenna and a larger battery.
+| Tier | Sleds | Network attach | Where IOTC runs |
+|---|---|---|---|
+| **🅐 Monolithic Edge Node** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
+| **🅑 Bipartite** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
+
+The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolithic — they ship different radios.
+
+[DIAGRAM: D-2.2.A — side-by-side topology: Monolithic single-edge vs Bipartite two-edge]
+
+### How they differ in practice
+
+**On a Monolithic sled** (Premium / Premium Plus / RFD90):
+
+- The sled connects to Wi-Fi directly. The host mobile device is optional — useful for the operator UI, but not in the network path.
+- One physical edge between the sled and the broker: **Reader ↔ Wi-Fi ↔ Broker**.
+- The sled is the MQTT client. Credentials, certificates, and topic subscriptions all live in firmware.
+- Reading the failure-mode chapter [Where things fail](/reference/diagnose/two-edges) requires considering **one** edge.
+
+**On a Bipartite sled** (RFD40 Standard):
+
+- The sled has no Wi-Fi. It pairs to a host device over Bluetooth 5.0 LE; the host bridges to MQTT.
+- Two physical edges: **Reader ↔ Host (BT/eConnex)** and **Host ↔ Broker**.
+- The host is the MQTT client. Credentials, certificates, and topic subscriptions live on the host, not in the sled.
+- Failure-mode diagnosis considers **two** edges; signals like `terminalConnection.status` are how you tell which edge is broken.
 
 ### Hardware capability matrix
 
-| Capability | RFD40 Standard | RFD40 Premium | RFD90 |
-|---|---|---|---|
-| RFID frequencies | UHF (region-configured) | UHF (region-configured) | UHF (region-configured) |
-| Read range (typical) | ~6 m | ~6 m | ~21 m |
-| Bluetooth | 5.0 LE | 5.0 LE | 5.0 LE |
-| Barcode scanner | — | Yes | Yes |
-| Battery (mAh) | 2,400 | 2,400 | 3,000 |
-| Trigger button | Yes | Yes | Yes |
-| Charging | USB-C / cradle | USB-C / cradle | USB-C / cradle |
+| Capability | RFD40 Standard 🅑 | RFD40 Premium 🅐 | RFD40 Premium Plus 🅐 | RFD90 🅐 |
+|---|---|---|---|---|
+| RFID frequency | UHF Gen2 (region-set at first boot) | UHF Gen2 | UHF Gen2 | UHF Gen2 |
+| Native Wi-Fi | — | Wi-Fi 6 | Wi-Fi 6 | Wi-Fi 6 |
+| Bluetooth | 5.0 LE | 5.0 LE | 5.0 LE | 5.0 LE |
+| Read range (typical) | ~6 m | ~6 m | ~6 m | **~21 m** |
+| Internal antenna | Single, forward-facing | Single, forward-facing | Single, forward-facing | Single, higher-gain |
+| Barcode scanner | — | **Yes** (1D/2D) | **Yes** (1D/2D) | Yes |
+| Battery (typical) | 2,400 mAh | 2,400 mAh | 2,400 mAh | 3,000 mAh |
+| Trigger button | Yes | Yes | Yes | Yes |
+| Charging | USB-C · cradle | USB-C · cradle | USB-C · cradle | USB-C · cradle |
+| External antenna ports | — | — | — | — |
+| GPIO pins exposed via IOTC | — | — | — | — |
 
-[DIAGRAM: D-1.2.A — annotated sled illustration showing antenna location, trigger button, USB-C port, charging contacts]
+**Note.** Premium Plus differs from Premium primarily in mechanical ruggedization and battery accessories; the IOTC surface is identical.
 
-[DIAGRAM: D-1.2.B — capability matrix as visual comparison]
+[DIAGRAM: D-2.2.B — annotated sled illustration: antenna, trigger, USB-C, scanner window]
 
-### Physical anatomy
+### How to identify your tier in seconds
 
-Every sled in this family has: a single **internal antenna** at the top of the device (forward-facing in operating position), a **physical trigger** on the underside grip, **USB-C and pogo-pin charging contacts** at the base, and an **attachment shoe** that mates with the supported host device. There are no external antenna ports, no GPIO pins, and no display.
+- Powered off, look at the model label.
+  - `RFD40SS-…` → Standard 🅑
+  - `RFD40NP-…` or `RFD40HP-…` → Premium 🅐
+  - `RFD9030-…` → RFD90 🅐
+- Powered on, watch the LED behavior during 123RFID Desktop bootstrap. Wi-Fi setup will only succeed on Monolithic tiers; Standard sleds show no Wi-Fi options.
+- From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Monolithic, it names the in-firmware IOTC version.
 
-### Minimum firmware version
+### Minimum firmware
 
-All content in this documentation assumes firmware **3.10.27 or later**. Earlier firmware versions support a subset of IOTC functionality and are not covered. Verification surfaces are listed in [§4.1 Hardware & Software Requirements](/getting-started/prerequisites/requirements).
+All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks `config_events`, the `install_certificate` HTTP source, and several event flags. Older deployments will need a `set_os` update before the docs apply cleanly. See [Updating firmware and rebooting](/infrastructure/management/system-operations).
 
-### What this implies for documentation scope
+### What this implies for scope
 
-Because every sled in this family has a single internal antenna, the documentation does not cover antenna-port selection, cable-loss compensation, or directionality settings. Because every sled is battery-powered and connects via Bluetooth, the documentation gives sustained attention to battery lifecycle and host-device pairing. These constraints are not caveats; they shape every chapter.
+Because every sled has one internal antenna, this documentation does **not** cover external-antenna selection, cable-loss compensation, or directionality settings — those exist only on fixed readers. Because every sled is battery-powered, the docs give sustained attention to battery lifecycle, the OPTIMAL_BATTERY profile, and heartbeat-emission cost. These are not caveats; they shape every chapter.
 
-**Related:** 📘 [§2.5 Handheld-Specific Architecture Considerations](/foundations/architecture/handheld-considerations) · 📕 [§4.1 Hardware Requirements](/getting-started/prerequisites/requirements) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history) · 📕 [§20.5 Regulatory & Regional Information](/reference/appendices/regulatory)
+**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 [Capacity and limits](/reference/diagnose/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)

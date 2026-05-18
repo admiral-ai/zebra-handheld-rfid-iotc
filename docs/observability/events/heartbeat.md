@@ -4,27 +4,101 @@ title: Watch your reader's pulse
 sidebar_label: Watch your reader's pulse
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~4 min
+> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~4 min · Ties to the Device Health sub-tag of the API Reference
 
-A `heartBeatEVT` is a periodic liveness beacon emitted by the reader at the interval set in `heartbeatConfiguration.interval`. The event carries device uptime, an event sequence number, and optional sub-payloads describing inventory progress and battery state.
+> **See in the API Reference**
+> Sub-tag: Device Health. Event: `heartbeatEVT`.
 
-### Payload shape
+The heartbeat is the canonical "this reader is alive" signal. A reader publishes `heartbeatEVT` at the interval set in `eventConfiguration.heartbeatConfiguration.interval`. Each event carries uptime and a sequence number; optionally, the current inventory status and battery state.
 
-| Field | Description |
+### The shape
+
+```json
+{
+  "eventName": "heartbeat",
+  "timestamp": "2026-05-19T14:23:11Z",
+  "eventNumber": 120,
+  "upTime": "5d 12h 47m",
+  "data": {
+    "inventoryStatus": {
+      "rfidStatus": "INPROGRESS",
+      "tagCount": 45,
+      "scanCount": 128
+    },
+    "batteryAlert": {
+      "status": "HIGH",
+      "stateOfHealth": "FULL",
+      "chargePercentage": 85
+    }
+  }
+}
+```
+
+Fields:
+
+- **`eventName`** — always `"heartbeat"`. Note: it's not `"heartBeatEVT"` or `"heartbeatEVT"` — just `heartbeat`.
+- **`timestamp`** — ISO 8601.
+- **`eventNumber`** — a monotonic sequence number. Useful for gap detection (missing heartbeats imply lost connection).
+- **`upTime`** — how long since the last reboot.
+- **`data.inventoryStatus`** — present only when `heartbeatConfiguration.inventoryStatus: true`.
+- **`data.batteryAlert`** — present only when `heartbeatConfiguration.batteryStatus: true`.
+
+Both `data.*` sub-blocks are optional. The skeleton (`eventName`, `timestamp`, `eventNumber`, `upTime`) is always present.
+
+### Interval, cost, and what to pick
+
+The `interval` value (seconds) trades off telemetry resolution against battery and bandwidth:
+
+| Interval | Use |
 |---|---|
-| `eventName` | `"heartbeat"` |
-| `timestamp` | ISO 8601 |
-| `eventNumber` | Monotonic sequence |
-| `upTime` | Human-readable uptime (e.g., `"5 days 4hr 3min"`) |
-| `data.inventoryStatus` | When `inventoryStatus: true` in heartbeatConfiguration — `rfidStatus`, `tagCount`, `scanCount` |
-| `data.batteryAlert` | When `batteryStatus: true` — `status`, `stateOfHealth` (`GOOD`/`AVERAGE`/`POOR`), `chargePercentage` |
+| 10 s | Test / debugging — high cost; you'll see every flap |
+| 60 s | Active monitoring — typical for managed fleets |
+| 300 s | Periodic check-in — good default for static deployments |
+| 3600 s | Light-touch monitoring — only confirms hourly liveness |
 
-### Interval choice
+Each heartbeat costs an MQTT publish (~200 bytes) plus the CPU work of building it. At 60 s intervals across 1,000 readers, that's 1,000 publishes per minute on the broker. Provisioned-throughput brokers (AWS IoT Core, paid HiveMQ tiers) charge per million messages — watch the math.
 
-Short intervals (10–30 s) detect outages quickly and provide fine-grained telemetry; cost is battery and traffic. Long intervals (60–300 s) conserve both; cost is detection latency. Reasonable defaults sit at 60 s for warehouse fleets, longer for battery-constrained deployments.
+### Gap detection — heartbeat absence is informative
 
-### Correlating with other events
+The most important use of heartbeats is **noticing when they stop.** A reader that was emitting heartbeats every 60 s and then misses three in a row is offline, regardless of what the broker says. Application-side detection logic:
 
-A reader emitting normal heartbeats while `alerts` and `mqttConnEVT` flow normally is healthy. Heartbeats stopping without an accompanying `mqttConnEVT: DISCONNECTED` indicates a broker- or network-side issue. Heartbeats with rising `batteryAlert.chargePercentage` drop predict imminent low-battery alerts.
+```
+expected_next = last_heartbeat.timestamp + heartbeat_interval
+if now() > expected_next + grace_period:
+    raise OfflineAlert(serial)
+```
 
-**Related:** 📕 [§16.6 heartBeatEVT schema](#chapter-16--mqtt-api-reference) · 📙 [§11.3 Configure Events](/observability/events/configure) · 📙 [§12.1 Check Health](/observability/monitoring/device-health)
+Pair this with `mqttConnEVT` (which fires on protocol-layer disconnect via LWT) for two-source confirmation. Heartbeat absence catches the silent cases where the broker thinks the reader is connected but the device has soft-failed.
+
+### Inventory progress without the data stream
+
+When `heartbeatConfiguration.inventoryStatus: true`, the heartbeat carries `data.inventoryStatus` with `rfidStatus`, `tagCount` (unique tags so far in this inventory), and `scanCount` (total reads, including duplicates). This is useful for dashboards that show "scan in progress, 45 tags read" without consuming the full `dataEVT` stream.
+
+`rfidStatus` here uses values `INPROGRESS` and `STOPPED` — different from `get_status.deviceStatus.radioActivity` which uses `ACTIVE` and `INACTIVE`. The enums describe the same physical state from two slightly different perspectives; expect to map between them.
+
+### Battery in the heartbeat
+
+`data.batteryAlert` shows the current battery posture:
+
+- **`status`** — `LOW`, `CRITICAL`, `CHARGING`, `FULL`, `HIGH`.
+- **`stateOfHealth`** — long-term capacity: `LOW`, `CRITICAL`, `HIGH`, `FULL`, or `CHARGING` (transitional).
+- **`chargePercentage`** — 0–100.
+
+Note that `status: LOW` and `status: CRITICAL` here are heartbeat *snapshots*. The `alerts` event with `id: BATTERY` fires on **transitions** — the difference matters when designing a dashboard vs an alerting pipeline. See [When the reader needs to interrupt you](/observability/events/alerts).
+
+### Tuning verbosity by use case
+
+| Use case | `interval` | `inventoryStatus` | `batteryStatus` |
+|---|---|---|---|
+| Active inventory session monitoring | 30 s | `true` | `true` |
+| Quiet fleet liveness | 300 s | `false` | `true` |
+| Battery-conscious deployment | 600 s | `false` | `true` |
+| Debug only | 10 s | `true` | `true` |
+
+### What this chapter does not cover
+
+- **Threshold-driven alerts** — those are `alerts` and `alert_short`, not heartbeats. See [When the reader needs to interrupt you](/observability/events/alerts).
+- **Configuring which events the reader emits** — see [Choose what the reader tells you](/observability/events/configure).
+- **Connection-state transitions (`mqttConnEVT`)** — see [Knowing when you're connected](/observability/events/mqtt-connection).
+
+**Related:** 📘 [Choose what the reader tells you](/observability/events/configure) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection) · 📕 [`heartbeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

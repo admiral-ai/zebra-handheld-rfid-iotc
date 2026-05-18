@@ -52,6 +52,13 @@ const sidebars: SidebarsConfig = {
       className: 'sidebar-section-header',
       items: [
         'getting-started/quick-start/overview',
+        'getting-started/quick-start/step-1-connect',
+        'getting-started/quick-start/step-2-discover',
+        'getting-started/quick-start/step-3-subscribe',
+        'getting-started/quick-start/step-4-start',
+        'getting-started/quick-start/step-5-read',
+        'getting-started/quick-start/step-6-stop',
+        'getting-started/quick-start/step-7-reboot',
       ],
     },
     {
