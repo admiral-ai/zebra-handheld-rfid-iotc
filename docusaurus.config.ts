@@ -61,20 +61,13 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          label: 'Product Docs',
+          label: 'Documentation',
           sidebarId: 'docs',
           position: 'left',
         },
         {
-          type: 'docSidebar',
-          label: 'SDKs',
-          sidebarId: 'sdks',
-          position: 'left',
-        },
-        {
-          type: 'docSidebar',
+          href: 'https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/',
           label: 'API Reference',
-          sidebarId: 'apiReference',
           position: 'left',
         },
         {
@@ -95,10 +88,10 @@ const config: Config = {
         {
           title: 'Documentation',
           items: [
-            { label: 'Getting Started', to: '/getting-started/quick-start/overview' },
-            { label: 'API Reference', to: '/reference/api-overview' },
-            { label: 'Troubleshooting', to: '/reference/troubleshooting/approach' },
-            { label: 'Migration Guide', to: '/fleet/migration/plan' },
+            { label: 'About this documentation', to: '/foundations/orient/about' },
+            { label: 'Quick Start', to: '/getting-started/quick-start/overview' },
+            { label: 'API Reference', href: 'https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/' },
+            { label: 'Diagnose & Recover', to: '/reference/diagnose/symptom-index' },
           ],
         },
         {
@@ -113,10 +106,10 @@ const config: Config = {
         {
           title: 'Help & Resources',
           items: [
-            { label: 'Architectural Overview', to: '/foundations/architecture/end-to-end' },
+            { label: 'Foundations', to: '/foundations/introduction/about-iotc' },
             { label: 'Glossary', to: '/foundations/introduction/glossary' },
-            { label: 'FAQ', to: '/reference/faq/general' },
-            { label: 'Firmware History', to: '/reference/appendices/firmware-history' },
+            { label: 'Recovery playbooks', to: '/reference/diagnose/recovery-playbooks' },
+            { label: 'Common misconceptions', to: '/reference/diagnose/misconceptions' },
           ],
         },
         {

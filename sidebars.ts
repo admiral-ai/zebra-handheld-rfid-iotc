@@ -2,39 +2,48 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 /**
  * Zebra Handheld RFID — IoT Connector
- * Sidebar configuration — Conceptual TOC v2.0
+ * Conceptual Documentation Sidebar — single source of navigation
  *
- * Eight Parts, thirty-two chapters. Concept chapters in Parts 4–6 are
- * one-to-one with the API Reference sub-tags so readers can pivot between
- * conceptual prose and the external MQTT API Reference in a single click.
+ * Eight Parts, thirty-two chapters. The conceptual chapters in Parts 4–6 are
+ * one-to-one with the external MQTT API Reference site's sub-tags, so readers
+ * can pivot between conceptual prose (this site) and the API Reference (the
+ * separate generated site) in a single click.
  *
- * Three sidebars are defined:
- *   - docs        — the conceptual documentation (eight Parts)
- *   - sdks        — language-specific tutorials and library reference
- *   - apiReference — local MQTT API reference cross-link (the canonical
- *                    API reference is generated separately from the schema
- *                    corpus in api-schema-reference/)
+ * The API Reference is NOT a sidebar of this site. It is a sibling site
+ * generated from the schema corpus in api-schema-reference/.
  *
- * Tag-group icons are applied via className on category items.
+ * Authored from scratch — no prior sidebar content carried forward.
  */
 
 const sidebars: SidebarsConfig = {
   docs: [
     {
       type: 'category',
-      label: 'Part 1: Orient',
+      label: 'Part 1 — Orient',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
       items: [
-        'foundations/orient/about',
-        'foundations/mqtt/primer',
-        'foundations/orient/docs-and-api-ref',
+        {
+          type: 'doc',
+          id: 'foundations/orient/about',
+          label: '1.1 About this documentation',
+        },
+        {
+          type: 'doc',
+          id: 'foundations/mqtt/primer',
+          label: '1.2 MQTT in five minutes',
+        },
+        {
+          type: 'doc',
+          id: 'foundations/orient/docs-and-api-ref',
+          label: '1.3 How to use the conceptual docs alongside the API Reference',
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Part 2: Foundations',
+      label: 'Part 2 — Foundations',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -42,17 +51,17 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'foundations/introduction/about-iotc',
-          label: '2.1 What the IoT Connector is',
+          label: '2.1 What the Zebra Handheld RFID IoT Connector is',
         },
         {
           type: 'doc',
           id: 'foundations/introduction/supported-hardware',
-          label: '2.2 Hardware tiers & architecture paths',
+          label: '2.2 Hardware tiers and architecture paths',
         },
         {
           type: 'doc',
           id: 'foundations/architecture/components',
-          label: '2.3 Reader, Host, Broker, Application',
+          label: '2.3 The four actors: Reader, Host, Broker, Application',
         },
         {
           type: 'doc',
@@ -62,13 +71,13 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'foundations/concepts/native-mqtt-vs-openapi',
-          label: '2.5 Native MQTT vs OpenAPI schema',
+          label: '2.5 Native MQTT payloads vs OpenAPI schema renderings',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Part 3: Quick Start',
+      label: 'Part 3 — Quick Start',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -76,13 +85,13 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'getting-started/quick-start/overview',
-          label: '3.1 Your first 30 minutes',
+          label: '3.1 Your first 30 minutes — from unboxing to your first tag read',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Part 4: Management Concepts',
+      label: 'Part 4 — Management Concepts',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -100,7 +109,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'infrastructure/endpoints/about',
-          label: '4.3 MQTT endpoint architecture',
+          label: '4.3 MQTT endpoint architecture — hybrid (MDM) vs split (CTRL + DATA)',
         },
         {
           type: 'doc',
@@ -110,18 +119,18 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'infrastructure/management/config-document',
-          label: '4.5 The configuration document',
+          label: '4.5 The configuration document and reconciliation',
         },
         {
           type: 'doc',
           id: 'infrastructure/management/system-operations',
-          label: '4.6 System operations',
+          label: '4.6 System operations — OS updates, firmware, reboot',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Part 5: Control Concepts',
+      label: 'Part 5 — Control Concepts',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -129,23 +138,23 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'rfid/operating-mode/profiles',
-          label: '5.1 Operating modes — seven profiles',
+          label: '5.1 Operating modes — the seven profiles and how to choose',
         },
         {
           type: 'doc',
           id: 'rfid/operating-mode/start-stop',
-          label: '5.2 The RFID inventory cycle',
+          label: '5.2 The RFID inventory cycle — start, stop, trigger',
         },
         {
           type: 'doc',
           id: 'rfid/operating-mode/post-filters-about',
-          label: '5.3 Tag filtering — pre vs post',
+          label: '5.3 Tag filtering — pre-read (Select) vs post-read (Report)',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Part 6: Events & Data Concepts',
+      label: 'Part 6 — Events & Data Concepts',
       collapsible: true,
       collapsed: false,
       className: 'sidebar-section-header',
@@ -153,7 +162,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'observability/events/configure',
-          label: '6.1 Event configuration',
+          label: '6.1 Event configuration — choosing what the reader tells you',
         },
         {
           type: 'doc',
@@ -173,13 +182,13 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'rfid/tag-data/dataevt-schema',
-          label: '6.5 Tag data events',
+          label: '6.5 Tag data events — the dataEVT lifecycle',
         },
       ],
     },
     {
       type: 'category',
-      label: 'Part 7: Operate & Scale',
+      label: 'Part 7 — Operate & Scale',
       collapsible: true,
       collapsed: true,
       className: 'sidebar-section-header',
@@ -187,17 +196,17 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'fleet/provisioning/models',
-          label: '7.1 Fleet provisioning paths',
+          label: '7.1 Fleet provisioning — 123RFID Desktop, SOTI Connect, 42Gears SureMDM',
         },
         {
           type: 'doc',
           id: 'fleet/management/about-bulk',
-          label: '7.2 Bulk configuration & drift',
+          label: '7.2 Bulk configuration and drift management',
         },
         {
           type: 'doc',
           id: 'fleet/reliability/retention-retry',
-          label: '7.3 Reliability, retention, retry',
+          label: '7.3 Reliability, retention, and retry',
         },
         {
           type: 'doc',
@@ -208,7 +217,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Part 8: Diagnose & Reference',
+      label: 'Part 8 — Diagnose & Reference Companion',
       collapsible: true,
       collapsed: true,
       className: 'sidebar-section-header',
@@ -221,7 +230,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'reference/diagnose/two-edges',
-          label: '8.2 The two physical edges',
+          label: '8.2 The two physical edges and where failures appear',
         },
         {
           type: 'doc',
@@ -236,103 +245,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'doc',
           id: 'foundations/introduction/glossary',
-          label: '8.5 Glossary',
-        },
-      ],
-    },
-  ],
-
-  apiReference: [
-    {
-      type: 'category',
-      label: 'MQTT API Reference',
-      collapsible: false,
-      className: 'sidebar-section-header',
-      items: [
-        'reference/api-overview',
-        {
-          type: 'category',
-          label: 'Management Interface (MGMT)',
-          className: 'icon api-icon',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            'reference/mgmt/device-status',
-            'reference/mgmt/network',
-            'reference/mgmt/endpoint',
-            'reference/mgmt/certificates',
-            'reference/mgmt/device-configuration',
-            'reference/mgmt/system-operations',
-            'reference/mgmt/event-configuration',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Control Interface (CTRL)',
-          className: 'icon tools-icon',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            'reference/ctrl/operating-mode',
-            'reference/ctrl/tag-filtering',
-            'reference/ctrl/inventory-control',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Data Interface (DATA)',
-          className: 'icon sdk-icon',
-          collapsible: true,
-          collapsed: false,
-          items: ['reference/data/tag-data-event'],
-        },
-        {
-          type: 'category',
-          label: 'MDM Interface',
-          className: 'icon integrations-icon',
-          collapsible: true,
-          collapsed: true,
-          items: ['reference/mdm/about'],
-        },
-        {
-          type: 'category',
-          label: 'Events',
-          className: 'icon news-icon',
-          collapsible: true,
-          collapsed: false,
-          items: ['reference/events/all-events'],
-        },
-      ],
-    },
-  ],
-
-  sdks: [
-    {
-      type: 'category',
-      label: 'SDKs & Examples',
-      collapsible: false,
-      className: 'sidebar-section-header',
-      items: [
-        'sdks/overview',
-        {
-          type: 'category',
-          label: 'Language Tutorials',
-          className: 'icon sdk-icon',
-          collapsible: true,
-          collapsed: false,
-          items: [
-            'sdks/python',
-            'sdks/nodejs',
-            'sdks/csharp',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Recommended Libraries',
-          className: 'icon legacy-icon',
-          collapsible: true,
-          collapsed: true,
-          items: ['sdks/libraries'],
+          label: '8.5 Reference companion',
         },
       ],
     },
