@@ -6,38 +6,83 @@ sidebar_label: Command Response Error Codes
 
 > 📕 **REFERENCE** · Audience: API Consumer · Use: look up codes appearing in command responses
 
-Canonical from `error_codes.json`, 29 entries (codes 0–28).
+Twenty-nine response codes (0–28). Code `0` is success; codes `1`–`28` indicate specific conditions. Codes are command-scoped — each command's schema lists the subset it can return. The table below is the canonical superset, taken verbatim from `error_codes.json` in the API schema reference.
+
+## How to read the table
+
+- **Code** — the integer in `response.code`.
+- **`iot_status_code`** — the internal status-code enum name (useful when correlating with firmware logs or support tickets).
+- **Description** — the string in `response.description`, as returned by the device.
+- **Cause** — what triggers this code.
+- **Recommended action** — what to do as the integrator.
+- **Applies to** — the commands that can return this code. `*` means all commands.
+
+## Code table
 
 | Code | `iot_status_code` | Description | Cause | Recommended action | Applies to |
 |---:|---|---|---|---|---|
-| 0 | `IOT_STATUS_SUCCESS` | Success | Command executed successfully | No action required | All |
-| 1 | `IOT_STATUS_CMD_PAYLOAD_ACCEPTED` | Command payload is accepted | Device accepted the payload; processing asynchronously | Wait for follow-up event or poll status | `set_os`, `install_certificate` |
-| 2 | `IOT_ERROR_INVALID_PAYLOAD` | Invalid payload | JSON malformed or invalid field values | Validate against command schema | `set_wifi`, `delete_wifi_profile`, `set_config` |
-| 3 | `IOT_ERROR_INFO_NOT_AVAILABLE` | Not able to retrieve information | Device could not gather requested information | Retry after a delay; if persistent, reboot | All `get_*` |
-| 4 | `IOT_STATUS_FW_UPDATE_IN_PROGRESS` | Firmware update in progress | Update already running | Wait for current update to complete | `set_os` |
-| 5 | `IOT_ERROR_IN_REBOOT_INVENTORY_IN_PROGRESS` | Can't reboot, inventory in progress | RFID inventory active | Stop inventory via `control_operation` before rebooting | `reboot` |
-| 6 | `IOT_STATUS_REGION_NOT_CONFIGURED` | Region is not configured | No regulatory region set | Configure region (via 123RFID Desktop) before connecting | `cloud_connect` ¹ |
-| 7 | `IOT_ERROR_INTERFACE_NOT_AVAILABLE` | Interface is not available | Requested network interface absent or disabled | Verify the device has the required interface and that it is enabled | `cloud_connect` ¹ |
-| 8 | `IOT_ERROR_LOW_FLASH_SIZE` | Insufficient flash size | Not enough free flash for firmware download | Free space or use a smaller firmware package | `set_os` |
-| 9 | `IOT_STATUS_FILE_NOT_FOUND` | File not found | File or certificate not found on device or server | Verify path/URL and existence | `install_certificate`, `delete_certificate`, `get_installed_certificate`, `set_os` |
-| 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST` | Configuration already exists | Endpoint/config with same name exists | Delete the existing one or use a different name | `config_endpoint`, `set_config` |
-| 11 | `IOT_ERROR_INVENTORY_IN_PROGRESS` | Inventory in progress | RFID inventory currently running | Stop the inventory before starting a new operation or changing mode | `control_operation`, `set_operating_mode` |
-| 12 | `IOT_ERROR_NO_RADIO_OP_IN_PROGRESS` | No radio operation in progress | STOP sent but radio is already idle | No action required; radio is already in desired state | `control_operation` |
-| 13 | `IOT_ERROR_FW_UPDATE_FAIL` | Firmware update failed | Download or installation failed | Check firmware URL and network; retry | `set_os` |
-| 14 | `IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY` | Battery is low, cannot update firmware | Battery charge too low | Charge or connect external power; retry | `set_os` |
-| 15 | `IOT_ERROR_SSID_NOT_FOUND` | Wi-Fi SSID not found | Specified SSID does not exist in saved profiles | Verify SSID name; check profile is saved | `set_wifi`, `delete_wifi_profile`, `set_config` |
-| 16 | `IOT_ERROR_DELETE_ACTIVE_SSID` | Cannot delete active SSID | Profile being deleted is the currently connected network | Disconnect or switch SSID before deleting | `delete_wifi_profile` |
-| 17 | `IOT_ERROR_SSID_MISSED` | SSID field missing | Required SSID field absent | Include SSID field in payload | `set_wifi`, `delete_wifi_profile`, `set_config` |
-| 18 | `IOT_ERROR_SSID_ALREADY_EXIST` | SSID already exists | Profile with this SSID already saved | Delete existing or MODIFY instead of CREATE | `set_wifi`, `set_config` |
-| 19 | `IOT_ERROR_SSID_LIMIT_OVERFLOW` | SSID count overflow | Max 10 saved Wi-Fi profiles reached | Delete an unused profile before adding | `set_wifi`, `set_config` |
-| 20 | `IOT_ERROR_WIFI_INTER_NOT_SUPPORTED` | Wi-Fi not supported | Device lacks Wi-Fi hardware | Use Ethernet or another supported interface | `set_wifi`, `set_config` |
-| 21 | `IOT_ERROR_CERT_NOT_FOUND` | Certificate not found | Specified certificate not installed | Verify cert name; install via `install_certificate` if needed | `delete_certificate`, `get_installed_certificate`, `install_certificate` |
-| 22 | `IOT_CTRL_ADVANCED_PROFILE_NOT_SET` | Advanced configuration not set | Operating mode requires unset advanced profile | Configure advanced profile settings first | `set_operating_mode` |
-| 23 | `IOT_ERROR_INVALID_ENUM` | Invalid enum value | Field value not in allowed enum | Check schema for allowed values | `config_endpoint`, `set_config`, `set_wifi`, `install_certificate`, `control_operation`, `set_operating_mode`, `set_post_filter` |
-| 24 | `IOT_ERROR_PREFILTERS_LIMIT_EXCEEDED` | Max 32 prefilters exceeded | >32 SELECT prefilter rules | Reduce to 32 or fewer | `set_operating_mode` |
-| 25 | `IOT_ERROR_PUBLISH_TOPICS_EXCEEDED` | Max 3 publish topics exceeded | >3 publish topics per endpoint | Reduce to 3 or fewer | `config_endpoint`, `set_config` |
-| 26 | `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED` | Max 1 subscribe topic exceeded | >1 subscribe topic per endpoint | Use 1 subscribe topic per endpoint | `config_endpoint`, `set_config` |
-| 27 | `IOT_ERROR_INVALID_TENANTID_LENGTH` | Invalid tenant ID length | tenantId exceeds max length | Shorten tenantId | `config_endpoint`, `set_config` |
-| 28 | `IOT_ERROR_TAG_MATCH_PATTERN_LENGTH_EXCEEDED` | Tag match pattern length exceeded | tagPattern exceeds max length (64 hex chars) | Shorten the tag match pattern | `set_operating_mode` |
+| 0 | `IOT_STATUS_SUCCESS` | Success | Command executed successfully | No action required | All commands |
+| 1 | `IOT_STATUS_CMD_PAYLOAD_ACCEPTED` | Command payload is accepted | The device accepted the payload and is processing it asynchronously | Wait for a follow-up event or poll status to confirm completion | `set_os`, `install_certificate` |
+| 2 | `IOT_ERROR_INVALID_PAYLOAD` | Invalid payload | The JSON payload is malformed or contains invalid field values | Validate the payload against the command schema and correct any errors | `set_wifi`, `delete_wifi_profile`, `set_config` |
+| 3 | `IOT_ERROR_INFO_NOT_AVAILABLE` | Not able to retrieve information | The device could not gather the requested information at this time | Retry the command after a short delay; if persistent, reboot the device | `get_status`, `get_config`, `get_endpoint_config`, `get_wifi`, `get_eth`, `get_current_region`, `get_installed_certificate`, `get_operating_mode`, `get_post_filter` |
+| 4 | `IOT_STATUS_FW_UPDATE_IN_PROGRESS` | Firmware update in progress | A firmware update is already running on the device | Wait for the current update to complete before sending another `set_os` command | `set_os` |
+| 5 | `IOT_ERROR_IN_REBOOT_INVENTORY_IN_PROGRESS` | Can't reboot device, inventory in progress | An RFID inventory operation is currently active | Stop the inventory with `control_operation` before rebooting | `reboot` |
+| 6 | `IOT_STATUS_REGION_NOT_CONFIGURED` | Region is not configured | No regulatory region has been set on the device | Configure the region (via 123RFID Desktop) before attempting to connect | `cloud_connect` |
+| 7 | `IOT_ERROR_INTERFACE_NOT_AVAILABLE` | Interface is not available | The requested network interface is not present or not enabled | Verify the device has the required network interface and that it is enabled | `cloud_connect` |
+| 8 | `IOT_ERROR_LOW_FLASH_SIZE` | Insufficient flash size | Not enough free flash storage to download the firmware file | Free up flash space or use a smaller firmware package | `set_os` |
+| 9 | `IOT_STATUS_FILE_NOT_FOUND` | File not found | The specified file or certificate could not be found on the device or server | Verify the file path or URL is correct and the file exists | `install_certificate`, `delete_certificate`, `get_installed_certificate`, `set_os` |
+| 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST` | Configuration already exist | An endpoint or configuration with the same name already exists | Delete the existing configuration first or use a different name | `config_endpoint`, `set_config` |
+| 11 | `IOT_ERROR_INVENTORY_IN_PROGRESS` | Inventory in progress | An RFID inventory operation is currently running | Stop the current inventory before starting a new operation or changing the mode | `control_operation`, `set_operating_mode` |
+| 12 | `IOT_ERROR_NO_RADIO_OP_IN_PROGRESS` | No Radio Operation in Progress | A stop command was sent but no radio operation is currently active | No action required; the radio is already idle | `control_operation` |
+| 13 | `IOT_ERROR_FW_UPDATE_FAIL` | Firmware update Failed | The firmware download or installation failed | Check the firmware URL and network connectivity, then retry the update | `set_os` |
+| 14 | `IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY` | Battery is low, Cannot update firmware | Battery charge is too low to safely perform a firmware update | Charge the device or connect to external power before retrying | `set_os` |
+| 15 | `IOT_ERROR_SSID_NOT_FOUND` | WIFI Error - SSID not found | The specified Wi-Fi SSID does not exist in saved profiles | Verify the SSID name is correct and that the profile has been saved | `set_wifi`, `delete_wifi_profile`, `set_config` |
+| 16 | `IOT_ERROR_DELETE_ACTIVE_SSID` | WIFI Error - Cannot delete active SSID | The Wi-Fi profile being deleted is the currently connected network | Disconnect from the network or connect to a different SSID before deleting | `delete_wifi_profile` |
+| 17 | `IOT_ERROR_SSID_MISSED` | WIFI Error - SSID missed | The required SSID field is missing from the payload | Include the SSID field in the command payload | `set_wifi`, `delete_wifi_profile`, `set_config` |
+| 18 | `IOT_ERROR_SSID_ALREADY_EXIST` | WIFI Error - SSID already exist | A Wi-Fi profile with this SSID is already saved on the device | Delete the existing profile first, or use `MODIFY` instead of `CREATE` | `set_wifi`, `set_config` |
+| 19 | `IOT_ERROR_SSID_LIMIT_OVERFLOW` | WIFI Error - SSID count overflow | The maximum number of saved Wi-Fi profiles has been reached | Delete an unused Wi-Fi profile before adding a new one | `set_wifi`, `set_config` |
+| 20 | `IOT_ERROR_WIFI_INTER_NOT_SUPPORTED` | Wifi is not supported | The device hardware does not have a Wi-Fi interface | Use Ethernet or another supported interface for network connectivity | `set_wifi`, `set_config` |
+| 21 | `IOT_ERROR_CERT_NOT_FOUND` | Certificate not found | The specified certificate is not installed on the device | Verify the certificate name and install it using `install_certificate` if needed | `delete_certificate`, `get_installed_certificate`, `install_certificate` |
+| 22 | `IOT_CTRL_ADVANCED_PROFILE_NOT_SET` | Advanced configuration not set | The operating mode requires an advanced profile that has not been configured | Configure the advanced profile settings before setting the operating mode | `set_operating_mode` |
+| 23 | `IOT_ERROR_INVALID_ENUM` | Invalid enum value | A field value does not match any of the allowed enum options | Check the schema for allowed values and correct the field | `config_endpoint`, `set_config`, `set_wifi`, `install_certificate`, `control_operation`, `set_operating_mode`, `set_post_filter` |
+| 24 | `IOT_ERROR_PREFILTERS_LIMIT_EXCEEDED` | Max 32 prefilters limit exceeded | More than 32 prefilter rules were specified | Reduce the number of prefilter rules to 32 or fewer | `set_operating_mode` |
+| 25 | `IOT_ERROR_PUBLISH_TOPICS_EXCEEDED` | Max 3 publish topics exceeded | More than 3 publish topics were specified in the endpoint configuration | Reduce the number of publish topics to 3 or fewer | `config_endpoint`, `set_config` |
+| 26 | `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED` | Max 1 subscribe topic exceeded | More than 1 subscribe topic was specified in the endpoint configuration | Use only 1 subscribe topic per endpoint | `config_endpoint`, `set_config` |
+| 27 | `IOT_ERROR_INVALID_TENANTID_LENGTH` | Invalid tenant ID length | The tenant ID exceeds the maximum allowed character length | Shorten the tenant ID to within the allowed limit | `config_endpoint`, `set_config` |
+| 28 | `IOT_ERROR_TAG_MATCH_PATTERN_LENGTH_EXCEEDED` | Tag match pattern length exceeded | The tag match pattern string exceeds the maximum allowed length | Shorten the tag match pattern to within the allowed limit | `set_operating_mode` |
 
-¹ `cloud_connect` is an internal bootstrap command invoked by the reader; application developers do not invoke it directly. Codes 6 and 7 appear in support diagnostics for region/interface readiness issues.
+## Quick lookup: which codes can each command return?
+
+| Command | Codes returned |
+|---|---|
+| `get_status`, `get_config`, `get_endpoint_config`, `get_wifi`, `get_eth`, `get_current_region`, `get_operating_mode`, `get_post_filter` | 0, 3 |
+| `get_installed_certificate` | 0, 3, 9, 21 |
+| `get_version` | 0 |
+| `set_wifi` | 0, 2, 15, 17, 18, 19, 20, 23 |
+| `delete_wifi_profile` | 0, 2, 15, 16, 17 |
+| `config_endpoint` | 0, 10, 23, 25, 26, 27 |
+| `install_certificate` | 0, 1, 9, 21, 23 |
+| `delete_certificate` | 0, 9, 21 |
+| `set_config` | 0, 2, 10, 15, 17, 18, 19, 20, 23, 25, 26, 27 |
+| `set_os` | 0, 1, 4, 8, 9, 13, 14 |
+| `reboot` | 0, 5 *(see schema note in [format](/reference/errors/format))* |
+| `control_operation` | 0, 11, 12, 23 |
+| `set_operating_mode` | 0, 11, 22, 23, 24, 28 |
+| `set_post_filter` | 0, 23 |
+| `config_events` | 0 *(per current schema; subset may grow)* |
+| `cloud_connect` | 0, 6, 7 |
+
+## Notes on `cloud_connect`
+
+`cloud_connect` is not exposed as a top-level MQTT command in the public API surface; it is a device-internal operation invoked during bootstrap. Codes 6 (region not configured) and 7 (interface not available) surface to integrators as failures during 123RFID Desktop provisioning rather than as MQTT responses.
+
+## Notes on `reboot` code 1
+
+The `reboot` API reference example shows a response with `code: 1` ("Command payload is accepted"), but the canonical schema and error table define only `0` (Success) and `5` (Inventory in progress) for `reboot`. Treat `0` and `1` as success-equivalents and `5` as the only documented failure when handling `reboot` responses. See [Error Response Format](/reference/errors/format) for the full discussion.
+
+## Related
+
+- [Error Response Format](/reference/errors/format) — the response envelope and async-acceptance semantics.
+- [MQTT API Reference](/reference/api-overview) — directory of all 27 operations and events, with per-command schemas on the canonical site.
+- [Something's broken?](/reference/diagnose/symptom-index) — symptom-first index that maps observed errors to recovery playbooks.
+- [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — common integration mistakes and their fixes.

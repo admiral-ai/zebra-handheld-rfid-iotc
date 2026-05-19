@@ -63,32 +63,32 @@ function FeatureGrid() {
           <FeatureCard
             badge="explanation"
             title="Understand the architecture"
-            description="Five hops from tag to application. MQTT 3.1.1, seven endpoint types, three-part topic structure."
-            to="/foundations/architecture/end-to-end"
+            description="Reader, host, broker, application. MQTT 3.1.1, seven endpoint types, three-part topic structure."
+            to="/foundations/architecture/components"
           />
           <FeatureCard
             badge="reference"
-            title="Look up an endpoint"
-            description="28 MQTT commands and 5 events organised into MGMT, CTRL, DATA, and MDM interfaces. Field schemas and error codes."
+            title="Look up an MQTT API"
+            description="22 commands and 5 events across Management, Control, Events, and Data tag groups. Field schemas and error codes."
             to="/reference/api-overview"
           />
           <FeatureCard
             badge="howto"
             title="Set up a TLS connection"
             description="Install certificates, configure endpoints with MQTT_TLS, verify with mqttConnEVT."
-            to="/infrastructure/security/tls-setup"
+            to="/infrastructure/security/model"
           />
           <FeatureCard
             badge="howto"
             title="Manage a fleet"
-            description="SOTI Connect provisioning, bulk configuration, drift detection, phased firmware migration."
+            description="123RFID Desktop, SOTI Connect, and 42Gears SureMDM. Bulk configuration, drift detection, retention buffers."
             to="/fleet/provisioning/models"
           />
           <FeatureCard
             badge="reference"
             title="Diagnose an issue"
-            description="Symptom-driven troubleshooting across MQTT connection, RFID radio, tag data, Bluetooth, and battery."
-            to="/reference/troubleshooting/approach"
+            description="Symptom-first index across bootstrap, commands, inventory, firmware, events, TLS, and fleet drift."
+            to="/reference/diagnose/symptom-index"
           />
         </div>
       </div>
@@ -110,7 +110,7 @@ function PersonaSection() {
           <div className={styles.persona}>
             <h3>Solution Builder</h3>
             <p>I&apos;m architecting a multi-reader deployment.</p>
-            <Link to="/foundations/architecture/end-to-end">→ System Architecture</Link>
+            <Link to="/foundations/architecture/components">→ System Architecture</Link>
           </div>
           <div className={styles.persona}>
             <h3>API Consumer</h3>
