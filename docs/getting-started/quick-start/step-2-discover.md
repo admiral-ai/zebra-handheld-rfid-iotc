@@ -17,76 +17,151 @@ A sled out of the box has factory firmware, no Wi-Fi credentials, no broker targ
 - An active **MDM endpoint** with broker URL, port, protocol, and tenant ID.
 - A bootstrap connection that you can use in Phase 3 to send MQTT commands.
 
-### What to do
+### Install and open 123RFID Desktop
 
-#### 1. Install and open 123RFID Desktop
+Download from `support.zebra.com` (search "123RFID Desktop"). Latest is v3.0.0.63 at time of writing. Windows only. Launch it; the Welcome screen appears.
 
-Download from `support.zebra.com` (search "123RFID Desktop"). Latest is v3.0.0.63 at time of writing. Windows only. Launch it.
+### Discover and connect the reader
 
-#### 2. Discover the reader
+Before configuring Wi-Fi or MQTT, discover and connect the reader to your PC via a direct connection (USB-C cable, or Bluetooth if the reader is paired with the host).
 
-Connect the sled to the laptop via USB-C (data-capable cable) or pair via Bluetooth, depending on your setup. In the **Discovery** view:
+#### Initiate discovery
 
-- Confirm the reader is powered on.
-- Confirm Bluetooth is enabled if discovering wirelessly.
-- Confirm USB is connected if discovering via cable.
-- Verify the physical serial number on the back of the sled matches the device shown in the UI.
+Click the **FIND READERS** button on the main screen.
 
-#### 3. Connect to the reader
+![123RFID Desktop welcome screen with the FIND READERS button highlighted](/img/quick-start/01-find-readers.png)
 
-Select the discovered reader and connect to it. **You are not yet using the MQTT command plane.** You are establishing a local management session so the initial endpoint can be configured.
+#### Select the connection type
 
-#### 4. Set the region
+In the Reader Discovery screen, click the **Bluetooth** icon (or **USB** if connecting via cable) to scan for nearby devices.
 
-In the **Region** tab, select your regulatory region from the dropdown. Confirm. The sled may briefly disconnect and reconnect as the region is applied.
+![Reader Discovery screen showing Bluetooth and USB connection-type icons](/img/quick-start/02-discovery-bluetooth-usb.png)
+
+#### Choose your device
+
+An **Add a device** pop-up window opens. Select the handheld reader from the list; verify that the serial number matches the label on the back of the sled. Click **Next**.
+
+![Add a device pop-up listing discovered handheld readers](/img/quick-start/03-add-device.png)
+
+#### Connect
+
+Locate your device in the **Available Readers** list and click the green **CONNECT** button next to it.
+
+![Available Readers list with the green CONNECT button next to a reader](/img/quick-start/04-available-readers-connect.png)
+
+#### Verify the connection
+
+Once connected, the reader moves from the bottom list to the **Connected Readers** section at the top of the interface.
+
+![Connected Readers section showing the reader successfully connected](/img/quick-start/05-connected-readers.png)
+
+### Set the region
+
+In the **Region** tab, select your regulatory region from the dropdown and confirm. The sled may briefly disconnect and reconnect as the region is applied.
 
 > **Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
 
-#### 5. Configure Wi-Fi
+### Configure Wi-Fi connectivity
 
-In the **Wi-Fi** tab:
+For MQTT and other network-dependent protocols to function, the reader needs a stable network path to your broker. Wi-Fi is the typical choice for handheld deployments.
 
-- **SSID**, the network the sled should join.
-- **Security**: WPA2-Personal or WPA3-Personal for most deployments; WPA2/WPA3-Enterprise (EAP-TLS, PEAP) for corporate networks.
-- **Password** or **certificate**, as appropriate.
+#### Open the reader configuration
 
-Apply. The sled associates within a few seconds. Verify:
+Click the **Configure** icon (gear symbol) in the left-hand navigation panel. The Reader Configuration window appears. Click the picture of the connected reader to edit its settings.
 
-- The reader shows a connected Wi-Fi state in the UI.
-- The reader has been assigned an IP address.
-- The Wi-Fi network is the one that can reach the broker (Phase 1).
+![Reader Configuration window with a picture of the connected reader](/img/quick-start/06-reader-configuration.png)
 
-#### 6. Configure the initial MDM endpoint
+#### Edit configuration on the reader
 
-In the **Endpoints** tab, configure the MDM endpoint with at least:
+A page opens with two buttons. Click **Edit Configuration on Reader**.
 
-- **Endpoint name**: anything readable, e.g., `mdm_bootstrap`.
-- **Broker URL**, the hostname or IP from Phase 1.
-- **Port**: `1883` for plain or `8883` for TLS.
-- **Protocol**: `MQTT` (plain) or `MQTT_TLS`.
-- **Tenant ID**: `zebra` is the default (lowercase). Change later for multi-tenant brokers.
-- **MQTT parameters**: keepAlive, cleanSession defaults are fine for evaluation.
-- **Credentials**: if your broker requires authentication.
-- **Certificate material**: if using TLS (the certs must be loaded before this point; covered in Phase 5).
+![Edit Configuration on Reader button on the reader-configuration page](/img/quick-start/07-edit-configuration.png)
 
-#### 7. Save and activate
+#### Navigate to Communication
 
-Save the configuration and activate the MDM endpoint. The sled may reboot to apply the endpoint configuration; this is expected behavior. When it comes back, it will attempt to connect to your broker.
+From the left-hand menu in the settings view, select **Communication**.
 
-#### 8. Confirm the bootstrap connection is live
+![Communication menu item in the settings sidebar](/img/quick-start/08-communication-menu.png)
 
-Watch your broker logs (Mosquitto: `mosquitto -v` shows every connection). You should see an incoming MQTT connection from the sled's IP within a few seconds of the activation. In MQTTX, subscribe to `+/MDM/#` (one tenant prefix, then all MDM traffic), you should see the sled's own traffic.
+#### Access Wi-Fi settings and add a network
+
+The **Wi-Fi Configuration** window opens by default. Select the **Scan and Choose Network** radio button to search for available networks, then pick your network's SSID from the drop-down list.
+
+![Wi-Fi Configuration window with the Scan and Choose Network option](/img/quick-start/09-wifi-scan-network.png)
+
+#### Enter credentials and connect
+
+Choose the appropriate security protocol (for example, **WPA2_Personal_CCMP**) and enter the passkey. Click **Add**, then click **Connect**.
+
+![Wi-Fi connected status showing SSID, IP address, and MAC](/img/quick-start/10-wifi-connected.png)
+
+#### Verify the network
+
+In the **Existing Connection** section, confirm that the connected SSID, assigned IP address, MAC address, and connection status are correct, and that the Wi-Fi network can reach the broker (the path you verified in Phase 1).
+
+### Configure the MDM endpoint
+
+Configure the MQTT broker connection so the reader can send commands to and receive responses from your broker.
+
+#### Navigate to the End Point tab
+
+While still in the **Communication** section, click the **End Point** tab at the top.
+
+![End Point tab in the Communication settings view](/img/quick-start/11-endpoint-tab.png)
+
+#### Create a new endpoint
+
+Click the **New** button on the right side of the screen.
+
+![New endpoint button in the End Point configuration screen](/img/quick-start/12-new-endpoint.png)
+
+Fill in at least these fields:
+
+- **Endpoint name** — anything readable, e.g., `mdm_bootstrap`.
+- **Broker URL** — the hostname or IP from Phase 1.
+- **Port** — `1883` for plain MQTT or `8883` for TLS.
+- **Protocol** — `MQTT` (plain) or `MQTT_TLS`.
+- **Tenant ID** — `zebra` is the default (lowercase). Change later for multi-tenant brokers.
+- **MQTT parameters** — `keepAlive` and `cleanSession` defaults are fine for evaluation.
+- **Credentials** — if your broker requires authentication.
+- **Certificate material** — if using TLS (certs must be installed beforehand; covered in Phase 5).
+
+> **Note:** Command Topic, Response Topic, and Event Topic are optional. If left blank, default values are populated automatically when you click **Add**.
+
+#### Add the endpoint
+
+Once all required fields are filled, click **Add**. The new endpoint appears in the endpoint list at the bottom of the screen.
+
+![New endpoint added to the endpoint list at the bottom of the screen](/img/quick-start/13-add-endpoint.png)
+
+### Activate and verify
+
+#### Activate the endpoint
+
+Select the **Activate** checkbox in the row corresponding to your new endpoint.
+
+![Activate checkbox selected for the new endpoint](/img/quick-start/14-activate-endpoint.png)
+
+#### Verify the endpoint status
+
+Under the **Endpoint Status** section, click **Refresh** to confirm that the connection has been established and reads **Connected**.
+
+![Endpoint Status section showing the endpoint as Connected after Refresh](/img/quick-start/15-verify-endpoint-status.png)
+
+#### Confirm the bootstrap connection is live
+
+Watch your broker logs (for Mosquitto, `mosquitto -v` shows every connection). You should see an incoming MQTT connection from the sled's IP within a few seconds. In MQTTX, subscribe to `+/MDM/#` (one tenant prefix, then all MDM traffic); you should see the sled's own traffic.
 
 ### Success check
 
 - The sled is connected to Wi-Fi.
 - The broker logs show an incoming MQTT connection identifying the sled.
-- The MDM endpoint shows an "active" / "connected" state in 123RFID Desktop.
+- The MDM endpoint shows an **active** / **Connected** state in 123RFID Desktop.
 - You have noted: the sled's serial number (on the back of the device and in the UI), the broker URL and port, and the tenant ID.
 
 ### Didn't work?
 
-- **No Wi-Fi association.** Verify SSID, security type, and password exactly (case-sensitive). Enterprise networks need a certificate chain installed — beyond Quick Start scope.
+- **No Wi-Fi association.** Verify SSID, security type, and password exactly (case-sensitive). Enterprise networks need a certificate chain installed; beyond Quick Start scope.
 - **Wi-Fi associates but no broker connection.** DNS or routing issue. Try an IP address rather than hostname.
 - **Connection appears then drops.** Credentials wrong on the broker side, or the broker rejects the client ID. Mosquitto with `allow_anonymous true` won't reject anything; HiveMQ Cloud and AWS IoT Core need credentials.
 - **MDM endpoint cannot be configured.** Confirm 123RFID Desktop is v3.0 or later. Older versions handle MDM differently.
