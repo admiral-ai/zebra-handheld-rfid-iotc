@@ -122,6 +122,7 @@ const sidebars: SidebarsConfig = {
       className: 'sidebar-section-header',
       items: [
         'reference/diagnose/symptom-index',
+        'reference/diagnose/failure-modes',
         'reference/diagnose/two-edges',
         'reference/diagnose/recovery-playbooks',
         'reference/diagnose/misconceptions',
