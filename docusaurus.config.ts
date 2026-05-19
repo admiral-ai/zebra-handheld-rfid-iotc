@@ -11,7 +11,7 @@ const config: Config = {
   onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
   trailingSlash: true,
-  favicon: 'img/favicon.png',
+  favicon: 'img/zebra-logo-black-stacked.png',
   organizationName: 'al1913-zebra',
   projectName: 'zebra-handheld-rfid-iotc',
   i18n: {
@@ -55,8 +55,8 @@ const config: Config = {
       title: 'IoT Connector',
       logo: {
         alt: 'Zebra Technologies',
-        src: 'img/zebra-logo-light.svg',
-        srcDark: 'img/zebra-logo-dark.svg',
+        src: 'img/zebra-logo-black-horizontal.svg',
+        srcDark: 'img/zebra-logo-white-horizontal.svg',
       },
       items: [
         {
