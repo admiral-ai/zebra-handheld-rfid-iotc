@@ -8,7 +8,7 @@ sidebar_label: Playbooks for getting back online
 
 Nine recovery playbooks. Each is a tested sequence of steps that brings a failing sled back to a known-good state. Pick the playbook that matches your situation. Run each step; verify the success check; move on.
 
-### RP-01 — Connect a sled to 123RFID Desktop
+### RP-01. Connect a sled to 123RFID Desktop
 
 **When:** 123RFID Desktop can't find your sled.
 
@@ -18,7 +18,7 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 4. Restart 123RFID Desktop.
 5. **Success check:** the sled appears in the Discovery view with its serial number and current firmware.
 
-### RP-02 — Activate the bootstrap MDM endpoint
+### RP-02. Activate the bootstrap MDM endpoint
 
 **When:** Phase 2 of Quick Start completed but no MQTT command works.
 
@@ -29,7 +29,7 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 5. Watch broker logs for an incoming connection from the sled's IP.
 6. **Success check:** subscribe to `<tenantId>/MDM/#` and see at least one publish from the sled.
 
-### RP-03 — Verify topic routing
+### RP-03. Verify topic routing
 
 **When:** `get_version` (or any command) returns no response within 5 s.
 
@@ -39,7 +39,7 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 4. If still no response, run `get_endpoint_config` on the MDM endpoint to confirm `publishTopics` matches what you expect.
 5. **Success check:** `get_version` returns within 5 s, with `requestId` matching.
 
-### RP-04 — Stop inventory cleanly
+### RP-04. Stop inventory cleanly
 
 **When:** Any operation returning code 5 or 11 ("inventory in progress" or "can't reboot during inventory").
 
@@ -49,17 +49,17 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 4. Retry the original operation.
 5. **Success check:** the original operation returns code 0.
 
-### RP-05 — Tag data not flowing
+### RP-05. Tag data not flowing
 
 **When:** `control_operation START` returned code 0, but no `dataEVT` arrives.
 
-1. Run `get_operating_mode`. Confirm `profiles` is one of the five supported values, **not `FAST_READ`** (currently not supported).
+1. Run `get_operating_mode`. Confirm `profiles` is one of the five supported values, **not `FAST_READ`** (not currently supported).
 2. Run `get_post_filter` on the active data endpoint. Look for `reportOperation: EXCLUDE` rules that may be filtering all tags.
 3. Run `get_endpoint_config`. Confirm the DATA1 (or active data) endpoint has `activate: true` and a `publishTopics` entry.
 4. Subscribe to `<tenantId>/DATA1/#` (or the active data topic) with a wildcard. Move tags into the read zone.
 5. **Success check:** `dataEVT` events stream past with `data.tagData[].EPCid` matching your tags.
 
-### RP-06 — Recover from failed firmware update
+### RP-06. Recover from failed firmware update
 
 **When:** `set_os` returned code 13 (Firmware update Failed) or the update appeared to start but didn't complete.
 
@@ -71,18 +71,18 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 6. Watch `alert_short` for `FIRMWARE_DOWNLOAD_*` and `FIRMWARE_UPDATE_*` events.
 7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short. Then `get_version` confirms the new firmware.
 
-### RP-07 — Diagnose silent-offline state
+### RP-07: Diagnose silent-offline state
 
 **When:** Heartbeats stop arriving but the broker still shows the reader connected.
 
 1. Try a `get_status`. If it times out, the reader is unreachable.
 2. Check `mqttConnEVT` history — was there a DISCONNECTED event that you missed?
-3. Inspect broker-side metrics — most brokers expose last-seen-message timestamps per client.
+3. Inspect broker-side metrics, most brokers expose last-seen-message timestamps per client.
 4. Wait for the keep-alive interval (default 5 min). The broker should issue an LWT-style disconnect by then.
 5. If the reader is genuinely stuck, physically reset (hold trigger + power for 10 s, or remove battery for sleds that allow it).
 6. **Success check:** heartbeats resume; `mqttConnEVT` shows CONNECTED.
 
-### RP-08 — Reconcile drift
+### RP-08: Reconcile drift
 
 **When:** A reader's configuration differs from the canonical for its class.
 
@@ -91,10 +91,10 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 3. Run `get_operating_mode` (note: this is *expected* to differ after every reboot — radio-operation state doesn't persist).
 4. Diff each against canonical. For each differing field that *should* be persistent, push with the relevant `set_*` operation.
 5. Re-read each surface; verify against canonical.
-6. If the diff persists after reconcile, escalate — this implies the local change is overriding the push, possibly via 123RFID Desktop access.
+6. If the diff persists after reconcile, escalate, this implies the local change is overriding the push, possibly via 123RFID Desktop access.
 7. **Success check:** every surface matches canonical, save for operating-mode (which is re-applied on every boot anyway).
 
-### RP-09 — Stagger and retry rollout
+### RP-09. Stagger and retry rollout
 
 **When:** Fleet-wide firmware update failed on some readers.
 
@@ -106,10 +106,10 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 6. Re-issue `set_os` against the failed subset only.
 7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short events arrive for all targeted readers within a sensible window.
 
-### What this chapter does not cover
+### Out of scope
 
-- **Why the failures happened** — explanation belongs in the matching FM page or concept chapter.
-- **Bipartite-specific recovery** — covered in FM-DEV-* entries off the symptom index.
-- **Recovery from regulatory-region misconfiguration** — requires factory reset + 123RFID Desktop reboot; out of scope for routine recovery.
+- **Why the failures happened**: explanation belongs in the matching FM page or concept chapter.
+- **Bipartite-specific recovery**: covered in FM-DEV-* entries off the symptom index.
+- **Recovery from regulatory-region misconfiguration**: requires factory reset + 123RFID Desktop reboot; out of scope for routine recovery.
 
 **Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📘 [Where things fail](/reference/diagnose/two-edges) · 📘 [Things people get wrong about IOTC](/reference/diagnose/misconceptions)

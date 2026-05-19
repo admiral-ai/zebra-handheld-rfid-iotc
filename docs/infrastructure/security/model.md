@@ -28,7 +28,7 @@ You cannot achieve "secure" by picking one. A TLS-encrypted connection without `
 
 | Type | Used for |
 |---|---|
-| `mqtt` | MQTT broker connections — both client cert/key and the broker's CA cert |
+| `mqtt` | MQTT broker connections; both client cert/key and the broker's CA cert |
 | `wifi` | Enterprise Wi-Fi (WPA2/WPA3 Enterprise with EAP-TLS) — CA, client cert, client key |
 | `filestore` | The HTTP file server used by `set_os` and `install_certificate` (HTTP source) |
 | `client` | Generic client-side certs |
@@ -40,14 +40,14 @@ Certificates are stored on the device under logical names that you choose at ins
 
 `install_certificate.certSource` chooses how the certificate content arrives at the reader:
 
-- **`HTTP`** — the reader downloads from a remote URL. Requires `filestore` certificates to be installed first if the source itself is HTTPS. This is the production pattern: certificate authorities push to an HTTPS endpoint; readers pull on demand.
-- **`DIRECT`** — the certificate content is included inline in the MQTT payload (PEM string in `certificateBundle`). Simpler for first-light; less convenient at scale.
+- **`HTTP`**, the reader downloads from a remote URL. Requires `filestore` certificates to be installed first if the source itself is HTTPS. This is the production pattern: certificate authorities push to an HTTPS endpoint; readers pull on demand.
+- **`DIRECT`**, the certificate content is included inline in the MQTT payload (PEM string in `certificateBundle`). Simpler for first-light; less convenient at scale.
 
 When `certSource` is omitted, the reader defaults to `HTTP`.
 
 ### Two install paths in practice
 
-**Out-of-band, via 123RFID Desktop.** The Wi-Fi certificate chain for an Enterprise SSID can be loaded from the bootstrap UI in Phase 2. This is the right pattern when a reader has not yet joined any network.
+**Out-of-band, via 123RFID Desktop.** The Wi-Fi certificate chain for an Enterprise SSID can be loaded from the bootstrap UI in Phase 2. This fits when a reader has not yet joined any network.
 
 **In-band, via `install_certificate`.** Once a reader is on the broker, MQTT certificate material for TLS and for the file store can be pushed via `install_certificate`. This is how MDM platforms (SOTI Connect, 42Gears SureMDM) provision certs at fleet scale.
 
@@ -62,7 +62,7 @@ Certificates expire. The rotation pattern is:
 
 This pattern survives bad rolls — if the new cert turns out to be invalid, the reader is still using the old name and you can `config_endpoint update` back. Replacing the cert in place (same logical name) leaves no escape route.
 
-### The minimal payload — `install_certificate`
+### The minimal payload: `install_certificate`
 
 ```json
 {
@@ -83,17 +83,17 @@ For HTTP-sourced installs, replace `certificateBundle` with a `url` array per ce
 
 ### Listing and removing
 
-- **`get_installed_certificate`** — returns the logical names of installed certificates by type. Use before `delete_certificate` to confirm the target exists.
-- **`delete_certificate`** — removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
+- **`get_installed_certificate`**: returns the logical names of installed certificates by type. Use before `delete_certificate` to confirm the target exists.
+- **`delete_certificate`**: removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
 
 ### Confirmation via `alert_short`
 
 Successful and failed certificate operations generate `alert_short` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/events/alerts).
 
-### What this chapter does not cover
+### Out of scope
 
-- **Broker-side ACLs** — that lives in your broker's documentation (Mosquitto, HiveMQ, AWS IoT Core, etc.).
-- **Region and regulatory** — different surface; see [What your reader knows about itself](/infrastructure/management/device-state).
-- **PKI design at organizational scale** — see the Ristić *Bulletproof TLS and PKI* reference and your security team.
+- **Broker-side ACLs**, that lives in your broker's documentation (Mosquitto, HiveMQ, AWS IoT Core, etc.).
+- **Region and regulatory**: different surface; see [What your reader knows about itself](/infrastructure/management/device-state).
+- **PKI design at organizational scale**, see the Ristić *Bulletproof TLS and PKI* reference and your security team.
 
 **Related:** 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📕 [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

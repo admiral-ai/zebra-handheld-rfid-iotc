@@ -9,7 +9,7 @@ sidebar_label: Where tag reads come from
 > **See in the API Reference**
 > Sub-tag: Tag Data Event. Event: `dataEVT`.
 
-`dataEVT` is the event that carries tag reads. The reader emits one (or one aggregated event covering several reads, depending on operating mode) on the publish topic of whichever data endpoint owns the active stream — typically `DATA1`, sometimes `DATA2`, on a hybrid bootstrap deployment the `MDM` endpoint. This chapter is the field-level reference for the payload.
+`dataEVT` is the event that carries tag reads. The reader emits one (or one aggregated event covering several reads, depending on operating mode) on the publish topic of whichever data endpoint owns the active stream, typically `DATA1`, sometimes `DATA2`, on a hybrid bootstrap deployment the `MDM` endpoint. This chapter is the field-level reference for the payload.
 
 ### The skeleton
 
@@ -26,9 +26,9 @@ sidebar_label: Where tag reads come from
 
 Three top-level fields:
 
-- **`type`** — the active operating-mode profile when the event was generated. Values match the `profiles` enum (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`, or `FAST_READ` — though `FAST_READ` is currently not supported in `set_operating_mode`).
-- **`timestamp`** — ISO 8601 event timestamp.
-- **`data`** — wrapper for `tagData` and `barcodeData` arrays.
+- **`type`**, the active operating-mode profile when the event was generated. Values match the `profiles` enum (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`, or `FAST_READ`, though `FAST_READ` is not currently supported in `set_operating_mode`).
+- **`timestamp`**: ISO 8601 event timestamp.
+- **`data`**: wrapper for `tagData` and `barcodeData` arrays.
 
 There is no `command`, `requestId`, `apiVersion`, or `response.code` wrapper here. Events do not use the command-response envelope. Treat `dataEVT` as a streaming record, not a response.
 
@@ -36,7 +36,7 @@ There is no `command`, `requestId`, `apiVersion`, or `response.code` wrapper her
 
 | Field | Type | When it appears |
 |---|---|---|
-| `EPCid` | string (hex) | Always. The EPC identifier — primary key for the tag. |
+| `EPCid` | string (hex) | Always. The EPC identifier; primary key for the tag. |
 | `EPC` | string (hex) | When `tagMetaDataToEnable.EPC: true`. The EPC memory bank content (typically identical to `EPCid`). |
 | `TID` | string (hex) | When `tagMetaDataToEnable.TID: true`. Factory-programmed unique identifier. |
 | `USER` | string (hex) | When `tagMetaDataToEnable.USER: true`. User memory bank content. |
@@ -60,7 +60,7 @@ There is no `command`, `requestId`, `apiVersion`, or `response.code` wrapper her
 
 ### The `reportFilter duration` conditional
 
-Three fields — `channel`, `phase`, `seenCount` — behave differently based on the operating-mode's `reportFilter duration`:
+Three fields (`channel`, `phase`, `seenCount`)behave differently based on the operating-mode's `reportFilter duration`:
 
 | `reportFilter duration` | Behavior |
 |---|---|
@@ -71,7 +71,7 @@ Applications that need per-read fidelity must set `reportFilter duration: 0` (th
 
 ### Per-barcode fields in `barcodeData[]`
 
-When `controlType: SCANNER` operations are run (Premium / Premium Plus only — RFD90 has a scanner; RFD40 Standard doesn't):
+When `controlType: SCANNER` operations are run (Premium / Premium Plus only. RFD90 has a scanner; RFD40 Standard doesn't):
 
 | Field | Type | Description |
 |---|---|---|
@@ -113,7 +113,7 @@ A fully-populated `dataEVT` for a single tag with all metadata enabled and acces
 
 ### Where `dataEVT` does *not* fire
 
-- **When `FAST_READ` is the active profile.** `FAST_READ` is currently not supported by `set_operating_mode`, so this case does not arise in normal operation — but if it did, `dataEVT` would not be emitted.
+- **When `FAST_READ` is the active profile.** `FAST_READ` is not currently supported by `set_operating_mode`, so this case does not arise in normal operation, but if it did, `dataEVT` would not be emitted.
 - **When a post-filter excludes every tag.** A `set_post_filter` with `reportOperation: EXCLUDE` matching everything will run inventory but emit nothing. Inspect with `get_post_filter`.
 - **When the data endpoint is inactive.** The endpoint that owns the data stream must have `activate: true`. Inspect with `get_endpoint_config`.
 
@@ -121,10 +121,10 @@ A fully-populated `dataEVT` for a single tag with all metadata enabled and acces
 
 `dataEVT` publishes on the publish topic configured for the active data endpoint. With a DATA1 endpoint configured with `publishTopics: [{topic: "DATA1/event"}]`, the wire topic is `<tenantId>/DATA1/event/<deviceSerialNumber>`. Two parallel data streams (DATA1 and DATA2) allow you to route different filters' output to different consumers.
 
-### What this chapter does not cover
+### Out of scope
 
-- **Configuring which metadata fields are enabled** — `set_operating_mode.operatingModes.tagMetaDataToEnable`. See [Choose how the reader reads tags](/rfid/operating-mode/profiles).
-- **Pre-filtering and post-filtering** — see [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).
-- **Routing tag data to multiple destinations** — covered as a downstream-pipeline concern.
+- **Configuring which metadata fields are enabled**: `set_operating_mode.operatingModes.tagMetaDataToEnable`. See [Choose how the reader reads tags](/rfid/operating-mode/profiles).
+- **Pre-filtering and post-filtering**, see [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).
+- **Routing tag data to multiple destinations**: covered as a downstream-pipeline concern.
 
 **Related:** 📘 [Choose how the reader reads tags](/rfid/operating-mode/profiles) · 📘 [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about) · 📘 [Start, stop, and the trigger button](/rfid/operating-mode/start-stop) · 📕 [`dataEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

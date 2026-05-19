@@ -16,9 +16,9 @@ The reader handles the first and third segments automatically; the documentation
 
 ### What each segment means
 
-- **`tenantId`** — the customer's tenant identifier, assigned during account provisioning. Stable per tenant. Configured once on the reader (carried in `mqttParams.tenantId` in the endpoint's `epConfig`).
-- **`topic`** — the **user-chosen middle segment**, configured per endpoint via `publishTopics` and `subscribeTopics`. An endpoint may publish to up to 3 topics and subscribe to 1.
-- **`deviceSerialNumber`** — the reader's hardware serial. Stable per device. The reader appends this automatically based on its own identity (returned by `get_version`).
+- **`tenantId`**, the customer's tenant identifier, assigned during account provisioning. Stable per tenant. Configured once on the reader (carried in `mqttParams.tenantId` in the endpoint's `epConfig`).
+- **`topic`**, the **user-chosen middle segment**, configured per endpoint via `publishTopics` and `subscribeTopics`. An endpoint may publish to up to 3 topics and subscribe to 1.
+- **`deviceSerialNumber`**, the reader's hardware serial. Stable per device. The reader appends this automatically based on its own identity (returned by `get_version`).
 
 ### Worked example
 
@@ -28,7 +28,7 @@ If `tenantId` is `zebra`, the `publishTopics[0].topic` is `MGMT/clients/cmnd`, a
 zebra/MGMT/clients/cmnd/RFD40-24190525100255
 ```
 
-Subscribers — your application — subscribe to that exact topic to receive whatever the reader publishes on this endpoint.
+A subscriber — typically your application — subscribes to that exact topic to receive whatever the reader publishes on this endpoint.
 
 ### Conventions in the source examples
 
@@ -48,9 +48,9 @@ The source schemas use these middle-segment conventions consistently (you are fr
 
 Three reasons motivated the three-part design:
 
-1. **Tenant isolation** — every topic in the namespace is prefixed by the tenant ID. Topic ACLs at the broker scope a credential to its tenant subtree.
-2. **Per-device routing** — the device serial in the suffix lets wildcard fleet subscriptions and per-device commands coexist naturally.
-3. **Per-endpoint flexibility** — the middle segment is per-endpoint, so the deployment can route MGMT and CTRL on the same broker or split them across brokers without changing topic semantics.
+1. **Tenant isolation**, every topic in the namespace is prefixed by the tenant ID. Topic ACLs at the broker scope a credential to its tenant subtree.
+2. **Per-device routing**, the device serial in the suffix lets wildcard fleet subscriptions and per-device commands coexist naturally.
+3. **Per-endpoint flexibility**, the middle segment is per-endpoint, so the deployment can route MGMT and CTRL on the same broker or split them across brokers without changing topic semantics.
 
 ### Per-endpoint topic limits
 
@@ -58,12 +58,12 @@ Three reasons motivated the three-part design:
 - **Maximum 1 subscribe topic** per endpoint (exceeding returns error code 26 — `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
 - **`tenantId` length is bounded** (exceeding returns error code 27 — `IOT_ERROR_INVALID_TENANTID_LENGTH`).
 
-[DIAGRAM: D-3.2.A — Three-part template decomposed with example]
+[DIAGRAM: D-3.2.A. Three-part template decomposed with example]
 
-[DIAGRAM: D-3.2.B — Endpoint → topic mapping showing the per-endpoint relationship]
+[DIAGRAM: D-3.2.B. Endpoint → topic mapping showing the per-endpoint relationship]
 
 **Related:** 📘 [§2.4 Interface Model](/foundations/architecture/interface-model) · 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [§8.3 Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [§20.2 Topic Quick Reference](/reference/appendices/topic-quick-reference)
 
 ---
 
-# Part II — Getting Started (corrected)
+# Part II: Getting Started (corrected)

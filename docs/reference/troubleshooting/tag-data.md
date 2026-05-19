@@ -29,6 +29,6 @@ This guide shows you how to troubleshoot tag-data anomalies on handheld readers.
 - The reader's clock has drifted beyond NTP correction range; check `exceptionEVT` for code `5010 clock_drift_detected`.
 - Reboot to force NTP sync.
 
-[DIAGRAM: D-18.4.A — tag-data-symptom decision tree]
+[DIAGRAM: D-18.4.A. tag-data-symptom decision tree]
 
 **Related:** 📙 [§11.3 Configure Events](/observability/events/configure) · 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [§10.5 Processing Tag Data](/rfid/tag-data/process) · 📘 [§3.3 QoS Levels](/foundations/mqtt/qos)

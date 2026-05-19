@@ -21,7 +21,7 @@ On a Monolithic sled, Wi-Fi credentials and IPv4 strategy live in firmware. They
 
 On a Bipartite sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
 
-### `set_wifi` — supported security types
+### `set_wifi`: supported security types
 
 The reader supports four `securityType` enum values:
 
@@ -57,7 +57,7 @@ A minimal `set_wifi` payload for personal Wi-Fi:
 }
 ```
 
-Field-level shape — including the enterprise variant — is in `mqtt-api-reference/set_wifi.md`.
+Field-level shape, including the enterprise variant — is in `mqtt-api-reference/set_wifi.md`.
 
 ### Error codes that matter
 
@@ -68,9 +68,9 @@ Field-level shape — including the enterprise variant — is in `mqtt-api-refer
 
 Both indicate a precondition mismatch. `CREATE` requires the ESSID to be new; `MODIFY` requires it to exist. Inspect with `get_wifi` first when in doubt.
 
-### `get_eth` — when it makes sense
+### `get_eth`: when it makes sense
 
-`get_eth` returns the *broker-side* Ethernet status: whether an Ethernet interface is up, its IP, link speed. On a handheld sled the result is typically "no Ethernet interface present" — the sled has no Ethernet port. The command remains useful when:
+`get_eth` returns the *broker-side* Ethernet status: whether an Ethernet interface is up, its IP, link speed. On a handheld sled the result is typically "no Ethernet interface present", the sled has no Ethernet port. The command remains useful when:
 
 - The sled is in a cradle that exposes Ethernet through a host (rare).
 - You are querying through a fixed-reader companion deployment.
@@ -82,8 +82,8 @@ Most Quick Start integrations will never call `get_eth`. It is documented for co
 
 `set_wifi.wifiConfig.accessPoint.ipv4` carries the IPv4 strategy:
 
-- `{"enableDhcp": true}` — most deployments. Let the AP / DHCP server hand out an address.
-- `{"enableDhcp": false, "ipAddress": "...", "subnetMask": "...", "gateway": "...", "dns": "..."}` — static. Required for some industrial deployments where IP-to-device mapping must be deterministic.
+- `{"enableDhcp": true}`, most deployments. Let the AP / DHCP server hand out an address.
+- `{"enableDhcp": false, "ipAddress": "...", "subnetMask": "...", "gateway": "...", "dns": "..."}`: static. Required for some industrial deployments where IP-to-device mapping must be deterministic.
 
 Static IPv4 also requires the subnet to match what the AP serves; mismatches produce a connected radio that cannot route to the broker.
 
@@ -99,11 +99,11 @@ Radio  →  Access Point  →  LAN  →  WAN / VPN  →  Broker
 
 Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/reference/diagnose/two-edges) for the edge-isolation diagnostic frame.
 
-### What this chapter does not cover
+### Out of scope
 
-- **TLS over MQTT** — see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
-- **The full configuration of an MQTT endpoint** — see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
-- **Network failure modes** — see [Where things fail](/reference/diagnose/two-edges).
-- **Bipartite host-bridge configuration** — host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
+- **TLS over MQTT**, see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
+- **The full configuration of an MQTT endpoint**, see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
+- **Network failure modes**, see [Where things fail](/reference/diagnose/two-edges).
+- **Bipartite host-bridge configuration**: host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
 
 **Related:** 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

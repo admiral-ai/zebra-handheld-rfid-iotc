@@ -54,6 +54,6 @@ Store the golden config in version control. Build a CI pipeline that, on push to
 2. Tests it against a canary reader in a lab environment.
 3. Promotes to production for the next round of provisioning.
 
-[DIAGRAM: D-13.4.A — automated enrollment pipeline]
+[DIAGRAM: D-13.4.A. automated enrollment pipeline]
 
 **Related:** 📕 [§16.2 set_config / get_config](#chapter-16--mqtt-api-reference) · 📕 [§16.6 mqttConnEVT](#chapter-16--mqtt-api-reference) · 📙 [§14.3 Apply Bulk Configuration](/fleet/management/apply-config)

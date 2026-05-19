@@ -20,7 +20,7 @@ Three motivations:
 
 Channel assignment is set via `config_events` (see [§11.3](/observability/events/configure)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
 
-[DIAGRAM: D-10.4.A — single-channel vs dual-channel deployment topologies]
+[DIAGRAM: D-10.4.A. single-channel vs dual-channel deployment topologies]
 
 ### What this implies for application architecture
 

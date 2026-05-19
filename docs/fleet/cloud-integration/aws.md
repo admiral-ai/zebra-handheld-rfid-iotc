@@ -48,8 +48,8 @@ AWS IoT Core does not impose a topic convention; you choose. A common pattern is
 
 ### Step 5: Verify
 
-In AWS IoT Core's **Test → MQTT test client**, subscribe to `<tenantId>/data1event/clients/#`. Start an inventory on the reader. Tag-data events should appear in the AWS test client.
+In AWS IoT Core's **Test to MQTT test client**, subscribe to `<tenantId>/data1event/clients/#`. Start an inventory on the reader. Tag-data events should appear in the AWS test client.
 
-[DIAGRAM: D-15.2.A — IOTC reader ↔ AWS IoT Core topology]
+[DIAGRAM: D-15.2.A. IOTC reader ↔ AWS IoT Core topology]
 
 **Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📙 [§8.3 Endpoint Configuration](/infrastructure/endpoints/configure) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference)

@@ -12,14 +12,14 @@ This guide shows you how to provision multiple handheld readers using 123RFID De
 
 1. Open 123RFID Desktop with one reference reader connected via USB.
 2. Configure the reference reader fully (region, Wi-Fi, MDM endpoint).
-3. Choose **File → Export Profile** and save the `.iotcprofile` file.
+3. Choose **File to Export Profile** and save the `.iotcprofile` file.
 
 ### Apply to a batch of readers
 
 For each reader in the batch:
 
 1. Connect via USB.
-2. In 123RFID Desktop, choose **File → Import Profile** and select the saved profile.
+2. In 123RFID Desktop, choose **File to Import Profile** and select the saved profile.
 3. Click **Apply to Device**.
 4. Wait for confirmation; disconnect.
 
@@ -33,6 +33,6 @@ Profiles are portable: the same `.iotcprofile` file works across compatible firm
 
 After provisioning, power on each reader and pair with its host device. The reader should connect to MQTT within seconds. Subscribe to `mqttConnEVT` with a wildcard to confirm all batch members are online.
 
-[DIAGRAM: D-13.3.A — profile export/import workflow]
+[DIAGRAM: D-13.3.A. profile export/import workflow]
 
 **Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [§4.3 Single-Reader Bootstrap](/getting-started/prerequisites/bootstrap)

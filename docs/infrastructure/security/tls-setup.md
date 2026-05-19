@@ -47,13 +47,13 @@ Follow [§7.2 Install via HTTP](/infrastructure/security/certificate-management)
 
 ### Step 3: Verify
 
-Watch `mqttConnEVT` arriving on the endpoint's event topic — you should see `connectionState: CONNECTED` and `mqttVersion: 3.1.1` once the secure connection is established.
+Watch `mqttConnEVT` arriving on the endpoint's event topic, you should see `connectionState: CONNECTED` and `mqttVersion: 3.1.1` once the secure connection is established.
 
 ### Verification levels
 
 | `verificationType` | Behaviour |
 |---|---|
-| `NONE` | No TLS verification — use only on trusted networks |
+| `NONE` | No TLS verification; use only on trusted networks |
 | `VERIFY_PEER` | Server certificate validates against the installed CA |
 | `VERIFY_HOST` | Hostname matches the certificate |
 | `VERIFY_HOST_PEER` | Both — **recommended for production** |
@@ -62,7 +62,7 @@ Watch `mqttConnEVT` arriving on the endpoint's event topic — you should see `c
 
 ---
 
-## §8.1, §8.3 — Endpoint Configuration (corrections summary)
+## §8.1, §8.3: Endpoint Configuration (corrections summary)
 
 §8.1 rewritten per [§2.4 corrections](/foundations/architecture/interface-model) above (seven endpoint types; MDM-as-bootstrap pattern).
 
@@ -70,4 +70,4 @@ Watch `mqttConnEVT` arriving on the endpoint's event topic — you should see `c
 
 ---
 
-# Part IV — RFID Operations (rewritten)
+# Part IV: RFID Operations (rewritten)

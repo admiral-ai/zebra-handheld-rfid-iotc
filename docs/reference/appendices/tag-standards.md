@@ -34,13 +34,13 @@ Constraints:
 - `password` is 8 hex characters (32 bits) for ACCESS, LOCK, KILL.
 - `data` for WRITE is even-length hex, multiple of 16-bit words.
 - `LOCK` with `lockAction: PERMANENT_LOCK` is irreversible.
-- `KILL` is irreversible — the tag never responds again.
+- `KILL` is irreversible, the tag never responds again.
 
 Phase 2 v1's claim that "tag write operations are not in the V1.1 API surface" was incorrect and is corrected here.
 
 ---
 
-# Closing — Phase 2 v2 Status
+# Closing. Phase 2 v2 Status
 
 All 🔴 pages rewritten. All 🟡 pages updated with the global corrections and per-page deltas. §11.6 and §17.3 deleted from the documentation set. The corrected drafts above replace their v1 counterparts; pages not addressed here are inherited from v1 with the global corrections applied per the front matter.
 

@@ -51,13 +51,13 @@ def on_tag(event):
 
 ### Integration with inventory management systems
 
-[DIAGRAM: D-10.5.A — typical pipeline: subscribe → dedupe → buffer → persist → alert]
+[DIAGRAM: D-10.5.A. typical pipeline: subscribe → dedupe → buffer → persist → alert]
 
 Common architecture: an MQTT consumer service deduplicates and batches; writes to a time-series database (Timescale, Influx) for analytics and to an operational database (Postgres, Mongo) for current-state queries; publishes alerts to an event bus (Kafka, EventBridge) for downstream subscribers.
 
 ### Backpressure and resilience
 
-If the application cannot keep up, MQTT QoS 0 silently drops messages — the broker does not buffer. For high-availability requirements: increase consumer concurrency, run multiple consumers on different channels ([§10.4](/rfid/tag-data/dual-channels)), and consider configuring `dataEVT` at QoS 1 with sized retention. See [§3.3](/foundations/mqtt/qos).
+If the application cannot keep up, MQTT QoS 0 silently drops messages, the broker does not buffer. For high-availability requirements: increase consumer concurrency, run multiple consumers on different channels ([§10.4](/rfid/tag-data/dual-channels)), and consider configuring `dataEVT` at QoS 1 with sized retention. See [§3.3](/foundations/mqtt/qos).
 
 **Related:** 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [§10.3 Interpret Fields](/rfid/tag-data/interpret) · 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§15.2 AWS IoT Core](/fleet/cloud-integration/aws)
 

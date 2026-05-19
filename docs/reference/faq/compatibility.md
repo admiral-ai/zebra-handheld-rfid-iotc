@@ -20,7 +20,7 @@ sidebar_label: Compatibility FAQs
 
 **Q:** Do I need to update applications when migrating to V1.1?
 **A:** Only if you want to use V1.1-only endpoints; existing code is forward-compatible.
-**Details:** [§14.5 How to Plan a V1.0 → V1.1 Migration](/fleet/migration/plan)
+**Details:** [§14.5 How to Plan a V1.0 to V1.1 Migration](/fleet/migration/plan)
 
 ---
 
@@ -30,4 +30,4 @@ sidebar_label: Compatibility FAQs
 
 ---
 
-## Chapter 20 — Appendices
+## Chapter 20: Appendices

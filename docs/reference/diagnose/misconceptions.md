@@ -6,11 +6,11 @@ sidebar_label: Things people get wrong about IOTC
 
 > 📘 **EXPLANATION** · Audience: All personas · Read time: ~6 min
 
-Recurring misconceptions that produce wrong integration code. Each row pairs the wrong belief with the right one, and points to the chapter that explains in more depth. **If you've recently spent more than an hour stuck on something, scan this list first** — your symptom probably has a familiar misconception underneath.
+Recurring misconceptions that produce wrong integration code. Each row pairs the wrong belief with the right one, and points to the chapter that explains in more depth. **If you've recently spent more than an hour stuck on something, scan this list first**, your symptom probably has a familiar misconception underneath.
 
 ### Payload and schema
 
-**MM-01 — "The OpenAPI rendering is the canonical payload."**
+**MM-01 — "The OpenAPI rendering is the payload."**
 
 - *Wrong:* The schema corpus and OpenAPI rendering describe the runtime contract.
 - *Right:* Each command has a named payload object (`ctrlOprPayload`, `epConfig`, `operatingMode`, `postFilterPayload`, `eventConfiguration`); generic wrappers like `params`, `payload`, `requestBody` are not part of the native MQTT shape. The OpenAPI rendering may add them. Always copy from `mqtt-api-reference/<command>.md`.
@@ -19,7 +19,7 @@ Recurring misconceptions that produce wrong integration code. Each row pairs the
 **MM-02 — "`FAST_READ` is one of the operating-mode profiles."**
 
 - *Wrong:* The enum lists six profiles; `FAST_READ` is one of them and can be selected.
-- *Right:* `FAST_READ` appears in the enum but is documented as **currently not supported**. Selecting it returns an error. Use one of the five supported profiles: `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`.
+- *Right:* `FAST_READ` appears in the enum but is documented as **not currently supported**. Selecting it returns an error. Use one of the five supported profiles: `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`.
 - *See:* [Choose how the reader reads tags](/rfid/operating-mode/profiles)
 
 **MM-03 — "Enum casing doesn't matter."**
@@ -57,7 +57,7 @@ Recurring misconceptions that produce wrong integration code. Each row pairs the
 **MM-08 — "The MDM endpoint is just one of seven."**
 
 - *Wrong:* MDM is structurally equivalent to MGMT or CTRL — just a different `epType`.
-- *Right:* The MDM endpoint is the **bootstrap default** — the only endpoint 123RFID Desktop creates, and the path through which every other endpoint is added remotely. You cannot run any MQTT command before the MDM endpoint is active.
+- *Right:* The MDM endpoint is the **bootstrap default**, the only endpoint 123RFID Desktop creates, and the path through which every other endpoint is added remotely. You cannot run any MQTT command before the MDM endpoint is active.
 - *See:* [How the MQTT plumbing fits together](/infrastructure/endpoints/about) and [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)
 
 ### Topics and routing
@@ -85,13 +85,13 @@ Recurring misconceptions that produce wrong integration code. Each row pairs the
 **MM-12 — "`alerts` and `alert_short` are duplicates."**
 
 - *Wrong:* I can consume either one and get the same information.
-- *Right:* `alert_short` has a much broader `id` enum (every certificate operation, both Wi-Fi and Ethernet config outcomes, multiple firmware lifecycle states). `alerts` has only seven `id` values (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`) but carries `alertDetails`. They are different surfaces — typically `alerts` to applications, `alert_short` to MDM.
+- *Right:* `alert_short` has a much broader `id` enum (every certificate operation, both Wi-Fi and Ethernet config outcomes, multiple firmware lifecycle states). `alerts` has only seven `id` values (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`) but carries `alertDetails`. They are different surfaces, typically `alerts` to applications, `alert_short` to MDM.
 - *See:* [When the reader needs to interrupt you](/observability/events/alerts)
 
 **MM-13 — "Heartbeat's `data.batteryAlert.status: LOW` and the `alerts` event with id `BATTERY` mean the same thing."**
 
 - *Wrong:* Same battery condition, same field.
-- *Right:* The heartbeat is a **snapshot** — it reports current state each interval. The `alerts` event is a **transition** — it fires when state changes (`status: LOW` set, then later `CLEAR`). Pipelines designed for transitions cannot rely on heartbeat-snapshot fields.
+- *Right:* The heartbeat is a **snapshot**, it reports current state each interval. The `alerts` event is a **transition**, it fires when state changes (`status: LOW` set, then later `CLEAR`). Pipelines designed for transitions cannot rely on heartbeat-snapshot fields.
 - *See:* [Watch your reader's pulse](/observability/events/heartbeat)
 
 ### Inventory and operating mode

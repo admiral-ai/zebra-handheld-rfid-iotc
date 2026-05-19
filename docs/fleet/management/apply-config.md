@@ -43,12 +43,12 @@ sidebar_label: How to Apply Bulk Configuration
 | Code | Trigger |
 |---|---|
 | 2 | `IOT_ERROR_INVALID_PAYLOAD` |
-| 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST` — endpoint name in use |
+| 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST`; endpoint name in use |
 | 17 | `IOT_ERROR_SSID_MISSED` — ESSID field missing |
 | 18 | `IOT_ERROR_SSID_ALREADY_EXIST` — CREATE on existing ESSID |
-| 23 | `IOT_ERROR_INVALID_ENUM` — unsupported enum value |
-| 25 | `IOT_ERROR_PUBLISH_TOPICS_EXCEEDED` — more than 3 publish topics |
-| 26 | `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED` — more than 1 subscribe topic |
+| 23 | `IOT_ERROR_INVALID_ENUM`; unsupported enum value |
+| 25 | `IOT_ERROR_PUBLISH_TOPICS_EXCEEDED`; more than 3 publish topics |
+| 26 | `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`; more than 1 subscribe topic |
 | 27 | `IOT_ERROR_INVALID_TENANTID_LENGTH` |
 
 ### Recovery if connectivity is lost
@@ -59,4 +59,4 @@ If a `set_config` change disconnects the reader, the recovery path is 123RFID De
 
 ---
 
-## §14.5–§14.7 — Migration Cluster (revised)
+## §14.5–§14.7: Migration Cluster (revised)

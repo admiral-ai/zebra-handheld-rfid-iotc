@@ -54,6 +54,6 @@ Connection never establishes; no `mqttConnEVT` ever fires.
 - Test outbound 8883 from the host device's network using `nc -zv broker.example.com 8883`.
 - Coordinate with network operations to allow outbound MQTT traffic to the broker.
 
-[DIAGRAM: D-18.2.A — connection-symptom decision tree]
+[DIAGRAM: D-18.2.A. connection-symptom decision tree]
 
 **Related:** 📙 [§6.4 Network Troubleshooting](/infrastructure/network/troubleshooting) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.6 mqttConnEVT, exceptionEVT](#chapter-16--mqtt-api-reference) · 📘 [§3.4 Connection Lifecycle](/foundations/mqtt/connection-lifecycle)

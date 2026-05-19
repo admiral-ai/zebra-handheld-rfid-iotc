@@ -27,7 +27,7 @@ Each `config_endpoint` operation creates or updates one MQTT endpoint of a speci
 
 The full field schema for each endpoint is in `mqtt-api-reference/config_endpoint.md`. The runtime list of what is currently active is fetched with `get_endpoint_config`.
 
-### The topic format — always three parts
+### The topic format, always three parts
 
 Every IOTC topic is constructed at runtime as:
 
@@ -41,7 +41,7 @@ You configure **only the middle segment** in `publishTopics[].topic` and `subscr
 zebra/CTRL/clients/cmnd/RFD40-24190525100255
 ```
 
-**Never** include `tenantId` or the serial in the `topic` field — they get added twice and the path becomes unroutable.
+**Never** include `tenantId` or the serial in the `topic` field, they get added twice and the path becomes unroutable.
 
 ### Hybrid (MDM) vs split (MGMT + CTRL + DATA)
 
@@ -84,8 +84,8 @@ For TLS, certificate logical names referenced in `securityParams` must already b
 
 `get_endpoint_config` returns:
 
-- `endpointResponse.activeEndpoints.epConfig[]` — every currently-active endpoint with its full configuration.
-- `endpointResponse.activeEndpoints.savedEndpoints.epNames[]` — names of every saved-but-inactive endpoint.
+- `endpointResponse.activeEndpoints.epConfig[]`, every currently-active endpoint with its full configuration.
+- `endpointResponse.activeEndpoints.savedEndpoints.epNames[]`: names of every saved-but-inactive endpoint.
 
 You can also query a single endpoint:
 
@@ -97,12 +97,12 @@ You can also query a single endpoint:
 }
 ```
 
-`get_endpoint_config` is the right call **before** any `config_endpoint update` or `delete` — confirm the target exists, see its current configuration, then make the change.
+`get_endpoint_config` runs **before** any `config_endpoint update` or `delete` — confirm the target exists, see its current configuration, then make the change.
 
-### What this chapter does not cover
+### Out of scope
 
-- **TLS setup and certificate installation** — [Securing the connection](/infrastructure/security/model).
-- **Per-endpoint event flag configuration** — `eventConfiguration` and `heartbeatConfiguration` within `config_endpoint` are covered in [Choose what the reader tells you](/observability/events/configure).
-- **Bulk endpoint configuration across a fleet** — [Keeping a fleet in sync](/fleet/management/about-bulk).
+- **TLS setup and certificate installation**: [Securing the connection](/infrastructure/security/model).
+- **Per-endpoint event flag configuration**: `eventConfiguration` and `heartbeatConfiguration` within `config_endpoint` are covered in [Choose what the reader tells you](/observability/events/configure).
+- **Bulk endpoint configuration across a fleet**: [Keeping a fleet in sync](/fleet/management/about-bulk).
 
 **Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [The reader's configuration document](/infrastructure/management/config-document) · 📕 [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

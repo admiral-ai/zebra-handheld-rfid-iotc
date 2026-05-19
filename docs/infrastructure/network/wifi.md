@@ -16,7 +16,7 @@ This guide shows you how to configure Wi-Fi profiles on a handheld reader over M
 
 The response lists configured profiles with their ESSIDs, security types, and connection status.
 
-### Create a new Wi-Fi profile — WPA2Personal
+### Create a new Wi-Fi profile: WPA2Personal
 
 ```json
 {
@@ -38,7 +38,7 @@ The response lists configured profiles with their ESSIDs, security types, and co
 
 **Security types:** `WPA2Personal`, `WPA3Personal`, `WPA2Enterprise`, `WPA3Enterprise`.
 
-### Create a new profile — WPA2Enterprise (EAP-TLS)
+### Create a new profile: WPA2Enterprise (EAP-TLS)
 
 Certificates must already be installed via `install_certificate` (see [§7.2](/infrastructure/security/certificate-management)) — reference them by logical `name`:
 

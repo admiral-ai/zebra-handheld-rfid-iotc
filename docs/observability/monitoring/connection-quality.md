@@ -20,7 +20,7 @@ The `heartBeatEVT.data.bt_link_quality` field reports the BT link health (0–10
 
 Maintain a count of `mqttConnEVT` transitions per reader over rolling windows. A reader with more than 10 reconnects per hour likely has a connectivity issue — Wi-Fi roaming, BT instability, or broker capacity.
 
-[DIAGRAM: D-12.3.A — multi-event timeline visualization combining the three signals]
+[DIAGRAM: D-12.3.A. multi-event timeline visualization combining the three signals]
 
 ### Correlating to environmental causes
 

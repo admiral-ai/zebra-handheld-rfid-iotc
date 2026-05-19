@@ -45,6 +45,6 @@ The response is a nested JSON document. Top-level sections correspond to the ind
 
 For the complete schema, see [§20.1](/reference/appendices/config-schema).
 
-[DIAGRAM: D-14.2.A — example `get_config` response annotated by section]
+[DIAGRAM: D-14.2.A. example `get_config` response annotated by section]
 
 **Related:** 📕 [§16.2 get_config](#chapter-16--mqtt-api-reference) · 📕 [§20.1 Config Schema](/reference/appendices/config-schema) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config)

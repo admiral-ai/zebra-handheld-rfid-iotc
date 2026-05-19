@@ -12,9 +12,9 @@ This guide shows you how to diagnose common network failures on a handheld reade
 
 Issue `get_wifi`. Check the `last_error` field on the profile that should be active.
 
-- `auth_failed` → wrong passphrase or invalid EAP credentials
-- `no_signal` → SSID not reachable (out of range, AP down)
-- `dhcp_failed` → associated but did not receive an IP
+- `auth_failed` to wrong passphrase or invalid EAP credentials
+- `no_signal` to SSID not reachable (out of range, AP down)
+- `dhcp_failed` to associated but did not receive an IP
 
 ### Symptom: DHCP failure
 
@@ -47,6 +47,6 @@ For systematic diagnosis, run in order:
 3. `get_endpoint_config` — broker target settings
 4. Inspect `heartBeatEVT` events over a 5-minute window for connection-quality dropouts
 
-[DIAGRAM: D-6.4.A — symptom → diagnostic-command decision tree]
+[DIAGRAM: D-6.4.A. symptom → diagnostic-command decision tree]
 
 **Related:** 📙 [§6.2 Wi-Fi Configuration](/infrastructure/network/wifi) · 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection) · 📕 [§16.2 get_status / get_wifi](#chapter-16--mqtt-api-reference)

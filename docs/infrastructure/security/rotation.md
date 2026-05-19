@@ -10,7 +10,7 @@ This guide shows you how to rotate TLS certificates across a fleet of handheld r
 
 ### Monitor for expiration
 
-Subscribe to the certificate-expiry `alerts` event. Configure the warning threshold via `config_events` — typically 30 days before expiration.
+Subscribe to the certificate-expiry `alerts` event. Configure the warning threshold via `config_events`, typically 30 days before expiration.
 
 ### Stage the new certificate to a canary cohort
 
@@ -29,7 +29,7 @@ Update the canary readers' `config_endpoint` to reference the new certificate al
 | 3 | 50% | 12 hours | Same |
 | 4 | 100% | — | Same |
 
-[DIAGRAM: D-7.3.A — wave-based rollout timeline]
+[DIAGRAM: D-7.3.A. wave-based rollout timeline]
 
 ### Handle install failures
 

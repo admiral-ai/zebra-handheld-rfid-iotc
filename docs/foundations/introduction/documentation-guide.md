@@ -10,26 +10,26 @@ This documentation is organised into seven Parts that follow the developer's act
 
 ### The seven Parts
 
-- **Part I: Foundations** — what this is, what's in it, how MQTT works
-- **Part II: Getting Started** — prerequisites and the Quick Start tutorial
-- **Part III: Infrastructure** — network, security, MQTT endpoints
-- **Part IV: RFID Operations** — operating modes, post-filters, tag data
-- **Part V: Observability & Events** — heartbeats, alerts, exceptions, monitoring
-- **Part VI: Fleet Operations** — provisioning, bulk configuration, migration, cloud integration
-- **Part VII: Reference & Troubleshooting** — endpoint reference, error codes, troubleshooting, FAQ, appendices
+- **Part I: Foundations**: what this is, what's in it, how MQTT works
+- **Part II: Getting Started**: prerequisites and the Quick Start tutorial
+- **Part III: Infrastructure**: network, security, MQTT endpoints
+- **Part IV: RFID Operations**: operating modes, post-filters, tag data
+- **Part V: Observability & Events**: heartbeats, alerts, exceptions, monitoring
+- **Part VI: Fleet Operations**: provisioning, bulk configuration, migration, cloud integration
+- **Part VII: Reference & Troubleshooting**: endpoint reference, error codes, troubleshooting, FAQ, appendices
 
-[DIAGRAM: D-1.4.A — the seven Parts as a dependency chain]
+[DIAGRAM: D-1.4.A, the seven Parts as a dependency chain]
 
 ### About the content-type badges
 
 Every page in this documentation carries one of four badges:
 
 - 📘 **Explanation** — discusses a topic: what it is, why it works the way it does, what trade-offs apply. Read these to understand.
-- 📗 **Tutorial** — a guided lesson with visible results at every step. Read these to learn by doing.
+- 📗 **Tutorial**, a guided lesson with visible results at every step. Read these to learn by doing.
 - 📙 **How-to guide** — directions for accomplishing a specific real-world task. Read these to act.
-- 📕 **Reference** — the technical facts: endpoints, fields, types, errors. Look these up while working.
+- 📕 **Reference**, the technical facts: endpoints, fields, types, errors. Look these up while working.
 
-The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exactly one type — the documentation does not mix modes on a single page.
+The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exactly one type, the documentation does not mix modes on a single page.
 
 ### Recommended reading paths by persona
 
@@ -40,7 +40,7 @@ The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exa
 | Writing integration code against the MQTT API | [§16 API Reference](#chapter-16--mqtt-api-reference) |
 | Operating an existing fleet at 3 a.m. | [§18 Troubleshooting Guide](#chapter-18--troubleshooting-guide) |
 
-[DIAGRAM: D-1.4.B — persona × Part reading-path matrix]
+[DIAGRAM: D-1.4.B. persona × Part reading-path matrix]
 
 ### How to navigate
 

@@ -12,21 +12,21 @@ This guide shows you how to systematically diagnose IOTC issues, layer by layer.
 
 A failing IOTC interaction lives in one of four layers:
 
-- **Application** — your code, your environment, your assumptions
-- **MQTT** — broker, credentials, ACLs, TLS, topics
-- **Network** — Wi-Fi, Bluetooth, firewall, DNS
-- **RFID** — radio subsystem, antenna, tag population
+- **Application**, your code, your environment, your assumptions
+- **MQTT**: broker, credentials, ACLs, TLS, topics
+- **Network**: Wi-Fi, Bluetooth, firewall, DNS
+- **RFID**: radio subsystem, antenna, tag population
 
-Asking "which layer?" first is more productive than "what's wrong?" — most problems become tractable once the layer is identified.
+Asking "which layer?" first is more productive than "what's wrong?", most problems become tractable once the layer is identified.
 
 #### Step 2: Gather data
 
 For each layer, capture the minimum data set:
 
-- **Application** — your logs, the command_id of the failing operation
-- **MQTT** — `get_status`, recent `mqttConnEVT` events
-- **Network** — `get_wifi`, broker reachability from a control machine
-- **RFID** — `get_status` operating state, recent `exceptionEVT` events
+- **Application**, your logs, the command_id of the failing operation
+- **MQTT**: `get_status`, recent `mqttConnEVT` events
+- **Network**: `get_wifi`, broker reachability from a control machine
+- **RFID**: `get_status` operating state, recent `exceptionEVT` events
 
 #### Step 3: Isolate the variable
 
@@ -40,6 +40,6 @@ State the hypothesis concretely ("the reader cannot resolve `iotc-broker.zebra.c
 
 A change that "seems to work" but is unconfirmed has a habit of returning. After applying a fix, exercise the original failure path and confirm the failure is gone. Then check: is the fix narrow (this device, this moment) or general (the fleet, the future)?
 
-[DIAGRAM: D-18.1.A — diagnostic flowchart by layer]
+[DIAGRAM: D-18.1.A. diagnostic flowchart by layer]
 
 **Related:** 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [§18.3 RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [§18.4 Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [§16.2 get_status](#chapter-16--mqtt-api-reference)

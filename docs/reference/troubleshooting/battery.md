@@ -32,12 +32,12 @@ This guide shows you how to troubleshoot battery and power issues on handheld re
 - Stop inventory operations when not in active use
 - Use cradle charging during operator breaks
 
-[DIAGRAM: D-18.6.A — drain patterns visualisation]
+[DIAGRAM: D-18.6.A. drain patterns visualisation]
 
 **Related:** 📙 [§12.2 Battery Monitoring](/observability/monitoring/battery) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [§11.5 Alert Events](/observability/events/alerts)
 
 ---
 
-## Chapter 19 — Frequently Asked Questions
+## Chapter 19. Frequently Asked Questions
 
 > Every entry on every FAQ page follows the strict Q / A / Details format defined in IA v1.1 §19. Maximum four rendered lines per entry; no procedural answers; every entry links to its canonical chapter.

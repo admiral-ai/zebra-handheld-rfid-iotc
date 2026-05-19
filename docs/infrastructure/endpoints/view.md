@@ -31,6 +31,6 @@ This guide shows you how to inspect the current MQTT endpoint configuration on a
 
 Each interface block shows its broker target. For the full schema, see [§16.2](#chapter-16--mqtt-api-reference).
 
-[DIAGRAM: D-8.2.A — response annotated by interface block]
+[DIAGRAM: D-8.2.A. response annotated by interface block]
 
 **Related:** 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [§16.2 get_endpoint_config](#chapter-16--mqtt-api-reference) · 📙 [§8.3 How to Configure](/infrastructure/endpoints/configure)

@@ -9,7 +9,7 @@ sidebar_label: Choose how the reader reads tags
 > **See in the API Reference**
 > Sub-tag: Operating Mode. Operations: `get_operating_mode` · `set_operating_mode`.
 
-The operating mode of an IOTC reader is configured around a **profile** — a named preset that selects how the radio behaves. Profile choice is the single most consequential decision in how the reader reads. Get it wrong and the symptoms range from "no reads" through "battery dies in an hour" to "every neighbour reader interferes." Get it right and the rest of the operating-mode surface is parameter-level refinement.
+The operating mode of an IOTC reader is configured around a **profile**, a named preset that selects how the radio behaves. Profile choice is the most consequential decision in how the reader reads. Get it wrong and the symptoms range from "no reads" through "battery dies in an hour" to "every neighbour reader interferes." Get it right and the rest of the operating-mode surface is parameter-level refinement.
 
 ### Five supported profiles
 
@@ -21,7 +21,7 @@ The operating mode of an IOTC reader is configured around a **profile** — a na
 | `BALANCED_PERFORMANCE` | The default. Even mix of read performance and battery life. |
 | `ADVANCED` | Manual control of `transmitPower`, `linkProfile`, `session`, `dynamicPower` via `advancedConfigurations` |
 
-A sixth enum value, **`FAST_READ`**, appears in the schema but is documented as **currently not supported**. Selecting it returns an error. The doc here lists five effective options.
+A sixth enum value, **`FAST_READ`**, appears in the schema but is documented as **not currently supported**. Selecting it returns an error. The doc here lists five effective options.
 
 ### Setting a profile
 
@@ -47,15 +47,15 @@ You cannot maximise all three. A reader at full duty cycle reads fast and exhaus
 
 | Profile | Read rate | Battery life | Behavior in dense fields |
 |---|---|---|---|
-| `CYCLE_COUNT` | Highest | Shortest | Aggressive — may collide with peer readers |
+| `CYCLE_COUNT` | Highest | Shortest | Aggressive; may collide with peer readers |
 | `DENSE_READERS` | Modest | Modest | Optimised for coexistence |
-| `OPTIMAL_BATTERY` | Lowest | Longest | Conservative — fewer rounds per minute |
+| `OPTIMAL_BATTERY` | Lowest | Longest | Conservative; fewer rounds per minute |
 | `BALANCED_PERFORMANCE` | Mid | Mid | Reasonable defaults; good first choice |
 | `ADVANCED` | Whatever you configure | Whatever you configure | Whatever you configure |
 
 The right profile is empirical: deploy with `BALANCED_PERFORMANCE`, measure read rate against your target, switch if needed.
 
-### `ADVANCED` — manual radio control
+### `ADVANCED`: manual radio control
 
 `ADVANCED` unlocks the `advancedConfigurations` block:
 
@@ -77,12 +77,12 @@ The right profile is empirical: deploy with `BALANCED_PERFORMANCE`, measure read
 
 The four fields:
 
-- **`transmitPower`** — radio power in centi-dBm (e.g., `300` = 3.0 dBm × 100). Bounded by the region's `maxTxPowerSupported`.
-- **`linkProfile`** — physical-layer encoding. Eleven values: `M4_256K`, `M2_240K`, `M2_256K`, `M2_320K`, `M4_240K`, `M4_320K`, `FM0_0K`, `FM0_320K`, `M8_240K`, `M8_256K`, `M8_320K`. The `Mn_*` notation refers to Miller-modulation factor `n`; lower numbers carry more redundancy (better range, slower).
-- **`session`** — EPC Gen2 session: `SESSION_0`, `SESSION_1`, `SESSION_2`, `SESSION_3`. See "Sessions" below.
-- **`dynamicPower`** — boolean. When true, the radio adjusts power per round.
+- **`transmitPower`**: radio power in centi-dBm (e.g., `300` = 3.0 dBm × 100). Bounded by the region's `maxTxPowerSupported`.
+- **`linkProfile`**: physical-layer encoding. Eleven values: `M4_256K`, `M2_240K`, `M2_256K`, `M2_320K`, `M4_240K`, `M4_320K`, `FM0_0K`, `FM0_320K`, `M8_240K`, `M8_256K`, `M8_320K`. The `Mn_*` notation refers to Miller-modulation factor `n`; lower numbers carry more redundancy (better range, slower).
+- **`session`**: EPC Gen2 session: `SESSION_0`, `SESSION_1`, `SESSION_2`, `SESSION_3`. See "Sessions" below.
+- **`dynamicPower`**: boolean. When true, the radio adjusts power per round.
 
-`advancedConfigurations` is **required when `profiles` is `ADVANCED`** — and rejected with error code `22` (Advanced configuration not set) if missing.
+`advancedConfigurations` is **required when `profiles` is `ADVANCED`**, and rejected with error code `22` (Advanced configuration not set) if missing.
 
 ### EPC Gen2 sessions, briefly
 
@@ -128,9 +128,9 @@ Use this **before** any change to know the current baseline, and **after** any c
 
 `set_operating_mode` covers many fields. Each is explored in its own chapter:
 
-- **Start/stop triggers and stop thresholds** — [Start, stop, and the trigger button](/rfid/operating-mode/start-stop).
-- **Pre-filtering (Select) and post-filtering (Report)** — [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).
-- **Access operations (read, write, lock, kill)** — covered as an advanced surface in `mqtt-api-reference/set_operating_mode.md`.
-- **Tag metadata enable flags (RSSI, PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.)** — set in `tagMetaDataToEnable`; surfaces in `dataEVT` events as fields. See [Where tag reads come from](/rfid/tag-data/dataevt-schema).
+- **Start/stop triggers and stop thresholds**: [Start, stop, and the trigger button](/rfid/operating-mode/start-stop).
+- **Pre-filtering (Select) and post-filtering (Report)**: [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).
+- **Access operations (read, write, lock, kill)**: covered as an advanced surface in `mqtt-api-reference/set_operating_mode.md`.
+- **Tag metadata enable flags (RSSI, PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.)**, set in `tagMetaDataToEnable`; surfaces in `dataEVT` events as fields. See [Where tag reads come from](/rfid/tag-data/dataevt-schema).
 
 **Related:** 📘 [Start, stop, and the trigger button](/rfid/operating-mode/start-stop) · 📘 [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about) · 📘 [Where tag reads come from](/rfid/tag-data/dataevt-schema) · 📕 [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

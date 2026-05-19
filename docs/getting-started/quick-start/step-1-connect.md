@@ -6,7 +6,7 @@ sidebar_label: Prepare network and broker
 
 > 📗 **TUTORIAL** · Phase 1 of 7 · Audience: IT / Network Admin · Time: ~5 min (or 30 if you need a firewall change)
 
-**Artifact this phase produces:** an unobstructed TCP/IP path from the sled's network segment to your MQTT broker, on the broker's MQTT port. Without this, every later phase fails silently — the sled sits in a reconnect loop with nothing for you to read.
+**Artifact this phase produces:** an unobstructed TCP/IP path from the sled's network segment to your MQTT broker, on the broker's MQTT port. Without this, every later phase fails silently, the sled sits in a reconnect loop with nothing for you to read.
 
 ### Why this phase exists
 
@@ -14,7 +14,7 @@ A Monolithic sled (RFD40 Premium / Premium Plus / RFD90) connects to Wi-Fi and t
 
 Three patterns block this path more often than any others:
 
-- **Subnet isolation.** Your laptop sits on `Employee-WiFi` (10.0.x.x); the sled connects to `IoT-WiFi` (192.168.50.x). The corporate firewall rejects 10.0 → 192.168.50 traffic. Neither the laptop nor the sled can reach the broker.
+- **Subnet isolation.** Your laptop sits on `Employee-WiFi` (10.0.x.x); the sled connects to `IoT-WiFi` (192.168.50.x). The corporate firewall rejects 10.0 to 192.168.50 traffic. Neither the laptop nor the sled can reach the broker.
 - **Port blocking.** Outbound 1883 (and sometimes 8883) is blocked at the firewall edge for "untrusted" device classes.
 - **Captive portals.** Guest Wi-Fi requires a browser-based login the sled cannot complete. The radio associates, DHCP succeeds, *all* traffic is held until the portal is satisfied. The reader looks online; nothing flows.
 
@@ -53,7 +53,7 @@ nc -vz <broker-host> 1883      # plain MQTT
 nc -vz <broker-host> 8883      # TLS MQTT
 ```
 
-A successful TCP handshake means the path exists. If the sled and laptop are on different segments, run this check from a host on each — both need a path.
+A successful TCP handshake means the path exists. If the sled and laptop are on different segments, run this check from a host on each (both need a path).
 
 #### 3. Note the broker's MQTT-facing address
 
@@ -81,11 +81,11 @@ You can `nc -vz` the broker on the MQTT port from a host on the sled's Wi-Fi seg
 
 ### Didn't work?
 
-- **`Connection refused`** — the broker isn't listening on that port. Confirm it's running (`mosquitto -d` foregrounds for debugging).
-- **`Operation timed out`** — a firewall is dropping the packet silently. Talk to IT.
-- **`Connection reset`** — a firewall is sending RST. Same conversation.
-- **`Name or service not known`** — DNS can't resolve the hostname. Use the IP address instead.
+- **`Connection refused`**, the broker isn't listening on that port. Confirm it's running (`mosquitto -d` foregrounds for debugging).
+- **`Operation timed out`**, a firewall is dropping the packet silently. Talk to IT.
+- **`Connection reset`**, a firewall is sending RST. Same conversation.
+- **`Name or service not known`**: DNS can't resolve the hostname. Use the IP address instead.
 
 ### Where to go next
 
-[Phase 2 — Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover).
+[Phase 2. Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover).

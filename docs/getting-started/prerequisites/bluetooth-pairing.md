@@ -10,4 +10,4 @@ sidebar_label: How to Pair the Reader Sled via Bluetooth
 
 ---
 
-## Chapter 5 — Quick Start Tutorial (rewritten)
+## Chapter 5. Quick Start Tutorial (rewritten)

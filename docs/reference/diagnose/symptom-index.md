@@ -6,7 +6,7 @@ sidebar_label: Something's broken?
 
 > 🩺 **FAILURE MODE INDEX** · Audience: All personas in incident response
 
-Pick the symptom that matches what you are actually seeing. Each row links to a failure-mode (FM) page or a recovery playbook (RP). If your symptom is not listed, scan the alphabetical list — the closest neighbour is usually informative.
+Pick the symptom that matches what you are actually seeing. Each row links to a failure-mode (FM) page or a recovery playbook (RP). If your symptom is not listed, scan the alphabetical list, the closest neighbour is usually informative.
 
 ### Bootstrap and first connection
 
@@ -35,7 +35,7 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | Symptom | Likely cause | Go to |
 |---|---|---|
 | `control_operation START` returns code 11 | Inventory already running | FM-OPS-01 — Inventory state mismatch |
-| `control_operation STOP` returns code 12 | Inventory not running | (Not a failure — code 12 is idempotent confirmation) |
+| `control_operation STOP` returns code 12 | Inventory not running | (Not a failure; code 12 is idempotent confirmation) |
 | `control_operation` returns code 23 | Lowercase `start` / `stop` instead of `START` / `STOP` | MM-03 — Casing matters |
 | Start succeeds but no `dataEVT` events arrive | DATA endpoint inactive; post-filter excludes everything; FAST_READ profile | RP-05 — Tag data not flowing |
 | `dataEVT` arrives but missing expected fields | `tagMetaDataToEnable` not configured; `reportFilter duration > 0` strips some fields | FM-DATA-01 — Missing metadata fields |
@@ -61,7 +61,7 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | `mqttConnEVT.timestamp` parser failing | Format is `HH:MM:SS`, not ISO 8601 | MM-05 — mqttConnEVT timestamp quirk |
 | Heartbeats stop arriving | Reader offline (broker may still show connected) | RP-07 — Diagnose silent-offline state |
 | Heartbeat `inventoryStatus` block missing | `heartbeatConfiguration.inventoryStatus: false` | FM-EVT-02 — Heartbeat verbosity |
-| `alert_short` arriving but `alerts` not | Endpoint routing — they're separate streams | FM-EVT-03 — Two alert variants, two routes |
+| `alert_short` arriving but `alerts` not | Endpoint routing; they're separate streams | FM-EVT-03 — Two alert variants, two routes |
 
 ### TLS, certificates, network
 
@@ -77,9 +77,9 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | Symptom | Likely cause | Go to |
 |---|---|---|
 | One reader's configuration differs from canonical | Local operator edit; failed `set_config` push | RP-08 — Reconcile drift |
-| Operating mode lost after reboot | Expected — radio-operation config doesn't survive reboot | MM-06 — Persistence asymmetry |
+| Operating mode lost after reboot | Expected; radio-operation config doesn't survive reboot | MM-06 — Persistence asymmetry |
 | Fleet-wide firmware update failed on some readers | Mixed firmware/hardware; battery-low gate | RP-09 — Stagger and retry rollout |
-| Two readers fight over same serial number | Should not happen — serial is unique. Check device labelling | FM-FLEET-01 — Identity collision |
+| Two readers fight over same serial number | Should not happen; serial is unique. Check device labelling | FM-FLEET-01 — Identity collision |
 
 ### Bipartite-specific (RFD40 Standard) 🅑
 
@@ -100,12 +100,12 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 
 ---
 
-The numbered FM and RP identifiers are stable — they don't change as new chapters are added. Bookmark a frequently-hit ID directly.
+The numbered FM and RP identifiers are stable, they don't change as new chapters are added. Bookmark a frequently-hit ID directly.
 
-### What this index does not do
+### Limits
 
 - It does not explain *why*. For that, follow the link.
 - It does not diagnose. For that, run `get_status` and read what comes back.
-- It is not exhaustive. If your symptom isn't listed, file an issue against the docs — your symptom may be the next entry.
+- It is not exhaustive. If your symptom isn't listed, file an issue against the docs, your symptom may be the next entry.
 
 **Related:** 📘 [Where things fail](/reference/diagnose/two-edges) · 📙 [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) · 📘 [Things people get wrong about IOTC](/reference/diagnose/misconceptions)

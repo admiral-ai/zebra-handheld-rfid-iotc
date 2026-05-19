@@ -20,7 +20,7 @@ When a sled crosses a threshold or its operational state changes meaningfully, i
 
 Both are real, both are emitted on appropriate events, and they are **not** duplicates of each other — `alert_short` has many more distinct `id` values (certificate install outcomes, Wi-Fi config success/fail, firmware download/install variants) than `alerts` does.
 
-### `alerts` — the verbose form
+### `alerts`, the verbose form
 
 ```json
 {
@@ -41,13 +41,13 @@ Both are real, both are emitted on appropriate events, and they are **not** dupl
 
 Fields:
 
-- **`type`** — `EVENT`, `NOTIFICATION`, or `ALERT`.
-- **`state`** — `SET` (condition active), `CLEAR` (condition resolved), or `ONESHOT` (one-time fire).
-- **`id`** — alert category. Seven values: `BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`.
-- **`priority`** — `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`.
-- **`alertDetails`** — a category-specific block (`fwUpdateStatus`, `batteryAlert`, `powerEvent`, `networkInfo`, `temperatueInfo`, `downloadInfo`).
+- **`type`**: `EVENT`, `NOTIFICATION`, or `ALERT`.
+- **`state`**: `SET` (condition active), `CLEAR` (condition resolved), or `ONESHOT` (one-time fire).
+- **`id`**: alert category. Seven values: `BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`.
+- **`priority`**: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`.
+- **`alertDetails`**, a category-specific block (`fwUpdateStatus`, `batteryAlert`, `powerEvent`, `networkInfo`, `temperatueInfo`, `downloadInfo`).
 
-### State semantics — SET, CLEAR, ONESHOT
+### State semantics: SET, CLEAR, ONESHOT
 
 The `state` field tells you whether to track or just log:
 
@@ -59,7 +59,7 @@ The `state` field tells you whether to track or just log:
 
 `FIRMWARE_UPDATE` and `TEMPERATURE` use SET/CLEAR (they have a persistent state). `BATTERY`, `POWER`, `NETWORK_EVENT`, `GPI_EVENT`, `ANTENNA_EVENT` use `ONESHOT` (they're transitions, not states).
 
-### `alert_short` — the compact form
+### `alert_short`, the compact form
 
 ```json
 {
@@ -72,24 +72,24 @@ The `state` field tells you whether to track or just log:
 }
 ```
 
-Fields are minimal — `id`, `timestamp`, `type`, `priority`, `messageID`, `description`. No `alertDetails`. The information is encoded in the `id` enum value itself, which is much broader:
+Fields are minimal: `id`, `timestamp`, `type`, `priority`, `messageID`, `description`. No `alertDetails`. The information is encoded in the `id` enum value itself, which is much broader:
 
-- **Battery transitions** — `BATTERY_LOW_SET`, `BATTERY_LOW_CLEAR`, `BATTERY_CRITICAL_SET`, `BATTERY_FULL`.
-- **Temperature transitions** — `TEMPERATURE_HIGH_SET`, `TEMPERATURE_HIGH_CLEAR`, `TEMPERATURE_CRITICAL_SET`, `TEMPERATURE_CRITICAL_CLEAR`.
-- **Firmware** — `FIRMWARE_DOWNLOAD_SUCCESS`, `FIRMWARE_DOWNLOAD_FAIL`, `FIRMWARE_UPDATE_SUCCESS`, `FIRMWARE_UPDATE_FAIL`.
-- **Wi-Fi config** — `WIFI_CONFIG_SUCCESS`, `WIFI_CONFIG_FAIL`.
-- **Ethernet config** — `ETH_CONFIG_SUCCESS`, `ETH_CONFIG_FAIL`.
-- **Power** — `POWER_SOURCE_UPDATE`.
-- **Network** — `NETWORK_INTERFACE_CHANGE`.
-- **MQTT certificates** — `MQTT_INSTALL_CERTIFICATE_SUCCESS`/`FAIL`, plus `MQTT_ROOT_CERT_DOWNLOAD_SUCCESS`/`FAIL`, `MQTT_CLIENT_CERT_DOWNLOAD_SUCCESS`/`FAIL`, `MQTT_CLIENT_KEY_DOWNLOAD_SUCCESS`/`FAIL`, and install variants of each.
-- **Wi-Fi certificates** — full set mirroring the MQTT cert lifecycle.
-- **Filestore certificates** — same again.
+- **Battery transitions**: `BATTERY_LOW_SET`, `BATTERY_LOW_CLEAR`, `BATTERY_CRITICAL_SET`, `BATTERY_FULL`.
+- **Temperature transitions**: `TEMPERATURE_HIGH_SET`, `TEMPERATURE_HIGH_CLEAR`, `TEMPERATURE_CRITICAL_SET`, `TEMPERATURE_CRITICAL_CLEAR`.
+- **Firmware**: `FIRMWARE_DOWNLOAD_SUCCESS`, `FIRMWARE_DOWNLOAD_FAIL`, `FIRMWARE_UPDATE_SUCCESS`, `FIRMWARE_UPDATE_FAIL`.
+- **Wi-Fi config**: `WIFI_CONFIG_SUCCESS`, `WIFI_CONFIG_FAIL`.
+- **Ethernet config**: `ETH_CONFIG_SUCCESS`, `ETH_CONFIG_FAIL`.
+- **Power**: `POWER_SOURCE_UPDATE`.
+- **Network**: `NETWORK_INTERFACE_CHANGE`.
+- **MQTT certificates**: `MQTT_INSTALL_CERTIFICATE_SUCCESS`/`FAIL`, plus `MQTT_ROOT_CERT_DOWNLOAD_SUCCESS`/`FAIL`, `MQTT_CLIENT_CERT_DOWNLOAD_SUCCESS`/`FAIL`, `MQTT_CLIENT_KEY_DOWNLOAD_SUCCESS`/`FAIL`, and install variants of each.
+- **Wi-Fi certificates**: full set mirroring the MQTT cert lifecycle.
+- **Filestore certificates**: same again.
 
 The `id` value carries the operation, the certificate component, and the outcome in one enum slot. A pipeline that just maps `id` to a routing rule is straightforward to build.
 
-**Note on `alert_short.timestamp`** — the example format is `HH:MM:SS`, not full ISO 8601. As with `mqttConnEVT.timestamp`, applications must accept either format.
+**Note on `alert_short.timestamp`**, the example format is `HH:MM:SS`, not full ISO 8601. As with `mqttConnEVT.timestamp`, applications must accept either format.
 
-### Priority — operational meaning
+### Priority: operational meaning
 
 | Priority | Meaning | Pipeline action |
 |---|---|---|
@@ -100,7 +100,7 @@ The `id` value carries the operation, the certificate component, and the outcome
 
 Priority is consistent across `alerts` and `alert_short` for the same trigger. Use it directly as a routing key.
 
-### Which to consume when
+### Choosing between them
 
 - **Application dashboards and operational pipelines:** consume `alerts`. The `alertDetails` block carries actionable specifics (battery percentage, firmware update progress, network interface details).
 - **MDM systems and log aggregators:** consume `alert_short`. Compact, indexable by `id`, easy to ingest at fleet scale.
@@ -124,10 +124,10 @@ For `BATTERY`, `TEMPERATURE`, and the CPU/RAM/flash usage events, the firing rul
 
 See [Choose what the reader tells you](/observability/events/configure).
 
-### What this chapter does not cover
+### Out of scope
 
-- **Configuring which alerts the reader emits** — covered in [Choose what the reader tells you](/observability/events/configure).
-- **Heartbeat-embedded battery state** — that is point-in-time, not threshold-driven; see [Watch your reader's pulse](/observability/events/heartbeat).
-- **Connection-state events (`mqttConnEVT`)** — separate surface; see [Knowing when you're connected](/observability/events/mqtt-connection).
+- **Configuring which alerts the reader emits**: covered in [Choose what the reader tells you](/observability/events/configure).
+- **Heartbeat-embedded battery state**, that is point-in-time, not threshold-driven; see [Watch your reader's pulse](/observability/events/heartbeat).
+- **Connection-state events (`mqttConnEVT`)**: separate surface; see [Knowing when you're connected](/observability/events/mqtt-connection).
 
 **Related:** 📘 [Choose what the reader tells you](/observability/events/configure) · 📘 [Watch your reader's pulse](/observability/events/heartbeat) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection) · 📕 [`alerts`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`alert_short`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

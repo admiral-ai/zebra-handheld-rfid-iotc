@@ -12,12 +12,12 @@ This guide shows you how to interpret the fields in a `dataEVT` payload for appl
 
 The EPC is a hex string. To interpret it:
 
-1. **Convert to binary** — each hex character represents 4 bits.
-2. **Parse per GS1 encoding** — the leading bits encode the EPC scheme (SGTIN-96, GIAI-96, etc.). The GS1 EPC Tag Data Standard defines the rest.
+1. **Convert to binary**, each hex character represents 4 bits.
+2. **Parse per GS1 encoding**, the leading bits encode the EPC scheme (SGTIN-96, GIAI-96, etc.). The GS1 EPC Tag Data Standard defines the rest.
 
 For most applications, the EPC is opaque — applications use it as an identifier looked up in a database. Decoding to GS1 components matters when the application reasons about company prefix, item reference, or serial number.
 
-[DIAGRAM: D-10.3.A — worked SGTIN-96 decode]
+[DIAGRAM: D-10.3.A. worked SGTIN-96 decode]
 
 ### Interpret RSSI
 
@@ -34,7 +34,7 @@ RSSI is signed integer dBm. Typical values:
 
 ### Read TID memory bank
 
-TID is a hex string with the tag's manufacturer-assigned identifier. The first 12 bits identify the IC manufacturer; subsequent bits identify the model and serial. The TID is unique per tag and cannot be rewritten — use it for tag authentication.
+TID is a hex string with the tag's manufacturer-assigned identifier. The first 12 bits identify the IC manufacturer; subsequent bits identify the model and serial. The TID is unique per tag and cannot be rewritten, use it for tag authentication.
 
 ### Use phase angle data
 

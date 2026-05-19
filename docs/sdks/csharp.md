@@ -10,4 +10,4 @@ Same pattern with `MQTTnet`. Same envelope and payload shapes.
 
 ---
 
-# Part III — Infrastructure (corrected)
+# Part III: Infrastructure (corrected)

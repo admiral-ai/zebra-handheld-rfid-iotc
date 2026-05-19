@@ -10,11 +10,11 @@ An MQTT client's connection to the broker is a stateful, long-lived TCP session.
 
 ### CONNECT and CONNACK
 
-A client begins by sending a CONNECT packet containing its client identifier, credentials, optional LWT, keep-alive interval, and clean-session flag. The broker replies with CONNACK — accept or reject. From this point the connection is established.
+A client begins by sending a CONNECT packet containing its client identifier, credentials, optional LWT, keep-alive interval, and clean-session flag. The broker replies with CONNACK (accept or reject). From this point the connection is established.
 
-[DIAGRAM: D-3.4.A — CONNECT/CONNACK ladder with field annotations]
+[DIAGRAM: D-3.4.A. CONNECT/CONNACK ladder with field annotations]
 
-### Keep-alive — PINGREQ and PINGRESP
+### Keep-alive. PINGREQ and PINGRESP
 
 The client and broker agree on a keep-alive interval at CONNECT time. If no data has flowed for that interval, the client sends a PINGREQ; the broker replies with PINGRESP. If either side fails to receive expected traffic for one and a half keep-alive intervals, it considers the peer dead and closes the connection.
 
@@ -22,13 +22,13 @@ For battery-powered handheld readers, keep-alive interval is a direct battery-vs
 
 ### Clean session vs persistent session
 
-A clean-session client tells the broker "do not preserve state for me" — no queued messages, no subscription persistence. A persistent-session client (clean-session false) asks the broker to retain its subscriptions and queue QoS 1 messages while it is offline. IOTC readers use **persistent sessions** so that commands and alerts buffered during a transient disconnect are delivered on reconnect.
+A clean-session client tells the broker "do not preserve state for me", no queued messages, no subscription persistence. A persistent-session client (clean-session false) asks the broker to retain its subscriptions and queue QoS 1 messages while it is offline. IOTC readers use **persistent sessions** so that commands and alerts buffered during a transient disconnect are delivered on reconnect.
 
 ### Reconnection behaviour on the handheld
 
-The handheld sled's MQTT connection rides over its Bluetooth link to the host device. When BT drops — reader pocketed, host moved out of range — the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once BT is re-established and Wi-Fi is reachable, the persistent session resumes and queued QoS 1 messages flow.
+The handheld sled's MQTT connection rides over its Bluetooth link to the host device. When BT drops — reader pocketed, host moved out of range, the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once BT is re-established and Wi-Fi is reachable, the persistent session resumes and queued QoS 1 messages flow.
 
-[DIAGRAM: D-3.4.B — reconnect state machine: connected → disconnected → reconnecting → connected]
+[DIAGRAM: D-3.4.B. reconnect state machine: connected → disconnected → reconnecting → connected]
 
 ### Battery implications
 

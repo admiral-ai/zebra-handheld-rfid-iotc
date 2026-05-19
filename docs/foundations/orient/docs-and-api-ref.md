@@ -14,10 +14,10 @@ The system answers four questions, each of which has its own voice and access pa
 
 | Question | Site | Voice | Look up |
 |---|---|---|---|
-| Why does this work the way it does? | Conceptual docs (this site) | Explanation — discursive | Concepts, mental models, decision criteria |
-| Teach me by doing. | Conceptual docs, Part 3 | Tutorial — narrative | The Quick Start |
-| Why is this broken? | Conceptual docs, Part 8 | Diagnostic — symptom-first | Recovery playbooks, misconception list |
-| What is the exact contract of this operation? | API Reference (separate site) | Reference — atomic, tabular | Schema, command signatures, error codes |
+| Why does this work the way it does? | Conceptual docs (this site) | Explanation; discursive | Concepts, mental models, decision criteria |
+| Teach me by doing. | Conceptual docs, Part 3 | Tutorial; narrative | The Quick Start |
+| Why is this broken? | Conceptual docs, Part 8 | Diagnostic; symptom-first | Recovery playbooks, misconception list |
+| What is the exact contract of this operation? | API Reference (separate site) | Reference; atomic, tabular | Schema, command signatures, error codes |
 
 Mixing the voices produces a worst-of-both-worlds page: too verbose for lookup, too dry for understanding. We keep them apart on purpose.
 
@@ -55,16 +55,16 @@ Click through either way. The cross-walk is bidirectional and complete.
 
 A reader of this stack typically arrives via one of four doors:
 
-- **The concept door** — *"I'm trying to understand X."* Land here, in Parts 1–7.
-- **The tutorial door** — *"Teach me by doing."* Land in Part 3.
-- **The symptom door** — *"Why is this broken?"* Land in Part 8.
-- **The API door** — *"What's the exact contract?"* Land on the API Reference site.
+- **The concept door**: *"I'm trying to understand X."* Land here, in Parts 1–7.
+- **The tutorial door**: *"Teach me by doing."* Land in Part 3.
+- **The symptom door**: *"Why is this broken?"* Land in Part 8.
+- **The API door**: *"What's the exact contract?"* Land on the API Reference site.
 
 All four doors open into the same building. Internal links never leave you stranded; the cross-walk above guarantees a one-hop path to whichever surface answers your current question.
 
 ### About payload examples
 
-Every code example on this site uses **native MQTT flattened payloads** — the runtime contract the sled actually accepts.
+Every code example on this site uses **native MQTT flattened payloads**, the runtime contract the sled actually accepts.
 
 ```json
 {

@@ -17,7 +17,7 @@ sidebar_label: Reboot when needed
 A warm reset of the device. After a successful reboot:
 
 - The reader automatically reconnects to its previously connected broker.
-- **All management endpoint configurations are restored** — MGMT, MGMT_EVT, CTRL endpoints, certificate installs, Wi-Fi profiles, region.
+- **All management endpoint configurations are restored**: MGMT, MGMT_EVT, CTRL endpoints, certificate installs, Wi-Fi profiles, region.
 - **Only radio operation configurations from the control endpoint are lost.** If you set an operating mode that wasn't persisted, you'll need to re-apply it.
 
 Use `reboot` when you need to:
@@ -71,7 +71,7 @@ The canonical schema defines two response codes: `0` (Success) and `5` (Can't re
 }
 ```
 
-> **A documented discrepancy.** The reboot API reference also shows an example response with `code: 1` and the description "Command payload is accepted." The schema and error table only define `0` and `5`. **Trust the schema.** If you receive `1`, treat it as a successful acceptance equivalent to `0` — but write your client to handle `0` and `5` as the canonical contract.
+> **A documented discrepancy.** The reboot API reference also shows an example response with `code: 1` and the description "Command payload is accepted." The schema and error table only define `0` and `5`. **Trust the schema.** If you receive `1`, treat it as a successful acceptance equivalent to `0`, but write your client to handle `0` and `5` as the canonical contract.
 
 #### 4. Wait for reconnection
 
@@ -88,7 +88,7 @@ The sled will go offline briefly (typically 10–30 seconds) and come back onlin
 }
 ```
 
-> **Note on `mqttConnEVT` timestamp.** The canonical schema specifies an `HH:MM:SS` format — not a full ISO 8601 string. This is documented in the API reference and matches the example above. Applications that try to parse a full date will fail on this field.
+> **Note on `mqttConnEVT` timestamp.** The canonical schema specifies an `HH:MM:SS` format, not a full ISO 8601 string. This is documented in the API reference and matches the example above. Applications that try to parse a full date will fail on this field.
 
 #### 5. Confirm management config survived
 
@@ -118,6 +118,5 @@ Recommended next reads based on what you need:
 - **Tuning tag reads.** [Choose how the reader reads tags](/rfid/operating-mode/profiles) for the five supported profiles; [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about) for pre-filters and post-filters.
 - **Observing fleet health.** [Watch your reader's pulse](/observability/events/heartbeat) for heartbeats; [When the reader needs to interrupt you](/observability/events/alerts) for alerts; [Knowing when you're connected](/observability/events/mqtt-connection) for `mqttConnEVT`.
 - **Going to many sleds.** [Going from one reader to a fleet](/fleet/provisioning/models).
-- **Things people get wrong.** [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — the misconception inventory pays for itself in production.
+- **Things people get wrong.** [Things people get wrong about IOTC](/reference/diagnose/misconceptions), the misconception inventory pays for itself in production.
 
-You've earned the rest of the docs. Welcome.

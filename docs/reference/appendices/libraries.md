@@ -26,7 +26,7 @@ sidebar_label: Third-Party MQTT Client Libraries
 
 ---
 
-## Closing — Phase 2 Status & Handoff to Phase 3
+## Closing. Phase 2 Status & Handoff to Phase 3
 
 **Drafting complete.** This document carries first-draft prose for every page in IA v1.1:
 
@@ -52,7 +52,7 @@ For every page in this document:
 - [x] Forbidden content (per Phase 1) omitted or linked out
 - [x] Diagrams referenced by ID for Info Designer hand-off
 
-### Phase 3 handoff — per-section SME review queue
+### Phase 3 handoff: per-section SME review queue
 
 Per the org-structure brief's pipeline, the following SMEs receive these sections for technical-accuracy review:
 

@@ -12,7 +12,7 @@ sidebar_label: Verify the bootstrap connection (`get_version`)
 - The application can reach the reader.
 - The reader can reach the application.
 
-`get_version` is the canonical first command. It is read-only, idempotent, identity-establishing, and **does not depend on operating mode or radio state.**
+`get_version` is the first command. It is read-only, idempotent, identity-establishing, and **does not depend on operating mode or radio state.**
 
 ### Why this phase exists
 
@@ -53,7 +53,7 @@ mosquitto_pub -h <broker-host> -p 1883 \
   -m '{"command":"get_version","requestId":"abc123"}'
 ```
 
-The payload is the canonical two-field minimum. No envelope, no nesting:
+The payload is the two-field minimum. No envelope, no nesting:
 
 ```json
 {
@@ -97,7 +97,7 @@ Within a few hundred milliseconds, your subscriber prints something like:
 |---|---|
 | `model` | Confirm RFD40 vs RFD90 before applying model-specific configuration. |
 | `serialNumber` | Should match the label on the back of the sled. Used for asset tracking and topic routing. |
-| `sku` | Identifies the regional / hardware variant — e.g., `RFD4031-G10B700-US` is a US-regional RFD40. |
+| `sku` | Identifies the regional / hardware variant; e.g., `RFD4031-G10B700-US` is a US-regional RFD40. |
 | `firmwareVersion` | Compare against your expected baseline before updates or troubleshooting. |
 | `detailedVersions.iotcVersion` | Determines which commands and features are available. Quick Start assumes `V1.1` or later. |
 
@@ -119,12 +119,12 @@ You can now command the reader.
 
 ### A note on `requestId` discipline
 
-`requestId` is your only correlation tool. MQTT itself provides no request/response pairing at the protocol layer — IOTC implements correlation in the JSON payload. Choose values that are:
+`requestId` is your only correlation tool. MQTT itself provides no request/response pairing at the protocol layer. IOTC implements correlation in the JSON payload. Choose values that are:
 
 - **Unique within your application's session** (avoid collisions during concurrent requests).
 - **Readable in logs** (UUIDs work but are noisy; prefer prefixed counters like `ver-001`, `cfg-042`).
-- **Stable across retries** — reuse the same `requestId` if you retry. The reader treats it idempotently.
+- **Stable across retries**: reuse the same `requestId` if you retry. The reader treats it idempotently.
 
 ### Where to go next
 
-[Phase 4 — Inspect endpoint state (`get_endpoint_config`)](/getting-started/quick-start/step-4-start).
+[Phase 4. Inspect endpoint state (`get_endpoint_config`)](/getting-started/quick-start/step-4-start).

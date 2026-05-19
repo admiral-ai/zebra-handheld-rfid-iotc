@@ -6,7 +6,7 @@ sidebar_label: Your first 30 minutes
 
 > 📗 **TUTORIAL** · Audience: New Integrator · Time: ~30 min hands-on, ~45 min full chapter · Path: 🅐 Monolithic (Premium / RFD90)
 
-In the next thirty minutes you will take a sled out of its box, give it a network identity, and watch tag reads stream over MQTT. The Quick Start is **seven phases**. Each phase ends with a verifiable artifact you can see — a confirmed broker reachability check, an active MDM endpoint, a `get_version` response, a configured CTRL endpoint, a live `dataEVT` stream. **If the artifact appears, the phase succeeded. If it doesn't, you don't proceed.**
+In the next thirty minutes you will take a sled out of its box, give it a network identity, and watch tag reads stream over MQTT. The Quick Start is **seven phases**. Each phase ends with a verifiable artifact you can see, a confirmed broker reachability check, an active MDM endpoint, a `get_version` response, a configured CTRL endpoint, a live `dataEVT` stream. **If the artifact appears, the phase succeeded. If it doesn't, you don't proceed.**
 
 This is the only Tutorial in the conceptual docs. Everything else is Explanation, How-To, or Reference. Use this chapter to build confidence; come back later for the underlying concepts.
 
@@ -44,18 +44,18 @@ The MDM endpoint is the bootstrap connection. Everything else depends on it.
 - **Bipartite path (RFD40 Standard).** This tutorial assumes a Monolithic sled — RFD40 Premium, Premium Plus, or RFD90. RFD40 Standard requires a host-device bridge and a different bootstrap. A separate Path B tutorial is planned.
 - **TLS.** Phases 5 and 6 use plain MQTT on port 1883. Promote to TLS only after the unencrypted path works end-to-end. See [Securing the connection (TLS & certificates)](/infrastructure/security/model).
 - **Fleet provisioning.** Six readers on a single laptop is fine for evaluation. For more, see [Going from one reader to a fleet](/fleet/provisioning/models).
-- **Production reliability.** Retention, retry, batching, alert thresholds — all covered in Parts 4–7. This tutorial gets you to "it works," not to "it survives a Tuesday."
+- **Production reliability.** Retention, retry, batching, alert thresholds, all covered in Parts 4–7. This tutorial gets you to "it works," not to "it survives a Tuesday."
 
 ### What you need before you start
 
 - **Hardware:** an RFD40 Premium, Premium Plus, or RFD90 sled, charged. A USB-C cable. A Windows laptop (for 123RFID Desktop). A few EPC Gen2 RFID tags.
-- **Software:** 123RFID Desktop installed on the laptop. [MQTTX](https://mqttx.app) (GUI) or `mosquitto_sub`/`mosquitto_pub` (CLI) for validation. A reachable MQTT broker — Mosquitto on localhost, HiveMQ Cloud, or AWS IoT Core.
+- **Software:** 123RFID Desktop installed on the laptop. [MQTTX](https://mqttx.app) (GUI) or `mosquitto_sub`/`mosquitto_pub` (CLI) for validation. A reachable MQTT broker. Mosquitto on localhost, HiveMQ Cloud, or AWS IoT Core.
 - **Access:** the credentials for your broker (if any), and outbound 1883/8883 from the sled's network segment.
 
 ### When something goes wrong
 
-Each phase has a "Didn't work?" footer. If you can't unblock from there, jump to [Something's broken?](/reference/diagnose/symptom-index) — the symptom-first index. Coming back to the tutorial after debugging is fine; phases are idempotent.
+Each phase has a "Didn't work?" footer. If you can't unblock from there, jump to [Something's broken?](/reference/diagnose/symptom-index), the symptom-first index. Coming back to the tutorial after debugging is fine; phases are idempotent.
 
 ### Where to go next
 
-Start at [Phase 1 — Prepare network and broker](/getting-started/quick-start/step-1-connect).
+Start at [Phase 1. Prepare network and broker](/getting-started/quick-start/step-1-connect).

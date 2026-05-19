@@ -6,7 +6,7 @@ sidebar_label: Add remote endpoints (`config_endpoint`)
 
 > 📗 **TUTORIAL** · Phase 5 of 7 · Audience: Integrator · Time: ~8 min · Path: 🅐 Monolithic
 
-**Artifact this phase produces:** two operational endpoints active on the sled — a **CTRL** endpoint for radio control and a **DATA1** endpoint for the tag stream — in addition to the bootstrap MDM endpoint. This is the configuration most production deployments actually run.
+**Artifact this phase produces:** two operational endpoints active on the sled, a **CTRL** endpoint for radio control and a **DATA1** endpoint for the tag stream, in addition to the bootstrap MDM endpoint. This is the configuration most production deployments actually run.
 
 ### Why this phase exists
 
@@ -26,7 +26,7 @@ All MQTT topics follow a fixed three-part hierarchy:
 <tenantId> / <topic> / <deviceSerialNumber>
 ```
 
-You configure only the **middle segment** in the `topic` field of each `publishTopic` or `subscribeTopic`. The reader prepends `tenantId` and appends `deviceSerialNumber` automatically. **Never** include the tenantId or serial in the `topic` field — they get added twice and the path becomes unroutable.
+You configure only the **middle segment** in the `topic` field of each `publishTopic` or `subscribeTopic`. The reader prepends `tenantId` and appends `deviceSerialNumber` automatically. **Never** include the tenantId or serial in the `topic` field, they get added twice and the path becomes unroutable.
 
 ### What to do
 
@@ -73,9 +73,9 @@ mosquitto_pub -h <broker-host> -p 1883 \
 
 A few things to notice in this payload:
 
-- The named payload object is **`epConfig`** — not `params`, not nested in any other envelope.
+- The named payload object is **`epConfig`**, not `params`, not nested in any other envelope.
 - `operation` is lowercase `add` (the casing varies by command; trust the per-command schema).
-- `tenantId` is lowercase `zebra` — the canonical convention.
+- `tenantId` is lowercase `zebra`, the canonical convention.
 - `publishTopics` supports **at most 3 entries**; `subscribeTopics` supports **at most 1**. Exceed and the reader returns error 25 or 26.
 - `verificationType: "NONE"` is required even on plain MQTT.
 
@@ -123,7 +123,7 @@ mosquitto_pub -h <broker-host> -p 1883 \
   }'
 ```
 
-DATA1 publishes only — there is no `subscribeTopics` because applications never send commands to a data endpoint. The reader will publish `dataEVT` events on the DATA1 publish topic family.
+DATA1 publishes only; there is no `subscribeTopics` because applications never send commands to a data endpoint. The reader will publish `dataEVT` events on the DATA1 publish topic family.
 
 #### 3. Verify both endpoints are active
 
@@ -178,8 +178,8 @@ Other common stumbles:
 
 - **Endpoint configured but not flowing.** `activate` must be `true` and the broker URL must be reachable from the sled. The reader doesn't fail-loudly on broker unreachability at config time; it sits in a reconnect loop.
 - **Topic missing tenantId in your subscriber.** Subscribe to `zebra/CTRL/#` not `CTRL/#`. The reader publishes the full three-part path.
-- **Certificate fields referenced but not installed.** For TLS endpoints, certificate files must already be installed via `install_certificate` — see [Securing the connection](/infrastructure/security/model). Plain MQTT (this Quick Start) doesn't need them.
+- **Certificate fields referenced but not installed.** For TLS endpoints, certificate files must already be installed via `install_certificate`, see [Securing the connection](/infrastructure/security/model). Plain MQTT (this Quick Start) doesn't need them.
 
 ### Where to go next
 
-[Phase 6 — Start and stop inventory (`control_operation`)](/getting-started/quick-start/step-6-stop).
+[Phase 6. Start and stop inventory (`control_operation`)](/getting-started/quick-start/step-6-stop).

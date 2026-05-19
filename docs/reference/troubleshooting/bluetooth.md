@@ -29,6 +29,6 @@ This guide shows you how to troubleshoot Bluetooth and host-device-related issue
 - The host application that mediates sled ↔ broker traffic may be suspended by Android's battery optimization. Whitelist the app in Android settings.
 - Verify the host has its own MQTT path to the broker by running a test MQTT client on the host directly.
 
-[DIAGRAM: D-18.5.A — BT/host-symptom decision tree]
+[DIAGRAM: D-18.5.A. BT/host-symptom decision tree]
 
 **Related:** 📙 [§4.4 Bluetooth Pairing](/getting-started/prerequisites/bluetooth-pairing) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations)

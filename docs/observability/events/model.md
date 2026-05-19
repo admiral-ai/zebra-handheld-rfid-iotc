@@ -28,8 +28,8 @@ Each event flows on the **publish topics of the endpoint(s) configured to emit i
 
 Event configuration is reachable through two equivalent paths:
 
-- `config_events` — shortcut that applies to the **currently active** endpoint's event configuration.
-- `config_endpoint` — full per-endpoint control via the `eventConfiguration` sub-object of `epConfig`.
+- `config_events`: shortcut that applies to the **currently active** endpoint's event configuration.
+- `config_endpoint`: full per-endpoint control via the `eventConfiguration` sub-object of `epConfig`.
 
 `config_events` is the convenient default; `config_endpoint` is the full surface for fleet-scale per-endpoint configuration.
 

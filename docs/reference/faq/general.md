@@ -25,7 +25,7 @@ sidebar_label: General Questions
 ---
 
 **Q:** Where do I get IOTC credentials?
-**A:** From the Zebra developer portal, under IoT Connector → Tenants.
+**A:** From the Zebra developer portal, under IoT Connector to Tenants.
 **Details:** [§4.2 How to Obtain IOTC Credentials & Tenant ID](/getting-started/prerequisites/credentials)
 
 ---

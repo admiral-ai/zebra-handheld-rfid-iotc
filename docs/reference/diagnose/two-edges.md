@@ -10,7 +10,7 @@ Diagnose any IOTC failure by first identifying **which physical edge is broken.*
 
 ### Two tiers, different edge counts
 
-**🅐 Monolithic — one edge**
+**🅐 Monolithic, one edge**
 
 ```
    Reader  ──[Wi-Fi]──  AP  ──[LAN]──  WAN  ──[broker]──  Broker
@@ -20,7 +20,7 @@ Diagnose any IOTC failure by first identifying **which physical edge is broken.*
 
 A Monolithic sled (RFD40 Premium / Premium Plus / RFD90) has one physical edge: **Reader ↔ Broker over Wi-Fi.** Everything between the AP and the broker is IT infrastructure outside IOTC's surface.
 
-**🅑 Bipartite — two edges**
+**🅑 Bipartite, two edges**
 
 ```
    Reader  ──[Bluetooth/eConnex]──  Host  ──[Wi-Fi or USB]──  Broker
@@ -36,23 +36,23 @@ Each edge produces characteristic signals when it fails. Diagnose by checking th
 
 #### Reader ↔ Wi-Fi (Monolithic)
 
-- **`get_status.deviceStatus.radioConnection`** — `CONNECTED` means radio firmware sees the Wi-Fi controller.
-- **No `mqttConnEVT`** — the reader cannot reach the broker. Most likely a path-layer problem above Wi-Fi.
+- **`get_status.deviceStatus.radioConnection`**: `CONNECTED` means radio firmware sees the Wi-Fi controller.
+- **No `mqttConnEVT`**, the reader cannot reach the broker. Most likely a path-layer problem above Wi-Fi.
 - **`alert_short` `WIFI_*`** — Wi-Fi association failures.
-- **Heartbeats stop, no DISCONNECTED event** — soft failure; reader still has TCP but is internally stuck. Power-cycle.
+- **Heartbeats stop, no DISCONNECTED event**: soft failure; reader still has TCP but is internally stuck. Power-cycle.
 
 #### Reader ↔ Host (Bipartite)
 
-- **`get_status.deviceStatus.terminalConnection.status`** — `CONNECTED` or `DISCONNECTED`. This is the Bluetooth state.
-- **`terminalConnection.type`** — `BLUETOOTH`, `CIO`, or `USB`. Which bridge is active.
-- **No commands reach the reader** — host is connected to the broker but the Bluetooth side is broken.
+- **`get_status.deviceStatus.terminalConnection.status`**: `CONNECTED` or `DISCONNECTED`. This is the Bluetooth state.
+- **`terminalConnection.type`**: `BLUETOOTH`, `CIO`, or `USB`. Which bridge is active.
+- **No commands reach the reader**: host is connected to the broker but the Bluetooth side is broken.
 - **No `dataEVT`** when inventory is running on the host — bridge is dropping events.
 
 #### Host ↔ Broker (Bipartite)
 
-- **`mqttConnEVT`** — same as Monolithic; reflects the broker-side view of the host's connection.
-- **Host's own MQTT client logs** — the host bridge has its own client with its own observability.
-- **Application sees nothing** — even though the host reports connection, the topic routing may be wrong.
+- **`mqttConnEVT`**: same as Monolithic; reflects the broker-side view of the host's connection.
+- **Host's own MQTT client logs**, the host bridge has its own client with its own observability.
+- **Application sees nothing**, even though the host reports connection, the topic routing may be wrong.
 
 ### A decision tree
 
@@ -80,7 +80,7 @@ Symptom: no tag data arriving in application
    Yes → Filter is excluding tags. Check post-filters and metadata enable. Go to FM-DATA-01.
 ```
 
-### Why "edge count" is the right first question
+### Why "edge count" comes first
 
 Failures are scoped by edge. A Wi-Fi authentication failure on a Monolithic sled has nothing to do with the broker; you waste time inspecting broker logs. A Bluetooth dropout on a Bipartite sled has nothing to do with Wi-Fi; you waste time inspecting AP logs.
 
@@ -98,10 +98,10 @@ Three commands and events together cover most of the diagnostic surface:
 
 If all three are healthy and the symptom persists, the problem is downstream of the broker — broker ACLs, downstream pipeline, application bug.
 
-### What this chapter does not cover
+### Out of scope
 
-- **Specific failure modes per edge** — covered as FM-XX-YY entries in the symptom index and failure-mode pages.
-- **Recovery procedures** — covered in [Playbooks for getting back online](/reference/diagnose/recovery-playbooks).
-- **Why the system fails the way it does** — covered in the relevant explanation chapters in Parts 4–6.
+- **Specific failure modes per edge**: covered as FM-XX-YY entries in the symptom index and failure-mode pages.
+- **Recovery procedures**: covered in [Playbooks for getting back online](/reference/diagnose/recovery-playbooks).
+- **Why the system fails the way it does**: covered in the relevant explanation chapters in Parts 4–6.
 
 **Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📙 [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) · 📘 [What your reader knows about itself](/infrastructure/management/device-state) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection)

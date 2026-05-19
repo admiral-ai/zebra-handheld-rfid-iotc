@@ -10,9 +10,9 @@ IOTC V1.1 is the current API baseline for handheld RFID readers running firmware
 
 ### Per-endpoint version support
 
-Every operation in this API declares its supported versions. Across the documented operation set, every operation supports both `V1.0` and `V1.1` — there is no V1.0-only or V1.1-only operation. Field-level changes between versions, where they exist, are catalogued on the affected operation's Reference page in [§16](#chapter-16--mqtt-api-reference).
+Every operation in this API declares its supported versions. Across the documented operation set, every operation supports both `V1.0` and `V1.1`; there is no V1.0-only or V1.1-only operation. Field-level changes between versions, where they exist, are catalogued on the affected operation's Reference page in [§16](#chapter-16--mqtt-api-reference).
 
-### What this means for V1.0 clients
+### Effect on V1.0 clients
 
 A client written for V1.0 continues to function against V1.1 firmware. Field additions in V1.1 are additive — V1.0 clients ignore unknown fields. For projects that want to consume V1.1-only fields (richer event payloads, new metadata flags), update the client to expect the new fields.
 

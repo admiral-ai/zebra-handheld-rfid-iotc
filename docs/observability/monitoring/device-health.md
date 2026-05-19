@@ -16,7 +16,7 @@ This guide shows you how to check the health of a handheld reader on demand and 
 
 The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [§16.2](#chapter-16--mqtt-api-reference).
 
-[DIAGRAM: D-12.1.A — `get_status` response annotated]
+[DIAGRAM: D-12.1.A. `get_status` response annotated]
 
 ### Continuous: subscribe to `heartBeatEVT`
 

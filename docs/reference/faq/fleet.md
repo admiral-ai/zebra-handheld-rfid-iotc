@@ -7,7 +7,7 @@ sidebar_label: Fleet Management FAQs
 > 📕 **REFERENCE**
 
 **Q:** Does IOTC support SOTI Connect?
-**A:** Yes — SOTI Connect is the recommended MDM platform for handheld IOTC fleets.
+**A:** Yes. SOTI Connect is the recommended MDM platform for handheld IOTC fleets.
 **Details:** [§13.2 How to Set Up Zero-Touch Provisioning with SOTI Connect](/fleet/provisioning/soti-connect)
 
 ---
@@ -20,7 +20,7 @@ sidebar_label: Fleet Management FAQs
 
 **Q:** Can I roll back firmware on handheld readers?
 **A:** No. Firmware revert is not supported on this hardware family.
-**Details:** [§14.5 How to Plan a V1.0 → V1.1 Migration](/fleet/migration/plan)
+**Details:** [§14.5 How to Plan a V1.0 to V1.1 Migration](/fleet/migration/plan)
 
 ---
 

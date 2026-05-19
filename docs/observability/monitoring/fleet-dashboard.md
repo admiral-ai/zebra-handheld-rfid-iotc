@@ -37,23 +37,23 @@ def on_event(topic, payload):
 
 ### Reference architectures
 
-- **Grafana** — write aggregated metrics to Prometheus or InfluxDB; build panels for online count, battery distribution, alert counts, reconnect rates.
-- **Azure IoT Central** — native MQTT consumption; dashboards and alerting built in.
-- **AWS IoT Core** — use rules to route events into CloudWatch or DynamoDB; build dashboards in QuickSight or Grafana.
+- **Grafana**: write aggregated metrics to Prometheus or InfluxDB; build panels for online count, battery distribution, alert counts, reconnect rates.
+- **Azure IoT Central**: native MQTT consumption; dashboards and alerting built in.
+- **AWS IoT Core**, use rules to route events into CloudWatch or DynamoDB; build dashboards in QuickSight or Grafana.
 
 Each architecture's setup is in the relevant cloud-integration how-to ([§15.2](/fleet/cloud-integration/aws)–[§15.4](/fleet/cloud-integration/gcp)).
 
 ### Key metrics to display
 
-- **Online count** — readers with a heartbeat in the last 3× interval
-- **Battery distribution** — histogram of `battery_percent` across the fleet
-- **Active operations count** — readers in `running` state
-- **Alert counts** — last 24h, segmented by category
-- **Connection-quality outliers** — readers with reconnect rate above threshold
+- **Online count**: readers with a heartbeat in the last 3× interval
+- **Battery distribution**: histogram of `battery_percent` across the fleet
+- **Active operations count**: readers in `running` state
+- **Alert counts**: last 24h, segmented by category
+- **Connection-quality outliers**: readers with reconnect rate above threshold
 
-[DIAGRAM: D-12.4.A — example dashboard mockup]
+[DIAGRAM: D-12.4.A. example dashboard mockup]
 
-[DIAGRAM: D-12.4.B — aggregation pipeline: MQTT consumer → state store → dashboard query]
+[DIAGRAM: D-12.4.B. aggregation pipeline: MQTT consumer → state store → dashboard query]
 
 ### Alerting integration
 

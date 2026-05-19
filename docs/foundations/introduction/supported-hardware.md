@@ -6,7 +6,7 @@ sidebar_label: "Which sled do you have? (Monolithic vs Bipartite)"
 
 > 📘 **EXPLANATION** · Audience: New Integrator, Solution Builder · Read time: ~4 min
 
-The single most consequential decision in IOTC is which **architecture tier** your sled belongs to. The same SKU label hides two very different network topologies. **Get the tier wrong and every later chapter mis-maps.**
+The most consequential decision in IOTC is which **architecture tier** your sled belongs to. The same SKU label hides two very different network topologies. **Get the tier wrong and every later chapter mis-maps.**
 
 ### Two tiers, one product line
 
@@ -15,9 +15,9 @@ The single most consequential decision in IOTC is which **architecture tier** yo
 | **🅐 Monolithic Edge Node** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
 | **🅑 Bipartite** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
 
-The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolithic — they ship different radios.
+The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolithic, they ship different radios.
 
-[DIAGRAM: D-2.2.A — side-by-side topology: Monolithic single-edge vs Bipartite two-edge]
+[DIAGRAM: D-2.2.A. side-by-side topology: Monolithic single-edge vs Bipartite two-edge]
 
 ### How they differ in practice
 
@@ -53,14 +53,14 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolit
 
 **Note.** Premium Plus differs from Premium primarily in mechanical ruggedization and battery accessories; the IOTC surface is identical.
 
-[DIAGRAM: D-2.2.B — annotated sled illustration: antenna, trigger, USB-C, scanner window]
+[DIAGRAM: D-2.2.B. annotated sled illustration: antenna, trigger, USB-C, scanner window]
 
 ### How to identify your tier in seconds
 
 - Powered off, look at the model label.
-  - `RFD40SS-…` → Standard 🅑
-  - `RFD40NP-…` or `RFD40HP-…` → Premium 🅐
-  - `RFD9030-…` → RFD90 🅐
+  - `RFD40SS-…` to Standard 🅑
+  - `RFD40NP-…` or `RFD40HP-…` to Premium 🅐
+  - `RFD9030-…` to RFD90 🅐
 - Powered on, watch the LED behavior during 123RFID Desktop bootstrap. Wi-Fi setup will only succeed on Monolithic tiers; Standard sleds show no Wi-Fi options.
 - From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Monolithic, it names the in-firmware IOTC version.
 
@@ -70,6 +70,6 @@ All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks `confi
 
 ### What this implies for scope
 
-Because every sled has one internal antenna, this documentation does **not** cover external-antenna selection, cable-loss compensation, or directionality settings — those exist only on fixed readers. Because every sled is battery-powered, the docs give sustained attention to battery lifecycle, the OPTIMAL_BATTERY profile, and heartbeat-emission cost. These are not caveats; they shape every chapter.
+Because every sled has one internal antenna, this documentation does **not** cover external-antenna selection, cable-loss compensation, or directionality settings; those exist only on fixed readers. Because every sled is battery-powered, the docs give sustained attention to battery lifecycle, the OPTIMAL_BATTERY profile, and heartbeat-emission cost. These are not caveats; they shape every chapter.
 
 **Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 [Capacity and limits](/reference/diagnose/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)

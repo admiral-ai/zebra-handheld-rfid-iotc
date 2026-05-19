@@ -11,7 +11,7 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 #### Symptom: operation start succeeds but no tags read
 
 - Verify tags are present in the field — wave a known-good tag close to the sled.
-- Check `get_post_filter` — an over-restrictive include filter drops everything.
+- Check `get_post_filter`, an over-restrictive include filter drops everything.
 - Check `get_operating_mode` `rf_power` — too-low power reduces effective range.
 - Check the regulatory region — wrong region can disable the radio entirely.
 
@@ -32,6 +32,6 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 - Battery dropped below operational threshold: check `heartBeatEVT.data.battery_percent`.
 - Trigger was released (in `press_to_start` mode): operator-initiated stop is normal.
 
-[DIAGRAM: D-18.3.A — RFID-symptom decision tree]
+[DIAGRAM: D-18.3.A. RFID-symptom decision tree]
 
 **Related:** 📙 [§9.2 Configure Operating Mode](/rfid/operating-mode/configure) · 📙 [§9.3b Configure Filters](/rfid/operating-mode/post-filters-configure) · 📕 [§16.3 CTRL endpoints](#chapter-16--mqtt-api-reference) · 📕 [§17.3 Exception Codes](#173--exception-event-codes)

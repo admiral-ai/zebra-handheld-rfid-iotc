@@ -53,4 +53,4 @@ Per-mode drain figures are deployment-specific. Measure drain over a representat
 
 ---
 
-# Part VI — Fleet Operations (corrected)
+# Part VI: Fleet Operations (corrected)

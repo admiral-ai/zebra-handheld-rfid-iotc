@@ -30,13 +30,13 @@ All topics on an IOTC reader follow this structure:
 <tenantId> / <topic> / <deviceSerialNumber>
 ```
 
-The middle segment — `<topic>` — is **configured per endpoint** via the endpoint's `publishTopics` and `subscribeTopics` arrays. Common conventions used in source examples include `MGMT/clients/cmnd`, `MGMT/clients/resp`, `CTRL/clients/event`, `MGMT/clients/rfid`. The "clients" segment is a customary middle-of-topic convention, **not** a protocol-fixed element.
+The middle segment (`<topic>`)is **configured per endpoint** via the endpoint's `publishTopics` and `subscribeTopics` arrays. Common conventions used in source examples include `MGMT/clients/cmnd`, `MGMT/clients/resp`, `CTRL/clients/event`, `MGMT/clients/rfid`. The "clients" segment is a customary middle-of-topic convention, **not** a protocol-fixed element.
 
 The reader **prepends `tenantId` and appends `deviceSerialNumber` automatically** at runtime. Never include them in the configured `topic` field.
 
-[DIAGRAM: D-2.4.A — Three-part topic template parsed with example: `zebra` / `MGMT/clients/resp` / `RFD40-24190525100255`]
+[DIAGRAM: D-2.4.A. Three-part topic template parsed with example: `zebra` / `MGMT/clients/resp` / `RFD40-24190525100255`]
 
-[DIAGRAM: D-2.4.B — Seven endpoint types as a deployment matrix with role descriptions]
+[DIAGRAM: D-2.4.B. Seven endpoint types as a deployment matrix with role descriptions]
 
 ### The MDM-endpoint-as-bootstrap pattern
 

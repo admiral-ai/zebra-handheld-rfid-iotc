@@ -6,7 +6,7 @@ sidebar_label: Inspect endpoint state (`get_endpoint_config`)
 
 > 📗 **TUTORIAL** · Phase 4 of 7 · Audience: Integrator · Time: ~4 min · Path: 🅐 Monolithic
 
-**Artifact this phase produces:** a list of every endpoint the sled has — both active and saved-but-inactive — confirmed from the reader itself. This is the source of truth before you change anything in Phase 5.
+**Artifact this phase produces:** a list of every endpoint the sled has (both active and saved-but-inactive)confirmed from the reader itself. This is the source of truth before you change anything in Phase 5.
 
 ### Why this phase exists
 
@@ -99,7 +99,7 @@ You'll get back exactly that endpoint's `configuration` object — useful when y
 | `verificationType` | If TLS, a mismatched verification type causes handshake failures. |
 | `publishTopics` | The reader publishes only to topics explicitly listed. |
 | `subscribeTopics` | The reader receives commands only on topics it has subscribed to. |
-| `savedEndpoints.epNames` | All endpoints stored on the device — useful before `add` (don't collide) or `delete` (target exists). |
+| `savedEndpoints.epNames` | All endpoints stored on the device; useful before `add` (don't collide) or `delete` (target exists). |
 
 ### Success check
 
@@ -110,10 +110,10 @@ You'll get back exactly that endpoint's `configuration` object — useful when y
 
 ### Didn't work?
 
-- **`response.code` is `3` (Not able to retrieve information).** The reader could not gather the requested information right now. Retry after a short delay. If it persists, you may need to reboot — but only after Phase 6 if you have an inventory running.
+- **`response.code` is `3` (Not able to retrieve information).** The reader could not gather the requested information right now. Retry after a short delay. If it persists, you may need to reboot, but only after Phase 6 if you have an inventory running.
 - **The active list is empty.** The MDM endpoint reverted to inactive. Re-check 123RFID Desktop and re-activate.
 - **The endpoint name you expect isn't listed.** It was never saved or was deleted. Re-run Phase 2.
 
 ### Where to go next
 
-You now know what the sled has. Next, add operational endpoints — CTRL for radio control and DATA1 for the tag stream. [Phase 5 — Add remote endpoints (`config_endpoint`)](/getting-started/quick-start/step-5-read).
+You now know what the sled has. Next, add operational endpoints. CTRL for radio control and DATA1 for the tag stream. [Phase 5. Add remote endpoints (`config_endpoint`)](/getting-started/quick-start/step-5-read).

@@ -51,6 +51,6 @@ def remediate(serial, diff):
 
 Maintain a per-reader drift score over time. Dashboards highlight readers that drift repeatedly (indicating misconfiguration source) and readers whose drift was successfully remediated.
 
-[DIAGRAM: D-14.4.A — drift-detection pipeline]
+[DIAGRAM: D-14.4.A. drift-detection pipeline]
 
 **Related:** 📙 [§14.2 Read Config](/fleet/management/read-config) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config) · 📙 [§13.4 Automation](/fleet/provisioning/automation)

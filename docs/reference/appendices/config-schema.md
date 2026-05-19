@@ -6,7 +6,7 @@ sidebar_label: "get_config Response Schema"
 
 > 📕 **REFERENCE**
 
-The `get_config` response carries `currentConfig` with seven top-level objects: `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `wifiConfig`, `installedCerts`, `epConfig`. Below is the canonical structure with each sub-object's field shape (drawn verbatim from `schemas/response/dev_mgmt/get_config.json` examples).
+The `get_config` response carries `currentConfig` with seven top-level objects: `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `wifiConfig`, `installedCerts`, `epConfig`. Below is the structure with each sub-object's field shape (drawn verbatim from `schemas/response/dev_mgmt/get_config.json` examples).
 
 ### `readerVersion`
 

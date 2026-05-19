@@ -9,7 +9,7 @@ sidebar_label: Watch your reader's pulse
 > **See in the API Reference**
 > Sub-tag: Device Health. Event: `heartbeatEVT`.
 
-The heartbeat is the canonical "this reader is alive" signal. A reader publishes `heartbeatEVT` at the interval set in `eventConfiguration.heartbeatConfiguration.interval`. Each event carries uptime and a sequence number; optionally, the current inventory status and battery state.
+The heartbeat is the "this reader is alive" signal. A reader publishes `heartbeatEVT` at the interval set in `eventConfiguration.heartbeatConfiguration.interval`. Each event carries uptime and a sequence number; optionally, the current inventory status and battery state.
 
 ### The shape
 
@@ -36,12 +36,12 @@ The heartbeat is the canonical "this reader is alive" signal. A reader publishes
 
 Fields:
 
-- **`eventName`** — always `"heartbeat"`. Note: it's not `"heartBeatEVT"` or `"heartbeatEVT"` — just `heartbeat`.
-- **`timestamp`** — ISO 8601.
-- **`eventNumber`** — a monotonic sequence number. Useful for gap detection (missing heartbeats imply lost connection).
-- **`upTime`** — how long since the last reboot.
-- **`data.inventoryStatus`** — present only when `heartbeatConfiguration.inventoryStatus: true`.
-- **`data.batteryAlert`** — present only when `heartbeatConfiguration.batteryStatus: true`.
+- **`eventName`**, always `"heartbeat"`. Note: it's not `"heartBeatEVT"` or `"heartbeatEVT"` — just `heartbeat`.
+- **`timestamp`**: ISO 8601.
+- **`eventNumber`**, a monotonic sequence number. Useful for gap detection (missing heartbeats imply lost connection).
+- **`upTime`**: how long since the last reboot.
+- **`data.inventoryStatus`**: present only when `heartbeatConfiguration.inventoryStatus: true`.
+- **`data.batteryAlert`**: present only when `heartbeatConfiguration.batteryStatus: true`.
 
 Both `data.*` sub-blocks are optional. The skeleton (`eventName`, `timestamp`, `eventNumber`, `upTime`) is always present.
 
@@ -51,14 +51,14 @@ The `interval` value (seconds) trades off telemetry resolution against battery a
 
 | Interval | Use |
 |---|---|
-| 10 s | Test / debugging — high cost; you'll see every flap |
-| 60 s | Active monitoring — typical for managed fleets |
-| 300 s | Periodic check-in — good default for static deployments |
-| 3600 s | Light-touch monitoring — only confirms hourly liveness |
+| 10 s | Test / debugging; high cost; you'll see every flap |
+| 60 s | Active monitoring; typical for managed fleets |
+| 300 s | Periodic check-in; good default for static deployments |
+| 3600 s | Light-touch monitoring; only confirms hourly liveness |
 
-Each heartbeat costs an MQTT publish (~200 bytes) plus the CPU work of building it. At 60 s intervals across 1,000 readers, that's 1,000 publishes per minute on the broker. Provisioned-throughput brokers (AWS IoT Core, paid HiveMQ tiers) charge per million messages — watch the math.
+Each heartbeat costs an MQTT publish (~200 bytes) plus the CPU work of building it. At 60 s intervals across 1,000 readers, that's 1,000 publishes per minute on the broker. Provisioned-throughput brokers (AWS IoT Core, paid HiveMQ tiers) charge per million messages (watch the math).
 
-### Gap detection — heartbeat absence is informative
+### Gap detection: heartbeat absence is informative
 
 The most important use of heartbeats is **noticing when they stop.** A reader that was emitting heartbeats every 60 s and then misses three in a row is offline, regardless of what the broker says. Application-side detection logic:
 
@@ -80,11 +80,11 @@ When `heartbeatConfiguration.inventoryStatus: true`, the heartbeat carries `data
 
 `data.batteryAlert` shows the current battery posture:
 
-- **`status`** — `LOW`, `CRITICAL`, `CHARGING`, `FULL`, `HIGH`.
-- **`stateOfHealth`** — long-term capacity: `LOW`, `CRITICAL`, `HIGH`, `FULL`, or `CHARGING` (transitional).
-- **`chargePercentage`** — 0–100.
+- **`status`**: `LOW`, `CRITICAL`, `CHARGING`, `FULL`, `HIGH`.
+- **`stateOfHealth`**: long-term capacity: `LOW`, `CRITICAL`, `HIGH`, `FULL`, or `CHARGING` (transitional).
+- **`chargePercentage`**, 0–100.
 
-Note that `status: LOW` and `status: CRITICAL` here are heartbeat *snapshots*. The `alerts` event with `id: BATTERY` fires on **transitions** — the difference matters when designing a dashboard vs an alerting pipeline. See [When the reader needs to interrupt you](/observability/events/alerts).
+Note that `status: LOW` and `status: CRITICAL` here are heartbeat *snapshots*. The `alerts` event with `id: BATTERY` fires on **transitions**, the difference matters when designing a dashboard vs an alerting pipeline. See [When the reader needs to interrupt you](/observability/events/alerts).
 
 ### Tuning verbosity by use case
 
@@ -95,10 +95,10 @@ Note that `status: LOW` and `status: CRITICAL` here are heartbeat *snapshots*. T
 | Battery-conscious deployment | 600 s | `false` | `true` |
 | Debug only | 10 s | `true` | `true` |
 
-### What this chapter does not cover
+### Out of scope
 
-- **Threshold-driven alerts** — those are `alerts` and `alert_short`, not heartbeats. See [When the reader needs to interrupt you](/observability/events/alerts).
-- **Configuring which events the reader emits** — see [Choose what the reader tells you](/observability/events/configure).
-- **Connection-state transitions (`mqttConnEVT`)** — see [Knowing when you're connected](/observability/events/mqtt-connection).
+- **Threshold-driven alerts**, those are `alerts` and `alert_short`, not heartbeats. See [When the reader needs to interrupt you](/observability/events/alerts).
+- **Configuring which events the reader emits**, see [Choose what the reader tells you](/observability/events/configure).
+- **Connection-state transitions (`mqttConnEVT`)**, see [Knowing when you're connected](/observability/events/mqtt-connection).
 
 **Related:** 📘 [Choose what the reader tells you](/observability/events/configure) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection) · 📕 [`heartbeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

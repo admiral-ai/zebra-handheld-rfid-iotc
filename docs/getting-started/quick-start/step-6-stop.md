@@ -6,7 +6,7 @@ sidebar_label: Start and stop inventory (`control_operation`)
 
 > 📗 **TUTORIAL** · Phase 6 of 7 · Audience: Integrator · Time: ~5 min · Path: 🅐 Monolithic
 
-**Artifact this phase produces:** **live `dataEVT` events** streaming on the DATA1 topic. Each event is one tag read. By the end of this phase the full loop is closed: application → CTRL → reader → radio → tag → metadata → DATA1 → application.
+**Artifact this phase produces:** **live `dataEVT` events** streaming on the DATA1 topic. Each event is one tag read. After this phase the full loop is closed: application → CTRL → reader → radio → tag → metadata → DATA1 → application.
 
 ### Why this phase exists
 
@@ -16,7 +16,7 @@ Inventory is the verb. Until tag data flows, IOTC is just plumbing. This phase f
 
 #### 1. Confirm the operating mode
 
-Inventory needs an operating profile. The default after bootstrap is `BALANCED_PERFORMANCE` — fine for first reads. Check it:
+Inventory needs an operating profile. The default after bootstrap is `BALANCED_PERFORMANCE` (fine for first reads). Check it:
 
 ```bash
 mosquitto_pub -h <broker-host> -p 1883 \
@@ -24,7 +24,7 @@ mosquitto_pub -h <broker-host> -p 1883 \
   -m '{"command":"get_operating_mode","requestId":"mode-check-001"}'
 ```
 
-The response (on `zebra/CTRL/clients/resp/<serial>`) returns the active `operatingMode.operatingModes.profiles` value. If it's `BALANCED_PERFORMANCE`, you're set. If not — or if you want to be explicit — set it:
+The response (on `zebra/CTRL/clients/resp/<serial>`) returns the active `operatingMode.operatingModes.profiles` value. If it's `BALANCED_PERFORMANCE`, you're set. If not, or if you want to be explicit, set it:
 
 ```bash
 mosquitto_pub -h <broker-host> -p 1883 \
@@ -40,9 +40,9 @@ mosquitto_pub -h <broker-host> -p 1883 \
   }'
 ```
 
-**Note the payload shape:** `command`, `requestId`, and a named payload object — here `operatingMode`. Inside `operatingMode` is `operatingModes` (the double nesting is unique to this command). All five supported profiles are `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, and `ADVANCED`. The `FAST_READ` enum value exists but is **currently not supported** — selecting it will fail.
+**Note the payload shape:** `command`, `requestId`, and a named payload object; here `operatingMode`. Inside `operatingMode` is `operatingModes` (the double nesting is unique to this command). All five supported profiles are `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, and `ADVANCED`. The `FAST_READ` enum value exists but is **not currently supported** — selecting it will fail.
 
-> **Important pre-condition:** `set_operating_mode` cannot run during active inventory. If a previous inventory is running, you must stop it first (error code 11 otherwise).
+> **Important pre-condition:** `set_operating_mode` cannot run during active inventory. If a previous inventory is running; you must stop it first (error code 11 otherwise).
 
 #### 2. Place tags in the antenna's line of sight
 
@@ -100,7 +100,7 @@ Your DATA1 subscriber should immediately begin printing `dataEVT` events:
 }
 ```
 
-Notice — `dataEVT` does **not** use the `{command, requestId, response: {code, description}}` envelope. Events have their own shape with `type` (the active profile), `timestamp`, and `data.tagData[]`. Other fields appear when enabled in `tagMetaDataToEnable` on `set_operating_mode` (PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.).
+Notice that `dataEVT` does **not** use the `{command, requestId, response: {code, description}}` envelope. Events have their own shape with `type` (the active profile), `timestamp`, and `data.tagData[]`. Other fields appear when enabled in `tagMetaDataToEnable` on `set_operating_mode` (PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.).
 
 Move tags in and out of the read zone — `seenCount` increases for repeat reads, `peakRssi` changes with distance, new EPCs appear as new tags enter the field.
 
@@ -127,8 +127,8 @@ The `dataEVT` stream stops. `response.code` is `0` if an inventory was actually 
 |---|---|---|
 | `0` | Success | None |
 | `11` | Inventory in progress | Stop the current inventory first (or you sent `START` while already running). |
-| `12` | No radio operation in progress | A `STOP` was sent while idle. Idempotent — no action required. |
-| `23` | Invalid enum value | Check `controlType` and `operation` casing — both are uppercase. |
+| `12` | No radio operation in progress | A `STOP` was sent while idle. Idempotent; no action required. |
+| `23` | Invalid enum value | Check `controlType` and `operation` casing; both are uppercase. |
 
 ### Success check
 
@@ -139,7 +139,7 @@ The `dataEVT` stream stops. `response.code` is `0` if an inventory was actually 
 
 ### Didn't work?
 
-- **No `dataEVT` despite `START` returning OK.** Most likely the profile is `FAST_READ` (currently not supported — the radio runs but emits no events) or the post-filter is excluding every tag. Run `get_operating_mode` and confirm `profiles` is one of the five supported values; run `get_post_filter` to confirm no `EXCLUDE` rule is filtering everything out.
+- **No `dataEVT` despite `START` returning OK.** Most likely the profile is `FAST_READ` (not currently supported, the radio runs but emits no events) or the post-filter is excluding every tag. Run `get_operating_mode` and confirm `profiles` is one of the five supported values; run `get_post_filter` to confirm no `EXCLUDE` rule is filtering everything out.
 - **Always the same EPC.** Only one tag is being singulated. Move tags, add more, change distance.
 - **Events stop after a few seconds.** `radioStopConditions` may have a `tagCount` or `stopTimeout` set in the operating mode. Inspect with `get_operating_mode`; clear the stop conditions if you want indefinite inventory.
 - **`response.code: 11` on `START`.** An inventory is already running. Send `STOP` first, then `START`.
@@ -147,4 +147,4 @@ The `dataEVT` stream stops. `response.code` is `0` if an inventory was actually 
 
 ### Where to go next
 
-You've completed the inventory loop. The last phase covers `reboot` — what it does, when to use it, and the one pre-condition that matters. [Phase 7 — Reboot when needed](/getting-started/quick-start/step-7-reboot).
+You've completed the inventory loop. The last phase covers `reboot` — what it does, when to use it, and the one pre-condition that matters. [Phase 7. Reboot when needed](/getting-started/quick-start/step-7-reboot).

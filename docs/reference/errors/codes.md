@@ -6,7 +6,7 @@ sidebar_label: Command Response Error Codes
 
 > 📕 **REFERENCE** · Audience: API Consumer · Use: look up codes appearing in command responses
 
-Canonical from `error_codes.json` — 29 entries (codes 0–28).
+Canonical from `error_codes.json`, 29 entries (codes 0–28).
 
 | Code | `iot_status_code` | Description | Cause | Recommended action | Applies to |
 |---:|---|---|---|---|---|
@@ -22,7 +22,7 @@ Canonical from `error_codes.json` — 29 entries (codes 0–28).
 | 9 | `IOT_STATUS_FILE_NOT_FOUND` | File not found | File or certificate not found on device or server | Verify path/URL and existence | `install_certificate`, `delete_certificate`, `get_installed_certificate`, `set_os` |
 | 10 | `IOT_ERROR_CONFIG_ALREADY_EXIST` | Configuration already exists | Endpoint/config with same name exists | Delete the existing one or use a different name | `config_endpoint`, `set_config` |
 | 11 | `IOT_ERROR_INVENTORY_IN_PROGRESS` | Inventory in progress | RFID inventory currently running | Stop the inventory before starting a new operation or changing mode | `control_operation`, `set_operating_mode` |
-| 12 | `IOT_ERROR_NO_RADIO_OP_IN_PROGRESS` | No radio operation in progress | STOP sent but radio is already idle | No action required — radio is already in desired state | `control_operation` |
+| 12 | `IOT_ERROR_NO_RADIO_OP_IN_PROGRESS` | No radio operation in progress | STOP sent but radio is already idle | No action required; radio is already in desired state | `control_operation` |
 | 13 | `IOT_ERROR_FW_UPDATE_FAIL` | Firmware update failed | Download or installation failed | Check firmware URL and network; retry | `set_os` |
 | 14 | `IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY` | Battery is low, cannot update firmware | Battery charge too low | Charge or connect external power; retry | `set_os` |
 | 15 | `IOT_ERROR_SSID_NOT_FOUND` | Wi-Fi SSID not found | Specified SSID does not exist in saved profiles | Verify SSID name; check profile is saved | `set_wifi`, `delete_wifi_profile`, `set_config` |

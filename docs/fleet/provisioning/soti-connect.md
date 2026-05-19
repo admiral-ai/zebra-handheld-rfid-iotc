@@ -18,11 +18,11 @@ During 123RFID Desktop bootstrap ([§4.3](/getting-started/prerequisites/bootstr
 
 ### Step 2: Enroll devices in SOTI Connect
 
-In SOTI Connect's admin console, navigate to **Devices → Add Device**. Add each reader by serial number, or use the bulk-import feature with a CSV. SOTI Connect creates a device record but does not yet manage configuration.
+In SOTI Connect's admin console, navigate to **Devices to Add Device**. Add each reader by serial number, or use the bulk-import feature with a CSV. SOTI Connect creates a device record but does not yet manage configuration.
 
 ### Step 3: Create a configuration profile
 
-In SOTI Connect, **Profiles → New IOTC Profile**. Define the runtime configuration: Wi-Fi profiles, endpoint configurations, event reporting, default operating mode. This is the "golden config" that will be pushed to enrolled devices.
+In SOTI Connect, **Profiles to New IOTC Profile**. Define the runtime configuration: Wi-Fi profiles, endpoint configurations, event reporting, default operating mode. This is the "golden config" that will be pushed to enrolled devices.
 
 ### Step 4: Distribute the profile
 
@@ -32,7 +32,7 @@ Assign the profile to one or more device groups. SOTI Connect pushes the profile
 
 Use SOTI Connect's update-orchestration feature to schedule firmware updates by group and time window. The MDM platform invokes `set_os` on each target device per the schedule.
 
-[DIAGRAM: D-13.2.A — SOTI Connect ↔ reader fleet flow]
+[DIAGRAM: D-13.2.A. SOTI Connect ↔ reader fleet flow]
 
 ### Verify
 

@@ -14,7 +14,7 @@ This guide shows you how to assemble the `operatingMode` payload for the use cas
 {"command": "get_operating_mode", "requestId": "mode-1"}
 ```
 
-### Set the simplest payload — profile only
+### Set the simplest payload: profile only
 
 ```json
 {
@@ -57,9 +57,9 @@ Common compositions:
 
 When `stop.trigger` is `IMMEDIATE`, threshold fields control auto-stop:
 
-- `tagCount` — stop after N unique tags
-- `stopTimeout` — stop after N milliseconds
-- `inventoryCount` — stop after N full inventory cycles
+- `tagCount`: stop after N unique tags
+- `stopTimeout`: stop after N milliseconds
+- `inventoryCount`: stop after N full inventory cycles
 
 ### Configure singulation tuning (query)
 
@@ -104,7 +104,7 @@ SELECT is the Gen2 protocol-level pre-singulation filter. Up to **32 filters** a
 }
 ```
 
-The eight `action` values map matches and mismatches to inventory state and SL flag transitions — see [§16.3 set_operating_mode Reference](#chapter-16--mqtt-api-reference) for the complete action enum table.
+The eight `action` values map matches and mismatches to inventory state and SL flag transitions, see [§16.3 set_operating_mode Reference](#chapter-16--mqtt-api-reference) for the complete action enum table.
 
 ### Configure access operations
 
@@ -126,7 +126,7 @@ Per-tag operations executed during inventory. `offset` for access operations is 
 
 - `password` is **8 hex characters** for ACCESS, LOCK, KILL.
 - `data` for WRITE must be even-length hex, multiple of 16-bit words.
-- KILL is **irreversible** — the tag never responds again.
+- KILL is **irreversible**, the tag never responds again.
 - LOCK with `lockAction: PERMANENT_LOCK` is irreversible.
 
 ### Configure reporting aggregation

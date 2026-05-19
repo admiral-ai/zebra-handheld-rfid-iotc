@@ -25,9 +25,9 @@ Each boolean flag in `eventConfiguration` controls one event stream:
 | `exceptions` | Runtime exceptions from the device |
 | `ntp` | NTP synchronisation transitions |
 | `userApp` | User-application lifecycle events |
-| `heartbeat` | Periodic heartbeat — needs `heartbeatConfiguration` |
+| `heartbeat` | Periodic heartbeat; needs `heartbeatConfiguration` |
 | `power` | Power-source changes (battery → external, etc.) |
-| `battery` | Battery state — low, critical, full |
+| `battery` | Battery state; low, critical, full |
 | `temperature` | Temperature crossing `temperatureThreshold` |
 | `fileDownload` | File-download progress (firmware, certificates) |
 | `cpuUsage` | CPU above `cpuThreshold` |
@@ -40,14 +40,14 @@ Omitting a flag from the payload leaves its current device-side state unchanged.
 
 Four flags require companion threshold values:
 
-- **`cpuThreshold`** — CPU percent that triggers a CPU usage alert.
-- **`ramThreshold`** — RAM percent that triggers a RAM usage alert.
-- **`flashThreshold`** — flash percent that triggers a flash usage alert.
-- **`temperatureThreshold`** — temperature in °C that triggers a temperature alert.
+- **`cpuThreshold`**: CPU percent that triggers a CPU usage alert.
+- **`ramThreshold`**: RAM percent that triggers a RAM usage alert.
+- **`flashThreshold`**: flash percent that triggers a flash usage alert.
+- **`temperatureThreshold`**: temperature in °C that triggers a temperature alert.
 
 These are *thresholds*, not poll rates. The reader checks against them internally and emits an alert when the value crosses. The alert is `alerts` (verbose) or `alert_short` (compact), depending on the consumer.
 
-### `heartbeatConfiguration` — what the heartbeat carries
+### `heartbeatConfiguration`: what the heartbeat carries
 
 When `heartbeat: true`, three companion fields shape the heartbeat:
 
@@ -60,12 +60,12 @@ When `heartbeat: true`, three companion fields shape the heartbeat:
 }
 ```
 
-- **`interval`** — seconds between heartbeats. Lower = more frequent telemetry, higher battery cost.
-- **`inventoryStatus`** — include `data.inventoryStatus` block (rfidStatus, tagCount, scanCount).
-- **`batteryStatus`** — include `data.batteryAlert` block.
-- **`userApps`** — include user-application status.
+- **`interval`**: seconds between heartbeats. Lower = more frequent telemetry, higher battery cost.
+- **`inventoryStatus`**: include `data.inventoryStatus` block (rfidStatus, tagCount, scanCount).
+- **`batteryStatus`**: include `data.batteryAlert` block.
+- **`userApps`**: include user-application status.
 
-Heartbeat is the canonical "the reader is alive" signal. Disabling it loses your liveness detection. See [Watch your reader's pulse](/observability/events/heartbeat).
+Heartbeat is the "the reader is alive" signal. Disabling it loses your liveness detection. See [Watch your reader's pulse](/observability/events/heartbeat).
 
 ### Enable everything (initial development)
 
@@ -120,11 +120,11 @@ Each enabled event publishes on the publish topic family of whichever endpoint i
 
 ### Pre-condition
 
-`config_events` has no documented pre-condition on radio state — you can change event configuration mid-inventory. It returns a generic-shape response with `apiVersion`, `response.code`, `response.description`.
+`config_events` has no documented pre-condition on radio state; you can change event configuration mid-inventory. It returns a generic-shape response with `apiVersion`, `response.code`, `response.description`.
 
-### What this chapter does not cover
+### Out of scope
 
-- **The shape of each event payload** — covered per-event: [Watch your reader's pulse](/observability/events/heartbeat), [When the reader needs to interrupt you](/observability/events/alerts), [Knowing when you're connected](/observability/events/mqtt-connection), [Where tag reads come from](/rfid/tag-data/dataevt-schema).
-- **Routing events to multiple endpoints** — by configuring two endpoints with overlapping `eventConfiguration` flags. Covered in [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
+- **The shape of each event payload**: covered per-event: [Watch your reader's pulse](/observability/events/heartbeat), [When the reader needs to interrupt you](/observability/events/alerts), [Knowing when you're connected](/observability/events/mqtt-connection), [Where tag reads come from](/rfid/tag-data/dataevt-schema).
+- **Routing events to multiple endpoints**, by configuring two endpoints with overlapping `eventConfiguration` flags. Covered in [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
 
 **Related:** 📘 [Watch your reader's pulse](/observability/events/heartbeat) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

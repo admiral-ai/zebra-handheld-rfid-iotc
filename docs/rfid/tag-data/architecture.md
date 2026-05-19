@@ -16,20 +16,20 @@ RF antenna → Reader firmware (singulation) → Post-filter → MQTT publish �
 
 Each stage has its own latency and back-pressure characteristics. The total path budget from "tag energised" to "application receives event" is typically 50–500 ms depending on broker proximity.
 
-[DIAGRAM: D-10.1.A — tag data flow with latency annotations per stage]
+[DIAGRAM: D-10.1.A. tag data flow with latency annotations per stage]
 
 ### Event generation rate
 
 The rate at which `dataEVT` events are emitted depends on:
 
-- **Tag population density** — more tags in the field generate more events.
-- **Operating mode** — higher-information modes are slower per tag (see [§9.1](/rfid/operating-mode/profiles)).
-- **RF power** — affects effective read range and therefore tag count in the field.
-- **Post-filters** — filtered-out tags do not generate events.
+- **Tag population density**, more tags in the field generate more events.
+- **Operating mode**: higher-information modes are slower per tag (see [§9.1](/rfid/operating-mode/profiles)).
+- **RF power**: affects effective read range and therefore tag count in the field.
+- **Post-filters**: filtered-out tags do not generate events.
 
 Typical event rates: 100–700 events/second for active inventory in a moderate-density environment.
 
-[DIAGRAM: D-10.1.B — generation rate factors]
+[DIAGRAM: D-10.1.B. generation rate factors]
 
 ### Deduplication considerations
 
@@ -45,6 +45,6 @@ A reader can be configured to publish tag data on one of two topic channels (`da
 
 ### QoS choices
 
-Tag data defaults to QoS 0 — at most once. For high-volume applications, QoS 0 is the right default: losing a single read out of hundreds is operationally invisible, while QoS 1's PUBACK overhead becomes significant. Applications requiring guaranteed delivery can configure QoS 1; the trade-off is detailed in [§3.3](/foundations/mqtt/qos).
+Tag data defaults to QoS 0, at most once. For high-volume applications, QoS 0 is the default: losing a single read out of hundreds is operationally invisible, while QoS 1's PUBACK overhead becomes significant. Applications requiring guaranteed delivery can configure QoS 1; the trade-off is detailed in [§3.3](/foundations/mqtt/qos).
 
 **Related:** 📘 [§3.3 QoS Levels](/foundations/mqtt/qos) · 📘 [§10.4 Dual Data Channels](/rfid/tag-data/dual-channels) · 📕 [§16.4 DATA Interface](#chapter-16--mqtt-api-reference) · 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema)

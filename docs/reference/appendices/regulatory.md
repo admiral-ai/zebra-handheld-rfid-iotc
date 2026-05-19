@@ -8,7 +8,7 @@ sidebar_label: Regulatory & Regional Information
 
 #### Region codes
 
-[DIAGRAM: D-20.5.A — world map shaded by region code]
+[DIAGRAM: D-20.5.A. world map shaded by region code]
 
 | Region code | Description | Frequency band (MHz) |
 |---|---|---|

@@ -17,20 +17,20 @@ The terminology, limits, and cheat sheets you'll want at your elbow while readin
 | **`alerts`** | Verbose alert event with `alertDetails` block. Application-facing. Seven `id` values. |
 | **Bipartite** | Hardware tier with Bluetooth bridge to a host device — RFD40 Standard. Two physical edges to the broker. |
 | **CTRL** | Endpoint type for RFID control commands (`set_operating_mode`, `control_operation`, `set_post_filter`). |
-| **`ctrlOprPayload`** | The named payload object inside `control_operation`. Real canonical field name — not OpenAPI noise. |
+| **`ctrlOprPayload`** | The named payload object inside `control_operation`. Real canonical field name, not OpenAPI noise. |
 | **DATA1 / DATA2** | Endpoint types for tag-data streams. Up to two concurrent data endpoints per reader. |
 | **`dataEVT`** | The event a reader publishes for each (aggregated) tag read during inventory. |
 | **`epConfig`** | The named payload object inside `config_endpoint`. |
 | **`epType`** | Endpoint role enum: MGMT, MGMT_EVT, CTRL, DATA1, DATA2, SOTI, MDM. |
 | **`eventConfiguration`** | Either (a) the named payload of `config_events`, or (b) a sub-block within `config_endpoint` controlling per-endpoint event flags. |
-| **`FAST_READ`** | An operating-mode enum value listed in the schema but **currently not supported**. |
+| **`FAST_READ`** | An operating-mode enum value listed in the schema but **not currently supported**. |
 | **`heartbeatEVT`** | Periodic liveness event. Cadence and contents set by `eventConfiguration.heartbeatConfiguration`. Note the `eventName` in the payload is `"heartbeat"` (lowercase, no EVT suffix). |
 | **IoTC** | IoT Connector. The in-firmware MQTT control and data plane on RFD40 / RFD90 sleds. |
-| **MDM** | (1) An endpoint type — hybrid endpoint carrying MGMT + Control + Data on one topic family. Bootstrap default. (2) A class of platform — Mobile Device Management (SOTI Connect, 42Gears SureMDM) that uses the SOTI or MDM endpoint to manage fleets. |
+| **MDM** | (1) An endpoint type; hybrid endpoint carrying MGMT + Control + Data on one topic family. Bootstrap default. (2) A class of platform — Mobile Device Management (SOTI Connect, 42Gears SureMDM) that uses the SOTI or MDM endpoint to manage fleets. |
 | **MGMT / MGMT_EVT** | Endpoint types for management commands and management events respectively. |
 | **Monolithic** | Hardware tier with native Wi-Fi in firmware — RFD40 Premium, Premium Plus, RFD90. One physical edge to the broker. |
 | **`mqttConnEVT`** | Event published on CONNECTED/DISCONNECTED transitions. `timestamp` is `HH:MM:SS`, not ISO 8601. |
-| **`operatingMode`** | The named payload object inside `set_operating_mode`. Note: wraps an inner `operatingModes` (plural) — the only command with this double nesting. |
+| **`operatingMode`** | The named payload object inside `set_operating_mode`. Note: wraps an inner `operatingModes` (plural), the only command with this double nesting. |
 | **`postFilterPayload`** | The named payload object inside `set_post_filter`. |
 | **Pre-filter (`select`)** | Air-protocol filter applied via Gen2 SELECT before singulation. Configured inside `set_operating_mode.operatingModes.select`. Up to 32 entries. |
 | **Post-filter** | Reader-side filter applied after singulation, before the event is published. Configured via `set_post_filter` per data endpoint. |
@@ -38,7 +38,7 @@ The terminology, limits, and cheat sheets you'll want at your elbow while readin
 | **`requestId`** | Client-chosen correlator echoed by the reader in the response. The only command-response correlation tool. |
 | **Retention buffer** | Reader-side flash buffer for `dataEVT` events when broker is unreachable. Canonical baseline 150,000 events at 500 TPS flush rate. |
 | **Session (Gen2)** | `SESSION_0`, `SESSION_1`, `SESSION_2`, `SESSION_3`. EPC Gen2 protocol session for tag flag persistence. |
-| **SOTI** | Endpoint type for SOTI MobiControl integration. Also a platform — SOTI Connect — that uses this endpoint. |
+| **SOTI** | Endpoint type for SOTI MobiControl integration. Also a platform — SOTI Connect; that uses this endpoint. |
 | **`tenantId`** | The first segment of every IOTC topic. Canonical default `zebra` (lowercase). Bounded length. |
 | **Verification type** | TLS verification mode: NONE, VERIFY_PEER, VERIFY_HOST, VERIFY_HOST_PEER. Required even for plain MQTT. |
 
@@ -67,7 +67,7 @@ Each command has its own subset; codes are **not global**. Common ones across mu
 | `1` | Command payload accepted (async ack) | `set_os`, `reboot` (example only) |
 | `3` | Not able to retrieve information | `get_status`, `get_endpoint_config`, `get_current_region`, `get_operating_mode` |
 | `4` | Firmware update in progress | `set_os` |
-| `5` | Can't reboot — inventory in progress | `reboot` |
+| `5` | Can't reboot; inventory in progress | `reboot` |
 | `8` | Insufficient flash | `set_os` |
 | `9` | File not found | `set_os` |
 | `10` | Configuration already exists | `config_endpoint add` |
@@ -141,7 +141,7 @@ Read-only commands (`get_*`, `reboot`) take only `{command, requestId}`.
 }
 ```
 
-Events do **not** use this shape — they have their own root structures. See per-event chapters and `mqtt-api-reference/<event>.md`.
+Events do **not** use this shape, they have their own root structures. See per-event chapters and `mqtt-api-reference/<event>.md`.
 
 ### Where this glossary disagrees with older corpora
 

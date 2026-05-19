@@ -68,7 +68,7 @@ For each reader, add three dedicated endpoints (only the MGMT example shown; CTR
 {"command": "get_config", "requestId": "step4"}
 ```
 
-Save the response (full snapshot) — this is the golden config.
+Save the response (full snapshot), this is the golden config.
 
 ### Step 5: Replay per-domain to readers 2 and 3
 
@@ -121,4 +121,4 @@ You provisioned, secured, configured, and monitored a three-reader fleet end-to-
 
 ---
 
-# Part VII — Reference & Troubleshooting (rewritten)
+# Part VII: Reference & Troubleshooting (rewritten)
