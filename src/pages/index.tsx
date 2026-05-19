@@ -105,22 +105,22 @@ function PersonaSection() {
           <div className={styles.persona}>
             <h3>New Integrator</h3>
             <p>I want to read a tag as fast as possible.</p>
-            <Link to="/getting-started/quick-start/overview">Quick Start tutorial</Link>
+            <Link to="/getting-started/quick-start/overview">→ Quick Start tutorial</Link>
           </div>
           <div className={styles.persona}>
             <h3>Solution Builder</h3>
             <p>I&apos;m architecting a multi-reader deployment.</p>
-            <Link to="/foundations/architecture/components">System architecture</Link>
+            <Link to="/foundations/architecture/components">→ System architecture</Link>
           </div>
           <div className={styles.persona}>
             <h3>API Consumer</h3>
             <p>I&apos;m writing integration code right now.</p>
-            <Link to="/reference/api-overview">MQTT API reference</Link>
+            <Link to="/reference/api-overview">→ MQTT API reference</Link>
           </div>
           <div className={styles.persona}>
             <h3>Fleet Operator</h3>
             <p>I manage deployed reader populations.</p>
-            <Link to="/fleet/provisioning/models">Fleet operations</Link>
+            <Link to="/fleet/provisioning/models">→ Fleet operations</Link>
           </div>
         </div>
       </div>
