@@ -26,7 +26,7 @@ The entries are grouped:
 
 ## Network {#fm-net}
 
-### FM-NET-01. Network path between sled and broker {#fm-net-01}
+### FM-NET-01: Network path between sled and broker {#fm-net-01}
 
 **Symptom.** Sled is on Wi-Fi (`get_status.deviceStatus.radioConnection: CONNECTED`) but never reaches the broker. No `mqttConnEVT` arrives.
 
@@ -38,7 +38,7 @@ The entries are grouped:
 
 **See.** [Prepare network and broker](/getting-started/quick-start/step-1-connect) · [Where things fail](/reference/diagnose/two-edges)
 
-### FM-NET-02. MDM endpoint won't connect {#fm-net-02}
+### FM-NET-02: MDM endpoint won't connect {#fm-net-02}
 
 **Symptom.** MDM endpoint configured and activated via 123RFID Desktop; sled has Wi-Fi; broker logs show no connection attempt from the sled IP.
 
@@ -50,7 +50,7 @@ The entries are grouped:
 
 **See.** [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · [Securing the connection](/infrastructure/security/model)
 
-### FM-NET-03. Reconnect loop {#fm-net-03}
+### FM-NET-03: Reconnect loop {#fm-net-03}
 
 **Symptom.** Sled connects to the broker, then disconnects within seconds, retries, connects again. The `mqttConnEVT` stream shows alternating CONNECTED / DISCONNECTED messages.
 
@@ -62,7 +62,7 @@ The entries are grouped:
 
 **See.** [Knowing when you're connected](/observability/events/mqtt-connection)
 
-### FM-NET-04. Wi-Fi Enterprise auth failure {#fm-net-04}
+### FM-NET-04: Wi-Fi Enterprise auth failure {#fm-net-04}
 
 **Symptom.** Wi-Fi profile configured for `WPA2Enterprise` or `WPA3Enterprise`; sled associates briefly then drops. `alert_short` emits `WIFI_CONFIG_FAIL`.
 
@@ -78,7 +78,7 @@ The entries are grouped:
 
 ## Configuration {#fm-cfg}
 
-### FM-CFG-01. Endpoint name collision {#fm-cfg-01}
+### FM-CFG-01: Endpoint name collision {#fm-cfg-01}
 
 **Symptom.** `config_endpoint` with `operation: "add"` returns response code `10` (`IOT_ERROR_CONFIG_ALREADY_EXIST`).
 
@@ -90,7 +90,7 @@ The entries are grouped:
 
 **See.** [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · [Command Response Error Codes](/reference/errors/codes)
 
-### FM-CFG-02. Topic count caps {#fm-cfg-02}
+### FM-CFG-02: Topic count caps {#fm-cfg-02}
 
 **Symptom.** `config_endpoint` returns response code `25` (`IOT_ERROR_PUBLISH_TOPICS_EXCEEDED`) or `26` (`IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
 
@@ -100,7 +100,7 @@ The entries are grouped:
 
 **See.** [How the MQTT plumbing fits together](/infrastructure/endpoints/about)
 
-### FM-CFG-03. Advanced profile incomplete {#fm-cfg-03}
+### FM-CFG-03: Advanced profile incomplete {#fm-cfg-03}
 
 **Symptom.** `set_operating_mode` returns response code `22` (`IOT_CTRL_ADVANCED_PROFILE_NOT_SET`).
 
@@ -114,7 +114,7 @@ The entries are grouped:
 
 ## Inventory operations {#fm-ops}
 
-### FM-OPS-01. Inventory state mismatch {#fm-ops-01}
+### FM-OPS-01: Inventory state mismatch {#fm-ops-01}
 
 **Symptom.** `control_operation START` returns response code `11` (`IOT_ERROR_INVENTORY_IN_PROGRESS`), or `set_operating_mode` returns the same code.
 
@@ -126,7 +126,7 @@ The entries are grouped:
 
 **See.** [Start, stop, and the trigger button](/rfid/operating-mode/start-stop) · [RP-04](/reference/diagnose/recovery-playbooks#rp-04)
 
-### FM-OPS-02. Single-tag dominance {#fm-ops-02}
+### FM-OPS-02: Single-tag dominance {#fm-ops-02}
 
 **Symptom.** Inventory runs; `dataEVT` events arrive; but the same EPC repeats and other tags in the field never appear.
 
@@ -140,7 +140,7 @@ The entries are grouped:
 
 ## Tag data {#fm-data}
 
-### FM-DATA-01. Missing metadata fields {#fm-data-01}
+### FM-DATA-01: Missing metadata fields {#fm-data-01}
 
 **Symptom.** `dataEVT` arrives but `RSSI`, `TID`, `USER`, `MAC`, `HOSTNAME`, `channel`, `phase`, or `seenCount` is absent or always 1.
 
@@ -154,7 +154,7 @@ The entries are grouped:
 
 ## Firmware {#fm-fw}
 
-### FM-FW-01. Concurrent update attempt {#fm-fw-01}
+### FM-FW-01: Concurrent update attempt {#fm-fw-01}
 
 **Symptom.** `set_os` returns response code `4` (`IOT_STATUS_FW_UPDATE_IN_PROGRESS`).
 
@@ -164,7 +164,7 @@ The entries are grouped:
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations)
 
-### FM-FW-02. Flash exhausted {#fm-fw-02}
+### FM-FW-02: Flash exhausted {#fm-fw-02}
 
 **Symptom.** `set_os` returns response code `8` (`IOT_ERROR_LOW_FLASH_SIZE`).
 
@@ -174,7 +174,7 @@ The entries are grouped:
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations) · [The reader's configuration document](/infrastructure/management/config-document)
 
-### FM-FW-03. Firmware source unreachable {#fm-fw-03}
+### FM-FW-03: Firmware source unreachable {#fm-fw-03}
 
 **Symptom.** `set_os` returns response code `9` (`IOT_STATUS_FILE_NOT_FOUND`).
 
@@ -186,7 +186,7 @@ The entries are grouped:
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations)
 
-### FM-FW-04. Battery-low gate {#fm-fw-04}
+### FM-FW-04: Battery-low gate {#fm-fw-04}
 
 **Symptom.** `set_os` returns response code `14` (`IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY`).
 
@@ -202,7 +202,7 @@ The entries are grouped:
 
 ## Events {#fm-evt}
 
-### FM-EVT-01. Connection events not routed {#fm-evt-01}
+### FM-EVT-01: Connection events not routed {#fm-evt-01}
 
 **Symptom.** Broker logs show the sled connecting and disconnecting, but the application's subscriber to `mqttConnEVT` receives nothing.
 
@@ -214,7 +214,7 @@ The entries are grouped:
 
 **See.** [Choose what the reader tells you](/observability/events/configure) · [Knowing when you're connected](/observability/events/mqtt-connection)
 
-### FM-EVT-02. Heartbeat verbosity {#fm-evt-02}
+### FM-EVT-02: Heartbeat verbosity {#fm-evt-02}
 
 **Symptom.** `heartbeatEVT` arrives at the configured interval, but `data.inventoryStatus` or `data.batteryAlert` blocks are absent.
 
@@ -224,7 +224,7 @@ The entries are grouped:
 
 **See.** [Watch your reader's pulse](/observability/events/heartbeat)
 
-### FM-EVT-03. Two alert variants, two routes {#fm-evt-03}
+### FM-EVT-03: Two alert variants, two routes {#fm-evt-03}
 
 **Symptom.** Application receives `alert_short` but not `alerts`, or vice versa.
 
@@ -238,7 +238,7 @@ The entries are grouped:
 
 ## Security {#fm-sec}
 
-### FM-SEC-01. TLS verification mismatch {#fm-sec-01}
+### FM-SEC-01: TLS verification mismatch {#fm-sec-01}
 
 **Symptom.** TLS handshake between sled and broker fails. The sled disconnects immediately after the TCP connection is established. No `mqttConnEVT` shows CONNECTED.
 
@@ -248,7 +248,7 @@ The entries are grouped:
 
 **See.** [Securing the connection](/infrastructure/security/model)
 
-### FM-SEC-02. Certificate install failure {#fm-sec-02}
+### FM-SEC-02: Certificate install failure {#fm-sec-02}
 
 **Symptom.** `install_certificate` returns response code `9` (file not found), or `alert_short` emits `MQTT_INSTALL_CERTIFICATE_FAIL` / `WIFI_INSTALL_CERTIFICATE_FAIL` / `FILESTORE_INSTALL_CERTIFICATE_FAIL`.
 
@@ -258,7 +258,7 @@ The entries are grouped:
 
 **See.** [Securing the connection](/infrastructure/security/model)
 
-### FM-SEC-03. Logical name mismatch {#fm-sec-03}
+### FM-SEC-03: Logical name mismatch {#fm-sec-03}
 
 **Symptom.** `install_certificate` succeeds (`MQTT_INSTALL_CERTIFICATE_SUCCESS`), but the downstream operation that uses the cert (a TLS-enabled `config_endpoint` or `set_wifi`) still fails the TLS handshake.
 
@@ -274,7 +274,7 @@ The entries are grouped:
 
 ## Device link (Bipartite only) {#fm-dev}
 
-### FM-DEV-01. BT bridge dropped {#fm-dev-01}
+### FM-DEV-01: BT bridge dropped {#fm-dev-01}
 
 **Symptom.** `get_status.deviceStatus.terminalConnection.status: DISCONNECTED` on an RFD40 Standard sled. Commands sent to the sled get no response.
 
@@ -284,7 +284,7 @@ The entries are grouped:
 
 **See.** [Roles: Reader, Host, Broker, Application](/foundations/architecture/components)
 
-### FM-DEV-02. Bridge routing {#fm-dev-02}
+### FM-DEV-02: Bridge routing {#fm-dev-02}
 
 **Symptom.** Host reports active broker connection; sled's Bluetooth link is connected; but commands published from the application don't reach the sled, or responses don't return.
 
@@ -294,7 +294,7 @@ The entries are grouped:
 
 **See.** [Roles: Reader, Host, Broker, Application](/foundations/architecture/components)
 
-### FM-DEV-03. Mobility breaks bridge {#fm-dev-03}
+### FM-DEV-03: Mobility breaks bridge {#fm-dev-03}
 
 **Symptom.** Sled works when the operator is stationary, fails intermittently or completely when the operator walks with the host.
 
@@ -308,7 +308,7 @@ The entries are grouped:
 
 ## Fleet {#fm-fleet}
 
-### FM-FLEET-01. Identity collision {#fm-fleet-01}
+### FM-FLEET-01: Identity collision {#fm-fleet-01}
 
 **Symptom.** Two readers appear in fleet telemetry with the same serial number, or `get_version` on one device reports a serial number that does not match the physical label.
 
