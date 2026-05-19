@@ -73,9 +73,9 @@ Live identity, runtime health, and regulatory region. See [What your reader know
 
 | API | Type | Description |
 |---|---|---|
-| [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_status) | Command | Live health snapshot: power source, radio activity, battery, NTP, temperature. |
-| [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_version) | Command | Identity and software versions: model, serial number, SKU, firmware, IoTC version. |
-| [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_current_region) | Command | Active regulatory region, channel set, power limits, LBT, frequency hopping. |
+| [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) | Command | Live health snapshot: power source, radio activity, battery, NTP, temperature. |
+| [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) | Command | Identity and software versions: model, serial number, SKU, firmware, IoTC version. |
+| [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region) | Command | Active regulatory region, channel set, power limits, LBT, frequency hopping. |
 
 ### Network Configuration
 
@@ -83,10 +83,10 @@ Ethernet status and Wi-Fi profile management. See [Getting on the network (Wi-Fi
 
 | API | Type | Description |
 |---|---|---|
-| [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_eth) | Command | Ethernet interface state, link, and IP address. |
-| [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_wifi) | Command | List configured Wi-Fi profiles and connection status. |
-| [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set_wifi) | Command | Create or modify a Wi-Fi profile. Personal (WPA2/WPA3) and Enterprise (EAP-TLS/TTLS/PEAP). |
-| [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete_wifi_profile) | Command | Remove a saved Wi-Fi profile by SSID. |
+| [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) | Command | Ethernet interface state, link, and IP address. |
+| [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) | Command | List configured Wi-Fi profiles and connection status. |
+| [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) | Command | Create or modify a Wi-Fi profile. Personal (WPA2/WPA3) and Enterprise (EAP-TLS/TTLS/PEAP). |
+| [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) | Command | Remove a saved Wi-Fi profile by SSID. |
 
 ### MQTT Endpoint Configuration
 
@@ -94,8 +94,8 @@ Add, update, delete, and inspect MQTT broker endpoints. See [How the MQTT plumbi
 
 | API | Type | Description |
 |---|---|---|
-| [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_endpoint_config) | Command | Retrieve active endpoint configurations and the list of saved endpoint names. |
-| [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config_endpoint) | Command | Add, update, or delete an endpoint. Supports MGMT, MGMT_EVT, CTRL, DATA1, DATA2, SOTI, MDM. |
+| [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | Command | Retrieve active endpoint configurations and the list of saved endpoint names. |
+| [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | Command | Add, update, or delete an endpoint. Supports MGMT, MGMT_EVT, CTRL, DATA1, DATA2, SOTI, MDM. |
 
 ### Certificate Management
 
@@ -103,9 +103,9 @@ Install, inspect, and remove TLS certificates for MQTT, Wi-Fi, and the file stor
 
 | API | Type | Description |
 |---|---|---|
-| [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_installed_certificate) | Command | List installed certificates by logical name and type. |
-| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install_certificate) | Command | Install a CA, client cert, or client key. Sources: `HTTP` (download) or `DIRECT` (inline). |
-| [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete_certificate) | Command | Remove an installed certificate by logical name. |
+| [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) | Command | List installed certificates by logical name and type. |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | Command | Install a CA, client cert, or client key. Sources: `HTTP` (download) or `DIRECT` (inline). |
+| [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) | Command | Remove an installed certificate by logical name. |
 
 ### Device Configuration
 
@@ -113,8 +113,8 @@ Read and write the reader's device-wide configuration document. See [The reader'
 
 | API | Type | Description |
 |---|---|---|
-| [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_config) | Command | Comprehensive snapshot of every adjustable device-wide property. |
-| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set_config) | Command | Narrow writeback. Fields not supplied retain their current value. |
+| [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) | Command | Comprehensive snapshot of every adjustable device-wide property. |
+| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | Command | Narrow writeback. Fields not supplied retain their current value. |
 
 ### System Operations
 
@@ -122,7 +122,7 @@ Firmware update and warm reset. See [Updating firmware and rebooting](/infrastru
 
 | API | Type | Description |
 |---|---|---|
-| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set_os) | Command | Start a firmware update from a URL. Asynchronous; watch `alert_short` for outcome. |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | Command | Start a firmware update from a URL. Asynchronous; watch `alert_short` for outcome. |
 | [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) | Command | Warm reset. Rejected with code 5 if an inventory is active. |
 
 ---
@@ -137,8 +137,8 @@ Profile selection, query parameters, access operations, and metadata enablement.
 
 | API | Type | Description |
 |---|---|---|
-| [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_operating_mode) | Command | Retrieve the active profile and all operating-mode parameters. |
-| [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set_operating_mode) | Command | Set profile, sessions, triggers, query, select prefilters, access operations, and tag metadata. |
+| [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) | Command | Retrieve the active profile and all operating-mode parameters. |
+| [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | Command | Set profile, sessions, triggers, query, select prefilters, access operations, and tag metadata. |
 
 ### Tag Filtering
 
@@ -146,8 +146,8 @@ Post-read report filters scoped to a data endpoint. See [Filter tags before vs a
 
 | API | Type | Description |
 |---|---|---|
-| [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get_post_filter) | Command | Retrieve post-filter rules for each data endpoint. |
-| [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set_post_filter) | Command | Add, modify, or delete a post-filter (PREFIX / SUFFIX / REGEX match, INCLUDE / EXCLUDE). |
+| [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) | Command | Retrieve post-filter rules for each data endpoint. |
+| [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) | Command | Add, modify, or delete a post-filter (PREFIX / SUFFIX / REGEX match, INCLUDE / EXCLUDE). |
 
 ### Inventory Control
 
@@ -155,7 +155,7 @@ Start and stop RFID inventory (or scanner) operations. See [Start, stop, and the
 
 | API | Type | Description |
 |---|---|---|
-| [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control_operation) | Command | START or STOP an `RFID` or `SCANNER` subsystem. |
+| [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) | Command | START or STOP an `RFID` or `SCANNER` subsystem. |
 
 ---
 
@@ -169,7 +169,7 @@ Configure which events the reader emits and at what thresholds. See [Choose what
 
 | API | Type | Description |
 |---|---|---|
-| [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config_events) | Command | Enable / disable event flags. Set heartbeat interval, CPU / RAM / flash / temperature thresholds. |
+| [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) | Command | Enable / disable event flags. Set heartbeat interval, CPU / RAM / flash / temperature thresholds. |
 
 ### Device Health
 
@@ -177,7 +177,7 @@ Periodic liveness with optional inventory and battery sub-payloads. See [Watch y
 
 | API | Type | Description |
 |---|---|---|
-| [`heartBeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-heartBeatEVT) | Event | Periodic device heartbeat: uptime, sequence number, inventory status, battery alert. |
+| [`heartBeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-heartbeatevt) | Event | Periodic device heartbeat: uptime, sequence number, inventory status, battery alert. |
 
 ### Alerts
 
@@ -186,7 +186,7 @@ Threshold-driven and state-transition notifications. Two payload variants. See [
 | API | Type | Description |
 |---|---|---|
 | [`alerts`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-alerts) | Event | Verbose alert with category-specific `alertDetails` block. |
-| [`alert_short`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-alert_short) | Event | Compact alert with `id`, `priority`, and `description`. MDM-friendly. |
+| [`alert_short`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-alert-short) | Event | Compact alert with `id`, `priority`, and `description`. MDM-friendly. |
 
 ### MQTT Connectivity
 
@@ -194,7 +194,7 @@ Endpoint connection state transitions. See [Knowing when you're connected](/obse
 
 | API | Type | Description |
 |---|---|---|
-| [`mqttConnEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-mqttConnEVT) | Event | CONNECTED / DISCONNECTED transition with device identity and protocol-version context. |
+| [`mqttConnEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-mqttconnevt) | Event | CONNECTED / DISCONNECTED transition with device identity and protocol-version context. |
 
 ---
 
@@ -208,7 +208,7 @@ Per-tag (or aggregated) inventory output. See [Where tag reads come from](/rfid/
 
 | API | Type | Description |
 |---|---|---|
-| [`dataEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-dataEVT) | Event | Inventory event with EPC, TID, USER, telemetry (RSSI, phase, channel, seen count), and access-operation results. |
+| [`dataEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-dataevt) | Event | Inventory event with EPC, TID, USER, telemetry (RSSI, phase, channel, seen count), and access-operation results. |
 
 ---
 
