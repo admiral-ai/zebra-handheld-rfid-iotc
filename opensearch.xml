@@ -4,7 +4,7 @@
   <ShortName>Zebra Handheld RFID — IoT Connector</ShortName>
   <Description>Search Zebra Handheld RFID — IoT Connector</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/img/favicon.png</Image>
+  <Image width="16" height="16" type="image/x-icon">https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/img/zebra-logo-black-stacked.png</Image>
   <Url type="text/html" method="get" template="https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/search?q={searchTerms}"/>
   <Url type="application/opensearchdescription+xml" rel="self" template="https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/opensearch.xml" />
   <moz:SearchForm>https://al1913-zebra.github.io/zebra-handheld-rfid-iotc/</moz:SearchForm>
