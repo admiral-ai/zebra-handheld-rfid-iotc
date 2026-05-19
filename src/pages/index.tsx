@@ -36,7 +36,7 @@ function HomepageHero() {
           <Link
             className="button button--primary button--lg"
             to="/getting-started/quick-start/overview">
-            Quick Start — Read a Tag in 45 min
+            Quick Start: Read your first tag
           </Link>
           <Link
             className="button button--secondary button--lg"
@@ -105,22 +105,22 @@ function PersonaSection() {
           <div className={styles.persona}>
             <h3>New Integrator</h3>
             <p>I want to read a tag as fast as possible.</p>
-            <Link to="/getting-started/quick-start/overview">→ Quick Start Tutorial</Link>
+            <Link to="/getting-started/quick-start/overview">Quick Start tutorial</Link>
           </div>
           <div className={styles.persona}>
             <h3>Solution Builder</h3>
             <p>I&apos;m architecting a multi-reader deployment.</p>
-            <Link to="/foundations/architecture/components">→ System Architecture</Link>
+            <Link to="/foundations/architecture/components">System architecture</Link>
           </div>
           <div className={styles.persona}>
             <h3>API Consumer</h3>
             <p>I&apos;m writing integration code right now.</p>
-            <Link to="/reference/api-overview">→ MQTT API Reference</Link>
+            <Link to="/reference/api-overview">MQTT API reference</Link>
           </div>
           <div className={styles.persona}>
             <h3>Fleet Operator</h3>
             <p>I manage deployed reader populations.</p>
-            <Link to="/fleet/provisioning/models">→ Fleet Operations</Link>
+            <Link to="/fleet/provisioning/models">Fleet operations</Link>
           </div>
         </div>
       </div>
@@ -133,7 +133,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={siteConfig.title}
-      description="MQTT API documentation for Zebra RFD40/RFD90 handheld RFID reader sleds. Built on the Diátaxis framework: tutorials, how-to guides, reference, explanations.">
+      description="MQTT API documentation for Zebra RFD40 and RFD90 handheld RFID reader sleds. Quick Start tutorials, integration guides, API reference, and conceptual explanations.">
       <HomepageHero />
       <main>
         <FeatureGrid />
