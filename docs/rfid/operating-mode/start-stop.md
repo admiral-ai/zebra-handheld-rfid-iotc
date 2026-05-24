@@ -4,7 +4,7 @@ title: Start, stop, and the trigger button
 sidebar_label: Start, stop, and the trigger button
 ---
 
-> 📙 **HOW-TO** · Audience: All · Time: ~5 min · Ties to the Inventory Control sub-tag of the API Reference
+> 📙 **HOW-TO** · **Audience:** All · **Time:** ~5 min · **Ties to:** Inventory Control sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Inventory Control. Operation: `control_operation`.

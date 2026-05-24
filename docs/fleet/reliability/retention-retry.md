@@ -4,7 +4,7 @@ title: What happens when the network drops
 sidebar_label: What happens when the network drops
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~7 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~7 min
 
 Networks fail. Brokers restart. Wi-Fi drops. A reader that buffers nothing loses tag reads during outages; a broker that holds nothing loses commands in flight; an application that retries nothing loses idempotency. IOTC layers four reliability mechanisms — **MQTT QoS, persistent sessions, reader-side retention, application-layer retry**, that together absorb most disruption classes without operator intervention.
 

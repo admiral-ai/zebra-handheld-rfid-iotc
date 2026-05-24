@@ -4,7 +4,7 @@ title: Your first 30 minutes
 sidebar_label: Your first 30 minutes
 ---
 
-> 📗 **TUTORIAL** · Audience: New Integrator · Time: ~30 min hands-on, ~45 min full chapter · Path: 🅓 Direct (Premium / RFD90)
+> 📗 **TUTORIAL** · **Audience:** New Integrator · **Time:** ~30 min hands-on, ~45 min full chapter · **Path:** 🅓 Direct (Premium / RFD90)
 
 In the next thirty minutes you will take a sled out of its box, give it a network identity, and watch tag reads stream over MQTT. The Quick Start is **seven phases**. Each phase ends with a verifiable artifact you can see, a confirmed broker reachability check, an active MDM endpoint, a `get_version` response, a configured CTRL endpoint, a live `dataEVT` stream. **If the artifact appears, the phase succeeded. If it doesn't, you don't proceed.**
 

@@ -4,7 +4,7 @@ title: Securing the connection (TLS & certificates)
 sidebar_label: Securing the connection (TLS & certificates)
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min · Ties to the Certificate Management sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min · **Ties to:** Certificate Management sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Certificate Management. Operations: `get_installed_certificate` · `install_certificate` · `delete_certificate`.

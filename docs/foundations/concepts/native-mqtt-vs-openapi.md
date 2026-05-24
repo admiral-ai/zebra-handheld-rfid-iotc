@@ -4,7 +4,7 @@ title: The OpenAPI Illusion
 sidebar_label: The OpenAPI Illusion
 ---
 
-> 📘 **EXPLANATION** · Audience: API Consumer, Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** API Consumer, Solution Builder · **Read time:** ~5 min
 
 A common mismatch in IOTC integration is between the **OpenAPI-rendered schema** and the **native MQTT payload contract**. Both exist. They look similar. **Only the native shape is what the sled accepts.** This chapter exists because every team that integrates IOTC by copying from the schema first, or by generating a client SDK without overriding the request body — produces payloads the sled rejects, then spends days searching for a bug that isn't there.
 

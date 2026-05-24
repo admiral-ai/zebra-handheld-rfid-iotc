@@ -4,7 +4,7 @@ title: "Phase 2: Bootstrap (Direct, 123RFID Desktop)"
 sidebar_label: "Direct (123RFID Desktop)"
 ---
 
-> 📗 **TUTORIAL** · Phase 2 of 7 · Audience: Operator with a Windows laptop · Time: ~8 min · Path: 🅓 Direct (USB-C)
+> 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with a Windows laptop · **Time:** ~8 min · **Path:** 🅓 Direct (USB-C)
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
 

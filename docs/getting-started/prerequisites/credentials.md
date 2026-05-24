@@ -4,7 +4,7 @@ title: How to Obtain IOTC Credentials & Tenant ID
 sidebar_label: How to Obtain IOTC Credentials & Tenant ID
 ---
 
-> 📙 **HOW-TO** · Audience: New Integrator · Time: ~10 min
+> 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~10 min
 
 This guide shows you how to obtain the IOTC credentials needed to connect a handheld reader to the Zebra-hosted MQTT broker. If you are connecting to a customer-hosted broker, follow [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) instead.
 

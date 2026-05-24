@@ -4,7 +4,7 @@ title: Choose how the reader reads tags
 sidebar_label: Choose how the reader reads tags
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~6 min · Ties to the Operating Mode sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~6 min · **Ties to:** Operating Mode sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Operating Mode. Operations: `get_operating_mode` · `set_operating_mode`.

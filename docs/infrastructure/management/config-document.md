@@ -4,7 +4,7 @@ title: The reader's configuration document
 sidebar_label: The reader's configuration document
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~7 min · Ties to the Device Configuration sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~7 min · **Ties to:** Device Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Device Configuration. Operations: `get_config` · `set_config`.

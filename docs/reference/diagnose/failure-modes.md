@@ -4,7 +4,7 @@ title: Failure modes
 sidebar_label: Failure modes
 ---
 
-> 🩺 **FAILURE MODE CATALOGUE** · Audience: All personas in incident response · Use: explain *why* a symptom is happening
+> 🩺 **FAILURE MODE CATALOGUE** · **Audience:** All personas in incident response · **Use:** explain *why* a symptom is happening
 
 Twenty-four catalogued failure modes covering bootstrap, network, configuration, inventory, data, firmware, events, security, the Bridged host bridge, and fleet identity. Each entry names the failure, explains the underlying cause, lists the signals that confirm it, gives the corrective steps (or points to a recovery playbook), and links to the concept chapter that explains the surface in depth.
 

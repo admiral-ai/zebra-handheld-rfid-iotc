@@ -1,10 +1,10 @@
 ---
 id: step-5-read
-title: Add remote endpoints (config_endpoint)
-sidebar_label: Add remote endpoints (`config_endpoint`)
+title: "Phase 5: Add remote endpoints (config_endpoint)"
+sidebar_label: "Phase 5: Add remote endpoints"
 ---
 
-> 📗 **TUTORIAL** · Phase 5 of 7 · Audience: Integrator · Time: ~8 min · Path: 🅓 Direct
+> 📗 **TUTORIAL** · **Phase:** 5 of 7 · **Audience:** Integrator · **Time:** ~8 min · **Path:** 🅓 Direct
 
 **Artifact this phase produces:** two operational endpoints active on the sled, a **CTRL** endpoint for radio control and a **DATA1** endpoint for the tag stream, in addition to the bootstrap MDM endpoint. This is the configuration most production deployments actually run.
 

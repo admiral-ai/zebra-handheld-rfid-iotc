@@ -4,7 +4,7 @@ title: "Phase 2: Bootstrap (Bridged, 123RFID Mobile)"
 sidebar_label: "Bridged (123RFID Mobile)"
 ---
 
-> 📗 **TUTORIAL** · Phase 2 of 7 · Audience: Operator with an Android mobile computer · Time: ~8 min · Path: 🅑 Bridged (RFD40 Standard) — also valid for 🅓 Direct sleds when no Windows laptop is available
+> 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with an Android mobile computer · **Time:** ~8 min · **Path:** 🅑 Bridged (RFD40 Standard) — also valid for 🅓 Direct sleds when no Windows laptop is available
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
 

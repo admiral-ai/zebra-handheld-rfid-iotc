@@ -4,7 +4,7 @@ title: What the IoT Connector is
 sidebar_label: What the IoT Connector is
 ---
 
-> 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~5 min
 
 The Zebra IoT Connector (IOTC) for Handheld RFID is **the MQTT-based management and data plane for RFD40 and RFD90 reader sleds**. It lets applications configure readers, run RFID inventory, stream tag data, and monitor fleets — over a single persistent MQTT connection rather than the request/response HTTP pattern used by fixed Zebra readers.
 

@@ -4,7 +4,7 @@ title: Where things fail
 sidebar_label: Where things fail
 ---
 
-> 📘 **EXPLANATION** · Audience: All personas in incident response · Read time: ~4 min
+> 📘 **EXPLANATION** · **Audience:** All personas in incident response · **Read time:** ~4 min
 
 Diagnose any IOTC failure by first identifying **which physical edge is broken.** The number of edges depends on hardware tier. Get this right and the symptom maps to one of a small set of failure modes. Get it wrong and you debug the symptom in the wrong subsystem.
 

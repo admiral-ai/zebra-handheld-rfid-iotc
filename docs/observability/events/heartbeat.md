@@ -4,7 +4,7 @@ title: Watch your reader's pulse
 sidebar_label: Watch your reader's pulse
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~4 min · Ties to the Device Health sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~4 min · **Ties to:** Device Health sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Device Health. Event: `heartbeatEVT`.

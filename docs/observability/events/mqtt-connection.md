@@ -4,7 +4,7 @@ title: Knowing when you're connected
 sidebar_label: Knowing when you're connected
 ---
 
-> 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~3 min · Ties to the MQTT Connectivity sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~3 min · **Ties to:** MQTT Connectivity sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: MQTT Connectivity. Event: `mqttConnEVT`.

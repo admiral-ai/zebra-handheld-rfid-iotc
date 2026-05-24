@@ -4,7 +4,7 @@ title: How to Pair the Reader Sled with a Host
 sidebar_label: How to Pair the Reader Sled with a Host
 ---
 
-> 📙 **HOW-TO** · Audience: New Integrator · Time: ~5 min · Source of truth: *123RFID Mobile Application User Guide* (Zebra, MN-003765-09EN Rev A)
+> 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~5 min · **Source of truth:** *123RFID Mobile Application User Guide* (Zebra, MN-003765-09EN Rev A)
 
 A reader sled attaches to its Android host in one of **two ways**:
 

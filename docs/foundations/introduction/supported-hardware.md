@@ -4,7 +4,7 @@ title: "Which sled do you have? (Direct vs Bridged)"
 sidebar_label: "Which sled do you have? (Direct vs Bridged)"
 ---
 
-> 📘 **EXPLANATION** · Audience: New Integrator, Solution Builder · Read time: ~4 min
+> 📘 **EXPLANATION** · **Audience:** New Integrator, Solution Builder · **Read time:** ~4 min
 
 :::note Naming update
 The two architecture tiers in this documentation are **Direct** and **Bridged**. Earlier drafts called them *Monolithic* and *Bipartite* respectively. If you have a bookmark or external reference using the older terms, this page is the canonical destination.

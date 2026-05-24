@@ -4,7 +4,7 @@ title: Glossary, limits, and cheat sheets
 sidebar_label: Glossary, limits, and cheat sheets
 ---
 
-> 📕 **REFERENCE** · Audience: All · Use: lookup while reading
+> 📕 **REFERENCE** · **Audience:** All · **Use:** lookup while reading
 
 The terminology, limits, and cheat sheets you'll want at your elbow while reading the rest of the documentation. **Authoritative when there's disagreement** — when an older corpus uses a term differently, this glossary wins.
 

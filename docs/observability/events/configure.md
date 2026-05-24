@@ -4,7 +4,7 @@ title: Choose what the reader tells you
 sidebar_label: Choose what the reader tells you
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min · Ties to the Event Configuration sub-tag of the API Reference
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min · **Ties to:** Event Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Event Configuration. Operation: `config_events`.

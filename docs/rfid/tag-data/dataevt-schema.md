@@ -4,7 +4,7 @@ title: Where tag reads come from
 sidebar_label: Where tag reads come from
 ---
 
-> 📕 **REFERENCE** · Audience: API Consumer · Ties to the Tag Data Event sub-tag of the API Reference
+> 📕 **REFERENCE** · **Audience:** API Consumer · **Ties to:** Tag Data Event sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Tag Data Event. Event: `dataEVT`.

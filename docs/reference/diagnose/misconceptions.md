@@ -4,7 +4,7 @@ title: Things people get wrong about IOTC
 sidebar_label: Things people get wrong about IOTC
 ---
 
-> 📘 **EXPLANATION** · Audience: All personas · Read time: ~6 min
+> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~6 min
 
 Recurring misconceptions that produce wrong integration code. Each entry pairs the wrong belief with the right one, and points to the chapter that explains in more depth. **If you've recently spent more than an hour stuck on something, scan this list first**; your symptom probably has a familiar misconception underneath.
 

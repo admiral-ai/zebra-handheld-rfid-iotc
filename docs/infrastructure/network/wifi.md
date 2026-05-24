@@ -4,7 +4,7 @@ title: How to Configure Wi-Fi Profiles
 sidebar_label: How to Configure Wi-Fi Profiles
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder, Fleet Operator · Time: ~10 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder, Fleet Operator · **Time:** ~10 min
 
 This guide shows you how to configure Wi-Fi profiles on a handheld reader over MQTT.
 

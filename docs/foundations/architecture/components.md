@@ -4,7 +4,7 @@ title: "Roles: Reader, Host, Broker, Application"
 sidebar_label: "Roles: Reader, Host, Broker, Application"
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 An IOTC deployment is the cooperation of **five actors**. Knowing what each one owns is the first step toward designing a system you can debug. Get the ownership boundaries wrong and you will spend weeks chasing bugs in the wrong subsystem.
 

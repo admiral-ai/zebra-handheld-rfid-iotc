@@ -4,7 +4,7 @@ title: Filter tags before vs after the read
 sidebar_label: Filter tags before vs after the read
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~4 min · Ties to the Tag Filtering sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~4 min · **Ties to:** Tag Filtering sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Tag Filtering. Operations: `get_post_filter` · `set_post_filter`.

@@ -4,7 +4,7 @@ title: Keeping a fleet in sync
 sidebar_label: Keeping a fleet in sync
 ---
 
-> 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~5 min
 
 A reader's configuration drifts. Operators tweak settings locally. Failed configuration pushes leave devices in mixed states. Firmware updates reset radio-operation state. **Keeping a fleet in sync is the operational pattern that catches drift and reconciles it.** IOTC gives you the primitives; you (or your MDM) implement the loop.
 

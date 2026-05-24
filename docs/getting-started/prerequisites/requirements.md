@@ -4,7 +4,7 @@ title: Hardware & Software Requirements
 sidebar_label: Hardware & Software Requirements
 ---
 
-> 📕 **REFERENCE** · Audience: New Integrator · Use: pre-flight checklist
+> 📕 **REFERENCE** · **Audience:** New Integrator · **Use:** pre-flight checklist
 
 ### Required hardware and software
 

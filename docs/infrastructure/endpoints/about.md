@@ -4,7 +4,7 @@ title: How the MQTT plumbing fits together
 sidebar_label: How the MQTT plumbing fits together
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min · Ties to the MQTT Endpoint Configuration sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** MQTT Endpoint Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: MQTT Endpoint Configuration. Operations: `get_endpoint_config` · `config_endpoint`.

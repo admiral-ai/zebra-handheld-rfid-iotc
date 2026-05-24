@@ -4,7 +4,7 @@ title: Getting on the network (Wi-Fi & Ethernet)
 sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min · Ties to the Network Configuration sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Network Configuration. Operations: `get_eth` · `get_wifi` · `set_wifi` · `delete_wifi_profile`.

@@ -4,7 +4,7 @@ title: What your reader knows about itself
 sidebar_label: What your reader knows about itself
 ---
 
-> 📘 **EXPLANATION** · Audience: All personas · Read time: ~5 min · Ties to the Device Status sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~5 min · **Ties to:** Device Status sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Device Status. Operations: `get_status` · `get_version` · `get_current_region`.

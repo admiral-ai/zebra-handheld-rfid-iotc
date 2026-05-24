@@ -4,7 +4,7 @@ title: When the reader needs to interrupt you
 sidebar_label: When the reader needs to interrupt you
 ---
 
-> 📘 **EXPLANATION** · Audience: Fleet Operator · Read time: ~5 min · Ties to the Alerts sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~5 min · **Ties to:** Alerts sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: Alerts (and Exceptions). Events: `alerts` · `alert_short`.

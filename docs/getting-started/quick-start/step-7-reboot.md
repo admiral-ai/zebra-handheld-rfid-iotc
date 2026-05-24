@@ -1,10 +1,10 @@
 ---
 id: step-7-reboot
-title: Reboot when needed
-sidebar_label: Reboot when needed
+title: "Phase 7: Reboot when needed"
+sidebar_label: "Phase 7: Reboot when needed"
 ---
 
-> 📗 **TUTORIAL** · Phase 7 of 7 · Audience: Integrator / Fleet Operator · Time: ~3 min
+> 📗 **TUTORIAL** · **Phase:** 7 of 7 · **Audience:** Integrator / Fleet Operator · **Time:** ~3 min
 
 **Artifact this phase produces:** a clean warm reset of the sled that preserves all management endpoint configuration. You finish the Quick Start knowing how, when, and **when not**, to reboot.
 

@@ -4,7 +4,7 @@ title: Going from one reader to a fleet
 sidebar_label: Going from one reader to a fleet
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, Fleet Operator · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~5 min
 
 A single reader provisioned through 123RFID Desktop is the Quick Start. A hundred readers, or a thousand, is a different problem. **Three provisioning paths cover the spectrum.** Choose by fleet size and operational policy, not by technical capability.
 

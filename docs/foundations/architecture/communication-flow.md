@@ -4,7 +4,7 @@ title: How commands and responses flow
 sidebar_label: How commands and responses flow
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder, API Consumer · Read time: ~6 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, API Consumer · **Read time:** ~6 min
 
 Three communication flows occur between an IOTC reader and an application. **Every interaction in this documentation is one of them.** Knowing which is which is how you choose the right topic, the right QoS, and the right error-handling pattern.
 

@@ -4,7 +4,7 @@ title: Pairing the docs with the API Reference
 sidebar_label: Pairing the docs with the API Reference
 ---
 
-> 📘 **EXPLANATION** · Audience: All personas · Read time: ~3 min
+> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~3 min
 
 These conceptual docs and the **MQTT API Reference** are two halves of one documentation system. Reading either alone misses half the picture.
 

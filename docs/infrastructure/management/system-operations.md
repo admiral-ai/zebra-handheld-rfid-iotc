@@ -4,7 +4,7 @@ title: Updating firmware and rebooting
 sidebar_label: Updating firmware and rebooting
 ---
 
-> 📘 **EXPLANATION** · Audience: Fleet Operator, Solution Builder · Read time: ~7 min · Ties to the System Operations sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~7 min · **Ties to:** System Operations sub-tag of the API Reference
 
 > **See in the API Reference**
 > Sub-tag: System Operations. Operations: `set_os` · `reboot`.

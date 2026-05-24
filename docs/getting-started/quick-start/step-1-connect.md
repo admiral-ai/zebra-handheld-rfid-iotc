@@ -1,10 +1,10 @@
 ---
 id: step-1-connect
-title: Prepare network and broker
-sidebar_label: Prepare network and broker
+title: "Phase 1: Prepare network and broker"
+sidebar_label: "Phase 1: Prepare network and broker"
 ---
 
-> 📗 **TUTORIAL** · Phase 1 of 7 · Audience: IT / Network Admin · Time: ~5 min (or 30 if you need a firewall change)
+> 📗 **TUTORIAL** · **Phase:** 1 of 7 · **Audience:** IT / Network Admin · **Time:** ~5 min (or 30 if you need a firewall change)
 
 **Artifact this phase produces:** an unobstructed TCP/IP path from the sled's network segment to your MQTT broker, on the broker's MQTT port. Without this, every later phase fails silently, the sled sits in a reconnect loop with nothing for you to read.
 
