@@ -23,9 +23,9 @@ The reader is **authoritative**: it owns its state. Applications observe; they d
 
 ### Host Device (Bridged tier; optional UI on Direct) 🅓🅑
 
-On **Bridged** sleds (RFD40 Standard), the sled has no on-board Wi-Fi radio. A **host device** — typically a Zebra Enterprise Android mobile computer paired over Bluetooth 5.0 LE (eConnex profile) — provides the **network conduit** to the broker:
+On **Bridged** sleds (RFD40 Standard), the sled has no on-board Wi-Fi radio. A **host device** — typically a Zebra Enterprise Android mobile computer paired over Bluetooth 5.0 LE — provides the **network conduit** to the broker:
 
-- The sled pairs to the host over Bluetooth, carrying its IoTC MQTT envelope over the eConnex profile.
+- The sled pairs to the host over Bluetooth, carrying its IoTC MQTT envelope through the host's network stack. (Note: *eConnex* is the name of the 8-pin USB/Common-IO connector on RFD40/RFD90 sleds; it is **not** a Bluetooth profile.)
 - The host's Wi-Fi (or mobile data) carries that envelope onward to the broker.
 - The IoTC MQTT command surface, response shapes, event semantics, and topic structure are **identical to a Direct sled** — the host is a conduit, not a translator. The reader still owns its MQTT client identity, certificates, and topic subscriptions; the host is the transport.
 - The sled emits `terminalConnection` events whenever the Bluetooth link transitions, since there is a host link to report on.

@@ -11,7 +11,7 @@ A sled out of the box has no regulatory region, no Wi-Fi credentials (Direct) or
 | Tool | Platform | First attach | Tier it bootstraps |
 |---|---|---|---|
 | **123RFID Desktop** | Windows 10 / 11 | USB-C (or Bluetooth after pairing) | 🅓 Direct: RFD40 Premium, Premium Plus, RFD90 |
-| **123RFID Mobile** | Android 11+ | Bluetooth 5.0 LE (NFC tap, barcode scan, or manual MAC) | 🅑 Bridged: RFD40 Standard. Also works for Direct sleds over BT. |
+| **123RFID Mobile** | Android 7+ (Nougat) | Bluetooth 5.0 LE (NFC tap, host-scans-sled, sled-scans-mobile, camera, or manual) — see availability matrix in [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing) | 🅑 Bridged: RFD40 Standard. Also works for Direct sleds over BT. |
 
 Both tools download free from `support.zebra.com`. **Once a sled is online, every IoTC MQTT operation behaves identically across tiers** — the bootstrap-tool choice is a one-time decision about which onboarding flow your operator follows.
 
@@ -30,7 +30,7 @@ Both tools perform the same logical bootstrap steps; the UX and transport differ
 
 | Bootstrap step | 123RFID Desktop | 123RFID Mobile |
 |---|---|---|
-| Discover and attach the sled | Click **FIND READERS**, choose USB or Bluetooth | NFC Tap-and-Pair, Scan-and-Pair via barcode, or manual Bluetooth MAC |
+| Discover and attach the sled | Click **FIND READERS**, choose USB or Bluetooth | One of five Bluetooth pairing methods — Tap and Pair (NFC), Scan and Pair (host scans sled), Pair by Barcode (sled scans mobile), Pairing with the Camera, or Manual Android pairing; plus USB / Common IO direct attach without pairing. See [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing). |
 | Set the regulatory region | **Region** tab → choose country → **Apply** | **Settings** → **Region** → choose country → **Apply** |
 | Configure Wi-Fi (Direct only) | Communication → Wi-Fi → Scan and Choose Network | n/a — Bridged sleds rely on the host's Wi-Fi; Wi-Fi for Direct via Mobile is supported when the sled itself has a Wi-Fi radio |
 | Configure the MDM endpoint | Communication → **End Point** → **New** | **Settings** → MQTT / MDM endpoint |
@@ -38,11 +38,15 @@ Both tools perform the same logical bootstrap steps; the UX and transport differ
 
 ### Pairing methods supported by 123RFID Mobile
 
-For Bluetooth pairing the mobile app supports three methods, listed from fastest to most manual:
+For Bluetooth pairing the mobile app supports **five** methods, each with its own sled-tier and host-device availability constraints (full procedures in [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing)):
 
-- **NFC Tap-and-Pair.** Touch the host phone (with NFC enabled) to the sled's NFC tag area on the trigger handle. The pair completes in seconds. Available on sleds that include the NFC tag (typical for Premium and Premium Plus).
-- **Scan-and-Pair via barcode.** Use a Zebra Enterprise mobile computer with an integrated scanner (TC52, TC72, MC93xx, etc.) to scan the Bluetooth-pairing barcode on the sled's back label. Available only on Zebra mobile computers shipped with 123RFID Mobile pre-installed and the barcode-scan helper enabled.
-- **Manual Bluetooth MAC entry.** Open Android Bluetooth settings, find the sled by Bluetooth name (`RFD40-` or `RFD90-` prefix), tap to pair, then re-enter 123RFID Mobile to select it. Works on every Android 11+ phone but takes longest.
+- **Tap and Pair (NFC).** Touch the host phone to the sled's NFC tag area on the handle. **Available only on RFD40 Premium and Premium Plus** (per the *123RFID Mobile User Guide*; Standard has no NFC tag).
+- **Scan and Pair.** The host's integrated barcode scanner reads a code on the sled to obtain the sled's Bluetooth MAC. **Available only on RFD40 Premium Plus, and only on Zebra Enterprise Mobile Computing devices** (not third-party Android phones).
+- **Pair by Scanning a Barcode (reverse).** 123RFID Mobile displays a barcode encoding the mobile computer's Bluetooth address; the sled's scanner reads it. **Available only on RFD40 Premium Plus.**
+- **Pairing with the Camera.** The mobile computer's camera (not its integrated scanner) captures a barcode on the sled. Fallback for hosts without a built-in barcode scanner.
+- **Manual Android pairing.** Generic Android Bluetooth discovery and pair flow (Settings → Connected devices → Pair new device). **Works on every Android device** and is the practical default for RFD40 Standard sleds and consumer Android phones.
+
+In addition, **USB / Common IO** is a wired direct-attach alternative (no pairing step) for RFD40 and RFD90 sleds via the 8-pin eConnex connector. *eConnex names the USB pin/connector specification* — it is not a Bluetooth profile.
 
 ### Picking your bootstrap tool
 
