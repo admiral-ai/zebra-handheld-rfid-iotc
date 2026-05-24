@@ -26,7 +26,7 @@ sidebar_label: Where tag reads come from
 
 Three top-level fields:
 
-- **`type`**, the active operating-mode profile when the event was generated. Values match the `profiles` enum (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`, or `FAST_READ`, though `FAST_READ` is not currently supported in `set_operating_mode`).
+- **`type`**, the active operating-mode profile when the event was generated. Values match the `profiles` enum (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`, or `FAST_READ`, though `FAST_READ` is not currently supported in [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode)).
 - **`timestamp`**: ISO 8601 event timestamp.
 - **`data`**: wrapper for `tagData` and `barcodeData` arrays.
 
@@ -113,9 +113,9 @@ A fully-populated `dataEVT` for a single tag with all metadata enabled and acces
 
 ### Where `dataEVT` does *not* fire
 
-- **When `FAST_READ` is the active profile.** `FAST_READ` is not currently supported by `set_operating_mode`, so this case does not arise in normal operation, but if it did, `dataEVT` would not be emitted.
-- **When a post-filter excludes every tag.** A `set_post_filter` with `reportOperation: EXCLUDE` matching everything will run inventory but emit nothing. Inspect with `get_post_filter`.
-- **When the data endpoint is inactive.** The endpoint that owns the data stream must have `activate: true`. Inspect with `get_endpoint_config`.
+- **When `FAST_READ` is the active profile.** `FAST_READ` is not currently supported by [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), so this case does not arise in normal operation, but if it did, `dataEVT` would not be emitted.
+- **When a post-filter excludes every tag.** A [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) with `reportOperation: EXCLUDE` matching everything will run inventory but emit nothing. Inspect with [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter).
+- **When the data endpoint is inactive.** The endpoint that owns the data stream must have `activate: true`. Inspect with [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config).
 
 ### Topic routing
 

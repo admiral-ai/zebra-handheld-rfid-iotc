@@ -10,13 +10,13 @@ sidebar_label: "Phase 4: Inspect endpoint state"
 
 ### Why this phase exists
 
-You configured an MDM endpoint in 123RFID Desktop and `get_version` confirmed the connection in Phase 3. Before adding more endpoints with `config_endpoint`, you need to see what the reader already has. Skipping this step is how you accidentally:
+You configured an MDM endpoint in 123RFID Desktop and [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) confirmed the connection in Phase 3. Before adding more endpoints with [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), you need to see what the reader already has. Skipping this step is how you accidentally:
 
 - Add an endpoint with a name that already exists (returns error code 10).
 - Overwrite a working configuration with a typo.
 - Believe an endpoint is active when only the saved configuration exists.
 
-`get_endpoint_config` answers two questions in one call: what is **active** (currently connected to a broker) and what is **saved** (defined but not active).
+[`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) answers two questions in one call: what is **active** (currently connected to a broker) and what is **saved** (defined but not active).
 
 ### What to do
 
@@ -116,4 +116,4 @@ You'll get back exactly that endpoint's `configuration` object — useful when y
 
 ### Where to go next
 
-You now know what the sled has. Next, add operational endpoints. CTRL for radio control and DATA1 for the tag stream. [Phase 5. Add remote endpoints (`config_endpoint`)](/getting-started/quick-start/step-5-read).
+You now know what the sled has. Next, add operational endpoints. CTRL for radio control and DATA1 for the tag stream. [Phase 5. Add remote endpoints ([`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint))](/getting-started/quick-start/step-5-read).

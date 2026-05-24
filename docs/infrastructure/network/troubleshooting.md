@@ -10,7 +10,7 @@ This guide shows you how to diagnose common network failures on a handheld reade
 
 ### Symptom: Wi-Fi association fails
 
-Issue `get_wifi`. Check the `last_error` field on the profile that should be active.
+Issue [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi). Check the `last_error` field on the profile that should be active.
 
 - `auth_failed` to wrong passphrase or invalid EAP credentials
 - `no_signal` to SSID not reachable (out of range, AP down)
@@ -18,7 +18,7 @@ Issue `get_wifi`. Check the `last_error` field on the profile that should be act
 
 ### Symptom: DHCP failure
 
-`get_wifi` shows associated but no IP. Check:
+[`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) shows associated but no IP. Check:
 
 - The Wi-Fi network's DHCP scope has free leases
 - The reader's MAC address is not blocked by MAC filtering
@@ -28,7 +28,7 @@ Issue `get_wifi`. Check the `last_error` field on the profile that should be act
 
 The reader has an IP but cannot reach the broker hostname. Check:
 
-- The configured DNS in `get_wifi` response is reachable
+- The configured DNS in [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) response is reachable
 - The broker hostname (`iotc-broker.zebra.com` or your customer broker) resolves on a control machine in the same network
 
 ### Symptom: firewall blocks 1883/8883
@@ -42,9 +42,9 @@ Connection drops at TCP layer before MQTT CONNECT. Check:
 
 For systematic diagnosis, run in order:
 
-1. `get_status` — does the reader respond at all over MQTT? If yes, the path is fundamentally working.
-2. `get_wifi` — Wi-Fi association and DHCP state
-3. `get_endpoint_config` — broker target settings
+1. [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) — does the reader respond at all over MQTT? If yes, the path is fundamentally working.
+2. [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) — Wi-Fi association and DHCP state
+3. [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) — broker target settings
 4. Inspect `heartBeatEVT` events over a 5-minute window for connection-quality dropouts
 
 [DIAGRAM: D-6.4.A. symptom → diagnostic-command decision tree]

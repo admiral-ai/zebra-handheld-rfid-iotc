@@ -92,9 +92,9 @@ Three commands and events together cover most of the diagnostic surface:
 
 | Signal | What it tells you | When to use |
 |---|---|---|
-| `get_status` | Power, radio, terminal connection, NTP, battery | First check on any new symptom |
+| [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) | Power, radio, terminal connection, NTP, battery | First check on any new symptom |
 | `mqttConnEVT` | Broker-perceived connection state | When the application can't tell whether the reader is offline |
-| `heartbeatEVT` (absence) | Heartbeats stopping is a signal of silent offline | When `mqttConnEVT` and `get_status` disagree |
+| `heartbeatEVT` (absence) | Heartbeats stopping is a signal of silent offline | When `mqttConnEVT` and [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) disagree |
 
 If all three are healthy and the symptom persists, the problem is downstream of the broker — broker ACLs, downstream pipeline, application bug.
 

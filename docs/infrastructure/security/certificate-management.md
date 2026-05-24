@@ -78,6 +78,6 @@ Cannot delete a certificate currently referenced by an active endpoint or Wi-Fi 
 
 ### The logical name pattern
 
-Every installed certificate carries a `name` you assign at install time. Other commands (`set_wifi`, `config_endpoint`, `set_os`)reference the certificate by this logical name rather than by content. This keeps payloads small and lets you rotate the underlying certificate without changing the consuming commands.
+Every installed certificate carries a `name` you assign at install time. Other commands ([`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi), [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os))reference the certificate by this logical name rather than by content. This keeps payloads small and lets you rotate the underlying certificate without changing the consuming commands.
 
 **Related:** 📘 [§7.1 Security Model](/infrastructure/security/model) · 📕 [§16.2 certificate endpoints](#chapter-16--mqtt-api-reference) · 📙 [§7.3 Rotation at Scale](/infrastructure/security/rotation) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup)

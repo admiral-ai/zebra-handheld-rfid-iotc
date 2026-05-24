@@ -18,7 +18,7 @@ The reader handles the first and third segments automatically; the documentation
 
 - **`tenantId`**, the customer's tenant identifier, assigned during account provisioning. Stable per tenant. Configured once on the reader (carried in `mqttParams.tenantId` in the endpoint's `epConfig`).
 - **`topic`**, the **user-chosen middle segment**, configured per endpoint via `publishTopics` and `subscribeTopics`. An endpoint may publish to up to 3 topics and subscribe to 1.
-- **`deviceSerialNumber`**, the reader's hardware serial. Stable per device. The reader appends this automatically based on its own identity (returned by `get_version`).
+- **`deviceSerialNumber`**, the reader's hardware serial. Stable per device. The reader appends this automatically based on its own identity (returned by [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version)).
 
 ### Worked example
 

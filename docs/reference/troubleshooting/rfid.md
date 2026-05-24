@@ -11,8 +11,8 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 #### Symptom: operation start succeeds but no tags read
 
 - Verify tags are present in the field — wave a known-good tag close to the sled.
-- Check `get_post_filter`, an over-restrictive include filter drops everything.
-- Check `get_operating_mode` `rf_power` — too-low power reduces effective range.
+- Check [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter), an over-restrictive include filter drops everything.
+- Check [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) `rf_power` — too-low power reduces effective range.
 - Check the regulatory region — wrong region can disable the radio entirely.
 
 #### Symptom: very low read rate / poor performance

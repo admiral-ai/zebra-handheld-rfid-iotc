@@ -10,9 +10,9 @@ sidebar_label: "Phase 7: Reboot when needed"
 
 ### Why this phase exists
 
-`reboot` is a small operation with one big rule: **it cannot run during active RFID inventory.** Get this wrong and you either lose nothing (the command is rejected) or you interrupt an inventory and have to clean up state. Knowing the pre-conditions is the whole content of this phase.
+[`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) is a small operation with one big rule: **it cannot run during active RFID inventory.** Get this wrong and you either lose nothing (the command is rejected) or you interrupt an inventory and have to clean up state. Knowing the pre-conditions is the whole content of this phase.
 
-### What `reboot` does
+### What [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) does
 
 A warm reset of the device. After a successful reboot:
 
@@ -20,7 +20,7 @@ A warm reset of the device. After a successful reboot:
 - **All management endpoint configurations are restored**: MGMT, MGMT_EVT, CTRL endpoints, certificate installs, Wi-Fi profiles, region.
 - **Only radio operation configurations from the control endpoint are lost.** If you set an operating mode that wasn't persisted, you'll need to re-apply it.
 
-Use `reboot` when you need to:
+Use [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) when you need to:
 
 - Apply changes that require a restart.
 - Recover from a stuck or inconsistent state.
@@ -32,7 +32,7 @@ Use `reboot` when you need to:
 - Confirm inventory is not running (you saw the stop response).
 - Confirm the device can safely restart (no firmware download in progress, etc.).
 
-If inventory is active when you send `reboot`, the reader returns error code 5 ("Can't reboot device, inventory in progress") and the command is a no-op.
+If inventory is active when you send [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot), the reader returns error code 5 ("Can't reboot device, inventory in progress") and the command is a no-op.
 
 ### What to do
 
@@ -48,7 +48,7 @@ mosquitto_pub -h <broker-host> -p 1883 \
 
 The response's `deviceStatus.radioActivity` should be `INACTIVE`. If it's `ACTIVE`, send `control_operation STOP` first (Phase 6).
 
-#### 2. Send `reboot`
+#### 2. Send [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)
 
 The payload is the minimal two-field form:
 
@@ -92,21 +92,21 @@ The sled will go offline briefly (typically 10–30 seconds) and come back onlin
 
 #### 5. Confirm management config survived
 
-Re-run `get_endpoint_config` from Phase 4. You should see the same MDM, CTRL, and DATA1 endpoints active. The reboot preserved them.
+Re-run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) from Phase 4. You should see the same MDM, CTRL, and DATA1 endpoints active. The reboot preserved them.
 
 ### Error codes
 
 | Code | Meaning | Action |
 |---|---|---|
 | `0` | Success | Reader is rebooting; await reconnect. |
-| `5` | Can't reboot device, inventory in progress | Send `control_operation STOP` first, then retry `reboot`. |
+| `5` | Can't reboot device, inventory in progress | Send `control_operation STOP` first, then retry [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot). |
 
 ### Success check
 
-- `reboot` returns `response.code: 0`.
+- [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) returns `response.code: 0`.
 - Sled goes offline and comes back within ~30 seconds.
 - `mqttConnEVT` shows a CONNECTED state after the disconnect.
-- `get_endpoint_config` shows the same endpoint set you had before reboot.
+- [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) shows the same endpoint set you had before reboot.
 
 ### You've completed the Quick Start
 

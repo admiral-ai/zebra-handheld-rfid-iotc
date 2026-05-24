@@ -13,7 +13,7 @@ sidebar_label: Fleet Management FAQs
 ---
 
 **Q:** How do I update firmware across a fleet?
-**A:** Issue `set_os` to each reader, ideally orchestrated through SOTI Connect or your automation pipeline.
+**A:** Issue [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) to each reader, ideally orchestrated through SOTI Connect or your automation pipeline.
 **Details:** [§14.6 How to Execute a Phased Fleet Migration](/fleet/migration/execute)
 
 ---

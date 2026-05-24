@@ -27,16 +27,16 @@ Every concept chapter in Parts 4–6 ties to exactly one API Reference sub-tag. 
 
 | Concept chapter | API sub-tag | Operations / Events |
 |---|---|---|
-| What your reader knows about itself | Device Status | `get_status` · `get_version` · `get_current_region` |
-| Getting on the network (Wi-Fi & Ethernet) | Network Configuration | `get_eth` · `get_wifi` · `set_wifi` · `delete_wifi_profile` |
-| How the MQTT plumbing fits together | MQTT Endpoint Configuration | `get_endpoint_config` · `config_endpoint` |
-| Securing the connection (TLS & certificates) | Certificate Management | `get_installed_certificate` · `install_certificate` · `delete_certificate` |
-| The reader's configuration document | Device Configuration | `get_config` · `set_config` |
-| Updating firmware and rebooting | System Operations | `set_os` · `reboot` |
-| Choose how the reader reads tags | Operating Mode | `get_operating_mode` · `set_operating_mode` |
-| Start, stop, and the trigger button | Inventory Control | `control_operation` |
-| Filter tags before vs after the read | Tag Filtering | `get_post_filter` · `set_post_filter` |
-| Choose what the reader tells you | Event Configuration | `config_events` |
+| What your reader knows about itself | Device Status | [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) · [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) · [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region) |
+| Getting on the network (Wi-Fi & Ethernet) | Network Configuration | [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) · [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) · [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) |
+| How the MQTT plumbing fits together | MQTT Endpoint Configuration | [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) · [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) |
+| Securing the connection (TLS & certificates) | Certificate Management | [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) · [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) |
+| The reader's configuration document | Device Configuration | [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) |
+| Updating firmware and rebooting | System Operations | [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) |
+| Choose how the reader reads tags | Operating Mode | [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) · [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) |
+| Start, stop, and the trigger button | Inventory Control | [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) |
+| Filter tags before vs after the read | Tag Filtering | [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) · [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) |
+| Choose what the reader tells you | Event Configuration | [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) |
 | Watch your reader's pulse | Device Health | `heartBeatEVT` |
 | When the reader needs to interrupt you | Alerts / Exceptions | `alerts` · `alert_short` |
 | Knowing when you're connected | MQTT Connectivity | `mqttConnEVT` |

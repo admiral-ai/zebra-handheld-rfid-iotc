@@ -14,7 +14,7 @@ The reader has been bootstrapped but does not show up in your MQTT subscriber.
 
 - Verify the reader is powered on and its host device is connected to the network.
 - Verify the host device can resolve the broker hostname.
-- Verify the credentials in `config_endpoint` match the broker's expectations.
+- Verify the credentials in [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) match the broker's expectations.
 
 #### Symptom: reader connects then immediately disconnects
 

@@ -74,14 +74,14 @@ Save the response (full snapshot), this is the golden config.
 
 For each of readers 2 and 3, send the following sequence of commands derived from the golden config:
 
-- `install_certificate` for each cert in the baseline `installedCerts`
-- `set_wifi` for each profile in the baseline `wifiConfig`
-- `config_endpoint` for each endpoint in the baseline `epConfig`
-- `set_operating_mode` reproducing the baseline (captured separately via `get_operating_mode` before Step 4)
-- `set_post_filter` reproducing the post-filter set (captured via `get_post_filter`)
-- `config_events` reproducing the event configuration
+- [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) for each cert in the baseline `installedCerts`
+- [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) for each profile in the baseline `wifiConfig`
+- [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) for each endpoint in the baseline `epConfig`
+- [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) reproducing the baseline (captured separately via [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) before Step 4)
+- [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) reproducing the post-filter set (captured via [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter))
+- [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) reproducing the event configuration
 
-**You should see** subsequent `get_config` outputs on readers 2 and 3 match the baseline on every domain.
+**You should see** subsequent [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) outputs on readers 2 and 3 match the baseline on every domain.
 
 ### Step 6: Enable heartbeats fleet-wide
 
@@ -115,7 +115,7 @@ mosquitto_sub -h iotc-broker.zebra.com -p 8883 \
 
 ### Recap
 
-You provisioned, secured, configured, and monitored a three-reader fleet end-to-end. The replay pattern in Step 5 — per-domain commands derived from a `get_config` baseline — scales to fleets of any size; only the orchestration changes.
+You provisioned, secured, configured, and monitored a three-reader fleet end-to-end. The replay pattern in Step 5 — per-domain commands derived from a [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) baseline — scales to fleets of any size; only the orchestration changes.
 
 **Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📙 [§13.2 SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [§14.3 Apply Bulk Configuration](/fleet/management/apply-config) · 📙 [§12.4 Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
 

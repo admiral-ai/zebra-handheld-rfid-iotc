@@ -69,11 +69,11 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct,
   - `RFD40NP-…` or `RFD40HP-…` to Premium 🅓
   - `RFD9030-…` to RFD90 🅓
 - Powered on, watch the LED behavior during bootstrap. On-sled Wi-Fi setup will only succeed on Direct tiers; Standard sleds show no Wi-Fi options because they have no Wi-Fi radio (the host provides the network path).
-- From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Direct, it names the in-firmware IOTC version.
+- From an existing deployment, the [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) response on Standard names the Bluetooth host bridge; on Direct, it names the in-firmware IOTC version.
 
 ### Minimum firmware
 
-All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks `config_events`, the `install_certificate` HTTP source, and several event flags. Older deployments will need a `set_os` update before the docs apply cleanly. See [Updating firmware and rebooting](/infrastructure/management/system-operations).
+All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events), the [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) HTTP source, and several event flags. Older deployments will need a [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) update before the docs apply cleanly. See [Updating firmware and rebooting](/infrastructure/management/system-operations).
 
 ### What this implies for scope
 

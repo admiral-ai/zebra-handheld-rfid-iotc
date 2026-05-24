@@ -6,7 +6,7 @@ sidebar_label: "get_config Response Schema"
 
 > 📕 **REFERENCE**
 
-The `get_config` response carries `currentConfig` with seven top-level objects: `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `wifiConfig`, `installedCerts`, `epConfig`. Below is the structure with each sub-object's field shape (drawn verbatim from `schemas/response/dev_mgmt/get_config.json` examples).
+The [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) response carries `currentConfig` with seven top-level objects: `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `wifiConfig`, `installedCerts`, `epConfig`. Below is the structure with each sub-object's field shape (drawn verbatim from `schemas/response/dev_mgmt/get_config.json` examples).
 
 ### `readerVersion`
 
@@ -74,4 +74,4 @@ The active endpoint's full configuration, including `mqttParams`, `securityParam
 - `epConfig` (add / update / delete)
 - `applyAfterReboot`
 
-Domains not writable through `set_config`: `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `installedCerts`. Each has its own dedicated command(s) or is read-only.
+Domains not writable through [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config): `readerVersion`, `deviceStatus`, `currentRegion`, `ethConfig`, `installedCerts`. Each has its own dedicated command(s) or is read-only.

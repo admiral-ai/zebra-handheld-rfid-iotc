@@ -22,7 +22,7 @@ The two tiers expose different physical attach paths at the moment a sled is unp
 - A **Direct** sled (Premium / Premium Plus / RFD90) has a USB-C port and an internal Wi-Fi 6 radio; the natural first attach is a USB-C cable to a Windows laptop running 123RFID Desktop.
 - A **Bridged** sled (RFD40 Standard) has no Wi-Fi radio at all — it must pair Bluetooth-first to its host, which is also the device that carries its MQTT traffic afterwards; the natural first attach is a Bluetooth pair from an Android mobile computer running 123RFID Mobile.
 
-The split is a property of **first-attach physics**, not a difference in the IoTC surface. After the MDM endpoint is active, the same `get_version`, `set_operating_mode`, `config_endpoint`, `install_certificate`, and `set_os` commands work the same way on every sled.
+The split is a property of **first-attach physics**, not a difference in the IoTC surface. After the MDM endpoint is active, the same [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version), [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), and [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) commands work the same way on every sled.
 
 ### What each tool does
 
@@ -71,7 +71,7 @@ Once the MDM endpoint is active and the sled is talking to your broker:
 The **only** operational differences after bootstrap:
 
 - Bridged sleds report `terminalConnection` events for their host's Bluetooth link, because there *is* a host link to report on. Direct sleds do not, because there is no host in the network path.
-- `set_wifi` is a no-op surface on Bridged sleds, because the sled has no on-board Wi-Fi radio; on Bridged the host owns the network, and host-side Wi-Fi configuration is out of the IoTC scope.
+- [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) is a no-op surface on Bridged sleds, because the sled has no on-board Wi-Fi radio; on Bridged the host owns the network, and host-side Wi-Fi configuration is out of the IoTC scope.
 
 ### Out of scope
 

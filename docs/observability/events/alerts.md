@@ -108,7 +108,7 @@ Priority is consistent across `alerts` and `alert_short` for the same trigger. U
 
 ### Thresholds drive emission
 
-For `BATTERY`, `TEMPERATURE`, and the CPU/RAM/flash usage events, the firing rule is "value crosses a configured threshold." Configure with `config_events`:
+For `BATTERY`, `TEMPERATURE`, and the CPU/RAM/flash usage events, the firing rule is "value crosses a configured threshold." Configure with [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events):
 
 ```json
 {

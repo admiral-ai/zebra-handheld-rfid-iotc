@@ -15,11 +15,11 @@ An IOTC deployment is the cooperation of **five actors**. Knowing what each one 
 The firmware on the sled implements the MQTT client, manages the RFID radio, and exposes every IOTC operation as an MQTT message handler. It:
 
 - Parses incoming commands on its CTRL and MGMT topics.
-- Executes them against the radio (`control_operation`, `set_operating_mode`) or the management subsystems (`set_wifi`, `install_certificate`, `set_os`, `reboot`).
+- Executes them against the radio ([`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode)) or the management subsystems ([`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)).
 - Emits responses correlated by `requestId` and events asynchronously (heartbeats, alerts, dataEVT).
 - Maintains the persistent MQTT connection, the LWT registration, and the retention buffer.
 
-The reader is **authoritative**: it owns its state. Applications observe; they do not cache or substitute. If a `get_status` response says the radio is `ACTIVE`, it is, the application's last belief is wrong. This authority discipline simplifies failure recovery: on reconnect, the application re-queries; it never asserts.
+The reader is **authoritative**: it owns its state. Applications observe; they do not cache or substitute. If a [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) response says the radio is `ACTIVE`, it is, the application's last belief is wrong. This authority discipline simplifies failure recovery: on reconnect, the application re-queries; it never asserts.
 
 ### Host Device (Bridged tier; optional UI on Direct) 🅓🅑
 

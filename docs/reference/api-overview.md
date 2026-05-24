@@ -20,7 +20,7 @@ Every command request uses the same envelope:
 }
 ```
 
-Read-only commands (`get_*`, `reboot`) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/architecture/communication-flow) for the request/response and event flows.
+Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/architecture/communication-flow) for the request/response and event flows.
 
 Responses echo `command` and `requestId` and add `apiVersion` and a `response` object:
 
@@ -40,16 +40,16 @@ Error codes appear in `response.code`; see [Error Response Format](/reference/er
 
 | Command | Required payload key |
 |---|---|
-| All `get_*` commands · `reboot` | (none beyond `command` and `requestId`) |
-| `set_wifi` · `delete_wifi_profile` | `wifiConfig` |
-| `config_endpoint` | `epConfig` |
-| `install_certificate` · `delete_certificate` | `certDetails` |
-| `set_config` | `configData` |
-| `set_os` | `OSUpdateDetails` |
-| `set_operating_mode` | `operatingMode` (wraps an inner `operatingModes`) |
-| `set_post_filter` | `postFilterPayload` |
-| `control_operation` | `ctrlOprPayload` |
-| `config_events` | `eventConfiguration` |
+| All `get_*` commands · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) | (none beyond `command` and `requestId`) |
+| [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) | `wifiConfig` |
+| [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | `epConfig` |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) | `certDetails` |
+| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | `configData` |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `OSUpdateDetails` |
+| [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | `operatingMode` (wraps an inner `operatingModes`) |
+| [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) | `postFilterPayload` |
+| [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) | `ctrlOprPayload` |
+| [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) | `eventConfiguration` |
 
 ## Topic format
 

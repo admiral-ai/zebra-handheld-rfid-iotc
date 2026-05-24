@@ -5,11 +5,11 @@ sidebar_label: "Device Configuration (MGMT)"
 ---
 > 📕 **REFERENCE**
 
-#### `get_config` (T4)
+#### [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) (T4)
 
 Returns full device snapshot (see [§20.1](/reference/appendices/config-schema)).
 
-#### `set_config` (T1)
+#### [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) (T1)
 
 Narrow write surface. Payload key `configData`. Sub-objects: `wifiConfig`, `epConfig`, `applyAfterReboot`.
 

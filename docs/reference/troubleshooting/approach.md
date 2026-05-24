@@ -24,9 +24,9 @@ Asking "which layer?" first is more productive than "what's wrong?", most proble
 For each layer, capture the minimum data set:
 
 - **Application**, your logs, the command_id of the failing operation
-- **MQTT**: `get_status`, recent `mqttConnEVT` events
-- **Network**: `get_wifi`, broker reachability from a control machine
-- **RFID**: `get_status` operating state, recent `exceptionEVT` events
+- **MQTT**: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), recent `mqttConnEVT` events
+- **Network**: [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), broker reachability from a control machine
+- **RFID**: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) operating state, recent `exceptionEVT` events
 
 #### Step 3: Isolate the variable
 

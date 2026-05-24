@@ -30,7 +30,7 @@ Assign the profile to one or more device groups. SOTI Connect pushes the profile
 
 ### Step 5: Orchestrate firmware updates
 
-Use SOTI Connect's update-orchestration feature to schedule firmware updates by group and time window. The MDM platform invokes `set_os` on each target device per the schedule.
+Use SOTI Connect's update-orchestration feature to schedule firmware updates by group and time window. The MDM platform invokes [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) on each target device per the schedule.
 
 [DIAGRAM: D-13.2.A. SOTI Connect ↔ reader fleet flow]
 

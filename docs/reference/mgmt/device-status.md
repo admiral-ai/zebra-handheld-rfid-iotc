@@ -5,7 +5,7 @@ sidebar_label: "Device Status (MGMT)"
 ---
 > 📕 **REFERENCE**
 
-#### `get_version` (T4)
+#### [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) (T4)
 
 Returns reader identity and version metadata.
 
@@ -15,13 +15,13 @@ Returns reader identity and version metadata.
 
 **See Also:** 📘 [§2.2](/foundations/architecture/components) · 📙 [§4.1](/getting-started/prerequisites/requirements)
 
-#### `get_status` (T4)
+#### [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) (T4)
 
 Returns operational snapshot.
 
 **Response fields:** `deviceStatus.powerSource`, `radioActivity`, `radioConnection`, `systemTime`, `temperature`, `ntp.{offset,reach}`, `terminalConnection.{status,type}`, `batteryStatus.{capacity,stateOfHealth,chargePercentage,chargeStatus}`.
 
-#### `get_current_region` (T4)
+#### [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region) (T4)
 
 Returns regulatory region settings.
 

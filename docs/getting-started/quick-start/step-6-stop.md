@@ -42,7 +42,7 @@ mosquitto_pub -h <broker-host> -p 1883 \
 
 **Note the payload shape:** `command`, `requestId`, and a named payload object; here `operatingMode`. Inside `operatingMode` is `operatingModes` (the double nesting is unique to this command). All five supported profiles are `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, and `ADVANCED`. The `FAST_READ` enum value exists but is **not currently supported** — selecting it will fail.
 
-> **Important pre-condition:** `set_operating_mode` cannot run during active inventory. If a previous inventory is running; you must stop it first (error code 11 otherwise).
+> **Important pre-condition:** [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) cannot run during active inventory. If a previous inventory is running; you must stop it first (error code 11 otherwise).
 
 #### 2. Place tags in the antenna's line of sight
 
@@ -50,7 +50,7 @@ Any EPC Gen2 UHF RFID tag works. A printed adhesive tag on cardboard, 1–2 mete
 
 #### 3. Start inventory
 
-The canonical `control_operation` payload uses the **`ctrlOprPayload`** named object with `controlType` and `operation` — both **uppercase enums**:
+The canonical [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) payload uses the **`ctrlOprPayload`** named object with `controlType` and `operation` — both **uppercase enums**:
 
 ```bash
 mosquitto_pub -h <broker-host> -p 1883 \
@@ -100,7 +100,7 @@ Your DATA1 subscriber should immediately begin printing `dataEVT` events:
 }
 ```
 
-Notice that `dataEVT` does **not** use the `{command, requestId, response: {code, description}}` envelope. Events have their own shape with `type` (the active profile), `timestamp`, and `data.tagData[]`. Other fields appear when enabled in `tagMetaDataToEnable` on `set_operating_mode` (PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.).
+Notice that `dataEVT` does **not** use the `{command, requestId, response: {code, description}}` envelope. Events have their own shape with `type` (the active profile), `timestamp`, and `data.tagData[]`. Other fields appear when enabled in `tagMetaDataToEnable` on [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) (PHASE, CHANNEL, TID, USER, MAC, HOSTNAME, etc.).
 
 Move tags in and out of the read zone — `seenCount` increases for repeat reads, `peakRssi` changes with distance, new EPCs appear as new tags enter the field.
 
@@ -139,12 +139,12 @@ The `dataEVT` stream stops. `response.code` is `0` if an inventory was actually 
 
 ### Didn't work?
 
-- **No `dataEVT` despite `START` returning OK.** Most likely the profile is `FAST_READ` (not currently supported, the radio runs but emits no events) or the post-filter is excluding every tag. Run `get_operating_mode` and confirm `profiles` is one of the five supported values; run `get_post_filter` to confirm no `EXCLUDE` rule is filtering everything out.
+- **No `dataEVT` despite `START` returning OK.** Most likely the profile is `FAST_READ` (not currently supported, the radio runs but emits no events) or the post-filter is excluding every tag. Run [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) and confirm `profiles` is one of the five supported values; run [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) to confirm no `EXCLUDE` rule is filtering everything out.
 - **Always the same EPC.** Only one tag is being singulated. Move tags, add more, change distance.
-- **Events stop after a few seconds.** `radioStopConditions` may have a `tagCount` or `stopTimeout` set in the operating mode. Inspect with `get_operating_mode`; clear the stop conditions if you want indefinite inventory.
+- **Events stop after a few seconds.** `radioStopConditions` may have a `tagCount` or `stopTimeout` set in the operating mode. Inspect with [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode); clear the stop conditions if you want indefinite inventory.
 - **`response.code: 11` on `START`.** An inventory is already running. Send `STOP` first, then `START`.
 - **Events arrive on `DATA1/event` but your subscriber sees nothing.** Wildcard mismatch. Subscribe to `zebra/DATA1/#` to catch whatever path the reader is using, then narrow.
 
 ### Where to go next
 
-You've completed the inventory loop. The last phase covers `reboot` — what it does, when to use it, and the one pre-condition that matters. [Phase 7. Reboot when needed](/getting-started/quick-start/step-7-reboot).
+You've completed the inventory loop. The last phase covers [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) — what it does, when to use it, and the one pre-condition that matters. [Phase 7. Reboot when needed](/getting-started/quick-start/step-7-reboot).

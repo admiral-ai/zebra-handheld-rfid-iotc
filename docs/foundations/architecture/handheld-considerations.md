@@ -28,7 +28,7 @@ The reader has no externally-visible IP address. The host device's network is th
 
 ### The physical trigger is an input source
 
-The sled has a hardware trigger button. Pulling it generates events that map to `control_operation` semantics — start, stop, or pulse-read depending on trigger mode. An application that subscribes only to `control_operation` responses will receive responses regardless of whether the trigger was the cause. [§9.5 About Trigger-Based Operations](/rfid/operating-mode/trigger-composition) treats this fully.
+The sled has a hardware trigger button. Pulling it generates events that map to [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) semantics — start, stop, or pulse-read depending on trigger mode. An application that subscribes only to [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) responses will receive responses regardless of whether the trigger was the cause. [§9.5 About Trigger-Based Operations](/rfid/operating-mode/trigger-composition) treats this fully.
 
 ### What this implies for the rest of this documentation
 

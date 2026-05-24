@@ -26,7 +26,7 @@ This guide shows you how to assemble the `operatingMode` payload for the use cas
 }
 ```
 
-Operating mode cannot be changed while an inventory is running — error code 11 (`IOT_ERROR_INVENTORY_IN_PROGRESS`). Issue `control_operation` STOP first.
+Operating mode cannot be changed while an inventory is running — error code 11 (`IOT_ERROR_INVENTORY_IN_PROGRESS`). Issue [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) STOP first.
 
 ### Configure radio start/stop conditions
 

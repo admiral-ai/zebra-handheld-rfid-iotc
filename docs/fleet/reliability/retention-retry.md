@@ -65,23 +65,23 @@ on_response: cancel_timer; done.
 on_timeout: publish(command, requestId="x")  # same requestId
 ```
 
-Reusing the same `requestId` lets the reader treat the retry idempotently. Two identical `set_config` payloads with the same `requestId` produce the same result; the reader doesn't apply the change twice.
+Reusing the same `requestId` lets the reader treat the retry idempotently. Two identical [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) payloads with the same `requestId` produce the same result; the reader doesn't apply the change twice.
 
 **Idempotence by operation:**
 
 | Operation | Safe to retry with same requestId? |
 |---|---|
 | `get_*` (any read) | Yes; pure reads |
-| `set_config` | Yes; same payload, same result |
-| `set_operating_mode` | Yes; same payload, same result |
+| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | Yes; same payload, same result |
+| [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | Yes; same payload, same result |
 | `config_endpoint add` | **No** — second attempt returns error 10 (already exists) |
 | `config_endpoint update` | Yes |
 | `config_endpoint delete` | Idempotent on the second attempt: nothing to delete |
 | `control_operation START` | Returns error 11 if already started |
 | `control_operation STOP` | Returns error 12 if already stopped; idempotent semantically |
-| `install_certificate` | Depends on name uniqueness |
-| `set_os` | **No** — error 4 (firmware update in progress) |
-| `reboot` | If running, error 5; if idle, reboots; be careful |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | Depends on name uniqueness |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | **No** — error 4 (firmware update in progress) |
+| [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) | If running, error 5; if idle, reboots; be careful |
 
 For non-idempotent operations, retry must be conditional on the error response. Treat error 10, 11, 12 as "already in target state" (log and proceed).
 

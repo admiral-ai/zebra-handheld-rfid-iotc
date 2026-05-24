@@ -163,6 +163,6 @@ This is the bootstrap connection — the live MQTT path into the reader.
 
 ### Where to go next
 
-[Phase 3: Verify the bootstrap connection (`get_version`)](/getting-started/quick-start/step-3-subscribe).
+[Phase 3: Verify the bootstrap connection ([`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version))](/getting-started/quick-start/step-3-subscribe).
 
 **Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📙 [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)

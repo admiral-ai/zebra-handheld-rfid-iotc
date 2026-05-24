@@ -24,7 +24,7 @@ Three verification surfaces exist:
 
 - **Before bootstrap (Desktop):** 123RFID Desktop displays the firmware version in its device pane when the sled is connected via USB.
 - **Before bootstrap (Mobile):** 123RFID Mobile shows firmware in the device-info screen after a successful Bluetooth pair.
-- **After MQTT enrollment:** publish `get_version` (see [§16.2](#chapter-16--mqtt-api-reference)). The response includes a `firmware` field and is identical across tiers.
+- **After MQTT enrollment:** publish [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) (see [§16.2](#chapter-16--mqtt-api-reference)). The response includes a `firmware` field and is identical across tiers.
 
 If the reported version is below `3.10.27`, update via the firmware-update mechanism described in [§14.6](/fleet/migration/execute).
 

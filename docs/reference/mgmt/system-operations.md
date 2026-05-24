@@ -5,7 +5,7 @@ sidebar_label: "System Operations (MGMT)"
 ---
 > 📕 **REFERENCE**
 
-#### `set_os` (T2)
+#### [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) (T2)
 
 Initiates firmware update. Payload key `OSUpdateDetails` with `url`, `authenticationType`, `verificationType`, optional cert reference.
 
@@ -13,6 +13,6 @@ Initiates firmware update. Payload key `OSUpdateDetails` with `url`, `authentica
 
 > Firmware revert is not supported on handheld readers.
 
-#### `reboot` (T4)
+#### [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) (T4)
 
 Restarts the reader. **Errors:** 5 (inventory in progress — stop first).

@@ -5,7 +5,7 @@ sidebar_label: "Inventory Control (CTRL)"
 ---
 > 📕 **REFERENCE**
 
-#### `control_operation` (T3)
+#### [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) (T3)
 
 Start/stop the selected control type. Payload `ctrlOprPayload: {controlType: "RFID"|"SCANNER", operation: "START"|"STOP"}`.
 

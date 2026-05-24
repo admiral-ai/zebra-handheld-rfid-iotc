@@ -35,7 +35,7 @@ This path scales linearly with operator time. Above ~100 readers it stops being 
 For 100+ readers, an MDM platform takes over after the initial 123RFID Desktop bootstrap. The handoff is:
 
 1. **123RFID Desktop** sets region, Wi-Fi, and **the MDM endpoint pointing at the MDM platform's broker** (not the application broker).
-2. **The MDM platform** receives the reader's first connection on its broker, applies the policy bundle (additional endpoints, certificates, operating mode, event configuration, firmware version) via `config_endpoint`, `install_certificate`, `set_config`, `set_operating_mode`, `set_os`.
+2. **The MDM platform** receives the reader's first connection on its broker, applies the policy bundle (additional endpoints, certificates, operating mode, event configuration, firmware version) via [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os).
 3. **Steady state**: MDM owns provisioning, firmware rollout, configuration drift detection, and the `alert_short` consumption pipeline.
 
 Two MDM platforms have first-class IOTC support:
@@ -49,7 +49,7 @@ Both consume the same MQTT API surface; there is no MDM-specific command set. Th
 
 - **Certificate rotation at scale.** Push a new CA cert to a fleet, reconfigure endpoints to use it, retire the old cert, all from a console.
 - **Firmware rollout staging.** Roll firmware to 50 readers, watch for `FIRMWARE_UPDATE_FAIL` alert_short events, halt if failure rate exceeds threshold.
-- **Drift detection.** Periodic `get_config` per reader, diff against canonical, surface drift to operators.
+- **Drift detection.** Periodic [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) per reader, diff against canonical, surface drift to operators.
 - **Provisioning new readers from a template.** A reader powers on, connects to the MDM endpoint, gets its policy bundle, no per-device manual configuration.
 
 You can build all of this yourself on top of the MQTT API. MDM is the off-the-shelf version.
@@ -76,7 +76,7 @@ There are deployment patterns that minimise this friction:
 
 ### Out of scope
 
-- **The mechanics of `config_endpoint`, `set_config`, etc.**: covered in Part 4 (Manage your reader).
+- **The mechanics of [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), etc.**: covered in Part 4 (Manage your reader).
 - **Bulk configuration patterns over MQTT**: covered in [Keeping a fleet in sync](/fleet/management/about-bulk).
 - **Reliability under intermittent connectivity**: covered in [What happens when the network drops](/fleet/reliability/retention-retry).
 

@@ -10,17 +10,17 @@ A handheld-reader migration is firmware-version-based. The IOTC V1.0 and V1.1 AP
 
 ### Pre-migration baseline
 
-For each reader in scope, issue `get_config` and store the response as the baseline. This captures the full state including endpoints, Wi-Fi profiles, certificates (by reference), and the active operating-mode configuration.
+For each reader in scope, issue [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) and store the response as the baseline. This captures the full state including endpoints, Wi-Fi profiles, certificates (by reference), and the active operating-mode configuration.
 
 ### Risk register
 
 - Firmware revert is not supported on handheld readers — plan migration as a one-way operation.
 - A canary cohort (1–5%) must validate the new firmware before fleet-wide rollout.
-- `set_os` accepts the firmware URL and authentication; the reader downloads and reboots.
+- [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) accepts the firmware URL and authentication; the reader downloads and reboots.
 
 ### Go/no-go checklist
 
-- [ ] Baseline `get_config` captured for every reader
+- [ ] Baseline [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) captured for every reader
 - [ ] Canary cohort identified
 - [ ] Firmware URL reachable from the reader's network
 - [ ] Sufficient battery (else error code 14) and flash (else code 8) on canary devices

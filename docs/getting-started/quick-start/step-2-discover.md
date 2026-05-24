@@ -172,4 +172,4 @@ Watch your broker logs (for Mosquitto, `mosquitto -v` shows every connection). Y
 
 ### Where to go next
 
-[Phase 3. Verify the bootstrap connection (`get_version`)](/getting-started/quick-start/step-3-subscribe).
+[Phase 3. Verify the bootstrap connection ([`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version))](/getting-started/quick-start/step-3-subscribe).

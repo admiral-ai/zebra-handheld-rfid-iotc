@@ -39,11 +39,11 @@ The application publishes a command on a **request topic**; the reader subscribe
 
 [DIAGRAM: D-2.4.A. command/response sequence with publish/subscribe arrows]
 
-Used for every operation in the Management and Control groups: `get_status`, `get_version`, `get_current_region`, `get_eth`, `get_wifi`, `set_wifi`, `delete_wifi_profile`, `get_endpoint_config`, `config_endpoint`, `get_installed_certificate`, `install_certificate`, `delete_certificate`, `get_config`, `set_config`, `set_os`, `reboot`, `get_operating_mode`, `set_operating_mode`, `get_post_filter`, `set_post_filter`, `control_operation`, `config_events`.
+Used for every operation in the Management and Control groups: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version), [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region), [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth), [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi), [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile), [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate), [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config), [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot), [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode), [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter), [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events).
 
 **QoS choice:** typically **QoS 1** on both request and response. Duplicates are acceptable because every operation is idempotent on its `requestId`.
 
-**Latency:** tens to hundreds of milliseconds for most operations. `set_os` is the exception, it acknowledges immediately but the actual firmware update may take many minutes; `reboot` is asynchronous and returns *before* the device actually reboots.
+**Latency:** tens to hundreds of milliseconds for most operations. [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is the exception, it acknowledges immediately but the actual firmware update may take many minutes; [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) is asynchronous and returns *before* the device actually reboots.
 
 **Important:** "Synchronous-feeling" does not mean blocking. The application publishes, then waits — possibly with a timeout, possibly while doing other work. If the response never arrives, the application must decide: assume timeout, retry with the same `requestId`, or re-query. There is no protocol-level guarantee.
 
@@ -118,7 +118,7 @@ Volumes range from tens to many hundreds of events per second. The DATA1 and DAT
 
 **QoS choice:** typically **QoS 0** for high-volume streams. The retention buffer absorbs transient loss. Move to QoS 1 only when each individual tag read must not be lost (uncommon).
 
-**Caveat: FAST_READ.** The `FAST_READ` profile exists in the `set_operating_mode` enum but is documented as **not currently supported**. Setting it will fail. Use one of the five supported profiles (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`).
+**Caveat: FAST_READ.** The `FAST_READ` profile exists in the [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) enum but is documented as **not currently supported**. Setting it will fail. Use one of the five supported profiles (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`).
 
 ### Topic-direction conventions
 
@@ -129,14 +129,14 @@ Volumes range from tens to many hundreds of events per second. The DATA1 and DAT
 | Events | subscribes | publishes |
 | Tag data | subscribes | publishes |
 
-Topic structure is always three parts: `<tenantId>/<topic>/<deviceSerialNumber>`. The reader prepends `tenantId` and appends `deviceSerialNumber` at runtime; the `topic` field in `config_endpoint` carries only the middle segment.
+Topic structure is always three parts: `<tenantId>/<topic>/<deviceSerialNumber>`. The reader prepends `tenantId` and appends `deviceSerialNumber` at runtime; the `topic` field in [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) carries only the middle segment.
 
 For the full topic taxonomy: [How the MQTT plumbing fits together](/infrastructure/endpoints/about). For per-flow QoS guidance: [What happens when the network drops](/fleet/reliability/retention-retry).
 
 ### For application design
 
 - **Use one MQTT client per application instance.** A single client subscribes to all relevant topics; correlation is by `requestId`, not by connection.
-- **Treat commands as idempotent.** `set_config` with the same payload twice should produce the same result. Build retry around `requestId` reuse.
+- **Treat commands as idempotent.** [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) with the same payload twice should produce the same result. Build retry around `requestId` reuse.
 - **Subscribe before publishing.** A subscriber that joins late misses non-retained messages; most events do not retain.
 - **Don't conflate retention with delivery.** Retention buffers tag data when the broker is unreachable, not when the application is. If your application is slow, the broker still holds messages (subject to its own retention); if the broker is down, the reader holds them — up to its configured retention buffer.
 

@@ -12,7 +12,7 @@ This guide shows you how to detect and remediate configuration drift across a re
 
 Maintain the desired configuration in version control. The golden config is the authoritative declaration of "what every reader should look like."
 
-### Diff `get_config` output against the baseline
+### Diff [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) output against the baseline
 
 For each reader periodically (daily or hourly):
 

@@ -31,21 +31,21 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 ### RP-03: Verify topic routing {#rp-03}
 
-**When:** `get_version` (or any command) returns no response within 5 s.
+**When:** [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) (or any command) returns no response within 5 s.
 
 1. Confirm the publish topic exactly: `<tenantId>/MDM/clients/cmnd/<deviceSerialNumber>`. The reader subscribes to *this exact form*; off-by-one fails silently.
 2. With `mosquitto_sub -t '#' -v`, subscribe to everything. Re-publish the command.
 3. Find which topic the response arrives on. Update your subscriber to use that exact topic.
-4. If still no response, run `get_endpoint_config` on the MDM endpoint to confirm `publishTopics` matches what you expect.
-5. **Success check:** `get_version` returns within 5 s, with `requestId` matching.
+4. If still no response, run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) on the MDM endpoint to confirm `publishTopics` matches what you expect.
+5. **Success check:** [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) returns within 5 s, with `requestId` matching.
 
 ### RP-04: Stop inventory cleanly {#rp-04}
 
 **When:** Any operation returning code 5 or 11 ("inventory in progress" or "can't reboot during inventory").
 
-1. Publish `control_operation` with `ctrlOprPayload: { controlType: "RFID", operation: "STOP" }`.
+1. Publish [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) with `ctrlOprPayload: { controlType: "RFID", operation: "STOP" }`.
 2. Wait for the response. Code 0 = stopped; code 12 = already stopped (also fine).
-3. Confirm with `get_status` — `deviceStatus.radioActivity` should be `INACTIVE`.
+3. Confirm with [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) — `deviceStatus.radioActivity` should be `INACTIVE`.
 4. Retry the original operation.
 5. **Success check:** the original operation returns code 0.
 
@@ -53,29 +53,29 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 **When:** `control_operation START` returned code 0, but no `dataEVT` arrives.
 
-1. Run `get_operating_mode`. Confirm `profiles` is one of the five supported values, **not `FAST_READ`** (not currently supported).
-2. Run `get_post_filter` on the active data endpoint. Look for `reportOperation: EXCLUDE` rules that may be filtering all tags.
-3. Run `get_endpoint_config`. Confirm the DATA1 (or active data) endpoint has `activate: true` and a `publishTopics` entry.
+1. Run [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode). Confirm `profiles` is one of the five supported values, **not `FAST_READ`** (not currently supported).
+2. Run [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) on the active data endpoint. Look for `reportOperation: EXCLUDE` rules that may be filtering all tags.
+3. Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config). Confirm the DATA1 (or active data) endpoint has `activate: true` and a `publishTopics` entry.
 4. Subscribe to `<tenantId>/DATA1/#` (or the active data topic) with a wildcard. Move tags into the read zone.
 5. **Success check:** `dataEVT` events stream past with `data.tagData[].EPCid` matching your tags.
 
 ### RP-06: Recover from failed firmware update {#rp-06}
 
-**When:** `set_os` returned code 13 (Firmware update Failed) or the update appeared to start but didn't complete.
+**When:** [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returned code 13 (Firmware update Failed) or the update appeared to start but didn't complete.
 
-1. Run `get_version`. The reader may have rolled back to the previous firmware automatically; verify which version is active now.
-2. Run `get_status`. Confirm `batteryStatus.chargePercentage` ≥ 50 and `powerSource` is `WALLCHARGER` or `USB` — battery-low gates firmware updates.
-3. Confirm flash space — `set_os` returns code 8 if insufficient flash. If unsure, `set_config` to reduce retention buffer to a smaller value temporarily.
+1. Run [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version). The reader may have rolled back to the previous firmware automatically; verify which version is active now.
+2. Run [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status). Confirm `batteryStatus.chargePercentage` ≥ 50 and `powerSource` is `WALLCHARGER` or `USB` — battery-low gates firmware updates.
+3. Confirm flash space — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns code 8 if insufficient flash. If unsure, [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) to reduce retention buffer to a smaller value temporarily.
 4. Verify the firmware URL is reachable from the sled's network — try downloading it from the sled's Wi-Fi segment.
-5. Re-issue `set_os` with the same URL.
+5. Re-issue [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) with the same URL.
 6. Watch `alert_short` for `FIRMWARE_DOWNLOAD_*` and `FIRMWARE_UPDATE_*` events.
-7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short. Then `get_version` confirms the new firmware.
+7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short. Then [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) confirms the new firmware.
 
 ### RP-07: Diagnose silent-offline state {#rp-07}
 
 **When:** Heartbeats stop arriving but the broker still shows the reader connected.
 
-1. Try a `get_status`. If it times out, the reader is unreachable.
+1. Try a [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status). If it times out, the reader is unreachable.
 2. Check `mqttConnEVT` history — was there a DISCONNECTED event that you missed?
 3. Inspect broker-side metrics, most brokers expose last-seen-message timestamps per client.
 4. Wait for the keep-alive interval (default 5 min). The broker should issue an LWT-style disconnect by then.
@@ -86,9 +86,9 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 **When:** A reader's configuration differs from the canonical for its class.
 
-1. Run `get_config`, capture the snapshot.
-2. Run `get_endpoint_config`, capture the endpoint list.
-3. Run `get_operating_mode` (note: this is *expected* to differ after every reboot — radio-operation state doesn't persist).
+1. Run [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config), capture the snapshot.
+2. Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), capture the endpoint list.
+3. Run [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) (note: this is *expected* to differ after every reboot — radio-operation state doesn't persist).
 4. Diff each against canonical. For each differing field that *should* be persistent, push with the relevant `set_*` operation.
 5. Re-read each surface; verify against canonical.
 6. If the diff persists after reconcile, escalate, this implies the local change is overriding the push, possibly via 123RFID Desktop access.
@@ -101,9 +101,9 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 1. Identify which readers failed via `alert_short` `FIRMWARE_UPDATE_FAIL` events.
 2. Group failures by reason — battery-low, flash-insufficient, firmware-source-unreachable have different fixes.
 3. For battery-low readers (FM-FW-04): defer until charged; group them into a charging-station-mounted batch and retry.
-4. For flash-insufficient (FM-FW-02): `get_config` to find what's consuming flash. Adjust retention buffer downward via `set_config`, then retry.
+4. For flash-insufficient (FM-FW-02): [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) to find what's consuming flash. Adjust retention buffer downward via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), then retry.
 5. For source-unreachable (FM-FW-03): verify the firmware URL is reachable from the failing readers' Wi-Fi segment. Often a different segment than the successful readers'.
-6. Re-issue `set_os` against the failed subset only.
+6. Re-issue [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) against the failed subset only.
 7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short events arrive for all targeted readers within a sensible window.
 
 ### Out of scope

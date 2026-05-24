@@ -7,7 +7,7 @@ sidebar_label: Choose how the reader reads tags
 > 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~6 min · **Ties to:** Operating Mode sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Operating Mode. Operations: `get_operating_mode` · `set_operating_mode`.
+> Sub-tag: Operating Mode. Operations: [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) · [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode).
 
 The operating mode of an IOTC reader is configured around a **profile**, a named preset that selects how the radio behaves. Profile choice is the most consequential decision in how the reader reads. Get it wrong and the symptoms range from "no reads" through "battery dies in an hour" to "every neighbour reader interferes." Get it right and the rest of the operating-mode surface is parameter-level refinement.
 
@@ -25,7 +25,7 @@ A sixth enum value, **`FAST_READ`**, appears in the schema but is documented as 
 
 ### Setting a profile
 
-A minimal `set_operating_mode` payload that selects a profile only:
+A minimal [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) payload that selects a profile only:
 
 ```json
 {
@@ -39,7 +39,7 @@ A minimal `set_operating_mode` payload that selects a profile only:
 }
 ```
 
-Note the **double nesting** — `operatingMode` wraps `operatingModes` wraps the actual configuration. This is unique to `set_operating_mode`; no other command nests like this. Inside `operatingModes` you can also set `radioStartConditions`, `radioStopConditions`, `query`, `select`, `accessOperations`, and `tagMetaDataToEnable` — covered in adjacent chapters.
+Note the **double nesting** — `operatingMode` wraps `operatingModes` wraps the actual configuration. This is unique to [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode); no other command nests like this. Inside `operatingModes` you can also set `radioStartConditions`, `radioStopConditions`, `query`, `select`, `accessOperations`, and `tagMetaDataToEnable` — covered in adjacent chapters.
 
 ### The read-rate ↔ battery ↔ density triangle
 
@@ -99,7 +99,7 @@ The default is typically `SESSION_1`. Tag-population dynamics drive the choice: 
 
 ### Pre-condition: inventory must not be running
 
-`set_operating_mode` cannot be applied during active RFID inventory. If `radioActivity` is `ACTIVE`, the command returns error code `11` (Inventory in progress). Stop with `control_operation STOP` first.
+[`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) cannot be applied during active RFID inventory. If `radioActivity` is `ACTIVE`, the command returns error code `11` (Inventory in progress). Stop with `control_operation STOP` first.
 
 Other error codes:
 
@@ -113,7 +113,7 @@ Other error codes:
 
 ### Reading current state
 
-`get_operating_mode` returns the active configuration in the same shape as the `set_operating_mode` payload:
+[`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) returns the active configuration in the same shape as the [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) payload:
 
 ```json
 {
@@ -126,7 +126,7 @@ Use this **before** any change to know the current baseline, and **after** any c
 
 ### Where the other surfaces live
 
-`set_operating_mode` covers many fields. Each is explored in its own chapter:
+[`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) covers many fields. Each is explored in its own chapter:
 
 - **Start/stop triggers and stop thresholds**: [Start, stop, and the trigger button](/rfid/operating-mode/start-stop).
 - **Pre-filtering (Select) and post-filtering (Report)**: [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).

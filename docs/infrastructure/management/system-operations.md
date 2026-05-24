@@ -7,13 +7,13 @@ sidebar_label: Updating firmware and rebooting
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~7 min · **Ties to:** System Operations sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: System Operations. Operations: `set_os` · `reboot`.
+> Sub-tag: System Operations. Operations: [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).
 
-Two operations live on the system-operations surface. `set_os` starts a firmware update. `reboot` performs a warm reset. Both have one critical pre-condition in common: **inventory must not be running**.
+Two operations live on the system-operations surface. [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) starts a firmware update. [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) performs a warm reset. Both have one critical pre-condition in common: **inventory must not be running**.
 
-### `set_os`, the firmware-update operation
+### [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os), the firmware-update operation
 
-The command is literally `set_os` (not `firmware_update` or `update_firmware`). It takes a `OSUpdateDetails` named payload with the firmware source URL and authentication settings.
+The command is literally [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) (not `firmware_update` or `update_firmware`). It takes a `OSUpdateDetails` named payload with the firmware source URL and authentication settings.
 
 Three install patterns are supported:
 
@@ -60,7 +60,7 @@ Three install patterns are supported:
 }
 ```
 
-### Pre-conditions for `set_os`
+### Pre-conditions for [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os)
 
 | Pre-condition | Error code if violated |
 |---|---|
@@ -69,13 +69,13 @@ Three install patterns are supported:
 | Firmware file exists at the URL | `9` (File not found) |
 | Battery sufficiently charged | `14` (Battery is low, cannot update firmware) |
 
-`set_os` is **asynchronous**. The command may return code `0` (Success) or **`1` (Command payload is accepted)**, the device accepted the work and is processing in the background. Watch `alert_short` for `FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`, and watch `alerts` for `id: "FIRMWARE_UPDATE"` with `state: "SET"` (in progress) followed by `state: "CLEAR"` (completed). The `firmwareUpdateEVT` event (when enabled in `config_events`) carries progress percentages along the way.
+[`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is **asynchronous**. The command may return code `0` (Success) or **`1` (Command payload is accepted)**, the device accepted the work and is processing in the background. Watch `alert_short` for `FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`, and watch `alerts` for `id: "FIRMWARE_UPDATE"` with `state: "SET"` (in progress) followed by `state: "CLEAR"` (completed). The `firmwareUpdateEVT` event (when enabled in [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events)) carries progress percentages along the way.
 
 `13` (Firmware update Failed) appears in a follow-up notification when the install itself fails after acceptance.
 
-### `reboot`, the warm reset
+### [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot), the warm reset
 
-`reboot` is a minimal-payload command:
+[`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) is a minimal-payload command:
 
 ```json
 {
@@ -88,17 +88,17 @@ After a successful reboot:
 
 - The reader automatically reconnects to its previously connected broker.
 - **All management endpoint configurations are restored.** MGMT, MGMT_EVT, CTRL endpoints, certificate installs, Wi-Fi profiles, region, all survive.
-- **Only radio operation configurations from the control endpoint are lost.** Any operating mode set at runtime and not persisted via `set_config` will need to be re-applied.
+- **Only radio operation configurations from the control endpoint are lost.** Any operating mode set at runtime and not persisted via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) will need to be re-applied.
 
-### Pre-condition for `reboot`
+### Pre-condition for [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)
 
 | Pre-condition | Error code if violated |
 |---|---|
 | No active RFID inventory | `5` (Can't reboot device, inventory in progress) |
 
-Stop inventory with `control_operation STOP` (and confirm with `get_status.deviceStatus.radioActivity == "INACTIVE"`) before `reboot`.
+Stop inventory with `control_operation STOP` (and confirm with `get_status.deviceStatus.radioActivity == "INACTIVE"`) before [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).
 
-### A documented response-code discrepancy on `reboot`
+### A documented response-code discrepancy on [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)
 
 The reboot API reference example shows a response with `code: 1` and `description: "Command payload is accepted"`. The reboot **schema and error table** define only `0` (Success) and `5` (Inventory in progress). **Trust the schema.** Your client should accept `0` or `1` as success-equivalents and `5` as the only documented failure. If you observe other codes in practice, treat them as unexpected and log for follow-up, but write code that handles the canonical pair.
 
@@ -120,11 +120,11 @@ Each transition emits an event when event flags allow it. Subscribers consuming 
 
 ### Operational guidance
 
-- **Run `set_os` outside of inventory windows.** A reader that is rebooting is a reader that is not reading.
+- **Run [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) outside of inventory windows.** A reader that is rebooting is a reader that is not reading.
 - **Pre-stage the firmware on a reachable HTTP server**, ideally on the same LAN as the readers. Cross-WAN downloads on hundreds of readers saturate the link.
 - **Use `VERIFY_HOST_PEER` for production firmware servers.** Trusting `NONE` opens the door to a malicious firmware push.
-- **Stagger fleet rollouts.** A simultaneous `set_os` to a thousand readers crushes both the firmware server and the broker (concurrent `firmwareUpdateEVT` traffic). Roll in waves of 50–100.
-- **Verify the new version with `get_version` after reconnect.** Don't trust the `alert_short` alone.
+- **Stagger fleet rollouts.** A simultaneous [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) to a thousand readers crushes both the firmware server and the broker (concurrent `firmwareUpdateEVT` traffic). Roll in waves of 50–100.
+- **Verify the new version with [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) after reconnect.** Don't trust the `alert_short` alone.
 
 ### Out of scope
 

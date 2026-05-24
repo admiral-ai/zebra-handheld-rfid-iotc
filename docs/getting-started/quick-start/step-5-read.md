@@ -127,7 +127,7 @@ DATA1 publishes only; there is no `subscribeTopics` because applications never s
 
 #### 3. Verify both endpoints are active
 
-Re-run `get_endpoint_config` from Phase 4:
+Re-run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) from Phase 4:
 
 ```bash
 mosquitto_pub -h <broker-host> -p 1883 \
@@ -152,7 +152,7 @@ mosquitto_sub -h <broker-host> -p 1883 -t 'zebra/DATA1/#' -v &
 |---|---|---|
 | `MGMT` | Identity, network, security, config, firmware | Bidirectional command/response |
 | `MGMT_EVT` | Heartbeats, alerts, exceptions, NTP, network/firmware events | Sled → app only |
-| `CTRL` | `set_operating_mode`, `control_operation`, `set_post_filter` | Bidirectional command/response |
+| `CTRL` | [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) | Bidirectional command/response |
 | `DATA1` | `dataEVT` tag stream | Sled → app only |
 | `DATA2` | Second `dataEVT` stream (optional) | Sled → app only |
 | `MDM` | All roles combined (bootstrap default) | Bidirectional |
@@ -160,8 +160,8 @@ mosquitto_sub -h <broker-host> -p 1883 -t 'zebra/DATA1/#' -v &
 
 ### Success check
 
-- `config_endpoint` returns `response.code: 0` for both adds.
-- `get_endpoint_config` shows three active endpoints.
+- [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) returns `response.code: 0` for both adds.
+- [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) shows three active endpoints.
 - Your CTRL and DATA1 subscribers are open and ready.
 
 ### Didn't work?
@@ -178,8 +178,8 @@ Other common stumbles:
 
 - **Endpoint configured but not flowing.** `activate` must be `true` and the broker URL must be reachable from the sled. The reader doesn't fail-loudly on broker unreachability at config time; it sits in a reconnect loop.
 - **Topic missing tenantId in your subscriber.** Subscribe to `zebra/CTRL/#` not `CTRL/#`. The reader publishes the full three-part path.
-- **Certificate fields referenced but not installed.** For TLS endpoints, certificate files must already be installed via `install_certificate`, see [Securing the connection](/infrastructure/security/model). Plain MQTT (this Quick Start) doesn't need them.
+- **Certificate fields referenced but not installed.** For TLS endpoints, certificate files must already be installed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), see [Securing the connection](/infrastructure/security/model). Plain MQTT (this Quick Start) doesn't need them.
 
 ### Where to go next
 
-[Phase 6. Start and stop inventory (`control_operation`)](/getting-started/quick-start/step-6-stop).
+[Phase 6. Start and stop inventory ([`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation))](/getting-started/quick-start/step-6-stop).

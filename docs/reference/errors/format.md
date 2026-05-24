@@ -64,18 +64,18 @@ Every IOTC command response carries a standard envelope. Errors are reported in 
 
 ## Asynchronous acceptance — code 1
 
-Two commands — `set_os` and `install_certificate` — are asynchronous. They acknowledge the request immediately with `response.code: 1` ("Command payload is accepted") and continue processing in the background. The terminal outcome arrives later as an event:
+Two commands — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) and [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) — are asynchronous. They acknowledge the request immediately with `response.code: 1` ("Command payload is accepted") and continue processing in the background. The terminal outcome arrives later as an event:
 
 | Command | Acknowledgement | Terminal outcome |
 |---|---|---|
-| `set_os` | `code: 1` | `alert_short` with id `FIRMWARE_UPDATE_SUCCESS` / `FIRMWARE_UPDATE_FAIL`, plus optional `alerts` events with id `FIRMWARE_UPDATE` showing progress |
-| `install_certificate` | `code: 1` | `alert_short` with `<TYPE>_CERT_INSTALL_SUCCESS` / `<TYPE>_CERT_INSTALL_FAIL` |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `code: 1` | `alert_short` with id `FIRMWARE_UPDATE_SUCCESS` / `FIRMWARE_UPDATE_FAIL`, plus optional `alerts` events with id `FIRMWARE_UPDATE` showing progress |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | `code: 1` | `alert_short` with `<TYPE>_CERT_INSTALL_SUCCESS` / `<TYPE>_CERT_INSTALL_FAIL` |
 
 Treat `code: 1` as a successful submission, not as a final result. Your application should subscribe to `alert_short` (and `alerts`, if you want progress detail) before sending either command.
 
 ## A documented schema discrepancy
 
-The `reboot` API reference example shows a response with `code: 1` and the description `Command payload is accepted`. The canonical schema and error table define only `code: 0` (Success) and `code: 5` (Inventory in progress) for `reboot`. **Trust the schema.** Your client should accept `0` and `1` as success-equivalents for `reboot` (defensive coding) and treat `5` as the only documented failure.
+The [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) API reference example shows a response with `code: 1` and the description `Command payload is accepted`. The canonical schema and error table define only `code: 0` (Success) and `code: 5` (Inventory in progress) for [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot). **Trust the schema.** Your client should accept `0` and `1` as success-equivalents for [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) (defensive coding) and treat `5` as the only documented failure.
 
 ## Correlating responses
 
@@ -100,4 +100,4 @@ For per-command error details, including the subset of codes a specific command 
 - [Command Response Error Codes](/reference/errors/codes) — the full 0–28 table.
 - [MQTT API Reference](/reference/api-overview) — directory of all 27 operations and events.
 - [How commands and responses flow](/foundations/architecture/communication-flow) — the three flow types.
-- [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — payload-shape gotchas, including the `reboot` code discrepancy.
+- [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — payload-shape gotchas, including the [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) code discrepancy.

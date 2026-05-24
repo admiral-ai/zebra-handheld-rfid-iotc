@@ -16,7 +16,7 @@ The entries are grouped:
 - [Configuration (FM-CFG)](#fm-cfg) — endpoint and operating-mode validation failures.
 - [Inventory operations (FM-OPS)](#fm-ops) — radio-state and singulation problems.
 - [Tag data (FM-DATA)](#fm-data) — `dataEVT` payload completeness.
-- [Firmware (FM-FW)](#fm-fw) — `set_os` rejection conditions.
+- [Firmware (FM-FW)](#fm-fw) — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) rejection conditions.
 - [Events (FM-EVT)](#fm-evt) — heartbeats, alerts, and connection events.
 - [Security (FM-SEC)](#fm-sec) — TLS handshake and certificate install issues.
 - [Device link (FM-DEV)](#fm-dev) — Bridged-only Bluetooth bridge problems.
@@ -46,7 +46,7 @@ The entries are grouped:
 
 **Confirm.** Watch broker logs while activating the endpoint. If you see no attempt, the sled isn't trying. If you see an attempt followed by an immediate disconnect, credentials or ACL are wrong.
 
-**Fix.** Drop to plain `MQTT` on `1883` first to isolate TLS from authentication issues. Verify credentials against what the broker expects. If TLS is required, install the broker CA via `install_certificate` (type `mqtt`) before activating. See also [FM-NET-03](#fm-net-03) for the reconnect loop variant.
+**Fix.** Drop to plain `MQTT` on `1883` first to isolate TLS from authentication issues. Verify credentials against what the broker expects. If TLS is required, install the broker CA via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `mqtt`) before activating. See also [FM-NET-03](#fm-net-03) for the reconnect loop variant.
 
 **See.** [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · [Securing the connection](/infrastructure/security/model)
 
@@ -68,9 +68,9 @@ The entries are grouped:
 
 **Cause.** Missing or expired certificate chain on the device, wrong logical name referenced in `set_wifi.security.certificate[].name`, EAP method mismatch (the AP requires PEAP but the profile uses TLS), or revoked client certificate.
 
-**Confirm.** Run `get_installed_certificate` with type `wifi` and verify the names match what the profile references. Check certificate expiry with `openssl x509 -enddate -noout -in cert.pem`.
+**Confirm.** Run [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) with type `wifi` and verify the names match what the profile references. Check certificate expiry with `openssl x509 -enddate -noout -in cert.pem`.
 
-**Fix.** Install the correct CA, client cert, and client key via `install_certificate` (type `wifi`). Use exact logical names in the Wi-Fi profile. Choose the right `authProtocol` (`tls`, `ttls`, or `peap`) per the AP's RADIUS configuration.
+**Fix.** Install the correct CA, client cert, and client key via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `wifi`). Use exact logical names in the Wi-Fi profile. Choose the right `authProtocol` (`tls`, `ttls`, or `peap`) per the AP's RADIUS configuration.
 
 **See.** [Getting on the network](/infrastructure/network/architecture) · [Securing the connection](/infrastructure/security/model)
 
@@ -80,11 +80,11 @@ The entries are grouped:
 
 ### FM-CFG-01: Endpoint name collision {#fm-cfg-01}
 
-**Symptom.** `config_endpoint` with `operation: "add"` returns response code `10` (`IOT_ERROR_CONFIG_ALREADY_EXIST`).
+**Symptom.** [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) with `operation: "add"` returns response code `10` (`IOT_ERROR_CONFIG_ALREADY_EXIST`).
 
 **Cause.** An endpoint with the same `endpointName` already exists on the device — either created earlier, restored from a saved configuration, or created by an MDM push.
 
-**Confirm.** Run `get_endpoint_config` and inspect `endpointResponse.activeEndpoints.savedEndpoints.epNames` for the colliding name.
+**Confirm.** Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) and inspect `endpointResponse.activeEndpoints.savedEndpoints.epNames` for the colliding name.
 
 **Fix.** Either use `operation: "update"` to modify the existing endpoint, or `operation: "delete"` first and then re-add. Endpoint names should be unique and stable across the lifetime of the device.
 
@@ -92,7 +92,7 @@ The entries are grouped:
 
 ### FM-CFG-02: Topic count caps {#fm-cfg-02}
 
-**Symptom.** `config_endpoint` returns response code `25` (`IOT_ERROR_PUBLISH_TOPICS_EXCEEDED`) or `26` (`IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
+**Symptom.** [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) returns response code `25` (`IOT_ERROR_PUBLISH_TOPICS_EXCEEDED`) or `26` (`IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
 
 **Cause.** Per-endpoint topic caps are tight: `publishTopics` allows at most **3** entries, `subscribeTopics` allows at most **1**. Sending more returns one of these codes.
 
@@ -102,7 +102,7 @@ The entries are grouped:
 
 ### FM-CFG-03: Advanced profile incomplete {#fm-cfg-03}
 
-**Symptom.** `set_operating_mode` returns response code `22` (`IOT_CTRL_ADVANCED_PROFILE_NOT_SET`).
+**Symptom.** [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) returns response code `22` (`IOT_CTRL_ADVANCED_PROFILE_NOT_SET`).
 
 **Cause.** The `profiles` value is `ADVANCED` but no `advancedConfigurations` block was supplied. `ADVANCED` is the only profile that requires explicit `transmitPower`, `linkProfile`, `session`, and `dynamicPower`; the other five profiles fill those in from presets.
 
@@ -116,13 +116,13 @@ The entries are grouped:
 
 ### FM-OPS-01: Inventory state mismatch {#fm-ops-01}
 
-**Symptom.** `control_operation START` returns response code `11` (`IOT_ERROR_INVENTORY_IN_PROGRESS`), or `set_operating_mode` returns the same code.
+**Symptom.** `control_operation START` returns response code `11` (`IOT_ERROR_INVENTORY_IN_PROGRESS`), or [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) returns the same code.
 
-**Cause.** An RFID inventory is already running. Both `control_operation START` and `set_operating_mode` require the radio to be IDLE.
+**Cause.** An RFID inventory is already running. Both `control_operation START` and [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) require the radio to be IDLE.
 
 **Confirm.** `get_status.deviceStatus.radioActivity` reports `ACTIVE`.
 
-**Fix.** Send `control_operation` with `ctrlOprPayload.operation: "STOP"`, wait for response code `0`, then retry. The full sequence is in [RP-04](/reference/diagnose/recovery-playbooks#rp-04).
+**Fix.** Send [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) with `ctrlOprPayload.operation: "STOP"`, wait for response code `0`, then retry. The full sequence is in [RP-04](/reference/diagnose/recovery-playbooks#rp-04).
 
 **See.** [Start, stop, and the trigger button](/rfid/operating-mode/start-stop) · [RP-04](/reference/diagnose/recovery-playbooks#rp-04)
 
@@ -156,45 +156,45 @@ The entries are grouped:
 
 ### FM-FW-01: Concurrent update attempt {#fm-fw-01}
 
-**Symptom.** `set_os` returns response code `4` (`IOT_STATUS_FW_UPDATE_IN_PROGRESS`).
+**Symptom.** [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns response code `4` (`IOT_STATUS_FW_UPDATE_IN_PROGRESS`).
 
-**Cause.** Another firmware update is already running. `set_os` is asynchronous; once accepted (code `1`), it runs to completion (success or `FIRMWARE_UPDATE_FAIL`). A second `set_os` during that window is rejected.
+**Cause.** Another firmware update is already running. [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is asynchronous; once accepted (code `1`), it runs to completion (success or `FIRMWARE_UPDATE_FAIL`). A second [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) during that window is rejected.
 
-**Fix.** Wait for the terminal `alert_short` (`FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`) before sending another `set_os`. If you need to interrupt an in-progress update, the safe path is to wait it out; there is no documented cancel command.
+**Fix.** Wait for the terminal `alert_short` (`FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`) before sending another [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os). If you need to interrupt an in-progress update, the safe path is to wait it out; there is no documented cancel command.
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations)
 
 ### FM-FW-02: Flash exhausted {#fm-fw-02}
 
-**Symptom.** `set_os` returns response code `8` (`IOT_ERROR_LOW_FLASH_SIZE`).
+**Symptom.** [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns response code `8` (`IOT_ERROR_LOW_FLASH_SIZE`).
 
 **Cause.** Free flash storage on the device is insufficient to download the firmware file. Common consumers of flash: large retention buffer for tag data, installed certificates, saved Wi-Fi profiles.
 
-**Fix.** Reduce the retention buffer in `set_config.dataConfiguration.retention`. Delete unused certificates with `delete_certificate`. Delete unused Wi-Fi profiles with `delete_wifi_profile`. Then retry `set_os`.
+**Fix.** Reduce the retention buffer in `set_config.dataConfiguration.retention`. Delete unused certificates with [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate). Delete unused Wi-Fi profiles with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile). Then retry [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os).
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations) · [The reader's configuration document](/infrastructure/management/config-document)
 
 ### FM-FW-03: Firmware source unreachable {#fm-fw-03}
 
-**Symptom.** `set_os` returns response code `9` (`IOT_STATUS_FILE_NOT_FOUND`).
+**Symptom.** [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns response code `9` (`IOT_STATUS_FILE_NOT_FOUND`).
 
 **Cause.** The URL in `OSUpdateDetails.url` does not resolve to a downloadable file from the sled's network segment, or the server requires authentication that hasn't been satisfied.
 
 **Confirm.** From a host on the sled's Wi-Fi segment, `curl -I <url>` to verify reachability and check the response status. If using HTTPS with `authenticationType: CERTIFICATE`, verify the CA cert is installed under type `filestore`.
 
-**Fix.** Verify the URL is correct and reachable from the sled's segment. If the server is HTTPS-authenticated, install the CA cert via `install_certificate` (type `filestore`) and reference it as `caCertificateFile` in `OSUpdateDetails`.
+**Fix.** Verify the URL is correct and reachable from the sled's segment. If the server is HTTPS-authenticated, install the CA cert via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `filestore`) and reference it as `caCertificateFile` in `OSUpdateDetails`.
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations)
 
 ### FM-FW-04: Battery-low gate {#fm-fw-04}
 
-**Symptom.** `set_os` returns response code `14` (`IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY`).
+**Symptom.** [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns response code `14` (`IOT_ERROR_FW_UPDATE_FAIL_LOW_BATTERY`).
 
 **Cause.** Battery charge is below the firmware-update safety threshold. The firmware update is gated against the risk of mid-update power loss.
 
 **Confirm.** `get_status.deviceStatus.batteryStatus.chargePercentage` is below ~50%, or `powerSource` is `DC` (not connected to external power).
 
-**Fix.** Charge the sled to a safer level or connect external power (USB, WALLCHARGER, or CRADLE). Retry `set_os`. For fleet rollouts, see [RP-09](/reference/diagnose/recovery-playbooks#rp-09) on staging by battery level.
+**Fix.** Charge the sled to a safer level or connect external power (USB, WALLCHARGER, or CRADLE). Retry [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os). For fleet rollouts, see [RP-09](/reference/diagnose/recovery-playbooks#rp-09) on staging by battery level.
 
 **See.** [Updating firmware and rebooting](/infrastructure/management/system-operations) · [RP-09](/reference/diagnose/recovery-playbooks#rp-09)
 
@@ -208,7 +208,7 @@ The entries are grouped:
 
 **Cause.** Two possible mismatches. (a) No active endpoint routes events of type `network` or `terminalConnection`. (b) The endpoint's `eventConfiguration` flag is `false`.
 
-**Confirm.** Run `get_endpoint_config` and inspect each active endpoint's `eventConfiguration`. Look for `network: true` and (for Bridged) `terminalConnection: true`.
+**Confirm.** Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) and inspect each active endpoint's `eventConfiguration`. Look for `network: true` and (for Bridged) `terminalConnection: true`.
 
 **Fix.** Set the flags via `config_events.eventConfiguration` or per-endpoint via `config_endpoint.configuration.eventConfiguration`. Ensure at least one active endpoint of type `MGMT_EVT` or `MDM` carries the event stream.
 
@@ -244,27 +244,27 @@ The entries are grouped:
 
 **Cause.** The endpoint's `verificationType` does not match the broker's certificate. `VERIFY_HOST` requires the broker URL to match the certificate's CN or SAN; `VERIFY_PEER` requires the broker's CA to be installed on the sled; `VERIFY_HOST_PEER` requires both.
 
-**Fix.** For production, install the broker's CA via `install_certificate` (type `mqtt`) and use `VERIFY_HOST_PEER`. For self-signed certificates in test, use `verificationType: NONE` temporarily. Verify the broker URL matches the certificate hostname.
+**Fix.** For production, install the broker's CA via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `mqtt`) and use `VERIFY_HOST_PEER`. For self-signed certificates in test, use `verificationType: NONE` temporarily. Verify the broker URL matches the certificate hostname.
 
 **See.** [Securing the connection](/infrastructure/security/model)
 
 ### FM-SEC-02: Certificate install failure {#fm-sec-02}
 
-**Symptom.** `install_certificate` returns response code `9` (file not found), or `alert_short` emits `MQTT_INSTALL_CERTIFICATE_FAIL` / `WIFI_INSTALL_CERTIFICATE_FAIL` / `FILESTORE_INSTALL_CERTIFICATE_FAIL`.
+**Symptom.** [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) returns response code `9` (file not found), or `alert_short` emits `MQTT_INSTALL_CERTIFICATE_FAIL` / `WIFI_INSTALL_CERTIFICATE_FAIL` / `FILESTORE_INSTALL_CERTIFICATE_FAIL`.
 
 **Cause.** With `certSource: HTTP`, the source URL is unreachable or the file is missing. With `certSource: DIRECT`, the inline PEM content is malformed. For HTTPS sources, the filestore CA is required before the chain can be verified.
 
-**Fix.** For HTTP source: verify the URL with `curl -I` from the sled's segment. For DIRECT: validate the PEM with `openssl x509 -in cert.pem -text -noout`. For HTTPS source: install the filestore CA first via `install_certificate` (type `filestore`).
+**Fix.** For HTTP source: verify the URL with `curl -I` from the sled's segment. For DIRECT: validate the PEM with `openssl x509 -in cert.pem -text -noout`. For HTTPS source: install the filestore CA first via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `filestore`).
 
 **See.** [Securing the connection](/infrastructure/security/model)
 
 ### FM-SEC-03: Logical name mismatch {#fm-sec-03}
 
-**Symptom.** `install_certificate` succeeds (`MQTT_INSTALL_CERTIFICATE_SUCCESS`), but the downstream operation that uses the cert (a TLS-enabled `config_endpoint` or `set_wifi`) still fails the TLS handshake.
+**Symptom.** [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) succeeds (`MQTT_INSTALL_CERTIFICATE_SUCCESS`), but the downstream operation that uses the cert (a TLS-enabled [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) or [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi)) still fails the TLS handshake.
 
 **Cause.** The endpoint references the certificate by a logical name — `caCertificateFile`, `clientCert`, `clientKey`, or in Wi-Fi enterprise `certificate[].name`. If the installed name doesn't exactly match the referenced name, the operation cannot find the cert.
 
-**Confirm.** Run `get_installed_certificate` to list installed names. Compare letter-for-letter against the names referenced in the endpoint or Wi-Fi configuration.
+**Confirm.** Run [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) to list installed names. Compare letter-for-letter against the names referenced in the endpoint or Wi-Fi configuration.
 
 **Fix.** Either reinstall the certificate under the expected name, or update the endpoint configuration to reference the actual installed name. Pick a naming convention and apply it consistently.
 
@@ -290,7 +290,7 @@ The entries are grouped:
 
 **Cause.** The host's MQTT-to-Bluetooth bridge software is not forwarding correctly. Possible causes: bridge subscribed to the wrong topic prefix on the broker side, bridge bug, or the bridge's outbound queue overflowed and started dropping messages.
 
-**Fix.** Inspect host bridge logs to confirm it sees incoming commands. Verify the bridge subscribes to the same topic shape as `config_endpoint` defined. Restart the bridge process. If the bridge is custom-built, add logging on both Bluetooth and MQTT sides.
+**Fix.** Inspect host bridge logs to confirm it sees incoming commands. Verify the bridge subscribes to the same topic shape as [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) defined. Restart the bridge process. If the bridge is custom-built, add logging on both Bluetooth and MQTT sides.
 
 **See.** [Roles: Reader, Host, Broker, Application](/foundations/architecture/components)
 
@@ -310,13 +310,13 @@ The entries are grouped:
 
 ### FM-FLEET-01: Identity collision {#fm-fleet-01}
 
-**Symptom.** Two readers appear in fleet telemetry with the same serial number, or `get_version` on one device reports a serial number that does not match the physical label.
+**Symptom.** Two readers appear in fleet telemetry with the same serial number, or [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) on one device reports a serial number that does not match the physical label.
 
 **Cause.** Should not occur — Zebra serial numbers are unique per device. Realistic causes: labelling or asset-tracking error in the back office (two physical devices recorded under the same serial), incorrect device chosen during a swap, or, very rarely, a firmware identity register corruption.
 
-**Confirm.** Power off both candidates, power on one at a time, run `get_version`, and compare `readerVersion.serialNumber` against the physical label and the SKU sticker. The two values must match.
+**Confirm.** Power off both candidates, power on one at a time, run [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version), and compare `readerVersion.serialNumber` against the physical label and the SKU sticker. The two values must match.
 
-**Fix.** Correct the asset-tracking record once you identify which physical sled is which. If `get_version` reports a serial that does not match the physical label, contact Zebra support — this is a factory-bad device that needs RMA.
+**Fix.** Correct the asset-tracking record once you identify which physical sled is which. If [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) reports a serial that does not match the physical label, contact Zebra support — this is a factory-bad device that needs RMA.
 
 **See.** [What your reader knows about itself](/infrastructure/management/device-state)
 

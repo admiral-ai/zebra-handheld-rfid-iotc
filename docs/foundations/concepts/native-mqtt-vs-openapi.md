@@ -24,17 +24,17 @@ The `<namedPayload>` is operation-specific, and it is a **real, canonical field 
 
 | Command | Named payload object |
 |---|---|
-| `control_operation` | `ctrlOprPayload` |
-| `config_endpoint` | `epConfig` |
-| `set_operating_mode` | `operatingMode` *(wraps an inner `operatingModes`, the only command with this double nesting)* |
-| `set_post_filter` | `postFilterPayload` |
-| `config_events` | `eventConfiguration` |
-| `install_certificate` | `certificate` |
-| `set_os` | `osPayload` |
-| `set_wifi` | `wifi` |
-| `get_endpoint_config` | *(optional)* `endpointDetails` |
+| [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) | `ctrlOprPayload` |
+| [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | `epConfig` |
+| [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | `operatingMode` *(wraps an inner `operatingModes`, the only command with this double nesting)* |
+| [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) | `postFilterPayload` |
+| [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) | `eventConfiguration` |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | `certificate` |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `osPayload` |
+| [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) | `wifi` |
+| [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | *(optional)* `endpointDetails` |
 
-Simple read-only commands take **only** `{command, requestId}` — `get_status`, `get_version`, `get_current_region`, `get_eth`, `get_wifi`, `get_operating_mode`, `get_post_filter`, `get_endpoint_config` (without filter), `reboot`.
+Simple read-only commands take **only** `{command, requestId}` — [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version), [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region), [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth), [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode), [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter), [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) (without filter), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).
 
 This is the **native MQTT shape**. The API Reference site (`mqtt-api-reference/`) renders every command in this shape as its primary example.
 
@@ -44,7 +44,7 @@ The OpenAPI rendering — produced by `docusaurus-plugin-openapi-docs` from the 
 
 #### Drift A. Extra generic wrappers
 
-Some renderings wrap the native named payload in additional generic envelopes — `params`, `payload`, `requestBody`. For example, a rendering might show `control_operation` as:
+Some renderings wrap the native named payload in additional generic envelopes — `params`, `payload`, `requestBody`. For example, a rendering might show [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) as:
 
 ```json
 {
@@ -78,7 +78,7 @@ Earlier IOTC products (FX9600, FX7500, ATR7000 fixed readers) have a REST surfac
 
 ### Side-by-side comparisons
 
-`set_operating_mode` — OpenAPI-style rendering you might see:
+[`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) — OpenAPI-style rendering you might see:
 
 ```json
 {

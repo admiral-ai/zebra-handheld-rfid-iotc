@@ -40,6 +40,6 @@ The reader **prepends `tenantId` and appends `deviceSerialNumber` automatically*
 
 ### The MDM-endpoint-as-bootstrap pattern
 
-The MDM endpoint is the **only** endpoint that can be configured without an MQTT connection. It is provisioned via the 123RFID Desktop application during reader onboarding. Once the reader is online via its MDM endpoint, all other endpoints (`MGMT`, `MGMT_EVT`, `CTRL`, `DATA1`, `DATA2`, additional `MDM` or `SOTI`) are configured remotely with `config_endpoint`.
+The MDM endpoint is the **only** endpoint that can be configured without an MQTT connection. It is provisioned via the 123RFID Desktop application during reader onboarding. Once the reader is online via its MDM endpoint, all other endpoints (`MGMT`, `MGMT_EVT`, `CTRL`, `DATA1`, `DATA2`, additional `MDM` or `SOTI`) are configured remotely with [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint).
 
 **Related:** 📘 [§3.2 Topic Hierarchy](/foundations/mqtt/topic-hierarchy) · 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [§13.2 SOTI Provisioning](/fleet/provisioning/soti-connect) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference)

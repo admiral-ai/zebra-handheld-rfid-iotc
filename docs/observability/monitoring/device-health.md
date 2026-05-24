@@ -8,7 +8,7 @@ sidebar_label: How to Check Device Status & Health
 
 This guide shows you how to check the health of a handheld reader on demand and continuously.
 
-### On-demand: `get_status`
+### On-demand: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)
 
 ```json
 {"command": "get_status", "command_id": "status-1"}
@@ -16,7 +16,7 @@ This guide shows you how to check the health of a handheld reader on demand and 
 
 The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [§16.2](#chapter-16--mqtt-api-reference).
 
-[DIAGRAM: D-12.1.A. `get_status` response annotated]
+[DIAGRAM: D-12.1.A. [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) response annotated]
 
 ### Continuous: subscribe to `heartBeatEVT`
 
@@ -30,6 +30,6 @@ and filter on `event == "heartBeatEVT"`. Heartbeats arrive at the configured int
 
 ### Combine the two
 
-`get_status` gives a point-in-time snapshot; `heartBeatEVT` gives a stream. Combine for resilience: query `get_status` at startup or on demand; trust `heartBeatEVT` for ongoing state. If they disagree, the more recent timestamp wins.
+[`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) gives a point-in-time snapshot; `heartBeatEVT` gives a stream. Combine for resilience: query [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) at startup or on demand; trust `heartBeatEVT` for ongoing state. If they disagree, the more recent timestamp wins.
 
 **Related:** 📕 [§16.2 get_status](#chapter-16--mqtt-api-reference) · 📕 [§16.6 heartBeatEVT](#chapter-16--mqtt-api-reference) · 📘 [§11.4 Heartbeat Events](/observability/events/heartbeat)

@@ -24,9 +24,9 @@ IOTC organises a reader's surface into **four logical interfaces**, each carried
 
 | Interface | epType code | What flows on it | Voice |
 |---|---|---|---|
-| **Management** | `MGMT` | Identity, network, security, configuration, firmware. `get_status`, `set_wifi`, `install_certificate`, `set_config`, `set_os`, `reboot`. | Synchronous command/response |
+| **Management** | `MGMT` | Identity, network, security, configuration, firmware. [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot). | Synchronous command/response |
 | **Management Events** | `MGMT_EVT` | Heartbeats, alerts, exceptions, NTP, network and firmware-update events. | Asynchronous event |
-| **Control** | `CTRL` | RFID operations: `set_operating_mode`, `control_operation start/stop`, `set_post_filter`. | Synchronous command/response |
+| **Control** | `CTRL` | RFID operations: [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), `control_operation start/stop`, [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter). | Synchronous command/response |
 | **Data** | `DATA1`, `DATA2` | High-throughput `dataEVT` tag streams. Up to two concurrent data pipes per sled. | Asynchronous event |
 
 Two further endpoint types act as combinations of these:
@@ -42,7 +42,7 @@ The capability is named in the schema's `tag_config.json` and grouped on the API
 
 The Data interface is special because tag-read volume is bursty and can be high (hundreds of TPS during an inventory sweep). Two features mitigate this without involving the broker:
 
-- **Retention buffer.** The sled buffers up to **150,000 tag events** locally when the broker is unreachable, and replays them at up to **500 TPS** when the connection returns. Configurable via `set_config`.
+- **Retention buffer.** The sled buffers up to **150,000 tag events** locally when the broker is unreachable, and replays them at up to **500 TPS** when the connection returns. Configurable via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
 - **Batching.** Multiple tag events can be grouped into one MQTT message, reducing network and CPU cost.
 
 Retention is enabled by default. See [What happens when the network drops](/fleet/reliability/retention-retry).

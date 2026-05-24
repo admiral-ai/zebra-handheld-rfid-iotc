@@ -7,7 +7,7 @@ sidebar_label: Securing the connection (TLS & certificates)
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min · **Ties to:** Certificate Management sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Certificate Management. Operations: `get_installed_certificate` · `install_certificate` · `delete_certificate`.
+> Sub-tag: Certificate Management. Operations: [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) · [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate).
 
 IOTC's security model has four layers, applied independently. Each defends against a different class of attack; together they form the security posture for a deployment. This chapter explains the layers and the operations that drive certificate management.
 
@@ -17,20 +17,20 @@ IOTC's security model has four layers, applied independently. Each defends again
 |---|---|---|
 | **Transport** | Eavesdropping on the wire | TLS 1.2 / 1.3 (`protocol: MQTT_TLS`, port 8883) |
 | **Server identity** | A man-in-the-middle posing as your broker | `verificationType` set to `VERIFY_HOST_PEER` |
-| **Client identity** | An unauthorized reader connecting as yours | Client certificate (`install_certificate` type `client`) |
+| **Client identity** | An unauthorized reader connecting as yours | Client certificate ([`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) type `client`) |
 | **Tenant boundary** | A neighboring tenant reading your topics | `tenantId` + broker-side ACLs |
 
 You cannot achieve "secure" by picking one. A TLS-encrypted connection without `VERIFY_HOST_PEER` defends against passive eavesdropping but not against an active impostor. A signed client certificate without TLS leaks every payload in clear text. The four layers are an *AND*, not an *OR*.
 
 ### Five certificate types
 
-`install_certificate` takes a `type` field that selects the logical bucket the cert lives in:
+[`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) takes a `type` field that selects the logical bucket the cert lives in:
 
 | Type | Used for |
 |---|---|
 | `mqtt` | MQTT broker connections; both client cert/key and the broker's CA cert |
 | `wifi` | Enterprise Wi-Fi (WPA2/WPA3 Enterprise with EAP-TLS) — CA, client cert, client key |
-| `filestore` | The HTTP file server used by `set_os` and `install_certificate` (HTTP source) |
+| `filestore` | The HTTP file server used by [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) and [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (HTTP source) |
 | `client` | Generic client-side certs |
 | `server` | Generic server-side certs |
 
@@ -38,7 +38,7 @@ Certificates are stored on the device under logical names that you choose at ins
 
 ### Certificate format and size
 
-The reader's certificate parser accepts a narrow format envelope. Mismatches here are a common cause of `install_certificate` failures (`alert_short` IDs `MQTT_INSTALL_CERTIFICATE_FAIL`, `WIFI_INSTALL_CERTIFICATE_FAIL`, `FILESTORE_INSTALL_CERTIFICATE_FAIL`).
+The reader's certificate parser accepts a narrow format envelope. Mismatches here are a common cause of [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) failures (`alert_short` IDs `MQTT_INSTALL_CERTIFICATE_FAIL`, `WIFI_INSTALL_CERTIFICATE_FAIL`, `FILESTORE_INSTALL_CERTIFICATE_FAIL`).
 
 | Constraint | Value |
 |---|---|
@@ -62,7 +62,7 @@ When `certSource` is omitted, the reader defaults to `HTTP`.
 
 **Out-of-band, via 123RFID Desktop.** The Wi-Fi certificate chain for an Enterprise SSID can be loaded from the bootstrap UI in Phase 2. This fits when a reader has not yet joined any network.
 
-**In-band, via `install_certificate`.** Once a reader is on the broker, MQTT certificate material for TLS and for the file store can be pushed via `install_certificate`. This is how MDM platforms (SOTI Connect, 42Gears SureMDM) provision certs at fleet scale.
+**In-band, via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate).** Once a reader is on the broker, MQTT certificate material for TLS and for the file store can be pushed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate). This is how MDM platforms (SOTI Connect, 42Gears SureMDM) provision certs at fleet scale.
 
 ### Rotation
 
@@ -71,11 +71,11 @@ Certificates expire. The rotation pattern is:
 1. **Install the new cert with a different logical name** (`mqtt_ca_cert_2026`, not `mqtt_ca_cert`).
 2. **Update endpoints to reference the new name** with `config_endpoint update`.
 3. **Verify the connection survives** — watch `mqttConnEVT` for clean reconnects on the new cert.
-4. **Delete the old cert** with `delete_certificate` once no endpoint references it.
+4. **Delete the old cert** with [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) once no endpoint references it.
 
 This pattern survives bad rolls — if the new cert turns out to be invalid, the reader is still using the old name and you can `config_endpoint update` back. Replacing the cert in place (same logical name) leaves no escape route.
 
-### The minimal payload: `install_certificate`
+### The minimal payload: [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate)
 
 ```json
 {
@@ -96,8 +96,8 @@ For HTTP-sourced installs, replace `certificateBundle` with a `url` array per ce
 
 ### Listing and removing
 
-- **`get_installed_certificate`**: returns the logical names of installed certificates by type. Use before `delete_certificate` to confirm the target exists.
-- **`delete_certificate`**: removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
+- **[`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate)**: returns the logical names of installed certificates by type. Use before [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) to confirm the target exists.
+- **[`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate)**: removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
 
 ### Confirmation via `alert_short`
 

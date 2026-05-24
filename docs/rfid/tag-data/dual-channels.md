@@ -18,7 +18,7 @@ Three motivations:
 
 ### How channel assignment is configured
 
-Channel assignment is set via `config_events` (see [§11.3](/observability/events/configure)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
+Channel assignment is set via [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) (see [§11.3](/observability/events/configure)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
 
 [DIAGRAM: D-10.4.A. single-channel vs dual-channel deployment topologies]
 

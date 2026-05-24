@@ -101,8 +101,41 @@ h5 {
   border: 1px solid var(--bordered-img-color);
 }
 
+/* === Tables: fit container width, no horizontal scroll =================
+   Every doc table renders inside the article column. Force the layout to
+   adapt to available width and let long tokens (URLs, command names,
+   tenant.topic paths) break gracefully so no horizontal scroll bar
+   appears at common viewport widths.
+*/
+.markdown table,
+article table {
+  table-layout: auto;
+  width: 100%;
+  display: table; // override Docusaurus default `display: block` + overflow-x: auto
+  overflow-x: visible;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.markdown table th,
+.markdown table td,
+article table th,
+article table td {
+  word-break: normal;
+  overflow-wrap: anywhere;
+  // Allow inline code (e.g., command names) and long URLs to wrap rather
+  // than push the column out
+  code {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+// Preserve the "first column is a label" hint, but only when its content
+// is reasonably short. Allow wrapping when needed.
 table td:first-child {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .bottom-spaced {
@@ -120,6 +153,40 @@ span[class*='codeLineNumber'] {
 
 main article img:not(.no-auto-height) {
   height: auto;
+}
+
+/* === Content image sizing: consistent visual weight across aspect ratios
+   Phone screenshots (tall, narrow) sit alongside laptop screenshots
+   (wide, short) and diagrams. Constrain max-height so vertical screens
+   don't visually dwarf horizontal ones; preserve native aspect ratio.
+*/
+.markdown img:not(.no-auto-height):not([class*='logo']):not([class*='badge']) {
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+/* === Meta-bar callout: muted background for the doc-type blockquote =====
+   The first blockquote on each page starts with one of the Diátaxis icons
+   (📗 / 📘 / 📕 / 📙 / 🩺). Docusaurus renders it as a blockquote with a
+   left border; we add a soft background to give it presence without
+   competing with full admonitions (`:::info`, `:::warning`, etc.).
+
+   Every blockquote in the docs gets the muted background — for pages
+   where the blockquote isn't a meta-bar, the background still reads as a
+   neutral aside, which is correct.
+*/
+.markdown blockquote {
+  background-color: #f5f7fa;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme='dark'] .markdown blockquote {
+  background-color: #1c2128;
 }
 
 ul.feature-list {

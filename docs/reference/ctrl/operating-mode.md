@@ -5,11 +5,11 @@ sidebar_label: "Operating Mode (CTRL)"
 ---
 > 📕 **REFERENCE**
 
-#### `get_operating_mode` (T4)
+#### [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) (T4)
 
 Returns current operating mode configuration.
 
-#### `set_operating_mode` (T1)
+#### [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) (T1)
 
 Most complex command. Payload key `operatingMode`. Sub-objects: `profiles`, `advancedConfigurations` (when `profiles: ADVANCED`), `accessOperations[]`, `radioConditions.{start, stop}`, `query`, `select[]`, `reportFilter`. See [§9.2](/rfid/operating-mode/configure) for examples.
 

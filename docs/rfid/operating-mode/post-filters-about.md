@@ -7,7 +7,7 @@ sidebar_label: Filter tags before vs after the read
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~4 min · **Ties to:** Tag Filtering sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Tag Filtering. Operations: `get_post_filter` · `set_post_filter`.
+> Sub-tag: Tag Filtering. Operations: [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) · [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter).
 
 IOTC supports filtering at **two points** in the read pipeline. Filtering early saves the radio work. Filtering late saves the application work. Each has its own surface, its own API, and its own cost.
 
@@ -31,7 +31,7 @@ The savings are radio savings: tags that don't match never use a singulation slo
 
 The reader's **post-filter** runs after singulation. The radio has identified the tag and read its EPC; the reader's daemon then decides whether to report it on the data endpoint. This is the reader-side text-pattern filter.
 
-Post-filters live in their own surface — `set_post_filter` and `get_post_filter`, and are configured per data endpoint (`DATA_EP1` or `DATA_EP2`):
+Post-filters live in their own surface — [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) and [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter), and are configured per data endpoint (`DATA_EP1` or `DATA_EP2`):
 
 ```json
 {
@@ -88,7 +88,7 @@ A full table is in `mqtt-api-reference/set_operating_mode.md`. For 95% of deploy
 
 ### Listing and removing post-filters
 
-`get_post_filter` returns the post-filters currently installed on each data endpoint. Use it before `MODIFY` or `DELETE` to confirm the target rule exists. A failed `DELETE` on a non-existent rule returns a generic error — `get_post_filter` is your verification.
+[`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) returns the post-filters currently installed on each data endpoint. Use it before `MODIFY` or `DELETE` to confirm the target rule exists. A failed `DELETE` on a non-existent rule returns a generic error — [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) is your verification.
 
 ### Out of scope
 

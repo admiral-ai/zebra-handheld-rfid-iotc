@@ -7,9 +7,9 @@ sidebar_label: Choose what the reader tells you
 > 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min · **Ties to:** Event Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Event Configuration. Operation: `config_events`.
+> Sub-tag: Event Configuration. Operation: [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events).
 
-A sled can emit a wide range of operational events — heartbeats, alerts, exceptions, NTP transitions, network state changes, firmware update progress, GPI state, antenna health. **You decide which.** `config_events` is the operation that switches each event class on or off and sets thresholds for the alerts that need them.
+A sled can emit a wide range of operational events — heartbeats, alerts, exceptions, NTP transitions, network state changes, firmware update progress, GPI state, antenna health. **You decide which.** [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) is the operation that switches each event class on or off and sets thresholds for the alerts that need them.
 
 ### Sixteen event flags
 
@@ -108,11 +108,11 @@ Useful while you map your application to the event stream. Turn off what you don
 
 A typical production posture for a single-reader retail use case: keep alerts (power, battery, temperature) and operational events (terminal, network, firmware, file download); drop the noisy ones (antenna, GPI, exceptions, NTP, user-app, heartbeat, CPU/RAM/flash) unless you have a use for them.
 
-### `config_events` vs `config_endpoint.eventConfiguration`
+### [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) vs `config_endpoint.eventConfiguration`
 
 There is a second place that event flags appear: inside `config_endpoint.configuration.eventConfiguration`. That nested form controls which events the **specific endpoint** publishes. It is per-endpoint, not device-wide.
 
-The relationship: the device-wide `config_events` says *which events exist*; the per-endpoint `eventConfiguration` says *which of those go to this specific endpoint*. In practice, most deployments configure both to match — `config_events` enables battery alerts globally, then the MGMT_EVT endpoint's `eventConfiguration.battery: true` routes them there.
+The relationship: the device-wide [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) says *which events exist*; the per-endpoint `eventConfiguration` says *which of those go to this specific endpoint*. In practice, most deployments configure both to match — [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) enables battery alerts globally, then the MGMT_EVT endpoint's `eventConfiguration.battery: true` routes them there.
 
 ### Where the events actually go
 
@@ -120,7 +120,7 @@ Each enabled event publishes on the publish topic family of whichever endpoint i
 
 ### Pre-condition
 
-`config_events` has no documented pre-condition on radio state; you can change event configuration mid-inventory. It returns a generic-shape response with `apiVersion`, `response.code`, `response.description`.
+[`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) has no documented pre-condition on radio state; you can change event configuration mid-inventory. It returns a generic-shape response with `apiVersion`, `response.code`, `response.description`.
 
 ### Out of scope
 

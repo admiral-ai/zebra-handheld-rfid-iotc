@@ -7,17 +7,17 @@ sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Network Configuration. Operations: `get_eth` · `get_wifi` · `set_wifi` · `delete_wifi_profile`.
+> Sub-tag: Network Configuration. Operations: [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) · [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) · [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
 
-A sled gets to the broker over **Wi-Fi** (Direct tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bridged tier — RFD40 Standard). Ethernet does not exist on the sled itself; `get_eth` reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
+A sled gets to the broker over **Wi-Fi** (Direct tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bridged tier — RFD40 Standard). Ethernet does not exist on the sled itself; [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
 
 ### What lives where
 
 On a Direct sled, Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
 
-- **Read** them with `get_wifi` (lists configured profiles).
-- **Add or modify** them with `set_wifi` (operation `CREATE` or `MODIFY`).
-- **Remove** them with `delete_wifi_profile`.
+- **Read** them with [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) (lists configured profiles).
+- **Add or modify** them with [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) (operation `CREATE` or `MODIFY`).
+- **Remove** them with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
 
 On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
 
@@ -25,13 +25,13 @@ On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT clie
 
 | Constraint | Value | Returned as |
 |---|---|---|
-| Saved Wi-Fi profiles per device | **10** | `set_wifi` error code `19` (`IOT_ERROR_SSID_LIMIT_OVERFLOW`) when exceeded |
+| Saved Wi-Fi profiles per device | **10** | [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) error code `19` (`IOT_ERROR_SSID_LIMIT_OVERFLOW`) when exceeded |
 | SSID length | **≤ 32 characters** (IEEE 802.11 standard) | Longer SSIDs are rejected at save time |
-| Wi-Fi certificate size (Enterprise modes) | **≤ 4 KB** per certificate file | Larger files fail to install via `install_certificate` |
+| Wi-Fi certificate size (Enterprise modes) | **≤ 4 KB** per certificate file | Larger files fail to install via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) |
 
-Delete unused profiles with `delete_wifi_profile` before adding a new one if you are near the 10-profile cap.
+Delete unused profiles with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) before adding a new one if you are near the 10-profile cap.
 
-### `set_wifi`: supported security types
+### [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi): supported security types
 
 The reader supports four `securityType` enum values:
 
@@ -42,9 +42,9 @@ The reader supports four `securityType` enum values:
 | `WPA2Enterprise` | Corporate / 802.1X with WPA2 | identity, password, **plus** certificate references (`ca_cert`, `client_cert`, `client_key`) |
 | `WPA3Enterprise` | Corporate / 802.1X with WPA3 | identity, password, **plus** certificate references |
 
-Enterprise modes also take an `authProtocol`: `tls`, `ttls`, or `peap`. For `tls`, the three certificate logical names must already be installed via `install_certificate` (type `wifi`).
+Enterprise modes also take an `authProtocol`: `tls`, `ttls`, or `peap`. For `tls`, the three certificate logical names must already be installed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `wifi`).
 
-A minimal `set_wifi` payload for personal Wi-Fi:
+A minimal [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) payload for personal Wi-Fi:
 
 ```json
 {
@@ -76,17 +76,17 @@ Field-level shape, including the enterprise variant — is in `mqtt-api-referenc
 | `15` | SSID not found (used by `MODIFY` against a profile that doesn't exist) |
 | `18` | ESSID already exists (used by `CREATE` against a duplicate) |
 
-Both indicate a precondition mismatch. `CREATE` requires the ESSID to be new; `MODIFY` requires it to exist. Inspect with `get_wifi` first when in doubt.
+Both indicate a precondition mismatch. `CREATE` requires the ESSID to be new; `MODIFY` requires it to exist. Inspect with [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) first when in doubt.
 
-### `get_eth`: when it makes sense
+### [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth): when it makes sense
 
-`get_eth` returns the *broker-side* Ethernet status: whether an Ethernet interface is up, its IP, link speed. On a handheld sled the result is typically "no Ethernet interface present", the sled has no Ethernet port. The command remains useful when:
+[`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) returns the *broker-side* Ethernet status: whether an Ethernet interface is up, its IP, link speed. On a handheld sled the result is typically "no Ethernet interface present", the sled has no Ethernet port. The command remains useful when:
 
 - The sled is in a cradle that exposes Ethernet through a host (rare).
 - You are querying through a fixed-reader companion deployment.
 - You want to confirm the reader has not unexpectedly grown an interface (it hasn't).
 
-Most Quick Start integrations will never call `get_eth`. It is documented for completeness and for parity with the fixed-reader IOTC product.
+Most Quick Start integrations will never call [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth). It is documented for completeness and for parity with the fixed-reader IOTC product.
 
 ### IPv4: DHCP vs static
 

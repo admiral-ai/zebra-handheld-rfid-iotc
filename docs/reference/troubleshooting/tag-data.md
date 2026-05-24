@@ -12,12 +12,12 @@ This guide shows you how to troubleshoot tag-data anomalies on handheld readers.
 
 - Verify subscription topic matches the configured channel (`data1event` vs `data2event`).
 - Verify the wildcard pattern includes the right serial number.
-- Verify the reader is actually running an operation — `get_status` should show `operating_state: running`.
+- Verify the reader is actually running an operation — [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) should show `operating_state: running`.
 
 #### Symptom: events arrive but payloads are empty or partial
 
 - Check the operating mode — `inventory` mode does not include RSSI even if your application expects it.
-- Check the verbosity setting in `config_events` — compact mode omits default-value fields.
+- Check the verbosity setting in [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) — compact mode omits default-value fields.
 
 #### Symptom: duplicate tag reads
 

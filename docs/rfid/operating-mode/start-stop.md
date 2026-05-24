@@ -7,13 +7,13 @@ sidebar_label: Start, stop, and the trigger button
 > 📙 **HOW-TO** · **Audience:** All · **Time:** ~5 min · **Ties to:** Inventory Control sub-tag of the API Reference
 
 > **See in the API Reference**
-> Sub-tag: Inventory Control. Operation: `control_operation`.
+> Sub-tag: Inventory Control. Operation: [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation).
 
-Inventory begins and ends with `control_operation`. The trigger button on the sled is one of three start mechanisms; the others are command-driven and timer-driven. This chapter is the surface for those choices and the operational rules around them.
+Inventory begins and ends with [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation). The trigger button on the sled is one of three start mechanisms; the others are command-driven and timer-driven. This chapter is the surface for those choices and the operational rules around them.
 
 ### The minimum. START and STOP
 
-`control_operation` takes a `ctrlOprPayload` object with two fields: `controlType` and `operation`. Both are uppercase enums.
+[`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) takes a `ctrlOprPayload` object with two fields: `controlType` and `operation`. Both are uppercase enums.
 
 **Start inventory:**
 
@@ -43,7 +43,7 @@ Inventory begins and ends with `control_operation`. The trigger button on the sl
 
 `controlType` is `RFID` for the radio or `SCANNER` for the barcode scanner (Premium / Premium Plus only). `operation` is `START` or `STOP`.
 
-**`control_operation` does not configure inventory behavior.** It only flips the active radio between IDLE and ACTIVE. Operating-mode parameters — profile, sessions, filters, metadata, all live in `set_operating_mode` and must be applied **before** sending `START`.
+**[`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) does not configure inventory behavior.** It only flips the active radio between IDLE and ACTIVE. Operating-mode parameters — profile, sessions, filters, metadata, all live in [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) and must be applied **before** sending `START`.
 
 ### Error codes
 
@@ -107,14 +107,14 @@ Three states map the radio's lifecycle:
 
 `get_status.deviceStatus.radioActivity` reads `ACTIVE` while running and `INACTIVE` otherwise. The intermediate `READY` state (radio configured, not yet emitting) is brief and not directly observable from `radioActivity`.
 
-### The lock on `reboot` and `set_operating_mode`
+### The lock on [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) and [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode)
 
 Two operations require the radio to be IDLE:
 
-- **`reboot`**: error code `5` if inventory is active.
-- **`set_operating_mode`**: error code `11` if inventory is active.
+- **[`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)**: error code `5` if inventory is active.
+- **[`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode)**: error code `11` if inventory is active.
 
-Always send `control_operation STOP` first, confirm with `get_status`, then proceed.
+Always send `control_operation STOP` first, confirm with [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), then proceed.
 
 ### Watching for tag data
 

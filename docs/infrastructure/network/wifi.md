@@ -40,7 +40,7 @@ The response lists configured profiles with their ESSIDs, security types, and co
 
 ### Create a new profile: WPA2Enterprise (EAP-TLS)
 
-Certificates must already be installed via `install_certificate` (see [§7.2](/infrastructure/security/certificate-management)) — reference them by logical `name`:
+Certificates must already be installed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (see [§7.2](/infrastructure/security/certificate-management)) — reference them by logical `name`:
 
 ```json
 {
