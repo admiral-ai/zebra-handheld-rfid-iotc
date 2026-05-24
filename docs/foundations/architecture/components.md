@@ -21,7 +21,7 @@ The firmware on the sled implements the MQTT client, manages the RFID radio, and
 
 The reader is **authoritative**: it owns its state. Applications observe; they do not cache or substitute. If a `get_status` response says the radio is `ACTIVE`, it is, the application's last belief is wrong. This authority discipline simplifies failure recovery: on reconnect, the application re-queries; it never asserts.
 
-### Host Device (Bipartite tier only) 🅑
+### Host Device (Bridged tier only) 🅑
 
 On RFD40 Standard, the sled has no Wi-Fi. A **host device**, an Android phone, tablet, or PC running the IOTC bridge — provides the network path:
 
@@ -30,7 +30,7 @@ On RFD40 Standard, the sled has no Wi-Fi. A **host device**, an Android phone, t
 - Credentials, certificates, and topic subscriptions live on the host, not in the sled.
 - The host emits `terminalConnection` events whenever the Bluetooth link transitions.
 
-On Monolithic sleds (Premium / RFD90), there is **no host in the network path**. A host device may still be present as an operator UI, but the sled connects to Wi-Fi and the broker directly. Confusing the two cases is a frequent source of misconfiguration; see [Where things fail](/reference/diagnose/two-edges).
+On Direct sleds (Premium / RFD90), there is **no host in the network path**. A host device may still be present as an operator UI, but the sled connects to Wi-Fi and the broker directly. Confusing the two cases is a frequent source of misconfiguration; see [Where things fail](/reference/diagnose/two-edges).
 
 ### MQTT Broker
 
@@ -52,7 +52,7 @@ The customer's MQTT publisher/subscriber. It is responsible for:
 
 Applications run anywhere with MQTT connectivity: backend services, cloud functions, mobile apps. The protocol is symmetric, the application and the reader are both *just MQTT clients*. Authority is conventional, not enforced by the protocol.
 
-### MDM Platform (optional) 🅐🅑
+### MDM Platform (optional) 🅓🅑
 
 For more than a handful of sleds, an MDM platform takes over the cold-start, configuration distribution, and firmware-rollout duties:
 

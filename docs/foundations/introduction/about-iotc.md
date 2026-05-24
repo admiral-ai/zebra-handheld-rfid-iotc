@@ -16,7 +16,7 @@ Handheld reader sleds are accessory devices that attach to a host mobile device 
 
 This shape is what every later chapter inherits. Battery-powered. Bluetooth- or Wi-Fi-attached. One antenna. MQTT-only. Region-locked at first-boot via 123RFID Desktop.
 
-For the supported-hardware specifics and the Monolithic ↔ Bipartite fork: [Which sled do you have?](/foundations/introduction/supported-hardware).
+For the supported-hardware specifics and the Direct ↔ Bridged fork: [Which sled do you have?](/foundations/introduction/supported-hardware).
 
 ### The four MQTT interfaces
 

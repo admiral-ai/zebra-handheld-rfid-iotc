@@ -109,7 +109,7 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 ### Out of scope
 
 - **Why the failures happened**: explanation belongs in the matching FM page or concept chapter.
-- **Bipartite-specific recovery**: covered in FM-DEV-* entries off the symptom index.
+- **Bridged-specific recovery**: covered in FM-DEV-* entries off the symptom index.
 - **Recovery from regulatory-region misconfiguration**: requires factory reset + 123RFID Desktop reboot; out of scope for routine recovery.
 
 **Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📘 [Where things fail](/reference/diagnose/two-edges) · 📘 [Things people get wrong about IOTC](/reference/diagnose/misconceptions)

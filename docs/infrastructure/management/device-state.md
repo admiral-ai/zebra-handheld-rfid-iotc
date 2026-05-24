@@ -29,7 +29,7 @@ Two-field payload; the response carries `readerVersion.detailedVersions.iotcVers
 
 - **Power and battery**: `powerSource` (DC / WALLCHARGER / USB / CRADLE), `batteryStatus.chargePercentage`, `batteryStatus.stateOfHealth`.
 - **Radio state**: `radioActivity` (INACTIVE / ACTIVE), `radioConnection` (CONNECTED / DISCONNECTED).
-- **Terminal connection**, for Bipartite sleds, the Bluetooth bridge state in `terminalConnection.status`.
+- **Terminal connection**, for Bridged sleds, the Bluetooth bridge state in `terminalConnection.status`.
 - **NTP synchronisation**: `ntp.reach` (non-zero means NTP is reaching its server).
 - **Time and temperature**: `systemTime` ISO 8601, `temperature` in °C.
 

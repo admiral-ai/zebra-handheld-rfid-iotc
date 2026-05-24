@@ -6,7 +6,7 @@ sidebar_label: Failure modes
 
 > 🩺 **FAILURE MODE CATALOGUE** · Audience: All personas in incident response · Use: explain *why* a symptom is happening
 
-Twenty-four catalogued failure modes covering bootstrap, network, configuration, inventory, data, firmware, events, security, the Bipartite host bridge, and fleet identity. Each entry names the failure, explains the underlying cause, lists the signals that confirm it, gives the corrective steps (or points to a recovery playbook), and links to the concept chapter that explains the surface in depth.
+Twenty-four catalogued failure modes covering bootstrap, network, configuration, inventory, data, firmware, events, security, the Bridged host bridge, and fleet identity. Each entry names the failure, explains the underlying cause, lists the signals that confirm it, gives the corrective steps (or points to a recovery playbook), and links to the concept chapter that explains the surface in depth.
 
 Identifiers are stable. `FM-XX-NN` codes do not change as new entries are added; link to them directly.
 
@@ -19,7 +19,7 @@ The entries are grouped:
 - [Firmware (FM-FW)](#fm-fw) — `set_os` rejection conditions.
 - [Events (FM-EVT)](#fm-evt) — heartbeats, alerts, and connection events.
 - [Security (FM-SEC)](#fm-sec) — TLS handshake and certificate install issues.
-- [Device link (FM-DEV)](#fm-dev) — Bipartite-only Bluetooth bridge problems.
+- [Device link (FM-DEV)](#fm-dev) — Bridged-only Bluetooth bridge problems.
 - [Fleet (FM-FLEET)](#fm-fleet) — identity-level cross-device anomalies.
 
 ---
@@ -208,7 +208,7 @@ The entries are grouped:
 
 **Cause.** Two possible mismatches. (a) No active endpoint routes events of type `network` or `terminalConnection`. (b) The endpoint's `eventConfiguration` flag is `false`.
 
-**Confirm.** Run `get_endpoint_config` and inspect each active endpoint's `eventConfiguration`. Look for `network: true` and (for Bipartite) `terminalConnection: true`.
+**Confirm.** Run `get_endpoint_config` and inspect each active endpoint's `eventConfiguration`. Look for `network: true` and (for Bridged) `terminalConnection: true`.
 
 **Fix.** Set the flags via `config_events.eventConfiguration` or per-endpoint via `config_endpoint.configuration.eventConfiguration`. Ensure at least one active endpoint of type `MGMT_EVT` or `MDM` carries the event stream.
 
@@ -272,7 +272,7 @@ The entries are grouped:
 
 ---
 
-## Device link (Bipartite only) {#fm-dev}
+## Device link (Bridged only) {#fm-dev}
 
 ### FM-DEV-01: BT bridge dropped {#fm-dev-01}
 
@@ -300,7 +300,7 @@ The entries are grouped:
 
 **Cause.** Bluetooth has limited range (~10 m) and is sensitive to body absorption. When the host moves between Wi-Fi APs, the new AP may have AP-isolation enabled (blocking backend access from that segment). Some host BT chips throttle under motion.
 
-**Fix.** Keep sled and host within 5 m of each other on the body, with the host on the same side as the sled (line-of-sight, not blocked by torso). Disable AP isolation on the relevant Wi-Fi infrastructure. For mobility-critical deployments, switch to a Monolithic sled (RFD40 Premium / Premium Plus / RFD90), which removes the host dependency entirely.
+**Fix.** Keep sled and host within 5 m of each other on the body, with the host on the same side as the sled (line-of-sight, not blocked by torso). Disable AP isolation on the relevant Wi-Fi infrastructure. For mobility-critical deployments, switch to a Direct sled (RFD40 Premium / Premium Plus / RFD90), which removes the host dependency entirely.
 
 **See.** [Which sled do you have?](/foundations/introduction/supported-hardware)
 

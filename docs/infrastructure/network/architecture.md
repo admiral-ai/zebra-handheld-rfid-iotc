@@ -9,17 +9,17 @@ sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 > **See in the API Reference**
 > Sub-tag: Network Configuration. Operations: `get_eth` · `get_wifi` · `set_wifi` · `delete_wifi_profile`.
 
-A sled gets to the broker over **Wi-Fi** (Monolithic tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bipartite tier — RFD40 Standard). Ethernet does not exist on the sled itself; `get_eth` reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
+A sled gets to the broker over **Wi-Fi** (Direct tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bridged tier — RFD40 Standard). Ethernet does not exist on the sled itself; `get_eth` reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
 
 ### What lives where
 
-On a Monolithic sled, Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
+On a Direct sled, Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
 
 - **Read** them with `get_wifi` (lists configured profiles).
 - **Add or modify** them with `set_wifi` (operation `CREATE` or `MODIFY`).
 - **Remove** them with `delete_wifi_profile`.
 
-On a Bipartite sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
+On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
 
 ### `set_wifi`: supported security types
 
@@ -104,6 +104,6 @@ Each segment has its own failure profile. The sled controls only the first; the 
 - **TLS over MQTT**, see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
 - **The full configuration of an MQTT endpoint**, see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
 - **Network failure modes**, see [Where things fail](/reference/diagnose/two-edges).
-- **Bipartite host-bridge configuration**: host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
+- **Bridged host-bridge configuration**: host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
 
 **Related:** 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

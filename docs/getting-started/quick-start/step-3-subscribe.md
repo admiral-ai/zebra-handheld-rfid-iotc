@@ -4,7 +4,7 @@ title: Verify the bootstrap connection (get_version)
 sidebar_label: Verify the bootstrap connection (`get_version`)
 ---
 
-> 📗 **TUTORIAL** · Phase 3 of 7 · Audience: Integrator · Time: ~3 min · Path: 🅐 Monolithic
+> 📗 **TUTORIAL** · Phase 3 of 7 · Audience: Integrator · Time: ~3 min · Path: 🅓 Direct
 
 **Artifact this phase produces:** a `get_version` **response from the sled** containing model, serial number, SKU, firmware version, and IoTC version. This is your first proof that:
 

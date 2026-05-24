@@ -81,13 +81,13 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | Fleet-wide firmware update failed on some readers | Mixed firmware/hardware; battery-low gate | [RP-09: Stagger and retry rollout](/reference/diagnose/recovery-playbooks#rp-09) |
 | Two readers fight over same serial number | Should not happen; serial is unique. Check device labelling | [FM-FLEET-01: Identity collision](/reference/diagnose/failure-modes#fm-fleet-01) |
 
-### Bipartite-specific (RFD40 Standard) 🅑
+### Bridged-specific (RFD40 Standard) 🅑
 
 | Symptom | Likely cause | Go to |
 |---|---|---|
 | `terminalConnection.status: DISCONNECTED` | Bluetooth link to host lost | [FM-DEV-01: BT bridge dropped](/reference/diagnose/failure-modes#fm-dev-01) |
 | Host bridges to broker but reader silent | Host's MQTT client mis-wired | [FM-DEV-02: Bridge routing](/reference/diagnose/failure-modes#fm-dev-02) |
-| Reader works from Bipartite host but not when host moves | Bluetooth range; AP isolation | [FM-DEV-03: Mobility breaks bridge](/reference/diagnose/failure-modes#fm-dev-03) |
+| Reader works from Bridged host but not when host moves | Bluetooth range; AP isolation | [FM-DEV-03: Mobility breaks bridge](/reference/diagnose/failure-modes#fm-dev-03) |
 
 ### Catch-all
 

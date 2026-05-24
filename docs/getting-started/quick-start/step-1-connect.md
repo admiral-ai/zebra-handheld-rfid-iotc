@@ -10,7 +10,7 @@ sidebar_label: Prepare network and broker
 
 ### Why this phase exists
 
-A Monolithic sled (RFD40 Premium / Premium Plus / RFD90) connects to Wi-Fi and then **directly** to your MQTT broker over TCP. There is no proxy, no tunnel, no HTTP fall-back. If the path is blocked, the sled cannot complete its initial bootstrap connection and Phase 2 will appear to succeed locally while the broker sees nothing.
+A Direct sled (RFD40 Premium / Premium Plus / RFD90) connects to Wi-Fi and then **directly** to your MQTT broker over TCP. There is no proxy, no tunnel, no HTTP fall-back. If the path is blocked, the sled cannot complete its initial bootstrap connection and Phase 2 will appear to succeed locally while the broker sees nothing.
 
 Three patterns block this path more often than any others:
 

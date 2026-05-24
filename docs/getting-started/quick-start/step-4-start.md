@@ -4,7 +4,7 @@ title: Inspect endpoint state (get_endpoint_config)
 sidebar_label: Inspect endpoint state (`get_endpoint_config`)
 ---
 
-> 📗 **TUTORIAL** · Phase 4 of 7 · Audience: Integrator · Time: ~4 min · Path: 🅐 Monolithic
+> 📗 **TUTORIAL** · Phase 4 of 7 · Audience: Integrator · Time: ~4 min · Path: 🅓 Direct
 
 **Artifact this phase produces:** a list of every endpoint the sled has (both active and saved-but-inactive)confirmed from the reader itself. This is the source of truth before you change anything in Phase 5.
 

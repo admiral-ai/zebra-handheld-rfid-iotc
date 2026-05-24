@@ -4,7 +4,7 @@ title: Your first 30 minutes
 sidebar_label: Your first 30 minutes
 ---
 
-> 📗 **TUTORIAL** · Audience: New Integrator · Time: ~30 min hands-on, ~45 min full chapter · Path: 🅐 Monolithic (Premium / RFD90)
+> 📗 **TUTORIAL** · Audience: New Integrator · Time: ~30 min hands-on, ~45 min full chapter · Path: 🅓 Direct (Premium / RFD90)
 
 In the next thirty minutes you will take a sled out of its box, give it a network identity, and watch tag reads stream over MQTT. The Quick Start is **seven phases**. Each phase ends with a verifiable artifact you can see, a confirmed broker reachability check, an active MDM endpoint, a `get_version` response, a configured CTRL endpoint, a live `dataEVT` stream. **If the artifact appears, the phase succeeded. If it doesn't, you don't proceed.**
 
@@ -41,7 +41,7 @@ The MDM endpoint is the bootstrap connection. Everything else depends on it.
 
 ### What this tutorial does not cover
 
-- **Bipartite path (RFD40 Standard).** This tutorial assumes a Monolithic sled — RFD40 Premium, Premium Plus, or RFD90. RFD40 Standard requires a host-device bridge and a different bootstrap. A separate Path B tutorial is planned.
+- **Bridged path (RFD40 Standard).** This tutorial assumes a Direct sled — RFD40 Premium, Premium Plus, or RFD90. RFD40 Standard requires a host-device bridge and a different bootstrap. A separate Path B tutorial is planned.
 - **TLS.** Phases 5 and 6 use plain MQTT on port 1883. Promote to TLS only after the unencrypted path works end-to-end. See [Securing the connection (TLS & certificates)](/infrastructure/security/model).
 - **Fleet provisioning.** Six readers on a single laptop is fine for evaluation. For more, see [Going from one reader to a fleet](/fleet/provisioning/models).
 - **Production reliability.** Retention, retry, batching, alert thresholds, all covered in Parts 4–7. This tutorial gets you to "it works," not to "it survives a Tuesday."

@@ -21,7 +21,7 @@ This documentation covers the **Zebra IoT Connector (IOTC) for handheld RFID**, 
 
 These chapters explain how IOTC is shaped, and why:
 
-- The **hardware-tier fork** that decides every later choice: Monolithic (Premium / Premium Plus / RFD90) versus Bipartite (RFD40 Standard).
+- The **hardware-tier fork** that decides every later choice: Direct (Premium / Premium Plus / RFD90) versus Bridged (RFD40 Standard).
 - The **four MQTT interfaces** — Management, Event, Control, Data, and the seven endpoint types that carry them (MGMT, MGMT_EVT, CTRL, DATA1, DATA2, MDM, SOTI).
 - The **five supported operating-mode profiles** (a sixth, `FAST_READ`, is in the enum but not currently supported) and the read-rate ↔ battery ↔ interference triangle they navigate.
 - Working mental models for tag observation, event flows, configuration drift, and fleet operations.
@@ -33,8 +33,8 @@ For exact command signatures, payload schemas, and the full error-code table, th
 
 | Who you are | Where to start |
 |---|---|
-| New integrator on a Premium or RFD90 sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path A (Monolithic) |
-| New integrator on a Standard sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path B (Bipartite) |
+| New integrator on a Premium or RFD90 sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path A (Direct) |
+| New integrator on a Standard sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path B (Bridged) |
 | Coming from a fixed reader (FX9600 / FX7500 / ATR7000) | [What the IoT Connector is](/foundations/introduction/about-iotc) → [Which sled do you have?](/foundations/introduction/supported-hardware) → [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) |
 | Coming from REST/HTTP, no MQTT exposure | [MQTT in five minutes](/foundations/mqtt/primer) first |
 | Solution builder shaping an integration | [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) → [How commands and responses flow](/foundations/architecture/communication-flow) |
@@ -44,7 +44,7 @@ For exact command signatures, payload schemas, and the full error-code table, th
 
 ### Tier badges
 
-Chapters that depend on hardware tier carry a badge. **🅐** marks Monolithic (Premium, Premium Plus, RFD90 — native Wi-Fi 6, in-firmware IOTC). **🅑** marks Bipartite (RFD40 Standard: Bluetooth to a host that bridges to MQTT). **🅐🅑** marks both. Look for it before reading; your wrong-tier reading wastes time.
+Chapters that depend on hardware tier carry a badge. **🅓** marks Direct (Premium, Premium Plus, RFD90 — native Wi-Fi 6, in-firmware IOTC). **🅑** marks Bridged (RFD40 Standard: Bluetooth to a host that bridges to MQTT). **🅓🅑** marks both. Look for it before reading; your wrong-tier reading wastes time.
 
 ### A word on voice
 

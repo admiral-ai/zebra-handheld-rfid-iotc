@@ -1,10 +1,14 @@
 ---
 id: supported-hardware
-title: "Which sled do you have? (Monolithic vs Bipartite)"
-sidebar_label: "Which sled do you have? (Monolithic vs Bipartite)"
+title: "Which sled do you have? (Direct vs Bridged)"
+sidebar_label: "Which sled do you have? (Direct vs Bridged)"
 ---
 
 > 📘 **EXPLANATION** · Audience: New Integrator, Solution Builder · Read time: ~4 min
+
+:::note Naming update
+The two architecture tiers in this documentation are **Direct** and **Bridged**. Earlier drafts called them *Monolithic* and *Bipartite* respectively. If you have a bookmark or external reference using the older terms, this page is the canonical destination.
+:::
 
 The most consequential decision in IOTC is which **architecture tier** your sled belongs to. The same SKU label hides two very different network topologies. **Get the tier wrong and every later chapter mis-maps.**
 
@@ -12,23 +16,23 @@ The most consequential decision in IOTC is which **architecture tier** your sled
 
 | Tier | Sleds | Network attach | Where IOTC runs |
 |---|---|---|---|
-| **🅐 Monolithic Edge Node** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
-| **🅑 Bipartite** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
+| **🅓 Direct** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
+| **🅑 Bridged** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
 
-The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolithic, they ship different radios.
+The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct, they ship different radios.
 
-[DIAGRAM: D-2.2.A. side-by-side topology: Monolithic single-edge vs Bipartite two-edge]
+[DIAGRAM: D-2.2.A. side-by-side topology: Direct single-edge vs Bridged two-edge]
 
 ### How they differ in practice
 
-**On a Monolithic sled** (Premium / Premium Plus / RFD90):
+**On a Direct sled** (Premium / Premium Plus / RFD90):
 
 - The sled connects to Wi-Fi directly. The host mobile device is optional — useful for the operator UI, but not in the network path.
 - One physical edge between the sled and the broker: **Reader ↔ Wi-Fi ↔ Broker**.
 - The sled is the MQTT client. Credentials, certificates, and topic subscriptions all live in firmware.
 - Reading the failure-mode chapter [Where things fail](/reference/diagnose/two-edges) requires considering **one** edge.
 
-**On a Bipartite sled** (RFD40 Standard):
+**On a Bridged sled** (RFD40 Standard):
 
 - The sled has no Wi-Fi. It pairs to a host device over Bluetooth 5.0 LE; the host bridges to MQTT.
 - Two physical edges: **Reader ↔ Host (BT/eConnex)** and **Host ↔ Broker**.
@@ -37,7 +41,7 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolit
 
 ### Hardware capability matrix
 
-| Capability | RFD40 Standard 🅑 | RFD40 Premium 🅐 | RFD40 Premium Plus 🅐 | RFD90 🅐 |
+| Capability | RFD40 Standard 🅑 | RFD40 Premium 🅓 | RFD40 Premium Plus 🅓 | RFD90 🅓 |
 |---|---|---|---|---|
 | RFID frequency | UHF Gen2 (region-set at first boot) | UHF Gen2 | UHF Gen2 | UHF Gen2 |
 | Native Wi-Fi | — | Wi-Fi 6 | Wi-Fi 6 | Wi-Fi 6 |
@@ -59,10 +63,10 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Monolit
 
 - Powered off, look at the model label.
   - `RFD40SS-…` to Standard 🅑
-  - `RFD40NP-…` or `RFD40HP-…` to Premium 🅐
-  - `RFD9030-…` to RFD90 🅐
-- Powered on, watch the LED behavior during 123RFID Desktop bootstrap. Wi-Fi setup will only succeed on Monolithic tiers; Standard sleds show no Wi-Fi options.
-- From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Monolithic, it names the in-firmware IOTC version.
+  - `RFD40NP-…` or `RFD40HP-…` to Premium 🅓
+  - `RFD9030-…` to RFD90 🅓
+- Powered on, watch the LED behavior during 123RFID Desktop bootstrap. Wi-Fi setup will only succeed on Direct tiers; Standard sleds show no Wi-Fi options.
+- From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Direct, it names the in-firmware IOTC version.
 
 ### Minimum firmware
 
