@@ -28,31 +28,27 @@ Install from the Google Play Store (search "123RFID Mobile") or download the APK
 
 Launch the app. The Home screen appears.
 
-[SCREENSHOT: M-01. 123RFID Mobile Home screen with the bottom navigation bar visible]
-
 ### Pair the sled with the host
 
 If the sled is not yet paired, follow the appropriate path in [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing). The five Bluetooth pairing methods (Tap-and-Pair, Scan-and-Pair, Pair-by-Barcode, Camera, Manual) carry different sled-tier and host-device constraints; pick the one that matches your hardware.
 
 Once paired, the sled appears in **Readers → Available Readers**.
 
-[SCREENSHOT: M-02. Readers tab showing the paired sled in the Available Readers list]
+![Readers tab showing the Available Readers list with a paired sled](/img/quick-start/mobile/m-02-readers-list.png)
 
 Tap the sled name to establish a session. The sled moves to **Connected Readers**.
 
-[SCREENSHOT: M-03. Readers tab with the sled now in Connected Readers]
+![Readers tab with the sled now in Connected Readers](/img/quick-start/mobile/m-03-connected-readers.png)
 
 ### Set the regulatory region
 
 From the bottom navigation bar, tap **Settings → RFID → Regulatory**.
 
-[SCREENSHOT: M-04. Settings → RFID → Regulatory menu path]
-
 > **WARNING:** Select only the country in which you are using the reader.
 
 Select your region from the drop-down list. Confirm the available channels.
 
-[SCREENSHOT: M-05. Regulatory screen with region drop-down and channel list]
+![Regulatory screen with region drop-down and channel list](/img/quick-start/mobile/m-05-regulatory.png)
 
 > **Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
 
@@ -62,24 +58,22 @@ Select your region from the drop-down list. Confirm the available channels.
 
 For Direct sleds (RFD40 Premium / Premium Plus / RFD90), configure the on-sled Wi-Fi profile so the sled can reach the broker directly:
 
-1. From the bottom navigation bar, tap **Settings → WIFI**. The **WLAN Settings** screen appears with the current Wi-Fi status and connection details.
+1. From the bottom navigation bar, tap **Settings → WIFI**. The **WLAN Settings** screen appears with the current Wi-Fi status, channel-band toggles, and connection details.
 
-   [SCREENSHOT: M-06. WLAN Settings screen showing Wi-Fi Status]
+   ![WLAN Settings screen showing Wi-Fi Status and channel-band toggles](/img/quick-start/mobile/m-06-wlan-status.png)
 
-2. **Select the channel band(s)** the sled is allowed to use. Tap to enable or disable:
+2. **Select the channel band(s)** the sled is allowed to use. From the same screen, tap to enable or disable:
    - **2.4 GHz**
    - **5 GHz NON DFS**
    - **5 GHz DFS**
 
-   [SCREENSHOT: M-07. Channel List Band selection with 2.4 GHz / 5 GHz NON DFS / 5 GHz DFS toggles]
-
 3. Tap **Wi-Fi Settings** to initiate a scan. Available SSIDs are listed.
 
-   [SCREENSHOT: M-08. Wi-Fi Settings screen with the SSID scan results]
+   ![Wi-Fi Settings screen with the SSID scan results](/img/quick-start/mobile/m-08-wifi-scan.png)
 
 4. Tap your network's SSID, then create a WLAN profile and save it to the reader.
 
-   [SCREENSHOT: M-09. WLAN profile creation form with security type and passphrase fields]
+   ![WLAN profile creation form with security type and credential fields](/img/quick-start/mobile/m-09-wlan-profile.png)
 
 ### Install certificates (optional — needed for MQTT_TLS or Enterprise Wi-Fi)
 
@@ -87,9 +81,9 @@ If your MDM endpoint requires TLS (`MQTT_TLS`), or your Wi-Fi profile uses an En
 
 > **Admin login may be required.** Per the *123RFID Mobile User Guide*: "This feature can be accessed by logging in as an Admin to the RFD40/90 EU devices." If the Certificates Management screen prompts for an admin password, see [Admin Login](https://support.zebra.com) in the Mobile guide.
 
-1. From the bottom navigation bar, tap **Settings → Certificates Management**.
+1. From the bottom navigation bar, tap **Settings → Certificates Management**. The Certificates Management screen lists currently installed certificates with **Add New** and **Remove All** controls.
 
-   [SCREENSHOT: M-10. Settings → Certificates Management menu path]
+   ![Certificates Management screen with Add New and Remove All controls](/img/quick-start/mobile/m-10-certificate-management.png)
 
 2. Tap **Add New**.
 3. Select the **interface** the certificate is for:
@@ -101,7 +95,7 @@ If your MDM endpoint requires TLS (`MQTT_TLS`), or your Wi-Fi profile uses an En
 4. Select the **certificate type:** `Ca_cert`, `Client_cert`, or `Client_key`.
 5. Browse and select the certificate file. Tap **Upload Certificate**.
 
-   [SCREENSHOT: M-11. Add Certificate form with interface / type / file picker]
+   ![Add Certificate form with interface, certificate type, and file picker](/img/quick-start/mobile/m-11-add-certificate.png)
 
 Repeat for each certificate component. For TLS-authenticated MQTT you typically need all three: CA cert, client cert, client key.
 
@@ -111,13 +105,13 @@ This is the bootstrap connection — the live MQTT path into the reader.
 
 > **Admin login may be required**, same caveat as Certificates Management.
 
-1. From the bottom navigation bar, tap **Settings → Endpoint Configuration**.
+1. From the bottom navigation bar, tap **Settings → Endpoint Configuration**. The Endpoint Configuration screen lists existing endpoint entries and exposes an **Add New** control.
 
-   [SCREENSHOT: M-12. Settings → Endpoint Configuration menu path]
+   ![Endpoint Configuration screen showing existing endpoint entries](/img/quick-start/mobile/m-12-endpoint-configuration.png)
 
-   The **Endpoint Status** section shows the status of the currently active endpoint.
+   The **Endpoint Status** section shows the status of the currently active endpoint, including the broker host, port, protocol, and connection state.
 
-   [SCREENSHOT: M-13. Endpoint Configuration screen with Endpoint Status section]
+   ![Endpoint Status section with active-endpoint connection details](/img/quick-start/mobile/m-13-endpoint-status.png)
 
 2. Tap **Add New**.
 
@@ -136,7 +130,7 @@ This is the bootstrap connection — the live MQTT path into the reader.
    | **Max Reconnect Delay** | The maximum back-off ceiling (seconds) |
    | **Username / Password** | If your broker requires authentication |
 
-   [SCREENSHOT: M-14. Add Endpoint form with all fields populated]
+   ![Add Endpoint form with all fields populated — name, type, protocol, URL, port, tenant, credentials](/img/quick-start/mobile/m-14-add-endpoint.png)
 
 4. Tap to save the new endpoint configuration.
 
@@ -144,7 +138,7 @@ This is the bootstrap connection — the live MQTT path into the reader.
 
 1. **Check the Activate checkbox** for the new endpoint to enable it. Uncheck to deactivate. Only one MDM (or SOTI) endpoint is active at a time.
 
-   [SCREENSHOT: M-15. Endpoint list showing the new entry with the Activate checkbox ticked]
+   ![Endpoint list with the new entry and the Activate checkbox ticked](/img/quick-start/mobile/m-15-activate-endpoint.png)
 
 2. Return to the **Endpoint Status** view. The new endpoint should report **Connected** within a few seconds.
 
