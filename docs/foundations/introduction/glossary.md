@@ -55,7 +55,12 @@ The terminology, limits, and cheat sheets you'll want at your elbow while readin
 | Retention buffer size | 150,000 tag events | Canonical baseline (firmware-version dependent) |
 | Retention flush rate | 500 TPS | Canonical baseline |
 | `password` length (access ops) | Exactly 8 hex chars | EPC Gen2 spec |
-| Heartbeat interval | Seconds; lower is more frequent | Operator choice |
+| Heartbeat interval (default) | 60 seconds | Device default; configurable via `config_events` |
+| Saved Wi-Fi profiles per device | 10 | `set_wifi` error code 19 (`IOT_ERROR_SSID_LIMIT_OVERFLOW`) |
+| SSID length | ≤ 32 characters | IEEE 802.11 standard |
+| Certificate file size | ≤ 4 KB (per cert component) | Device storage limit; applies to MQTT, Wi-Fi, and filestore certs |
+| Certificate format | PEM only, RSA keys in PKCS#1 encoding | Device parser requirement |
+| Device-side real-time clock | No on-device RTC backup battery | Time resets to default on factory reset; synced via SNTP when on a reachable network |
 
 ### Error-code quick reference
 

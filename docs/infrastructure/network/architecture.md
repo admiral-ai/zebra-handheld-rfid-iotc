@@ -21,6 +21,16 @@ On a Direct sled, Wi-Fi credentials and IPv4 strategy live in firmware. They wer
 
 On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
 
+### Wi-Fi limits on Direct sleds
+
+| Constraint | Value | Returned as |
+|---|---|---|
+| Saved Wi-Fi profiles per device | **10** | `set_wifi` error code `19` (`IOT_ERROR_SSID_LIMIT_OVERFLOW`) when exceeded |
+| SSID length | **≤ 32 characters** (IEEE 802.11 standard) | Longer SSIDs are rejected at save time |
+| Wi-Fi certificate size (Enterprise modes) | **≤ 4 KB** per certificate file | Larger files fail to install via `install_certificate` |
+
+Delete unused profiles with `delete_wifi_profile` before adding a new one if you are near the 10-profile cap.
+
 ### `set_wifi`: supported security types
 
 The reader supports four `securityType` enum values:

@@ -37,6 +37,8 @@ The field that most often surprises is `radioActivity`. If it is `ACTIVE`, **`re
 
 A `code: 3` response means the device could not gather the requested information at this moment — retry; if persistent, reboot (after stopping any active inventory). Full schema in `mqtt-api-reference/get_status.md`.
 
+> **No on-device RTC backup battery.** The sled does not have a battery-backed real-time clock. After a factory reset (or any cold start before SNTP has synced), `systemTime` defaults to a baseline value and `ntp.reach` is `0`. The reader updates its clock via SNTP as soon as it has a network path to a reachable time server. **Until then**, time-sensitive operations (TLS handshakes that validate certificate `notBefore` / `notAfter`, log timestamps, `mqttConnEVT.timestamp`) may use the default time. If TLS handshakes are failing right after a reset, confirm `ntp.reach` is non-zero before debugging certificate chains.
+
 ### Regulatory: `get_current_region`
 
 The regulatory region governs which radio frequencies the sled may transmit on and at what power. It cannot be set over MQTT, only via 123RFID Desktop at bootstrap, but it can be **read** at any time:

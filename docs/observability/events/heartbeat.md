@@ -47,13 +47,13 @@ Both `data.*` sub-blocks are optional. The skeleton (`eventName`, `timestamp`, `
 
 ### Interval, cost, and what to pick
 
-The `interval` value (seconds) trades off telemetry resolution against battery and bandwidth:
+The `interval` value (seconds) trades off telemetry resolution against battery and bandwidth. **The device default is 60 seconds** when the heartbeat is enabled without an explicit interval.
 
 | Interval | Use |
 |---|---|
 | 10 s | Test / debugging; high cost; you'll see every flap |
-| 60 s | Active monitoring; typical for managed fleets |
-| 300 s | Periodic check-in; good default for static deployments |
+| 60 s | Device default; typical for actively managed fleets |
+| 300 s | Periodic check-in; good for relatively static deployments |
 | 3600 s | Light-touch monitoring; only confirms hourly liveness |
 
 Each heartbeat costs an MQTT publish (~200 bytes) plus the CPU work of building it. At 60 s intervals across 1,000 readers, that's 1,000 publishes per minute on the broker. Provisioned-throughput brokers (AWS IoT Core, paid HiveMQ tiers) charge per million messages (watch the math).

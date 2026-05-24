@@ -36,6 +36,19 @@ You cannot achieve "secure" by picking one. A TLS-encrypted connection without `
 
 Certificates are stored on the device under logical names that you choose at install time (e.g., `mqtt_ca_cert`, `wifi_client_cert`, `filestore_ca_cert`). Other operations reference these names: `config_endpoint.securityParams.caCertificateFile`, `set_wifi.security.certificate[].name`, `set_os.OSUpdateDetails.caCertificateFile`.
 
+### Certificate format and size
+
+The reader's certificate parser accepts a narrow format envelope. Mismatches here are a common cause of `install_certificate` failures (`alert_short` IDs `MQTT_INSTALL_CERTIFICATE_FAIL`, `WIFI_INSTALL_CERTIFICATE_FAIL`, `FILESTORE_INSTALL_CERTIFICATE_FAIL`).
+
+| Constraint | Value |
+|---|---|
+| Encoding | **PEM** with `-----BEGIN CERTIFICATE-----` / `-----END CERTIFICATE-----` markers |
+| Key encoding | **RSA in PKCS#1 format** (`-----BEGIN RSA PRIVATE KEY-----`). PKCS#8 keys (`-----BEGIN PRIVATE KEY-----`) must be converted first. |
+| Maximum size per file | **4 KB** (applies to CA cert, client cert, and client key independently) |
+| Required components for TLS | CA certificate (authenticates the server), client certificate (identifies the device), client key (the device's private key) |
+
+Convert a PKCS#8 key to PKCS#1 with `openssl rsa -in key-pkcs8.pem -out key-pkcs1.pem -traditional`. Trim certificate chains to the minimum required CA when approaching the 4 KB ceiling.
+
 ### Two installation sources
 
 `install_certificate.certSource` chooses how the certificate content arrives at the reader:

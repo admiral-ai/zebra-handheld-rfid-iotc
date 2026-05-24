@@ -35,7 +35,9 @@ Five-and-a-half fields:
 
 ### The `HH:MM:SS` quirk
 
-`mqttConnEVT.timestamp` is documented in the canonical schema as a `HH:MM:SS` format string, not a full ISO 8601 date-time. The reader uses what it has at the moment of the transition; for a clean connection it has the time, for some disconnect scenarios it may not. **Two consequences for applications:**
+`mqttConnEVT.timestamp` is documented in the canonical schema as a `HH:MM:SS` format string, not a full ISO 8601 date-time. The reader uses what it has at the moment of the transition; for a clean connection it has the time, for some disconnect scenarios it may not. **Why a clock-only timestamp?** The sled does not have a battery-backed real-time clock. Date information comes from SNTP synchronisation; the time-of-day component lives separately. Until SNTP has synced (typical right after a factory reset, see [What your reader knows about itself](/infrastructure/management/device-state)), the reader has hours/minutes/seconds but no calendar date, so it ships what it has.
+
+**Two consequences for applications:**
 
 1. **Cannot reliably correlate `mqttConnEVT` timestamps with wall-clock events.** Use the broker's receipt timestamp (most MQTT clients expose it) for cross-event correlation. Use the `mqttConnEVT.timestamp` only for human-readable display.
 2. **Parsers that assume ISO 8601 will fail.** Accept either format.
