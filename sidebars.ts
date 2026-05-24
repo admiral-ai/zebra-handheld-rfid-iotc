@@ -39,6 +39,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'foundations/introduction/about-iotc',
         'foundations/introduction/supported-hardware',
+        'foundations/introduction/bootstrap-tools',
         'foundations/architecture/components',
         'foundations/architecture/communication-flow',
         'foundations/concepts/native-mqtt-vs-openapi',

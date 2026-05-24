@@ -44,7 +44,7 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct,
 | Capability | RFD40 Standard 🅑 | RFD40 Premium 🅓 | RFD40 Premium Plus 🅓 | RFD90 🅓 |
 |---|---|---|---|---|
 | RFID frequency | UHF Gen2 (region-set at first boot) | UHF Gen2 | UHF Gen2 | UHF Gen2 |
-| Native Wi-Fi | — | Wi-Fi 6 | Wi-Fi 6 | Wi-Fi 6 |
+| Native Wi-Fi (on-sled radio) | **—** (depends on host's Wi-Fi) | Wi-Fi 6 | Wi-Fi 6 | Wi-Fi 6 |
 | Bluetooth | 5.0 LE | 5.0 LE | 5.0 LE | 5.0 LE |
 | Read range (typical) | ~6 m | ~6 m | ~6 m | **~21 m** |
 | Internal antenna | Single, forward-facing | Single, forward-facing | Single, forward-facing | Single, higher-gain |
@@ -54,8 +54,11 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct,
 | Charging | USB-C · cradle | USB-C · cradle | USB-C · cradle | USB-C · cradle |
 | External antenna ports | — | — | — | — |
 | GPIO pins exposed via IOTC | — | — | — | — |
+| Typical bootstrap tool | **123RFID Mobile** (Android, Bluetooth) | 123RFID Desktop (Windows, USB-C) | 123RFID Desktop (Windows, USB-C) | 123RFID Desktop (Windows, USB-C) |
 
 **Note.** Premium Plus differs from Premium primarily in mechanical ruggedization and battery accessories; the IOTC surface is identical.
+
+**On Wi-Fi for RFD40 Standard.** The Standard sled has no native Wi-Fi radio in firmware. The host device — typically a Zebra Enterprise mobile computer paired over Bluetooth — provides the network path to the broker. **Configuration of the host's Wi-Fi is out of IOTC scope** (it lives in the host's OS settings). Apart from this bootstrap-and-network difference, every IOTC command and event behaves identically on Bridged sleds; see [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools).
 
 [DIAGRAM: D-2.2.B. annotated sled illustration: antenna, trigger, USB-C, scanner window]
 
@@ -65,7 +68,7 @@ The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct,
   - `RFD40SS-…` to Standard 🅑
   - `RFD40NP-…` or `RFD40HP-…` to Premium 🅓
   - `RFD9030-…` to RFD90 🅓
-- Powered on, watch the LED behavior during 123RFID Desktop bootstrap. Wi-Fi setup will only succeed on Direct tiers; Standard sleds show no Wi-Fi options.
+- Powered on, watch the LED behavior during bootstrap. On-sled Wi-Fi setup will only succeed on Direct tiers; Standard sleds show no Wi-Fi options because they have no Wi-Fi radio (the host provides the network path).
 - From an existing deployment, the `get_version` response on Standard names the Bluetooth host bridge; on Direct, it names the in-firmware IOTC version.
 
 ### Minimum firmware
@@ -76,4 +79,4 @@ All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks `confi
 
 Because every sled has one internal antenna, this documentation does **not** cover external-antenna selection, cable-loss compensation, or directionality settings; those exist only on fixed readers. Because every sled is battery-powered, the docs give sustained attention to battery lifecycle, the OPTIMAL_BATTERY profile, and heartbeat-emission cost. These are not caveats; they shape every chapter.
 
-**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 [Capacity and limits](/reference/diagnose/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)
+**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 [Capacity and limits](/reference/diagnose/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)

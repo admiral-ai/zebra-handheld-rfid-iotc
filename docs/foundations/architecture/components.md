@@ -21,16 +21,18 @@ The firmware on the sled implements the MQTT client, manages the RFID radio, and
 
 The reader is **authoritative**: it owns its state. Applications observe; they do not cache or substitute. If a `get_status` response says the radio is `ACTIVE`, it is, the application's last belief is wrong. This authority discipline simplifies failure recovery: on reconnect, the application re-queries; it never asserts.
 
-### Host Device (Bridged tier only) 🅑
+### Host Device (Bridged tier; optional UI on Direct) 🅓🅑
 
-On RFD40 Standard, the sled has no Wi-Fi. A **host device**, an Android phone, tablet, or PC running the IOTC bridge — provides the network path:
+On **Bridged** sleds (RFD40 Standard), the sled has no on-board Wi-Fi radio. A **host device** — typically a Zebra Enterprise Android mobile computer paired over Bluetooth 5.0 LE (eConnex profile) — provides the **network conduit** to the broker:
 
-- The sled pairs to the host over Bluetooth 5.0 LE (eConnex profile).
-- The host runs the MQTT client and bridges Bluetooth ↔ MQTT.
-- Credentials, certificates, and topic subscriptions live on the host, not in the sled.
-- The host emits `terminalConnection` events whenever the Bluetooth link transitions.
+- The sled pairs to the host over Bluetooth, carrying its IoTC MQTT envelope over the eConnex profile.
+- The host's Wi-Fi (or mobile data) carries that envelope onward to the broker.
+- The IoTC MQTT command surface, response shapes, event semantics, and topic structure are **identical to a Direct sled** — the host is a conduit, not a translator. The reader still owns its MQTT client identity, certificates, and topic subscriptions; the host is the transport.
+- The sled emits `terminalConnection` events whenever the Bluetooth link transitions, since there is a host link to report on.
 
-On Direct sleds (Premium / RFD90), there is **no host in the network path**. A host device may still be present as an operator UI, but the sled connects to Wi-Fi and the broker directly. Confusing the two cases is a frequent source of misconfiguration; see [Where things fail](/reference/diagnose/two-edges).
+On **Direct** sleds (Premium / Premium Plus / RFD90), there is **no host in the network path**. The sled joins Wi-Fi directly and speaks MQTT to the broker over its own radio. A host device may still be present as an operator UI (123RFID Mobile, an SDK-based app), but it is not in the data plane.
+
+The IOTC surface a developer integrates against is the same on either side. The bootstrap tool (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and the network topology differ; the MQTT contract does not. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) and [Where things fail](/reference/diagnose/two-edges).
 
 ### MQTT Broker
 
@@ -59,7 +61,7 @@ For more than a handful of sleds, an MDM platform takes over the cold-start, con
 - **SOTI Connect**: Zebra's reference MDM partner. Receives `alert_short` (compact alerts) on the SOTI endpoint.
 - **42Gears SureMDM**: alternative MDM with first-class IOTC support.
 
-In MDM-managed deployments, **123RFID Desktop is used once** to set the region and seed the MDM endpoint. After that, the MDM platform owns provisioning, firmware, and policy. See [Going from one reader to a fleet](/fleet/provisioning/models) for the comparison matrix.
+In MDM-managed deployments, the bootstrap tool (**123RFID Desktop** for Direct sleds, **123RFID Mobile** for Bridged) is used once to set the region and seed the MDM endpoint. After that, the MDM platform owns provisioning, firmware, and policy. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) and [Going from one reader to a fleet](/fleet/provisioning/models) for the comparison matrix.
 
 ### Authority hierarchy
 
@@ -68,9 +70,9 @@ When the same fact disagrees across actors, this hierarchy resolves it:
 1. **Reader firmware** is authoritative for runtime state (radio state, current operating mode, currently-connected endpoint).
 2. **Saved configuration on the reader** is authoritative for what survives reboot.
 3. **MDM-pushed canonical config** is authoritative for what *should* be on the reader at the next reconciliation.
-4. **123RFID Desktop** is authoritative for region (no other actor can change it).
+4. **The bootstrap tool** (123RFID Desktop on Direct, 123RFID Mobile on Bridged) is authoritative for region (no other actor can change it).
 5. **Application caches** are advisory (discard on reconnect).
 
 Disputes between (3) and (1) (between intended state and observed state)are *drift* and are addressed in [Keeping a fleet in sync](/fleet/management/about-bulk).
 
-**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📗 [Reader bootstrap with 123RFID Desktop](/getting-started/prerequisites/bootstrap) · 📘 [Going from one reader to a fleet](/fleet/provisioning/models)
+**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📗 [Reader bootstrap with 123RFID Desktop](/getting-started/prerequisites/bootstrap) · 📘 [Going from one reader to a fleet](/fleet/provisioning/models)

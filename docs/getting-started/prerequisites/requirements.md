@@ -8,21 +8,24 @@ sidebar_label: Hardware & Software Requirements
 
 ### Required hardware and software
 
-- Reader sled: RFD40 or RFD90 with firmware **3.10.27 or later**
-- Host mobile device: Android 11 or later. Supported models are listed at the Zebra developer portal under "Compatible Hosts" for the selected sled.
-- 123RFID Desktop: Windows 10 or Windows 11; current version from the Zebra developer portal
-- USB-C cable for the 123RFID Desktop bootstrap step
-- MQTT client for testing: `mosquitto_pub` / `mosquitto_sub`, MQTT Explorer, or any MQTT 3.1.1 client library
-- Wi-Fi network with outbound internet access to the broker (TCP/8883 for TLS, TCP/1883 for cleartext)
-- IOTC tenant credentials: `tenantId`, MQTT username, MQTT password (see [§4.2](/getting-started/prerequisites/credentials))
+- **Reader sled:** RFD40 or RFD90 with firmware **3.10.27 or later**.
+- **Host mobile device** (required for Bridged 🅑 RFD40 Standard, optional for Direct 🅓): Android 11 or later. Supported models are listed at the Zebra developer portal under "Compatible Hosts" for the selected sled.
+- **Bootstrap tool** — pick one based on your sled's tier:
+  - **123RFID Desktop** (Windows 10/11) for Direct sleds (RFD40 Premium, Premium Plus, RFD90). Requires a USB-C cable for the first attach. Download from the Zebra developer portal.
+  - **123RFID Mobile** (Android 11+) for Bridged sleds (RFD40 Standard) — and optionally for Direct sleds when no Windows laptop is available. Pairs over Bluetooth via NFC tap, barcode scan, or manual MAC entry. Download free from the Google Play Store.
+  - See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) for the choice rationale.
+- **MQTT client for testing:** `mosquitto_pub` / `mosquitto_sub`, MQTT Explorer, MQTTX, or any MQTT 3.1.1 client library.
+- **Wi-Fi network** with outbound internet access to the broker (TCP/8883 for TLS, TCP/1883 for cleartext). On Direct sleds the sled itself joins this network; on Bridged sleds the **host device's Wi-Fi** carries the traffic (the Standard sled has no on-board Wi-Fi radio).
+- **IOTC tenant credentials:** `tenantId`, MQTT username, MQTT password (see [§4.2](/getting-started/prerequisites/credentials)).
 
 ### Firmware verification
 
-Two verification surfaces exist:
+Three verification surfaces exist:
 
-- **Before bootstrap:** 123RFID Desktop displays the firmware version in its device pane when the sled is connected via USB.
-- **After MQTT enrollment:** publish `get_version` (see [§16.2](#chapter-16--mqtt-api-reference)). The response includes a `firmware` field.
+- **Before bootstrap (Desktop):** 123RFID Desktop displays the firmware version in its device pane when the sled is connected via USB.
+- **Before bootstrap (Mobile):** 123RFID Mobile shows firmware in the device-info screen after a successful Bluetooth pair.
+- **After MQTT enrollment:** publish `get_version` (see [§16.2](#chapter-16--mqtt-api-reference)). The response includes a `firmware` field and is identical across tiers.
 
 If the reported version is below `3.10.27`, update via the firmware-update mechanism described in [§14.6](/fleet/migration/execute).
 
-**Related:** 📕 [§16.2 get_version](#chapter-16--mqtt-api-reference) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history) · 📗 [§4.3 Bootstrap](/getting-started/prerequisites/bootstrap)
+**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📕 [§16.2 get_version](#chapter-16--mqtt-api-reference) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history) · 📗 [§4.3 Bootstrap](/getting-started/prerequisites/bootstrap)

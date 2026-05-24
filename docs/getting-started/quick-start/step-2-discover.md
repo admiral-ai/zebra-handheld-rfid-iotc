@@ -4,9 +4,13 @@ title: Bootstrap with 123RFID Desktop
 sidebar_label: Bootstrap with 123RFID Desktop
 ---
 
-> 📗 **TUTORIAL** · Phase 2 of 7 · Audience: Operator with a Windows laptop · Time: ~8 min · Path: 🅓 Direct
+> 📗 **TUTORIAL** · Phase 2 of 7 · Audience: Operator with a Windows laptop · Time: ~8 min · Path: 🅓 Direct (USB-C)
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
+
+> **Bootstrapping a Bridged (RFD40 Standard) sled?** Use **123RFID Mobile** on an Android device instead. The Standard sled has no USB-C bootstrap path and no on-sled Wi-Fi radio — its host phone supplies the network. The logical bootstrap steps are identical (region → endpoint → activate); only the transport and UI differ. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) and [How to pair the reader sled via Bluetooth](/getting-started/prerequisites/bluetooth-pairing) for the Mobile-app walkthrough.
+>
+> **Premium / Premium Plus / RFD90 operator without a Windows laptop?** 123RFID Mobile also bootstraps Direct sleds over Bluetooth. The default Quick Start uses Desktop because USB-C gives the most predictable first attach, but the post-bootstrap MQTT surface is identical either way.
 
 ### Why this phase exists
 

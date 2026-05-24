@@ -14,7 +14,7 @@ This documentation covers the **Zebra IoT Connector (IOTC) for handheld RFID**, 
 |---|---|
 | RFD40 Standard, RFD40 Premium, RFD40 Premium Plus, RFD90, RFD9030 | FX9600 · FX7500 · ATR7000 fixed readers (see [zebradevs.github.io/rfid-ziotc-docs](https://zebradevs.github.io/rfid-ziotc-docs)) |
 | MQTT 3.1.1 native payloads (the field-validated transport) | OpenAPI-rendered REST shapes; see [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) |
-| 123RFID Desktop bootstrap (Windows, USB) | The Android Service SDK and standalone barcode-only flows |
+| Bootstrap via **123RFID Desktop** (Windows / USB-C, Direct sleds) and **123RFID Mobile** (Android / Bluetooth, Bridged sleds) | The Android Service SDK and standalone barcode-only flows |
 | SOTI Connect and 42Gears SureMDM fleet management | Generic Android MDM scenarios where IOTC is not enabled |
 
 ### What you'll find here
@@ -33,8 +33,9 @@ For exact command signatures, payload schemas, and the full error-code table, th
 
 | Who you are | Where to start |
 |---|---|
-| New integrator on a Premium or RFD90 sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path A (Direct) |
-| New integrator on a Standard sled | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path B (Bridged) |
+| New integrator on a Premium or RFD90 sled (Windows laptop) | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path A (Direct, 123RFID Desktop) |
+| New integrator on a Standard sled (Android host) | [Two bootstrap tools](/foundations/introduction/bootstrap-tools) → pair via [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing) → bootstrap with 123RFID Mobile |
+| New integrator on Premium / RFD90 without a Windows laptop | [Two bootstrap tools](/foundations/introduction/bootstrap-tools) — use 123RFID Mobile over Bluetooth |
 | Coming from a fixed reader (FX9600 / FX7500 / ATR7000) | [What the IoT Connector is](/foundations/introduction/about-iotc) → [Which sled do you have?](/foundations/introduction/supported-hardware) → [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) |
 | Coming from REST/HTTP, no MQTT exposure | [MQTT in five minutes](/foundations/mqtt/primer) first |
 | Solution builder shaping an integration | [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) → [How commands and responses flow](/foundations/architecture/communication-flow) |
@@ -44,7 +45,7 @@ For exact command signatures, payload schemas, and the full error-code table, th
 
 ### Tier badges
 
-Chapters that depend on hardware tier carry a badge. **🅓** marks Direct (Premium, Premium Plus, RFD90 — native Wi-Fi 6, in-firmware IOTC). **🅑** marks Bridged (RFD40 Standard: Bluetooth to a host that bridges to MQTT). **🅓🅑** marks both. Look for it before reading; your wrong-tier reading wastes time.
+Chapters that depend on hardware tier carry a badge. **🅓** marks Direct (Premium, Premium Plus, RFD90 — native Wi-Fi 6, USB-C bootstrap via 123RFID Desktop). **🅑** marks Bridged (RFD40 Standard: no on-sled Wi-Fi; reaches the broker through the host's Wi-Fi over a Bluetooth bridge; bootstrap via 123RFID Mobile). **🅓🅑** marks both. The IoTC MQTT surface is identical across tiers once bootstrap completes; the badge tells you only about first-light and network topology. Look for it before reading; your wrong-tier reading wastes time. See [Two bootstrap tools](/foundations/introduction/bootstrap-tools) for the rationale.
 
 ### A word on voice
 

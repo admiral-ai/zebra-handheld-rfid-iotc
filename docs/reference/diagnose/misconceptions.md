@@ -108,6 +108,14 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 - *Right:* It is rejected with error code 11 during active inventory. Stop the inventory with `control_operation STOP`, apply the new mode, then restart.
 - *See:* [Choose how the reader reads tags](/rfid/operating-mode/profiles)
 
+### Tiers and bootstrap
+
+#### MM-16. The Direct/Bridged tier names describe the bootstrap and network topology, not the MQTT API surface {#mm-16}
+
+- *Wrong:* Bridged sleds run a different IoTC API, or the host translates between two protocols, or `set_operating_mode` behaves differently across tiers.
+- *Right:* The tier name reflects (a) which **bootstrap tool** you use for first-light (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and (b) the **network topology** (sled-owns-Wi-Fi on Direct, host-owns-Wi-Fi-and-carries-BT-bridge on Bridged). **Once the MDM endpoint is active, every IoTC MQTT command, response, event, topic, retention behavior, and TLS behavior is identical across tiers.** The only operational asymmetries are: (i) Bridged sleds emit `terminalConnection` events because there's a host link to report on; (ii) `set_wifi` is a no-op surface on Bridged because there's no on-sled Wi-Fi radio to configure. Build your application against the API contract, not the tier.
+- *See:* [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) and [Which sled do you have?](/foundations/introduction/supported-hardware)
+
 ---
 
 ### Reading this list
