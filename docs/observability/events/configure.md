@@ -6,8 +6,9 @@ sidebar_label: Choose what the reader tells you
 
 > 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min · **Ties to:** Event Configuration sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Event Configuration. Operation: [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events).
+:::tip[See in the API Reference]
+Sub-tag: Event Configuration. Operation: [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events).
+:::
 
 A sled can emit a wide range of operational events — heartbeats, alerts, exceptions, NTP transitions, network state changes, firmware update progress, GPI state, antenna health. **You decide which.** [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) is the operation that switches each event class on or off and sets thresholds for the alerts that need them.
 

@@ -6,8 +6,9 @@ sidebar_label: How the MQTT plumbing fits together
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** MQTT Endpoint Configuration sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: MQTT Endpoint Configuration. Operations: [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) · [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint).
+:::tip[See in the API Reference]
+Sub-tag: MQTT Endpoint Configuration. Operations: [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) · [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint).
+:::
 
 The word *endpoint* is overloaded. **API endpoints** are MQTT operation names — [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation). **MQTT endpoints** are broker connection targets — host, port, TLS settings, credentials, topic mapping. This chapter is about the second meaning: how the reader's broker connections are shaped, how many you can have, and how to choose between the hybrid bootstrap and the split-by-role production posture.
 

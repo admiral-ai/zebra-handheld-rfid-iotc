@@ -6,8 +6,9 @@ sidebar_label: When the reader needs to interrupt you
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~5 min · **Ties to:** Alerts sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Alerts (and Exceptions). Events: `alerts` · `alert_short`.
+:::tip[See in the API Reference]
+Sub-tag: Alerts (and Exceptions). Events: `alerts` · `alert_short`.
+:::
 
 When a sled crosses a threshold or its operational state changes meaningfully, it speaks. **Two event variants carry these signals:** `alerts` (verbose, application-facing) and `alert_short` (compact, MDM-facing). They cover overlapping but not identical triggers, and they share priority levels.
 

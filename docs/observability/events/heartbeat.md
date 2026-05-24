@@ -6,8 +6,9 @@ sidebar_label: Watch your reader's pulse
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~4 min · **Ties to:** Device Health sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Device Health. Event: `heartbeatEVT`.
+:::tip[See in the API Reference]
+Sub-tag: Device Health. Event: `heartbeatEVT`.
+:::
 
 The heartbeat is the "this reader is alive" signal. A reader publishes `heartbeatEVT` at the interval set in `eventConfiguration.heartbeatConfiguration.interval`. Each event carries uptime and a sequence number; optionally, the current inventory status and battery state.
 

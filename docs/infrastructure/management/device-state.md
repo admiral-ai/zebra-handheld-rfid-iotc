@@ -6,8 +6,9 @@ sidebar_label: What your reader knows about itself
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~5 min · **Ties to:** Device Status sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Device Status. Operations: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) · [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) · [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region).
+:::tip[See in the API Reference]
+Sub-tag: Device Status. Operations: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) · [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) · [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region).
+:::
 
 A sled has three introspection surfaces — **identity, runtime, regulatory**, and three commands that read them. Together they answer "is this device the one I think it is, is it healthy right now, and is it legal to transmit where it sits?" Most production problems start by asking one of those three questions.
 
@@ -37,7 +38,9 @@ The field that most often surprises is `radioActivity`. If it is `ACTIVE`, **[`r
 
 A `code: 3` response means the device could not gather the requested information at this moment — retry; if persistent, reboot (after stopping any active inventory). Full schema in `mqtt-api-reference/get_status.md`.
 
-> **No on-device RTC backup battery.** The sled does not have a battery-backed real-time clock. After a factory reset (or any cold start before SNTP has synced), `systemTime` defaults to a baseline value and `ntp.reach` is `0`. The reader updates its clock via SNTP as soon as it has a network path to a reachable time server. **Until then**, time-sensitive operations (TLS handshakes that validate certificate `notBefore` / `notAfter`, log timestamps, `mqttConnEVT.timestamp`) may use the default time. If TLS handshakes are failing right after a reset, confirm `ntp.reach` is non-zero before debugging certificate chains.
+:::caution[No on-device RTC backup battery]
+The sled does not have a battery-backed real-time clock. After a factory reset (or any cold start before SNTP has synced), `systemTime` defaults to a baseline value and `ntp.reach` is `0`. The reader updates its clock via SNTP as soon as it has a network path to a reachable time server. **Until then**, time-sensitive operations (TLS handshakes that validate certificate `notBefore` / `notAfter`, log timestamps, `mqttConnEVT.timestamp`) may use the default time. If TLS handshakes are failing right after a reset, confirm `ntp.reach` is non-zero before debugging certificate chains.
+:::
 
 ### Regulatory: [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region)
 

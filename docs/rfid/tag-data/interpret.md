@@ -30,7 +30,9 @@ RSSI is signed integer dBm. Typical values:
 | −60 to −75 dBm | Mid-range (2–6 m) |
 | Below −75 dBm | Edge of range |
 
-> **Caveat:** RSSI-to-distance is not linear. It is affected by tag orientation, antenna polarisation, and environment. Use RSSI for relative comparison and rank ordering, not absolute distance.
+:::caution[Caveat]
+RSSI-to-distance is not linear. It is affected by tag orientation, antenna polarisation, and environment. Use RSSI for relative comparison and rank ordering, not absolute distance.
+:::
 
 ### Read TID memory bank
 

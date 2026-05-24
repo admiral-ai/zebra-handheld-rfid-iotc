@@ -8,9 +8,13 @@ sidebar_label: "Direct (123RFID Desktop)"
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
 
-> **Bootstrapping a Bridged (RFD40 Standard) sled?** Use **123RFID Mobile** on an Android device instead — see the sibling page [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile). The Standard sled has no USB-C bootstrap path and no on-sled Wi-Fi radio — its host phone supplies the network. The logical bootstrap steps are identical (region → endpoint → activate); only the transport and UI differ.
->
-> **Premium / Premium Plus / RFD90 operator without a Windows laptop?** 123RFID Mobile also bootstraps Direct sleds over Bluetooth. Use either page; the post-bootstrap MQTT surface is identical.
+:::tip[Bridged sled?]
+**Bootstrapping a Bridged (RFD40 Standard) sled?** Use **123RFID Mobile** on an Android device instead — see the sibling page [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile). The Standard sled has no USB-C bootstrap path and no on-sled Wi-Fi radio — its host phone supplies the network. The logical bootstrap steps are identical (region → endpoint → activate); only the transport and UI differ.
+:::
+
+:::tip[No Windows laptop?]
+**Premium / Premium Plus / RFD90 operator without a Windows laptop?** 123RFID Mobile also bootstraps Direct sleds over Bluetooth. Use either page; the post-bootstrap MQTT surface is identical.
+:::
 
 ### Why this phase exists
 
@@ -63,7 +67,9 @@ Once connected, the reader moves from the bottom list to the **Connected Readers
 
 In the **Region** tab, select your regulatory region from the dropdown and confirm. The sled may briefly disconnect and reconnect as the region is applied.
 
-> **Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
+:::danger[Region is locked into firmware]
+**Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
+:::
 
 ### Configure Wi-Fi connectivity
 
@@ -130,7 +136,9 @@ Fill in at least these fields:
 - **Credentials** — if your broker requires authentication.
 - **Certificate material** — if using TLS (certs must be installed beforehand; covered in Phase 5).
 
-> **Note:** Command Topic, Response Topic, and Event Topic are optional. If left blank, default values are populated automatically when you click **Add**.
+:::info
+Command Topic, Response Topic, and Event Topic are optional. If left blank, default values are populated automatically when you click **Add**.
+:::
 
 #### Add the endpoint
 

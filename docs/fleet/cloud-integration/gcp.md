@@ -6,7 +6,9 @@ sidebar_label: How to Integrate with Google Cloud IoT
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min
 
-> **Note:** Google Cloud IoT Core was deprecated by Google in 2023. This guide targets the successor pattern: GCP-hosted Pub/Sub via an MQTT bridge or a customer-hosted MQTT broker on GCP infrastructure. If you are building on GCP, evaluate [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) using HiveMQ on GKE or EMQX on Compute Engine.
+:::info
+Google Cloud IoT Core was deprecated by Google in 2023. This guide targets the successor pattern: GCP-hosted Pub/Sub via an MQTT bridge or a customer-hosted MQTT broker on GCP infrastructure. If you are building on GCP, evaluate [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) using HiveMQ on GKE or EMQX on Compute Engine.
+:::
 
 This guide shows you how to connect a handheld reader to a GCP-hosted MQTT broker and route tag data into Pub/Sub for downstream processing.
 

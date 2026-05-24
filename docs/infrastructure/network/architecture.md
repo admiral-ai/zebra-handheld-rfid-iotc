@@ -6,8 +6,9 @@ sidebar_label: Getting on the network (Wi-Fi & Ethernet)
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Network Configuration. Operations: [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) · [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) · [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
+:::tip[See in the API Reference]
+Sub-tag: Network Configuration. Operations: [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) · [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) · [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
+:::
 
 A sled gets to the broker over **Wi-Fi** (Direct tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bridged tier — RFD40 Standard). Ethernet does not exist on the sled itself; [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
 

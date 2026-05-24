@@ -109,7 +109,9 @@ Three things changed: the wrapper is `operatingMode` (not `operatingModePayload`
 
 ### The rule
 
-> **When the OpenAPI rendering and a field-validated MQTT example disagree, trust the field-validated example.** The MQTT API Reference site renders the native flat shape as its primary example for every operation. The schemas describe field names and types correctly; the schema-to-OpenAPI rendering is what drifts.
+:::caution[Trust the field-validated example]
+When the OpenAPI rendering and a field-validated MQTT example disagree, trust the field-validated example. The MQTT API Reference site renders the native flat shape as its primary example for every operation. The schemas describe field names and types correctly; the schema-to-OpenAPI rendering is what drifts.
+:::
 
 ### In practice
 

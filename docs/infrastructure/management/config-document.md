@@ -6,8 +6,9 @@ sidebar_label: The reader's configuration document
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~7 min · **Ties to:** Device Configuration sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Device Configuration. Operations: [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
+:::tip[See in the API Reference]
+Sub-tag: Device Configuration. Operations: [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
+:::
 
 The reader's "configuration document" is the runtime view of every adjustable property that is not radio-operating-mode and not endpoint configuration. Network behavior, batching, retention, event thresholds, daylight-saving, NTP, default operating-mode profile, all of this lives in the configuration document. Two operations read and write it: [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) and [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
 

@@ -8,7 +8,9 @@ sidebar_label: "Bridged (123RFID Mobile)"
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
 
-> **Bootstrapping a Direct (RFD40 Premium / Premium Plus / RFD90) sled with a Windows laptop?** Use **123RFID Desktop** instead — see [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover). The post-bootstrap MQTT surface is identical either way; pick the tool that matches your operator's first attach (USB-C vs Bluetooth).
+:::tip[Using a Windows laptop?]
+**Bootstrapping a Direct (RFD40 Premium / Premium Plus / RFD90) sled with a Windows laptop?** Use **123RFID Desktop** instead — see [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover). The post-bootstrap MQTT surface is identical either way; pick the tool that matches your operator's first attach (USB-C vs Bluetooth).
+:::
 
 ### Why this phase exists
 
@@ -44,13 +46,17 @@ Tap the sled name to establish a session. The sled moves to **Connected Readers*
 
 From the bottom navigation bar, tap **Settings → RFID → Regulatory**.
 
-> **WARNING:** Select only the country in which you are using the reader.
+:::danger[Warning]
+Select only the country in which you are using the reader.
+:::
 
 Select your region from the drop-down list. Confirm the available channels.
 
 ![Regulatory screen with region drop-down and channel list](/img/quick-start/mobile/m-05-regulatory.png)
 
-> **Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
+:::danger[Region is locked into firmware]
+**Once set, the region is locked into firmware.** Changing it later requires a factory reset and re-bootstrap. Choose carefully.
+:::
 
 ### Configure WLAN — Direct sleds only 🅓
 
@@ -79,7 +85,9 @@ For Direct sleds (RFD40 Premium / Premium Plus / RFD90), configure the on-sled W
 
 If your MDM endpoint requires TLS (`MQTT_TLS`), or your Wi-Fi profile uses an Enterprise security type (`WPA2Enterprise` / `WPA3Enterprise`), install the certificate material first.
 
-> **Admin login may be required.** Per the *123RFID Mobile User Guide*: "This feature can be accessed by logging in as an Admin to the RFD40/90 EU devices." If the Certificates Management screen prompts for an admin password, see [Admin Login](https://support.zebra.com) in the Mobile guide.
+:::caution[Admin login may be required]
+Per the *123RFID Mobile User Guide*: "This feature can be accessed by logging in as an Admin to the RFD40/90 EU devices." If the Certificates Management screen prompts for an admin password, see [Admin Login](https://support.zebra.com) in the Mobile guide.
+:::
 
 1. From the bottom navigation bar, tap **Settings → Certificates Management**. The Certificates Management screen lists currently installed certificates with **Add New** and **Remove All** controls.
 
@@ -103,7 +111,9 @@ Repeat for each certificate component. For TLS-authenticated MQTT you typically 
 
 This is the bootstrap connection — the live MQTT path into the reader.
 
-> **Admin login may be required**, same caveat as Certificates Management.
+:::caution[Admin login may be required]
+Same caveat as Certificates Management.
+:::
 
 1. From the bottom navigation bar, tap **Settings → Endpoint Configuration**. The Endpoint Configuration screen lists existing endpoint entries and exposes an **Add New** control.
 

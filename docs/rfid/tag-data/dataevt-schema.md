@@ -6,8 +6,9 @@ sidebar_label: Where tag reads come from
 
 > 📕 **REFERENCE** · **Audience:** API Consumer · **Ties to:** Tag Data Event sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Tag Data Event. Event: `dataEVT`.
+:::tip[See in the API Reference]
+Sub-tag: Tag Data Event. Event: `dataEVT`.
+:::
 
 `dataEVT` is the event that carries tag reads. The reader emits one (or one aggregated event covering several reads, depending on operating mode) on the publish topic of whichever data endpoint owns the active stream, typically `DATA1`, sometimes `DATA2`, on a hybrid bootstrap deployment the `MDM` endpoint. This chapter is the field-level reference for the payload.
 

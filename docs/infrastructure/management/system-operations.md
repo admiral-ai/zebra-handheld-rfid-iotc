@@ -6,8 +6,9 @@ sidebar_label: Updating firmware and rebooting
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~7 min · **Ties to:** System Operations sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: System Operations. Operations: [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).
+:::tip[See in the API Reference]
+Sub-tag: System Operations. Operations: [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).
+:::
 
 Two operations live on the system-operations surface. [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) starts a firmware update. [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) performs a warm reset. Both have one critical pre-condition in common: **inventory must not be running**.
 

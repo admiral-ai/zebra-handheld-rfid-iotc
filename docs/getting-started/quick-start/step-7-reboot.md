@@ -71,7 +71,9 @@ The canonical schema defines two response codes: `0` (Success) and `5` (Can't re
 }
 ```
 
-> **A documented discrepancy.** The reboot API reference also shows an example response with `code: 1` and the description "Command payload is accepted." The schema and error table only define `0` and `5`. **Trust the schema.** If you receive `1`, treat it as a successful acceptance equivalent to `0`, but write your client to handle `0` and `5` as the canonical contract.
+:::caution[A documented discrepancy]
+The reboot API reference also shows an example response with `code: 1` and the description "Command payload is accepted." The schema and error table only define `0` and `5`. **Trust the schema.** If you receive `1`, treat it as a successful acceptance equivalent to `0`, but write your client to handle `0` and `5` as the canonical contract.
+:::
 
 #### 4. Wait for reconnection
 
@@ -88,7 +90,9 @@ The sled will go offline briefly (typically 10–30 seconds) and come back onlin
 }
 ```
 
-> **Note on `mqttConnEVT` timestamp.** The canonical schema specifies an `HH:MM:SS` format, not a full ISO 8601 string. This is documented in the API reference and matches the example above. Applications that try to parse a full date will fail on this field.
+:::caution[Note on mqttConnEVT timestamp]
+The canonical schema specifies an `HH:MM:SS` format, not a full ISO 8601 string. This is documented in the API reference and matches the example above. Applications that try to parse a full date will fail on this field.
+:::
 
 #### 5. Confirm management config survived
 

@@ -6,8 +6,9 @@ sidebar_label: Knowing when you're connected
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~3 min · **Ties to:** MQTT Connectivity sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: MQTT Connectivity. Event: `mqttConnEVT`.
+:::tip[See in the API Reference]
+Sub-tag: MQTT Connectivity. Event: `mqttConnEVT`.
+:::
 
 `mqttConnEVT` is how a reader tells you it changed connection state. It fires on transitions only — once for every connect, once for every disconnect, and carries device identity context with the transition. It is the **most important fleet-health signal** after the heartbeat.
 

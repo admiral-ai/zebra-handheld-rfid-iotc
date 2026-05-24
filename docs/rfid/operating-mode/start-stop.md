@@ -6,8 +6,9 @@ sidebar_label: Start, stop, and the trigger button
 
 > 📙 **HOW-TO** · **Audience:** All · **Time:** ~5 min · **Ties to:** Inventory Control sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Inventory Control. Operation: [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation).
+:::tip[See in the API Reference]
+Sub-tag: Inventory Control. Operation: [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation).
+:::
 
 Inventory begins and ends with [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation). The trigger button on the sled is one of three start mechanisms; the others are command-driven and timer-driven. This chapter is the surface for those choices and the operational rules around them.
 

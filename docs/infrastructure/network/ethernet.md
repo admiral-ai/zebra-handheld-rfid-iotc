@@ -32,6 +32,8 @@ This guide shows you how to check Ethernet status on a reader docked in a cradle
 
 `link` is `up` when the cradle's Ethernet is connected; `down` otherwise. The remaining fields reflect the DHCP-assigned configuration.
 
-> **Note:** the sled's own Ethernet hardware does not exist; these fields reflect the cradle's bridge. To change Ethernet behaviour, configure the cradle.
+:::info
+The sled's own Ethernet hardware does not exist; these fields reflect the cradle's bridge. To change Ethernet behaviour, configure the cradle.
+:::
 
 **Related:** 📘 [§6.1 Network Architecture](/infrastructure/network/architecture) · 📕 [§16.2 get_eth](#chapter-16--mqtt-api-reference)

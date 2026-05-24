@@ -42,7 +42,9 @@ mosquitto_pub -h <broker-host> -p 1883 \
 
 **Note the payload shape:** `command`, `requestId`, and a named payload object; here `operatingMode`. Inside `operatingMode` is `operatingModes` (the double nesting is unique to this command). All five supported profiles are `CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, and `ADVANCED`. The `FAST_READ` enum value exists but is **not currently supported** — selecting it will fail.
 
-> **Important pre-condition:** [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) cannot run during active inventory. If a previous inventory is running; you must stop it first (error code 11 otherwise).
+:::caution[Important pre-condition]
+[`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) cannot run during active inventory. If a previous inventory is running; you must stop it first (error code 11 otherwise).
+:::
 
 #### 2. Place tags in the antenna's line of sight
 

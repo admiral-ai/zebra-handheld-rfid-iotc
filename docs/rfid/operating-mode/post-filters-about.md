@@ -6,8 +6,9 @@ sidebar_label: Filter tags before vs after the read
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~4 min · **Ties to:** Tag Filtering sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Tag Filtering. Operations: [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) · [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter).
+:::tip[See in the API Reference]
+Sub-tag: Tag Filtering. Operations: [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) · [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter).
+:::
 
 IOTC supports filtering at **two points** in the read pipeline. Filtering early saves the radio work. Filtering late saves the application work. Each has its own surface, its own API, and its own cost.
 

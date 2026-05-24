@@ -6,8 +6,9 @@ sidebar_label: Securing the connection (TLS & certificates)
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min · **Ties to:** Certificate Management sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Certificate Management. Operations: [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) · [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate).
+:::tip[See in the API Reference]
+Sub-tag: Certificate Management. Operations: [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate) · [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate).
+:::
 
 IOTC's security model has four layers, applied independently. Each defends against a different class of attack; together they form the security posture for a deployment. This chapter explains the layers and the operations that drive certificate management.
 

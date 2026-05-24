@@ -6,8 +6,9 @@ sidebar_label: Choose how the reader reads tags
 
 > 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~6 min · **Ties to:** Operating Mode sub-tag of the API Reference
 
-> **See in the API Reference**
-> Sub-tag: Operating Mode. Operations: [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) · [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode).
+:::tip[See in the API Reference]
+Sub-tag: Operating Mode. Operations: [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) · [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode).
+:::
 
 The operating mode of an IOTC reader is configured around a **profile**, a named preset that selects how the radio behaves. Profile choice is the most consequential decision in how the reader reads. Get it wrong and the symptoms range from "no reads" through "battery dies in an hour" to "every neighbour reader interferes." Get it right and the rest of the operating-mode surface is parameter-level refinement.
 
