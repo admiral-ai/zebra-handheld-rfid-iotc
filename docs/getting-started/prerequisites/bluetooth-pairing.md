@@ -98,8 +98,8 @@ For RFD40 and RFD90 sleds you can skip Bluetooth entirely and connect the sled t
 
 Once paired, the sled persists in the host's Android **Paired devices** list until you forget it. 123RFID Mobile's Reader Discovery auto-reconnects the same pair on subsequent launches.
 
-- On **Bridged** sleds, continue to bootstrap the sled — see [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools).
-- On **Direct** sleds, the pair is for operator-UI use only; the MQTT path is the sled's own Wi-Fi.
+- On **Bridged** sleds, continue to [Phase 2: Bootstrap (Bridged, 123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) — set Regulatory, configure the MDM endpoint, and bring the sled online.
+- On **Direct** sleds, the pair is optional for operator-UI use; the MQTT path is the sled's own Wi-Fi. If you do want to bootstrap via Mobile rather than 123RFID Desktop, the same Mobile walkthrough applies; otherwise see [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover).
 
 ### Out of scope
 

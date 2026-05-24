@@ -67,7 +67,16 @@ const sidebars: SidebarsConfig = {
           ],
         },
         'getting-started/quick-start/step-1-connect',
-        'getting-started/quick-start/step-2-discover',
+        {
+          type: 'category',
+          label: 'Phase 2: Bootstrap (Direct or Bridged)',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            'getting-started/quick-start/step-2-discover',
+            'getting-started/quick-start/step-2-discover-mobile',
+          ],
+        },
         'getting-started/quick-start/step-3-subscribe',
         'getting-started/quick-start/step-4-start',
         'getting-started/quick-start/step-5-read',
@@ -84,6 +93,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'infrastructure/management/device-state',
         'infrastructure/network/architecture',
+        'infrastructure/network/wifi',
         'infrastructure/endpoints/about',
         'infrastructure/security/model',
         'infrastructure/management/config-document',

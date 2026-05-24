@@ -75,8 +75,8 @@ The **only** operational differences after bootstrap:
 
 ### Out of scope
 
-- **OS-level Bluetooth pairing as a separate concept**, see [How to pair the reader sled via Bluetooth](/getting-started/prerequisites/bluetooth-pairing).
-- **The full bootstrap walkthrough with screenshots**, see [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) (Phase 2 of the Quick Start).
+- **OS-level Bluetooth pairing as a separate concept**, see [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing).
+- **The full bootstrap walkthroughs (with screenshots)**, see the two Phase 2 pages of the Quick Start: [Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) and [Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile).
 - **Tier identification by SKU label**, see [Which sled do you have?](/foundations/introduction/supported-hardware).
 
-**Related:** 📘 [Which sled do you have? (Direct vs Bridged)](/foundations/introduction/supported-hardware) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📗 [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📙 [How to pair the reader sled via Bluetooth](/getting-started/prerequisites/bluetooth-pairing)
+**Related:** 📘 [Which sled do you have? (Direct vs Bridged)](/foundations/introduction/supported-hardware) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📗 [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) · 📙 [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing)
