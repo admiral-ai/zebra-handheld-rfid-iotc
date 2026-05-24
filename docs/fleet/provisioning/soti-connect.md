@@ -14,7 +14,7 @@ A configured SOTI Connect instance with MQTT broker integration, administrator c
 
 ### Step 1: Configure the MDM endpoint on readers
 
-During 123RFID Desktop bootstrap ([§4.3](/getting-started/prerequisites/bootstrap)), set the MDM endpoint URL to your SOTI Connect MQTT-broker hostname and credentials.
+During 123RFID Desktop bootstrap ([Phase 2 of the Quick Start](/getting-started/quick-start/step-2-discover)), set the MDM endpoint URL to your SOTI Connect MQTT-broker hostname and credentials.
 
 ### Step 2: Enroll devices in SOTI Connect
 

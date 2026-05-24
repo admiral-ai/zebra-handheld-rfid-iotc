@@ -28,4 +28,4 @@ Three verification surfaces exist:
 
 If the reported version is below `3.10.27`, update via the firmware-update mechanism described in [§14.6](/fleet/migration/execute).
 
-**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📕 [§16.2 get_version](#chapter-16--mqtt-api-reference) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history) · 📗 [§4.3 Bootstrap](/getting-started/prerequisites/bootstrap)
+**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📕 [§16.2 get_version](#chapter-16--mqtt-api-reference) · 📕 [§20.3 Firmware History](/reference/appendices/firmware-history) · 📗 [Phase 2: Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)

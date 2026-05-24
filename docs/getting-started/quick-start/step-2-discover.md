@@ -1,7 +1,7 @@
 ---
 id: step-2-discover
-title: Bootstrap with 123RFID Desktop
-sidebar_label: Bootstrap with 123RFID Desktop
+title: "Phase 2: Bootstrap (Direct, 123RFID Desktop)"
+sidebar_label: "Phase 2: Bootstrap (Direct, 123RFID Desktop)"
 ---
 
 > 📗 **TUTORIAL** · Phase 2 of 7 · Audience: Operator with a Windows laptop · Time: ~8 min · Path: 🅓 Direct (USB-C)

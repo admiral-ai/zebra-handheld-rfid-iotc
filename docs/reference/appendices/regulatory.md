@@ -28,4 +28,4 @@ The full supported list and frequency tables are maintained at the Zebra regulat
 
 The RFD40 and RFD90 carry FCC, ISED (Canada), CE (EU), MIC (Japan), and other regional certifications. Specific certification status per region is in the device's regulatory label and on the Zebra product page.
 
-**Related:** 📗 [§4.3 Region Set via 123RFID](/getting-started/prerequisites/bootstrap) · 📕 [§16.2 get_current_region](#chapter-16--mqtt-api-reference) · 📘 [§1.2 Supported Hardware](/foundations/introduction/supported-hardware)
+**Related:** 📗 [Phase 2: Region set via 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📕 [§16.2 get_current_region](#chapter-16--mqtt-api-reference) · 📘 [§1.2 Supported Hardware](/foundations/introduction/supported-hardware)

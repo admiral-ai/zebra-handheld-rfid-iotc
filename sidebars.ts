@@ -12,8 +12,10 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  * for label text. Part labels live in this file because they are
  * structural (no doc page underlies them).
  *
- * Eight Parts, thirty-two chapters. Parts 4–6 still map one-to-one
- * to the external MQTT API Reference site's sub-tags.
+ * Eight Parts, ~44 curated entries (~120 total docs in /docs/**;
+ * the rest are reachable via in-page cross-links and the symptom
+ * index, by design). Parts 4–6 still map one-to-one to the
+ * external MQTT API Reference site's sub-tags.
  */
 
 const sidebars: SidebarsConfig = {
@@ -39,8 +41,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'foundations/introduction/about-iotc',
         'foundations/introduction/supported-hardware',
-        'foundations/introduction/bootstrap-tools',
         'foundations/architecture/components',
+        'foundations/introduction/bootstrap-tools',
         'foundations/architecture/communication-flow',
         'foundations/concepts/native-mqtt-vs-openapi',
       ],
@@ -53,6 +55,17 @@ const sidebars: SidebarsConfig = {
       className: 'sidebar-section-header',
       items: [
         'getting-started/quick-start/overview',
+        {
+          type: 'category',
+          label: 'Phase 0: Prerequisites',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            'getting-started/prerequisites/requirements',
+            'getting-started/prerequisites/credentials',
+            'getting-started/prerequisites/bluetooth-pairing',
+          ],
+        },
         'getting-started/quick-start/step-1-connect',
         'getting-started/quick-start/step-2-discover',
         'getting-started/quick-start/step-3-subscribe',

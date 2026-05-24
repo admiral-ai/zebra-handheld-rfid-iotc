@@ -35,4 +35,4 @@ After provisioning, power on each reader and pair with its host device. The read
 
 [DIAGRAM: D-13.3.A. profile export/import workflow]
 
-**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [§4.3 Single-Reader Bootstrap](/getting-started/prerequisites/bootstrap)
+**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)

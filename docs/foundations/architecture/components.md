@@ -75,4 +75,4 @@ When the same fact disagrees across actors, this hierarchy resolves it:
 
 Disputes between (3) and (1) (between intended state and observed state)are *drift* and are addressed in [Keeping a fleet in sync](/fleet/management/about-bulk).
 
-**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📗 [Reader bootstrap with 123RFID Desktop](/getting-started/prerequisites/bootstrap) · 📘 [Going from one reader to a fleet](/fleet/provisioning/models)
+**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📗 [Phase 2: Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📘 [Going from one reader to a fleet](/fleet/provisioning/models)
