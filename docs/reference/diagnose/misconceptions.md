@@ -2,6 +2,8 @@
 id: misconceptions
 title: Things people get wrong about IOTC
 sidebar_label: Things people get wrong about IOTC
+toc_min_heading_level: 3
+toc_max_heading_level: 4
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~6 min
