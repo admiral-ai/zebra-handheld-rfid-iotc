@@ -1,7 +1,7 @@
 ---
 id: bluetooth-pairing
 title: How to Pair the Reader Sled with a Host
-sidebar_label: How to Pair the Reader Sled with a Host
+sidebar_label: "Bluetooth pairing"
 ---
 
 > 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~5 min · **Source of truth:** *123RFID Mobile Application User Guide* (Zebra, MN-003765-09EN Rev A)
@@ -107,4 +107,4 @@ Once paired, the sled persists in the host's Android **Paired devices** list unt
 - **Bootstrap-tool comparison**, see [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools).
 - **Sled-side button combinations and LED patterns**, see the RFD40 / RFD4031 / RFD90 Product Reference Guides on `support.zebra.com`. This documentation does not duplicate the per-SKU hardware operation manuals.
 
-**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📗 [Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)
+**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📗 [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)

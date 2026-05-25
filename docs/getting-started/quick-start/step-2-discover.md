@@ -134,7 +134,7 @@ Fill in at least these fields:
 - **Tenant ID** — `zebra` is the default (lowercase). Change later for multi-tenant brokers.
 - **MQTT parameters** — `keepAlive` and `cleanSession` defaults are fine for evaluation.
 - **Credentials** — if your broker requires authentication.
-- **Certificate material** — if using TLS (certs must be installed beforehand; covered in Phase 5).
+- **Certificate material** — if using TLS (certs must be installed beforehand; see [Securing the connection (TLS & certificates)](/infrastructure/security/model)).
 
 :::info
 Command Topic, Response Topic, and Event Topic are optional. If left blank, default values are populated automatically when you click **Add**.
@@ -180,4 +180,4 @@ Watch your broker logs (for Mosquitto, `mosquitto -v` shows every connection). Y
 
 ### Where to go next
 
-[Phase 3. Verify the bootstrap connection ([`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version))](/getting-started/quick-start/step-3-subscribe).
+[Phase 3: Verify the bootstrap connection](/getting-started/quick-start/step-3-subscribe) — the first MQTT round-trip using [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version).

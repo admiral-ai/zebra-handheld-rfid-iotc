@@ -88,4 +88,4 @@ You can `nc -vz` the broker on the MQTT port from a host on the sled's Wi-Fi seg
 
 ### Where to go next
 
-[Phase 2. Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover).
+[Phase 2: Bootstrap (Direct or Bridged)](/quick-start/phase-2) — pick the [Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) walkthrough for a Premium / Premium Plus / RFD90 sled with a Windows laptop, or the [Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) walkthrough for an RFD40 Standard sled (or a Direct sled when no Windows laptop is available).

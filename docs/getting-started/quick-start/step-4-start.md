@@ -6,7 +6,7 @@ sidebar_label: "Phase 4: Inspect endpoint state"
 
 > 📗 **TUTORIAL** · **Phase:** 4 of 7 · **Audience:** Integrator · **Time:** ~4 min · **Path:** 🅓 Direct
 
-**Artifact this phase produces:** a list of every endpoint the sled has (both active and saved-but-inactive)confirmed from the reader itself. This is the source of truth before you change anything in Phase 5.
+**Artifact this phase produces:** a list of every endpoint the sled has — both active and saved-but-inactive — confirmed from the reader itself. This is the source of truth before you change anything in Phase 5.
 
 ### Why this phase exists
 
@@ -116,4 +116,4 @@ You'll get back exactly that endpoint's `configuration` object — useful when y
 
 ### Where to go next
 
-You now know what the sled has. Next, add operational endpoints. CTRL for radio control and DATA1 for the tag stream. [Phase 5. Add remote endpoints ([`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint))](/getting-started/quick-start/step-5-read).
+You now know what the sled has. Next, add operational endpoints — CTRL for radio control and DATA1 for the tag stream. [Phase 5: Add remote endpoints](/getting-started/quick-start/step-5-read) — using [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint).

@@ -182,4 +182,4 @@ Other common stumbles:
 
 ### Where to go next
 
-[Phase 6. Start and stop inventory ([`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation))](/getting-started/quick-start/step-6-stop).
+[Phase 6: Start and stop inventory](/getting-started/quick-start/step-6-stop) — fire the radio with [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) and watch tag reads flow.

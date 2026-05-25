@@ -1,7 +1,7 @@
 ---
 id: credentials
 title: How to Obtain IOTC Credentials & Tenant ID
-sidebar_label: How to Obtain IOTC Credentials & Tenant ID
+sidebar_label: "IOTC credentials & tenant ID"
 ---
 
 > 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~10 min
@@ -34,4 +34,4 @@ mosquitto_sub -h iotc-broker.zebra.com -p 8883 \
 
 If the command remains connected without error, the credentials are valid. If you receive `Connection refused`, double-check the username, password, and CA certificate path.
 
-**Related:** 📘 [§3.5 Auth Model](/foundations/mqtt/auth-model) · 📗 [§5.2 Connect to the MQTT Broker](/getting-started/quick-start/step-1-connect) · 📕 [§16.1 API Conventions](/reference/api-overview)
+**Related:** 📘 [Auth Model](/foundations/mqtt/auth-model) · 📗 [Phase 1: Prepare network and broker](/getting-started/quick-start/step-1-connect) · 📕 [Custom MQTT broker (for non-Zebra-hosted)](/fleet/cloud-integration/custom-broker) · 📕 [API overview](/reference/api-overview)

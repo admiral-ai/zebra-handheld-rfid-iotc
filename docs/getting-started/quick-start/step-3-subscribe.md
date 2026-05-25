@@ -50,7 +50,7 @@ In a second terminal:
 ```bash
 mosquitto_pub -h <broker-host> -p 1883 \
   -t 'zebra/MDM/clients/cmnd/RFD40-24190525100255' \
-  -m '{"command":"get_version","requestId":"abc123"}'
+  -m '{"command":"get_version","requestId":"ver-001"}'
 ```
 
 The payload is the two-field minimum. No envelope, no nesting:
@@ -58,7 +58,7 @@ The payload is the two-field minimum. No envelope, no nesting:
 ```json
 {
   "command": "get_version",
-  "requestId": "abc123"
+  "requestId": "ver-001"
 }
 ```
 
@@ -69,7 +69,7 @@ Within a few hundred milliseconds, your subscriber prints something like:
 ```json
 {
   "command": "get_version",
-  "requestId": "abc123",
+  "requestId": "ver-001",
   "apiVersion": "V1.1",
   "readerVersion": {
     "firmwareVersion": "SAAFKS00-006-R02",
@@ -115,7 +115,7 @@ You can now command the reader.
 - **No response within 5 seconds.** Most likely your publish topic is wrong. Confirm the exact `<tenantId>/MDM/clients/cmnd/<serial>` form. The reader subscribes to *exactly* that topic shape; off-by-one segments produce silence.
 - **Response on a different topic than expected.** The MDM endpoint's `publishTopics` configuration uses different names than the defaults. Use the wildcard `zebra/MDM/#` to find where responses are actually arriving, then update your subscriber.
 - **`response.code` is not 0.** [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) only defines code 0 (Success); a different code indicates an unusual condition. Verify firmware version supports IoTC V1.1.
-- **No response, MDM endpoint reports inactive.** Phase 2 didn't complete cleanly. Re-open 123RFID Desktop, confirm endpoint state, re-activate if needed.
+- **No response, MDM endpoint reports inactive.** Phase 2 didn't complete cleanly. Re-open 123RFID Desktop (Direct) or 123RFID Mobile (Bridged), confirm endpoint state, re-activate if needed.
 
 ### A note on `requestId` discipline
 
@@ -127,4 +127,4 @@ You can now command the reader.
 
 ### Where to go next
 
-[Phase 4. Inspect endpoint state ([`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config))](/getting-started/quick-start/step-4-start).
+[Phase 4: Inspect endpoint state](/getting-started/quick-start/step-4-start) — list what the sled has using [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) before adding more.
