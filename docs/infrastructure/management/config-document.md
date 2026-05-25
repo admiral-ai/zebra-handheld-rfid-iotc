@@ -4,7 +4,7 @@ title: The reader's configuration document
 sidebar_label: The reader's configuration document
 ---
 
-> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~7 min · **Ties to:** Device Configuration sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~5 min · **Ties to:** Device Configuration sub-tag of the API Reference
 
 :::tip[See in the API Reference]
 Sub-tag: Device Configuration. Operations: [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).

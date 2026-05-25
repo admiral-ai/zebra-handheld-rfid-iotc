@@ -4,7 +4,7 @@ title: "Phase 6: Start and stop inventory (control_operation)"
 sidebar_label: "Phase 6: Start and stop inventory"
 ---
 
-> 📗 **TUTORIAL** · **Phase:** 6 of 7 · **Audience:** Integrator · **Time:** ~5 min · **Path:** 🅓 Direct
+> 📗 **TUTORIAL** · **Phase:** 6 of 7 · **Audience:** Integrator · **Time:** ~5 min
 
 **Artifact this phase produces:** **live `dataEVT` events** streaming on the DATA1 topic. Each event is one tag read. After this phase the full loop is closed: application → CTRL → reader → radio → tag → metadata → DATA1 → application.
 

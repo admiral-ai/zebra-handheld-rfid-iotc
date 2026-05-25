@@ -4,7 +4,7 @@ title: Something's broken?
 sidebar_label: Something's broken?
 ---
 
-> 🩺 **FAILURE MODE INDEX** · **Audience:** All personas in incident response
+> 🩺 **FAILURE MODE INDEX** · **Audience:** All personas in incident response · **Use:** symptom-first lookup
 
 Pick the symptom that matches what you are actually seeing. Each row links to a failure-mode (FM) page, a recovery playbook (RP), or a misconception (MM). If your symptom is not listed, scan the alphabetical list; the closest neighbour is usually informative.
 

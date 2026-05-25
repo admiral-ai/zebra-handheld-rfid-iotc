@@ -4,7 +4,7 @@ title: Playbooks for getting back online
 sidebar_label: Playbooks for getting back online
 ---
 
-> 📙 **HOW-TO** · **Audience:** All personas in incident response · **Read time:** ~10 min
+> 📙 **HOW-TO** · **Audience:** All personas in incident response · **Time:** ~10 min per playbook
 
 Nine recovery playbooks. Each is a tested sequence of steps that brings a failing sled back to a known-good state. Pick the playbook that matches your situation. Run each step; verify the success check; move on.
 

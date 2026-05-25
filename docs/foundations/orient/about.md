@@ -4,7 +4,7 @@ title: Start here
 sidebar_label: Start here
 ---
 
-> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~2 min
+> 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~3 min
 
 This documentation covers the **Zebra IoT Connector (IOTC) for handheld RFID**, the in-firmware MQTT control and data plane that turns an RFD40 or RFD90 sled into a network-addressable RFID node. It is the conceptual companion to the auto-generated MQTT API Reference.
 

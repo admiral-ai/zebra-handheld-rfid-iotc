@@ -4,7 +4,7 @@ title: Updating firmware and rebooting
 sidebar_label: Updating firmware and rebooting
 ---
 
-> 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~7 min · **Ties to:** System Operations sub-tag of the API Reference
+> 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~5 min · **Ties to:** System Operations sub-tag of the API Reference
 
 :::tip[See in the API Reference]
 Sub-tag: System Operations. Operations: [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) · [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot).

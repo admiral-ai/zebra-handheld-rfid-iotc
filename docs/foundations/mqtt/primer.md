@@ -4,7 +4,7 @@ title: MQTT in five minutes
 sidebar_label: MQTT in five minutes
 ---
 
-> 📘 **EXPLANATION** · **Audience:** New Integrator (no prior MQTT) · **Read time:** ~6 min
+> 📘 **EXPLANATION** · **Audience:** New Integrator (no prior MQTT) · **Read time:** ~5 min
 
 MQTT is a **publish/subscribe** messaging protocol. It is *not* a request/response protocol. Coming from HTTP, this distinction matters more than any syntactic difference, it changes how you reason about state, errors, ordering, and timeouts.
 

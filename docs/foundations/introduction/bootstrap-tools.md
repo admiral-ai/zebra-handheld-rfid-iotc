@@ -4,7 +4,7 @@ title: "Two bootstrap tools: 123RFID Desktop and 123RFID Mobile"
 sidebar_label: "Two bootstrap tools: Desktop & Mobile"
 ---
 
-> 📘 **EXPLANATION** · **Audience:** New Integrator, Solution Builder · **Read time:** ~4 min
+> 📘 **EXPLANATION** · **Audience:** New Integrator, Solution Builder · **Read time:** ~5 min
 
 A sled out of the box has no regulatory region, no Wi-Fi credentials (Direct) or host pairing (Bridged), and no broker target. **None of these can be set over MQTT.** Zebra ships two free bootstrap tools for that first-light provisioning, picked by the tier of the sled you have in hand.
 

@@ -4,7 +4,7 @@ title: "Phase 3: Verify the bootstrap connection (get_version)"
 sidebar_label: "Phase 3: Verify the bootstrap connection"
 ---
 
-> 📗 **TUTORIAL** · **Phase:** 3 of 7 · **Audience:** Integrator · **Time:** ~3 min · **Path:** 🅓 Direct
+> 📗 **TUTORIAL** · **Phase:** 3 of 7 · **Audience:** Integrator · **Time:** ~3 min
 
 **Artifact this phase produces:** a [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) **response from the sled** containing model, serial number, SKU, firmware version, and IoTC version. This is your first proof that:
 
