@@ -25,5 +25,5 @@ sidebar_label: Fleet Management FAQs
 ---
 
 **Q:** How do I monitor fleet health?
-**A:** Subscribe to fleet-wide `heartBeatEVT` and `mqttConnEVT` with wildcard topics.
+**A:** Subscribe to fleet-wide `heartbeatEVT` and `mqttConnEVT` with wildcard topics.
 **Details:** [How to Build a Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)

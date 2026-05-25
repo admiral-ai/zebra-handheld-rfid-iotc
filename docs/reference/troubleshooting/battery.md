@@ -11,12 +11,12 @@ This guide shows you how to troubleshoot battery and power issues on handheld re
 #### Symptom: rapid battery drain during RFID operations
 
 - Expected for `inventory_rssi`, `inventory_tid`, and continuous-operation patterns.
-- If unexpectedly high, check `heartBeatEVT.data.battery_health` — degraded batteries drain faster.
+- If unexpectedly high, check `heartbeatEVT.data.battery_health` — degraded batteries drain faster.
 - Consider switching to spot-scan rather than continuous-read patterns.
 
 #### Symptom: reader shutting down unexpectedly
 
-- Check the last `heartBeatEVT` before shutdown — was battery near critical threshold?
+- Check the last `heartbeatEVT` before shutdown — was battery near critical threshold?
 - Check `exceptionEVT` for any error codes preceding shutdown.
 - If battery shows healthy but shutdown is unexpected, contact support — possible hardware fault.
 

@@ -10,11 +10,11 @@ This guide shows you how to monitor the connection quality of a handheld reader 
 
 ### Wi-Fi signal strength
 
-The `heartBeatEVT.data.wifi_rssi` field reports the current Wi-Fi signal strength. Typical operational range: −40 to −70 dBm. Sustained values below −75 dBm indicate marginal Wi-Fi; the reader may roam between APs frequently.
+The `heartbeatEVT.data.wifi_rssi` field reports the current Wi-Fi signal strength. Typical operational range: −40 to −70 dBm. Sustained values below −75 dBm indicate marginal Wi-Fi; the reader may roam between APs frequently.
 
 ### Bluetooth link quality
 
-The `heartBeatEVT.data.bt_link_quality` field reports the BT link health (0–100 scale). Values below 40 indicate degraded BT — operator may be moving in and out of range or operating in an RF-noisy environment.
+The `heartbeatEVT.data.bt_link_quality` field reports the BT link health (0–100 scale). Values below 40 indicate degraded BT — operator may be moving in and out of range or operating in an RF-noisy environment.
 
 ### MQTT connection stability
 
@@ -43,4 +43,4 @@ flowchart LR
 | Reconnects coincident with AP boundaries | Wi-Fi roaming; check AP placement and channels |
 | Reconnects with no Wi-Fi/BT signal correlation | Investigate broker or upstream network |
 
-**Related:** 📕 [heartBeatEVT and mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-heartbeatevt) · 📘 [MQTT Connection Events](/observability/events/mqtt-connection) · 📙 [Connection Troubleshooting](/reference/troubleshooting/connection)
+**Related:** 📕 [heartbeatEVT and mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-heartbeatevt) · 📘 [MQTT Connection Events](/observability/events/mqtt-connection) · 📙 [Connection Troubleshooting](/reference/troubleshooting/connection)

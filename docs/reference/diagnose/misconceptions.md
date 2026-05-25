@@ -85,7 +85,7 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 #### MM-12: `alerts` and `alert_short` are not duplicates {#mm-12}
 
 - *Wrong:* I can consume either one and get the same information.
-- *Right:* `alert_short` has a much broader `id` enum (every certificate operation, both Wi-Fi and Ethernet config outcomes, multiple firmware lifecycle states). `alerts` has only seven `id` values (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`) but carries `alertDetails`. They are different surfaces, typically `alerts` to applications and `alert_short` to MDM.
+- *Right:* `alert_short` has a much broader `id` enum (every certificate operation, both Wi-Fi and Ethernet config outcomes, multiple firmware lifecycle states), but it does NOT carry an `alertDetails` block. `alerts` has only five formal `id` enum values (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`) per the canonical schema (the canonical reference also describes `GPI_EVENT` and `ANTENNA_EVENT` as trigger conditions, but they are not in the published enum), and it DOES carry a structured `alertDetails` block. They are different surfaces, typically `alerts` to applications and `alert_short` to MDM.
 - *See:* [When the reader needs to interrupt you](/observability/events/alerts)
 
 #### MM-13: Heartbeat battery snapshot is not the same as a battery alert {#mm-13}

@@ -37,7 +37,7 @@ The heartbeat is the "this reader is alive" signal. A reader publishes `heartbea
 
 Fields:
 
-- **`eventName`**, always `"heartbeat"`. Note: it's not `"heartBeatEVT"` or `"heartbeatEVT"` — just `heartbeat`.
+- **`eventName`**, always `"heartbeat"`. Note: it's not `"heartbeatEVT"` or `"heartbeatEVT"` — just `heartbeat`.
 - **`timestamp`**: ISO 8601.
 - **`eventNumber`**, a monotonic sequence number. Useful for gap detection (missing heartbeats imply lost connection).
 - **`upTime`**: how long since the last reboot.

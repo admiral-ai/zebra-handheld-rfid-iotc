@@ -93,7 +93,7 @@ For per-command error details, including the subset of codes a specific command 
 
 ## Events do not use this envelope
 
-`heartBeatEVT`, `alerts`, `alert_short`, `mqttConnEVT`, and `dataEVT` are reader-initiated events and do **not** use the command-response envelope. They have their own root shapes. See the per-event chapters in Part 6 and the [MQTT API Reference](/reference/api-overview).
+`heartbeatEVT`, `alerts`, `alert_short`, `mqttConnEVT`, and `dataEVT` are reader-initiated events and do **not** use the command-response envelope. They have their own root shapes. See the per-event chapters in Part 6 and the [MQTT API Reference](/reference/api-overview).
 
 ## Related
 

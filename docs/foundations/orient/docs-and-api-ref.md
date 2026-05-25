@@ -37,7 +37,7 @@ Every concept chapter in Parts 4–6 ties to exactly one API Reference sub-tag. 
 | Start, stop, and the trigger button | Inventory Control | [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) |
 | Filter tags before vs after the read | Tag Filtering | [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) · [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) |
 | Choose what the reader tells you | Event Configuration | [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) |
-| Watch your reader's pulse | Device Health | `heartBeatEVT` |
+| Watch your reader's pulse | Device Health | `heartbeatEVT` |
 | When the reader needs to interrupt you | Alerts / Exceptions | `alerts` · `alert_short` |
 | Knowing when you're connected | MQTT Connectivity | `mqttConnEVT` |
 | Where tag reads come from | Tag Data Event | `dataEVT` |

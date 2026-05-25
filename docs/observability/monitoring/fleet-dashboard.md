@@ -26,7 +26,7 @@ fleet_state = {}  # serial -> {last_heartbeat, battery, state, alerts_count, ...
 def on_event(topic, payload):
     serial = extract_serial_from_topic(topic)
     record = fleet_state.setdefault(serial, default_record())
-    if payload["event"] == "heartBeatEVT":
+    if payload["event"] == "heartbeatEVT":
         record.update(payload["data"])
         record["last_heartbeat"] = now()
     elif payload["event"] == "alerts":

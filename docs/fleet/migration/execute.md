@@ -18,7 +18,7 @@ sidebar_label: How to Execute a Phased Migration
 }
 ```
 
-Watch for reconnection via `mqttConnEVT: CONNECTED` and resumed `heartBeatEVT`.
+Watch for reconnection via `mqttConnEVT: CONNECTED` and resumed `heartbeatEVT`.
 
 | Wave | % of fleet | Wait | Pass criteria |
 |---|---:|---|---|

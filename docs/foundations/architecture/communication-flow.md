@@ -95,7 +95,7 @@ flowchart LR
 Events do **not** use the `{response: {code, description}}` envelope that command responses use. Each event class has its own root shape:
 
 - `heartbeatEVT`: `{eventName, timestamp, eventNumber, upTime, data: {...}}`. Cadence set by `eventConfiguration.heartbeatConfiguration.interval`.
-- `alerts`: `{type, timestamp, state, id, priority, alertDetails: {...}}`. Verbose. Threshold-driven (battery, temperature, NETWORK_EVENT, FIRMWARE_UPDATE, POWER, GPI_EVENT, ANTENNA_EVENT).
+- `alerts`: `{type, timestamp, state, id, priority, alertDetails: {...}}`. Verbose. Threshold-driven (battery, temperature, NETWORK_EVENT, FIRMWARE_UPDATE, POWER).
 - `alert_short`: `{id, timestamp, type, priority, messageID, description}`. Compact. Same trigger conditions as `alerts` but optimised for MDM consumption.
 - `mqttConnEVT`: `{connectionState, timestamp, deviceModel, deviceSerialNo, apiVersion, mqttVersion}`. CONNECTED/DISCONNECTED transitions only. **`timestamp` may be `HH:MM:SS`, not full ISO 8601** — applications must accept either.
 

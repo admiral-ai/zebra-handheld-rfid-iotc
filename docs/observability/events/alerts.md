@@ -44,8 +44,8 @@ Fields:
 
 - **`type`**: `EVENT`, `NOTIFICATION`, or `ALERT`.
 - **`state`**: `SET` (condition active), `CLEAR` (condition resolved), or `ONESHOT` (one-time fire).
-- **`id`**: alert category. Seven values: `BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`, `GPI_EVENT`, `ANTENNA_EVENT`.
-- **`priority`**: `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`.
+- **`id`**: alert category. The formal schema enum defines **five** values: `BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`. The canonical reference also describes `GPI_EVENT` and `ANTENNA_EVENT` as trigger conditions, though they are not in the published `id` enum — treat those two as informational categories that fold into `NETWORK_EVENT` or vendor-specific extensions when seen on the wire.
+- **`priority`**: `CRITICAL`, `HIGH`, `MEDIUM`, or `LOW`. Four-value enum per the canonical schema. `alert_short` uses a 3-value variant without `MEDIUM`.
 - **`alertDetails`**, a category-specific block (`fwUpdateStatus`, `batteryAlert`, `powerEvent`, `networkInfo`, `temperatueInfo`, `downloadInfo`).
 
 ### State semantics: SET, CLEAR, ONESHOT
@@ -58,7 +58,7 @@ The `state` field tells you whether to track or just log:
 | `CLEAR` | Condition has been resolved | Close the corresponding `SET` |
 | `ONESHOT` | One-time informational event | Log; no paired `CLEAR` to expect |
 
-`FIRMWARE_UPDATE` and `TEMPERATURE` use SET/CLEAR (they have a persistent state). `BATTERY`, `POWER`, `NETWORK_EVENT`, `GPI_EVENT`, `ANTENNA_EVENT` use `ONESHOT` (they're transitions, not states).
+`FIRMWARE_UPDATE` and `TEMPERATURE` use SET/CLEAR (they have a persistent state). `BATTERY`, `POWER`, and `NETWORK_EVENT` use `ONESHOT` (they're transitions, not states).
 
 ### `alert_short`, the compact form
 

@@ -4,7 +4,7 @@ title: "Tutorial: Provision a Three-Reader Fleet"
 sidebar_label: "Tutorial: Provision a Three-Reader Fleet"
 ---
 
-> 📗 **TUTORIAL** · Audience: Solution Builder, Fleet Operator · Time: ~45 min
+> 📗 **TUTORIAL** · **Audience:** Solution Builder, Fleet Operator · **Time:** ~45 min
 
 In this tutorial, we will provision three RFD90 sleds: bootstrap them, install certificates, configure dedicated MGMT/CTRL/DATA endpoints over the MDM channel, secure with TLS, replay a per-domain golden configuration, and build a fleet dashboard.
 
@@ -39,8 +39,8 @@ For each reader, add three dedicated endpoints (only the MGMT example shown; CTR
   "requestId": "step3-mgmt-<n>",
   "epConfig": {
     "operation": "add",
-    "endpointName": "fleet-mgmt",
     "configuration": {
+      "endpointName": "fleet-mgmt",
       "epType": "MGMT",
       "protocol": "MQTT_TLS",
       "url": "iotc-broker.zebra.com",
@@ -48,13 +48,14 @@ For each reader, add three dedicated endpoints (only the MGMT example shown; CTR
       "verificationType": "VERIFY_HOST_PEER",
       "tenantId": "<TENANT_ID>",
       "activate": true,
+      "qosCommon": 1,
       "mqttParams": {
         "username": "<USER>", "password": "<PASS>",
         "keepAlive": 60,
         "publishTopics": [{"topic": "MGMT/clients/resp", "qos": 1, "retain": false}],
         "subscribeTopics": [{"topic": "MGMT/clients/cmnd", "qos": 1, "retain": false}]
       },
-      "securityParams": {"caCertificateFile": "broker-ca", "format": "PEM"}
+      "securityParams": {"caCertificateFile": "broker-ca", "clientCert": "fleet-client-cert", "clientKey": "fleet-client-key", "format": "PEM"}
     }
   }
 }
@@ -101,7 +102,7 @@ For each of readers 2 and 3, send the following sequence of commands derived fro
 }
 ```
 
-**You should see** `heartBeatEVT` arriving from all three readers every 30 seconds.
+**You should see** `heartbeatEVT` arriving from all three readers every 30 seconds.
 
 ### Step 7: Build the dashboard
 

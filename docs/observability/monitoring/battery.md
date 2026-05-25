@@ -8,7 +8,7 @@ sidebar_label: How to Monitor Battery Lifecycle
 
 ### Subscribe to battery state
 
-Watch `heartBeatEVT.data.batteryAlert`:
+Watch `heartbeatEVT.data.batteryAlert`:
 
 ```json
 {
@@ -31,7 +31,7 @@ Watch the `alerts` event with `id: BATTERY`:
   "id": "BATTERY",
   "state": "ONESHOT",
   "priority": "LOW",
-  "alertDetails": {"batteryAlert": {"status": "CHARGING", "stateOfHealth": "GOOD", "chargePercentage": 100}}
+  "alertDetails": {"batteryAlert": {"status": "CHARGING", "stateOfHealth": "FULL", "chargePercentage": 100}}
 }
 ```
 
@@ -47,7 +47,7 @@ For SOTI-connected fleets, `alert_short` with predefined `id` values surfaces ba
 
 ### Drain characterisation
 
-Per-mode drain figures are deployment-specific. Measure drain over a representative shift in your environment. The canonical telemetry field is `heartBeatEVT.data.batteryAlert.chargePercentage` over time. Operational recommendations for battery-constrained deployments include increasing the heartbeat interval and stopping inventory between active scans.
+Per-mode drain figures are deployment-specific. Measure drain over a representative shift in your environment. The canonical telemetry field is `heartbeatEVT.data.batteryAlert.chargePercentage` over time. Operational recommendations for battery-constrained deployments include increasing the heartbeat interval and stopping inventory between active scans.
 
 **Related:** 📘 [Alert Events](/observability/events/alerts) · 📕 [alerts schema](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alerts) · 📙 [Battery Troubleshooting](/reference/troubleshooting/battery)
 

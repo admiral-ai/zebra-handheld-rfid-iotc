@@ -32,7 +32,7 @@ flowchart TB
   BS --> BH[stateOfHealth]
 ```
 
-### Continuous: subscribe to `heartBeatEVT`
+### Continuous: subscribe to `heartbeatEVT`
 
 For a reader on its MGMT interface, subscribe to:
 
@@ -40,10 +40,10 @@ For a reader on its MGMT interface, subscribe to:
 {tenantId}/mgmt/clients/<channel>/<deviceSerial>
 ```
 
-and filter on `event == "heartBeatEVT"`. Heartbeats arrive at the configured interval (see [Configure events](/observability/events/configure)).
+and filter on `event == "heartbeatEVT"`. Heartbeats arrive at the configured interval (see [Configure events](/observability/events/configure)).
 
 ### Combine the two
 
-[`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) gives a point-in-time snapshot; `heartBeatEVT` gives a stream. Combine for resilience: query [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) at startup or on demand; trust `heartBeatEVT` for ongoing state. If they disagree, the more recent timestamp wins.
+[`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) gives a point-in-time snapshot; `heartbeatEVT` gives a stream. Combine for resilience: query [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) at startup or on demand; trust `heartbeatEVT` for ongoing state. If they disagree, the more recent timestamp wins.
 
-**Related:** 📕 [get_status](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) · 📕 [heartBeatEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-heartbeatevt) · 📘 [Heartbeat Events](/observability/events/heartbeat)
+**Related:** 📕 [get_status](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) · 📕 [heartbeatEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-heartbeatevt) · 📘 [Heartbeat Events](/observability/events/heartbeat)

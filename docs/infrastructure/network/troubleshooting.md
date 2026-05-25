@@ -45,7 +45,7 @@ For systematic diagnosis, run in order:
 1. [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) — does the reader respond at all over MQTT? If yes, the path is fundamentally working.
 2. [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) — Wi-Fi association and DHCP state
 3. [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) — broker target settings
-4. Inspect `heartBeatEVT` events over a 5-minute window for connection-quality dropouts
+4. Inspect `heartbeatEVT` events over a 5-minute window for connection-quality dropouts
 
 ```mermaid
 flowchart TD

@@ -177,7 +177,7 @@ Periodic liveness with optional inventory and battery sub-payloads. See [Watch y
 
 | API | Type | Description |
 |---|---|---|
-| [`heartBeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-heartbeatevt) | Event | Periodic device heartbeat: uptime, sequence number, inventory status, battery alert. |
+| [`heartbeatEVT`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-heartbeatevt) | Event | Periodic device heartbeat: uptime, sequence number, inventory status, battery alert. |
 
 ### Alerts
 

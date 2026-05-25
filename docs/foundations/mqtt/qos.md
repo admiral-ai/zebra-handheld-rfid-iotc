@@ -40,7 +40,7 @@ MQTT defines a four-step handshake for guaranteed exactly-once delivery. IOTC do
 |---|---:|---|
 | Command requests | 1 | Lost commands cannot be recovered; duplicates are recoverable |
 | Command responses | 1 | Same reasoning |
-| `heartBeatEVT`, `mqttConnEVT` | 0 | Heartbeats are by definition redundant; loss of one is harmless |
+| `heartbeatEVT`, `mqttConnEVT` | 0 | Heartbeats are by definition redundant; loss of one is harmless |
 | `alerts`, `exceptionEVT` | 1 | Loss of an alert is operationally serious |
 | `dataEVT` (tag data) | Configurable; default 0 | High-volume; application typically tolerates loss in favour of throughput |
 

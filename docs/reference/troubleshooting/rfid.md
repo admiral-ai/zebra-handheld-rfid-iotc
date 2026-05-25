@@ -29,7 +29,7 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 #### Symptom: operation stops unexpectedly
 
 - Check `exceptionEVT` for code `1002 rfid_radio_fault`.
-- Battery dropped below operational threshold: check `heartBeatEVT.data.battery_percent`.
+- Battery dropped below operational threshold: check `heartbeatEVT.data.battery_percent`.
 - Trigger was released (in `press_to_start` mode): operator-initiated stop is normal.
 
 ```mermaid
