@@ -45,6 +45,19 @@ The response is a nested JSON document. Top-level sections correspond to the ind
 
 For the complete schema, see [§20.1](/reference/appendices/config-schema).
 
-[DIAGRAM: D-14.2.A. example [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) response annotated by section]
+```mermaid
+flowchart TB
+  GC[get_config response] --> C[config object]
+  GC --> RR["response<br/>(code, description)"]
+  C --> N[network]
+  C --> E[endpoints]
+  C --> RF[rfid]
+  C --> SE[security / certs]
+  C --> SY[system]
+  N --> Nw[wifi profiles]
+  N --> Ne[ethernet]
+  E --> Em[active endpoints]
+  E --> En[saved endpoint names]
+```
 
 **Related:** 📕 [§16.2 get_config](#chapter-16--mqtt-api-reference) · 📕 [§20.1 Config Schema](/reference/appendices/config-schema) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config)

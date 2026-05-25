@@ -58,9 +58,28 @@ Three reasons motivated the three-part design:
 - **Maximum 1 subscribe topic** per endpoint (exceeding returns error code 26 — `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
 - **`tenantId` length is bounded** (exceeding returns error code 27 — `IOT_ERROR_INVALID_TENANTID_LENGTH`).
 
-[DIAGRAM: D-3.2.A. Three-part template decomposed with example]
+```mermaid
+flowchart LR
+  Te["&lt;tenantId&gt;<br/>e.g., zebra"]:::seg
+  To["&lt;topic&gt;<br/>e.g., MGMT/clients/resp"]:::seg
+  Sn["&lt;deviceSerialNumber&gt;<br/>e.g., RFD40-24190525100255"]:::seg
+  Te --> To --> Sn
+  Te -.- L1[("reader<br/>prepends")]
+  To -.- L2[("you<br/>configure")]
+  Sn -.- L3[("reader<br/>appends")]
+  classDef seg fill:#e3eef8,stroke:#003a7e,color:#003a7e
+```
 
-[DIAGRAM: D-3.2.B. Endpoint → topic mapping showing the per-endpoint relationship]
+```mermaid
+flowchart LR
+  EP["Endpoint<br/>(MGMT / CTRL / DATA1)"]
+  EP --> PT["publishTopics[]<br/>max 3 per endpoint"]
+  EP --> ST["subscribeTopics[]<br/>max 1 per endpoint"]
+  PT --> T1["topic A"]
+  PT --> T2["topic B"]
+  PT --> T3["topic C"]
+  ST --> T4["topic D"]
+```
 
 **Related:** 📘 [§2.4 Interface Model](/foundations/architecture/interface-model) · 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [§8.3 Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [§20.2 Topic Quick Reference](/reference/appendices/topic-quick-reference)
 

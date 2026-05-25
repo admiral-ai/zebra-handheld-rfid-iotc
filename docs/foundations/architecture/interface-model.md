@@ -34,9 +34,33 @@ The middle segment (`<topic>`)is **configured per endpoint** via the endpoint's 
 
 The reader **prepends `tenantId` and appends `deviceSerialNumber` automatically** at runtime. Never include them in the configured `topic` field.
 
-[DIAGRAM: D-2.4.A. Three-part topic template parsed with example: `zebra` / `MGMT/clients/resp` / `RFD40-24190525100255`]
+```mermaid
+flowchart LR
+  T["zebra"]:::seg --> M["MGMT/clients/resp"]:::seg --> S["RFD40-24190525100255"]:::seg
+  T -.- t1["tenantId<br/>(reader prepends)"]
+  M -.- t2["topic<br/>(you configure)"]
+  S -.- t3["deviceSerialNumber<br/>(reader appends)"]
+  classDef seg fill:#e3eef8,stroke:#003a7e,stroke-width:1px,color:#003a7e
+```
 
-[DIAGRAM: D-2.4.B. Seven endpoint types as a deployment matrix with role descriptions]
+```mermaid
+flowchart TB
+  subgraph Mgmt["Management"]
+    MGMT["MGMT<br/>commands / responses"]
+    MGMT_EVT["MGMT_EVT<br/>events only"]
+  end
+  subgraph Ctrl["Control"]
+    CTRL["CTRL<br/>radio control"]
+  end
+  subgraph Data["Data"]
+    DATA1["DATA1<br/>tag data"]
+    DATA2["DATA2<br/>tag data (second channel)"]
+  end
+  subgraph Hybrid["Hybrid / MDM"]
+    MDM["MDM<br/>all roles combined<br/>(bootstrap default)"]
+    SOTI["SOTI<br/>SOTI Connect variant"]
+  end
+```
 
 ### The MDM-endpoint-as-bootstrap pattern
 

@@ -40,6 +40,17 @@ State the hypothesis concretely ("the reader cannot resolve `iotc-broker.zebra.c
 
 A change that "seems to work" but is unconfirmed has a habit of returning. After applying a fix, exercise the original failure path and confirm the failure is gone. Then check: is the fix narrow (this device, this moment) or general (the fleet, the future)?
 
-[DIAGRAM: D-18.1.A. diagnostic flowchart by layer]
+```mermaid
+flowchart TD
+  S[Symptom observed] --> L1{Reader powered<br/>and reachable?}
+  L1 -->|No| Phy[Layer 1: Physical / power]
+  L1 -->|Yes| L2{Network path<br/>to broker?}
+  L2 -->|No| Net[Layer 2: Network]
+  L2 -->|Yes| L3{MQTT session<br/>established?}
+  L3 -->|No| Tra[Layer 3: Transport / TLS]
+  L3 -->|Yes| L4{Commands<br/>delivered?}
+  L4 -->|No| App[Layer 4: Application / topic routing]
+  L4 -->|Yes| L5[Layer 5: Reader / radio behaviour]
+```
 
 **Related:** 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [§18.3 RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [§18.4 Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [§16.2 get_status](#chapter-16--mqtt-api-reference)

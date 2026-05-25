@@ -18,7 +18,16 @@ This documentation is organised into seven Parts that follow the developer's act
 - **Part VI: Fleet Operations**: provisioning, bulk configuration, migration, cloud integration
 - **Part VII: Reference & Troubleshooting**: endpoint reference, error codes, troubleshooting, FAQ, appendices
 
-[DIAGRAM: D-1.4.A, the seven Parts as a dependency chain]
+```mermaid
+flowchart LR
+  P1[Part 1<br/>Get oriented] --> P2[Part 2<br/>Foundations]
+  P2 --> P3[Part 3<br/>Quick Start]
+  P3 --> P4[Part 4<br/>Manage reader]
+  P4 --> P5[Part 5<br/>Read tags]
+  P5 --> P6[Part 6<br/>Observe & monitor]
+  P6 --> P7[Part 7<br/>Scale to fleet]
+  P7 --> P8[Part 8<br/>Diagnose & reference]
+```
 
 ### About the content-type badges
 
@@ -40,7 +49,24 @@ The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exa
 | Writing integration code against the MQTT API | [§16 API Reference](#chapter-16--mqtt-api-reference) |
 | Operating an existing fleet at 3 a.m. | [§18 Troubleshooting Guide](#chapter-18--troubleshooting-guide) |
 
-[DIAGRAM: D-1.4.B. persona × Part reading-path matrix]
+```mermaid
+flowchart LR
+  subgraph NI["New Integrator"]
+    direction LR
+    NI1[Part 1] --> NI2[Part 2] --> NI3[Part 3]
+  end
+  subgraph SB["Solution Builder"]
+    direction LR
+    SB1[Part 2] --> SB2[Part 4] --> SB3[Part 5]
+  end
+  subgraph FO["Fleet Operator"]
+    direction LR
+    FO1[Part 7] --> FO2[Part 4] --> FO3[Part 6]
+  end
+  subgraph IR["Incident Responder"]
+    IR1[Part 8]
+  end
+```
 
 ### How to navigate
 

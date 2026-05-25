@@ -16,7 +16,21 @@ This guide shows you how to check the health of a handheld reader on demand and 
 
 The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [§16.2](#chapter-16--mqtt-api-reference).
 
-[DIAGRAM: D-12.1.A. [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) response annotated]
+```mermaid
+flowchart TB
+  R[get_status response] --> DS[deviceStatus]
+  R --> RR["response<br/>(code, description)"]
+  DS --> PS[powerSource]
+  DS --> BS[batteryStatus]
+  DS --> RA[radioActivity]
+  DS --> RC[radioConnection]
+  DS --> NT[ntp.reach]
+  DS --> ST[systemTime]
+  DS --> TC[terminalConnection]
+  DS --> TM[temperature]
+  BS --> BC[chargePercentage]
+  BS --> BH[stateOfHealth]
+```
 
 ### Continuous: subscribe to `heartBeatEVT`
 

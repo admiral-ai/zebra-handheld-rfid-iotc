@@ -24,7 +24,18 @@ There is one antenna. There are no antenna ports to choose between, no cable los
 
 The reader has no externally-visible IP address. The host device's network is the path to MQTT. This means: the host's Wi-Fi credentials matter (the reader uses them indirectly), the host's firewall posture matters, and the host's app lifecycle matters — when the OS suspends the host app, the reader's MQTT traffic suspends with it.
 
-[DIAGRAM: D-2.5.A. annotated topology showing the five constraints layered on the standard architecture]
+```mermaid
+flowchart LR
+  T[Tag] --> R["Reader<br/>(single antenna)"]
+  R --> H["Host or<br/>direct Wi-Fi"]
+  H --> B((Broker))
+  B --> A[Application]
+  c1{{"Battery<br/>(every PINGREQ wakes radio)"}} -.- R
+  c2{{"Single antenna<br/>(no port selection)"}} -.- R
+  c3{{"Hardware trigger<br/>(input source)"}} -.- R
+  c4{{"Mobility<br/>(roaming Wi-Fi)"}} -.- H
+  c5{{"Tier choice<br/>(Direct vs Bridged)"}} -.- R
+```
 
 ### The physical trigger is an input source
 

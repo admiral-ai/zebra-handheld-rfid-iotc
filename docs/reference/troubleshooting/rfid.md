@@ -32,6 +32,17 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 - Battery dropped below operational threshold: check `heartBeatEVT.data.battery_percent`.
 - Trigger was released (in `press_to_start` mode): operator-initiated stop is normal.
 
-[DIAGRAM: D-18.3.A. RFID-symptom decision tree]
+```mermaid
+flowchart TD
+  S[RFID symptom] --> Q1{control_operation<br/>START accepted?}
+  Q1 -->|"No, code 11"| Stop[Already running;<br/>send STOP first]
+  Q1 -->|"No, other code"| Cfg[Check operating-mode<br/>config]
+  Q1 -->|Yes| Q2{dataEVT events<br/>arriving?}
+  Q2 -->|No| Q3{Post-filter<br/>excluding tags?}
+  Q3 -->|Yes| Filt[Adjust post-filter]
+  Q3 -->|No| Q4{Tag in<br/>read range?}
+  Q4 -->|No| Range[Move tags into range;<br/>check antenna power]
+  Q4 -->|Yes| Rad[Radio / firmware fault;<br/>check exceptionEVT]
+```
 
 **Related:** 📙 [§9.2 Configure Operating Mode](/rfid/operating-mode/configure) · 📙 [§9.3b Configure Filters](/rfid/operating-mode/post-filters-configure) · 📕 [§16.3 CTRL endpoints](#chapter-16--mqtt-api-reference) · 📕 [§17.3 Exception Codes](#173--exception-event-codes)

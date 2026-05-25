@@ -29,6 +29,17 @@ This guide shows you how to troubleshoot Bluetooth and host-device-related issue
 - The host application that mediates sled ↔ broker traffic may be suspended by Android's battery optimization. Whitelist the app in Android settings.
 - Verify the host has its own MQTT path to the broker by running a test MQTT client on the host directly.
 
-[DIAGRAM: D-18.5.A. BT/host-symptom decision tree]
+```mermaid
+flowchart TD
+  S[Bridged sled offline?] --> Q1{Host application<br/>running?}
+  Q1 -->|No| Wake[Wake / restart<br/>host app]
+  Q1 -->|Yes| Q2{BT link<br/>connected?}
+  Q2 -->|No| Pair[Re-pair sled<br/>via 123RFID Mobile]
+  Q2 -->|Yes| Q3{Host has<br/>broker connectivity?}
+  Q3 -->|No| Net[Fix host's Wi-Fi /<br/>cellular]
+  Q3 -->|Yes| Q4{terminalConnection<br/>events flowing?}
+  Q4 -->|No| HostBattery[Check Android<br/>battery optimisation]
+  Q4 -->|Yes| OK[Operational —<br/>look elsewhere]
+```
 
 **Related:** 📙 [§4.4 Bluetooth Pairing](/getting-started/prerequisites/bluetooth-pairing) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations)

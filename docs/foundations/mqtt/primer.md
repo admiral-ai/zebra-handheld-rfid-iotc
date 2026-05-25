@@ -16,7 +16,20 @@ In MQTT, a client publishes a message to a **topic**, a string like `acme/mgmt/c
 
 The MQTT broker is the post office in this analogy: it routes by topic, not by recipient. The reader publishes; the broker fans out to subscribers.
 
-[DIAGRAM: D-1.2.A. request/response vs publish/subscribe side by side]
+```mermaid
+flowchart LR
+  subgraph HTTP["HTTP — Request / Response"]
+    direction LR
+    HC[Client] -->|"GET /resource"| HS[Server]
+    HS -->|"200 OK"| HC
+  end
+  subgraph MQTT["MQTT — Publish / Subscribe"]
+    direction LR
+    MP[Publisher] -->|publish topic+message| MB((Broker))
+    MS[Subscriber] -.->|subscribe to topic| MB
+    MB -->|deliver| MS
+  end
+```
 
 This decoupling fits IoT well. An IOTC reader can publish tag data at full speed without caring whether the application is processing in real time, queueing in Kafka, or batching to S3. The reader's job ends at `publish`.
 
@@ -27,7 +40,12 @@ This decoupling fits IoT well. An IOTC reader can publish tag data at full speed
 - **Topic**, a hierarchical string identifying a message stream. IOTC topics follow the pattern `<tenantId>/<userTopic>/<serialNumber>` — e.g. `acme/mgmt/clients/app/SN1234567890`.
 - **Message**, a binary payload (in IOTC, JSON) published to a topic. MQTT itself imposes no schema; IOTC defines the JSON schemas for each operation and event.
 
-[DIAGRAM: D-1.2.B. broker, client, topic, message]
+```mermaid
+flowchart LR
+  P[Publisher Client] -->|"publish<br/>topic + message"| B((MQTT Broker))
+  S[Subscriber Client] -.->|"subscribe<br/>topic filter"| B
+  B -->|"deliver matching<br/>messages"| S
+```
 
 ### Subscribe-before-publish
 

@@ -16,7 +16,13 @@ RFID Tag → Reader Sled → Bluetooth → Host Device → Wi-Fi/Cellular → MQ
 
 Each arrow is a distinct medium with its own failure modes, latency characteristics, and capacity. None of them is optional, and three of them (Bluetooth, host device, Wi-Fi) are outside the reader's direct control.
 
-[DIAGRAM: D-2.1.A. full end-to-end topology with annotations for each hop's medium and typical latency]
+```mermaid
+flowchart LR
+  T[RFID Tag] -->|"air<br/>~µs"| R[Reader Sled]
+  R -->|"BT 5.0 LE<br/>~10–50ms"| H[Host Device]
+  H -->|"Wi-Fi / Cellular<br/>~5–200ms"| B((MQTT Broker))
+  B -->|"network<br/>~1–50ms"| A[Application]
+```
 
 ### The role of each link
 

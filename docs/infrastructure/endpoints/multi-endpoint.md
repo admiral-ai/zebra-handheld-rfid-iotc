@@ -12,7 +12,11 @@ Three architectural patterns are available for IOTC deployments. The differences
 
 All four interfaces connect to the same broker. The simplest pattern; recommended for deployments below a few hundred readers.
 
-[DIAGRAM: D-8.4.A. single-broker topology]
+```mermaid
+flowchart LR
+  R[Reader] -->|"MGMT, CTRL, DATA*"| B((Single Broker))
+  B --> A[Application]
+```
 
 **Use when:** straightforward operations matter more than scale specialisation.
 
@@ -20,7 +24,13 @@ All four interfaces connect to the same broker. The simplest pattern; recommende
 
 MGMT, CTRL, and MDM share one broker; DATA routes to a dedicated tag-data broker (commonly a managed IoT platform).
 
-[DIAGRAM: D-8.4.B. separate-data-broker topology]
+```mermaid
+flowchart LR
+  R[Reader] -->|"MGMT, CTRL"| B1((Management Broker))
+  R -->|"DATA1, DATA2"| B2((Data Broker))
+  B1 --> A1[Control App]
+  B2 --> A2[Analytics Pipeline]
+```
 
 **Use when:** tag volume threatens to starve command-response latency, or DATA needs to flow directly into a cloud analytics pipeline.
 
@@ -28,7 +38,13 @@ MGMT, CTRL, and MDM share one broker; DATA routes to a dedicated tag-data broker
 
 SOTI Connect sets the endpoint configuration on the reader's behalf; the reader does not need application-side endpoint configuration.
 
-[DIAGRAM: D-8.4.C. MDM-managed endpoint topology]
+```mermaid
+flowchart LR
+  R[Reader] -->|"MDM hybrid"| BM((MDM Broker))
+  R -->|"CTRL, DATA*"| BO((Operational Broker))
+  BM --> M[MDM Platform<br/>SOTI / SureMDM]
+  BO --> A[Application]
+```
 
 **Use when:** enterprise MDM is mandated by IT policy or fleet operations.
 

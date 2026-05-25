@@ -32,7 +32,13 @@ This guide shows you how to troubleshoot battery and power issues on handheld re
 - Stop inventory operations when not in active use
 - Use cradle charging during operator breaks
 
-[DIAGRAM: D-18.6.A. drain patterns visualisation]
+```mermaid
+xychart-beta
+  title "Battery drain over a shift (example)"
+  x-axis ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]
+  y-axis "Battery %" 0 --> 100
+  line [100, 84, 68, 51, 33, 12]
+```
 
 **Related:** 📙 [§12.2 Battery Monitoring](/observability/monitoring/battery) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [§11.5 Alert Events](/observability/events/alerts)
 

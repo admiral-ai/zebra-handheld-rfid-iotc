@@ -31,6 +31,15 @@ This guide shows you how to inspect the current MQTT endpoint configuration on a
 
 Each interface block shows its broker target. For the full schema, see [§16.2](#chapter-16--mqtt-api-reference).
 
-[DIAGRAM: D-8.2.A. response annotated by interface block]
+```mermaid
+flowchart TB
+  R[get_endpoint_config response] --> AE[activeEndpoints]
+  R --> SE[savedEndpoints]
+  R --> RR["response<br/>(code, description)"]
+  AE --> EP1[epConfig: MGMT endpoint]
+  AE --> EP2[epConfig: CTRL endpoint]
+  AE --> EP3[epConfig: DATA1 endpoint]
+  SE --> EN[epNames: all saved endpoint names]
+```
 
 **Related:** 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [§16.2 get_endpoint_config](#chapter-16--mqtt-api-reference) · 📙 [§8.3 How to Configure](/infrastructure/endpoints/configure)

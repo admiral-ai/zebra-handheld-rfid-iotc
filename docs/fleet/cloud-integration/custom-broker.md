@@ -56,6 +56,12 @@ mosquitto_sub -h broker.example.com -p 8883 \
 
 Start an inventory on the reader; events should arrive in the subscriber output.
 
-[DIAGRAM: D-15.5.A. IOTC ↔ customer-hosted broker topology]
+```mermaid
+flowchart LR
+  R[IOTC Reader] -->|"MQTT / MQTT_TLS"| B(("Customer-hosted Broker<br/>HiveMQ / EMQX / Mosquitto"))
+  B --> A1[Application]
+  B --> S[Subscriber service]
+  S --> Pe[(Storage)]
+```
 
 **Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📘 [§3.5 Auth Model](/foundations/mqtt/auth-model) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference)

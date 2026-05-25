@@ -8,7 +8,19 @@ sidebar_label: "Roles: Reader, Host, Broker, Application"
 
 An IOTC deployment is the cooperation of **five actors**. Knowing what each one owns is the first step toward designing a system you can debug. Get the ownership boundaries wrong and you will spend weeks chasing bugs in the wrong subsystem.
 
-[DIAGRAM: D-2.3.A. five-actor block diagram with arrows annotated by what flows on each link]
+```mermaid
+flowchart LR
+  R["Reader Firmware<br/>(IOTC Agent)"]
+  H["Host Device<br/>(Bridged: required)"]
+  B((MQTT Broker))
+  A[Application Client]
+  M["MDM Platform<br/>(SOTI / SureMDM)"]
+  R -->|"Bluetooth<br/>(Bridged only)"| H
+  H -->|"Wi-Fi / Cellular"| B
+  R -->|"Direct Wi-Fi 6"| B
+  B <-->|"commands<br/>responses<br/>events"| A
+  M -.->|"policy<br/>firmware<br/>config"| B
+```
 
 ### Reader Firmware (the IOTC Agent)
 

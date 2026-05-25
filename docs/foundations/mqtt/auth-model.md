@@ -16,7 +16,18 @@ IOTC supports three authentication modes, configured at the broker:
 - **TLS client certificate.** Mutual TLS: the client presents an X.509 certificate; the broker validates it. Stronger; suitable for production fleets.
 - **Both.** Username + password layered on top of mutual TLS. Defense in depth.
 
-[DIAGRAM: D-3.5.A. auth flow showing CONNECT with credentials reaching the broker, broker validating, CONNACK returned]
+```mermaid
+sequenceDiagram
+  participant C as Client (Reader / App)
+  participant B as MQTT Broker
+  C->>B: CONNECT<br/>username + password + clientId
+  B->>B: validate credentials<br/>+ tenant ACL check
+  alt credentials valid
+    B->>C: CONNACK<br/>returnCode = 0 (accepted)
+  else credentials rejected
+    B->>C: CONNACK<br/>returnCode = 4 or 5
+  end
+```
 
 ### Tenant scoping
 

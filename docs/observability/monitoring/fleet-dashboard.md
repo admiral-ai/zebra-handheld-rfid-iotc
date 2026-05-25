@@ -51,9 +51,40 @@ Each architecture's setup is in the relevant cloud-integration how-to ([§15.2](
 - **Alert counts**: last 24h, segmented by category
 - **Connection-quality outliers**: readers with reconnect rate above threshold
 
-[DIAGRAM: D-12.4.A. example dashboard mockup]
+```mermaid
+flowchart TB
+  subgraph DB["Fleet Health Dashboard"]
+    direction TB
+    subgraph Row1["Overview KPIs"]
+      direction LR
+      KPI1["Online<br/>487 / 500"]
+      KPI2["Battery avg<br/>78%"]
+      KPI3["Active scans<br/>23"]
+      KPI4["Alerts 24h<br/>12"]
+    end
+    subgraph Row2["Charts"]
+      direction LR
+      C1[Battery histogram]
+      C2[Connection quality]
+    end
+    subgraph Row3["Outliers"]
+      direction LR
+      O1["Readers reconnecting<br/>&gt;5x / hr"]
+      O2["Battery &lt; 20%"]
+    end
+  end
+```
 
-[DIAGRAM: D-12.4.B. aggregation pipeline: MQTT consumer → state store → dashboard query]
+```mermaid
+flowchart LR
+  R1[Reader 1] --> B((Broker))
+  R2[Reader 2] --> B
+  Rn[Reader N] --> B
+  B --> C[MQTT consumer]
+  C --> SS[("State store<br/>Redis / Postgres")]
+  SS --> DQ[Dashboard query layer]
+  DQ --> UI[Web UI]
+```
 
 ### Alerting integration
 

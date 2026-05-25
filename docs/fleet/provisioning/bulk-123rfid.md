@@ -33,6 +33,14 @@ Profiles are portable: the same `.iotcprofile` file works across compatible firm
 
 After provisioning, power on each reader and pair with its host device. The reader should connect to MQTT within seconds. Subscribe to `mqttConnEVT` with a wildcard to confirm all batch members are online.
 
-[DIAGRAM: D-13.3.A. profile export/import workflow]
+```mermaid
+flowchart LR
+  RC["Reference Reader<br/>(configured manually)"] --> Exp["Export profile<br/>(.iotcprofile file)"]
+  Exp --> VC[(Version control)]
+  VC --> Imp["Import profile<br/>(123RFID Desktop)"]
+  Imp --> R1[Reader 1]
+  Imp --> R2[Reader 2]
+  Imp --> Rn[Reader N]
+```
 
 **Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)

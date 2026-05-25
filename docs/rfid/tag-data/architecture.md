@@ -16,7 +16,14 @@ RF antenna → Reader firmware (singulation) → Post-filter → MQTT publish �
 
 Each stage has its own latency and back-pressure characteristics. The total path budget from "tag energised" to "application receives event" is typically 50–500 ms depending on broker proximity.
 
-[DIAGRAM: D-10.1.A. tag data flow with latency annotations per stage]
+```mermaid
+flowchart LR
+  T[RFID Tag] -->|"~µs"| R["Reader<br/>(singulation)"]
+  R -->|"~ms"| PF[Post-filter]
+  PF -->|"~10 ms"| MP[MQTT publish]
+  MP -->|"~50 ms"| B((Broker))
+  B -->|"~10 ms"| A[Application]
+```
 
 ### Event generation rate
 
@@ -29,7 +36,17 @@ The rate at which `dataEVT` events are emitted depends on:
 
 Typical event rates: 100–700 events/second for active inventory in a moderate-density environment.
 
-[DIAGRAM: D-10.1.B. generation rate factors]
+```mermaid
+flowchart TB
+  R[dataEVT generation rate] --> F1[Tag population density]
+  R --> F2[Operating mode profile]
+  R --> F3[RF power]
+  R --> F4[Antenna gain & orientation]
+  R --> F5[Environment / RF noise]
+  F1 -.-> R1[Higher density → higher rate]
+  F2 -.-> R2[CYCLE_COUNT fastest;<br/>DENSE_READERS slowest]
+  F3 -.-> R3[Higher power → larger field]
+```
 
 ### Deduplication considerations
 
@@ -39,7 +56,7 @@ Applications that consume the raw stream must deduplicate themselves; applicatio
 
 ### Why two channels
 
-[DIAGRAM: see §10.4]
+
 
 A reader can be configured to publish tag data on one of two topic channels (`data1event`, `data2event`). The motivation and configuration are covered in [§10.4](/rfid/tag-data/dual-channels).
 

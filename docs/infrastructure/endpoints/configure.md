@@ -46,6 +46,13 @@ If the new endpoint configuration causes loss of MQTT connectivity:
 
 This is why endpoint changes should be canaried on a single device before fleet rollout.
 
-[DIAGRAM: D-8.3.A. decision tree: single vs separate brokers]
+```mermaid
+flowchart TD
+  S[Choose endpoint topology] --> Q1{Tag volume<br/>&gt; 100 TPS sustained?}
+  Q1 -->|No| Q2{MDM platform<br/>required?}
+  Q1 -->|Yes| SEP[Separate DATA broker]
+  Q2 -->|No| SINGLE[Single broker]
+  Q2 -->|Yes| MDMG[MDM-managed endpoint]
+```
 
 **Related:** 📘 [§8.4 Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference) · 📕 [§16.6 mqttConnEVT](#chapter-16--mqtt-api-reference)

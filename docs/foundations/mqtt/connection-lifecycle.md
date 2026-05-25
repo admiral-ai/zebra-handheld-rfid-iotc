@@ -12,7 +12,18 @@ An MQTT client's connection to the broker is a stateful, long-lived TCP session.
 
 A client begins by sending a CONNECT packet containing its client identifier, credentials, optional LWT, keep-alive interval, and clean-session flag. The broker replies with CONNACK (accept or reject). From this point the connection is established.
 
-[DIAGRAM: D-3.4.A. CONNECT/CONNACK ladder with field annotations]
+```mermaid
+sequenceDiagram
+  participant C as Client
+  participant B as Broker
+  C->>B: CONNECT<br/>clientId, keepAlive,<br/>cleanSession, will, auth
+  B->>C: CONNACK<br/>sessionPresent, returnCode
+  loop while connected
+    C->>B: PINGREQ (every keepAlive)
+    B->>C: PINGRESP
+  end
+  C->>B: DISCONNECT (graceful)
+```
 
 ### Keep-alive. PINGREQ and PINGRESP
 
@@ -28,7 +39,16 @@ A clean-session client tells the broker "do not preserve state for me", no queue
 
 The handheld sled's MQTT connection rides over its Bluetooth link to the host device. When BT drops — reader pocketed, host moved out of range, the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once BT is re-established and Wi-Fi is reachable, the persistent session resumes and queued QoS 1 messages flow.
 
-[DIAGRAM: D-3.4.B. reconnect state machine: connected → disconnected → reconnecting → connected]
+```mermaid
+stateDiagram-v2
+  [*] --> Connecting
+  Connecting --> Connected: CONNACK ok
+  Connected --> Disconnected: network drop / DISCONNECT
+  Disconnected --> Reconnecting: after reconnectDelayMin
+  Reconnecting --> Connected: CONNACK ok
+  Reconnecting --> Reconnecting: backoff (capped at<br/>reconnectDelayMax)
+  Connected --> [*]: graceful close
+```
 
 ### Battery implications
 
