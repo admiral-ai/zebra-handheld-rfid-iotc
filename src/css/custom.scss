@@ -106,13 +106,26 @@ h5 {
    columns by content via `table-layout: auto`; we override Docusaurus'
    default `display: block; overflow-x: auto` (which produces a scroll bar
    when content is wide) so the table is forced to fit and cell content
-   wraps instead. Aggressive `overflow-wrap` lets URLs, long enum names
-   and tenant.topic paths break anywhere rather than push a column out.
+   wraps instead.
+
+   Word-break strategy (subtle but important):
+   - General cell content uses `overflow-wrap: break-word`. This breaks
+     long words only when they would not fit on a line by themselves; it
+     never breaks a short word like "Level" or "QoS 0" mid-word. The
+     browser's min-content calculation respects the longest word, so
+     `table-layout: auto` can't shrink a column below that word's width.
+   - `<code>` (command names, enum values, payload keys) and `<a>` (long
+     API-reference anchor URLs) use `overflow-wrap: anywhere`, the more
+     aggressive variant — these tokens have no natural break points and
+     would otherwise force a fixed column width.
+   - `hyphens` is *not* set; the previous `hyphens: auto` was inserting
+     soft hyphens into short headers ("Lev-el", "Net-work").
 
    Across the corpus there are 125 tables (41 × 2-col, 62 × 3-col,
    16 × 4-col, 3 × 5-col, 3 × 6-col). The 6-col error-codes catalogue
    and the 4-col interface table are the widest; this CSS is tuned so
-   neither needs a horizontal scroll bar at common viewport widths.
+   neither needs a horizontal scroll bar at common viewport widths,
+   and short header words stay intact.
 */
 .markdown table,
 article table {
@@ -122,7 +135,7 @@ article table {
   display: table;          // override Docusaurus default
   overflow-x: visible;
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   border-collapse: collapse;
 }
 
@@ -131,13 +144,11 @@ article table {
 article table th,
 article table td {
   vertical-align: top;     // multi-line cells in one row don't grow to match
-  min-width: 0;            // allow cells to shrink narrower than their content
   word-break: normal;
-  overflow-wrap: anywhere;
-  hyphens: auto;           // graceful hyphenation when wrap is forced
+  overflow-wrap: break-word;
 
-  // Inline code (command names, enum values, payload keys) wraps rather
-  // than pushing the column out
+  // Inline code (command names, enum values, payload keys) — break
+  // anywhere because identifiers have no natural break points
   code {
     word-break: normal;
     overflow-wrap: anywhere;
