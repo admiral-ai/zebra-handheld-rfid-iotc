@@ -31,14 +31,14 @@ The MDM endpoint is the bootstrap connection. Everything else depends on it.
 
 | Phase | Outcome | Who does it | Time |
 |---|---|---|---|
-| 0. [Prerequisites](/quick-start/phase-0) | Hardware in hand, credentials in vault, sled paired to a host (Bridged only) | New integrator | ~15 min |
-| 1. [Prepare network and broker](/getting-started/quick-start/step-1-connect) | Reachable broker on 1883/8883 from the sled's network segment | IT / Network admin | 5 min (or 30 if firewall change needed) |
-| 2. [Bootstrap (Direct or Bridged)](/quick-start/phase-2) | Sled with region set and an active MDM endpoint pointing at your broker — via 123RFID Desktop (Direct, USB-C) or 123RFID Mobile (Bridged or Direct, Bluetooth) | Operator with a Windows laptop or Android mobile computer | 8 min |
-| 3. [Verify the bootstrap connection](/getting-started/quick-start/step-3-subscribe) | A [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) response with model, serial, firmware, IoTC version | Integrator | 3 min |
-| 4. [Inspect endpoint state](/getting-started/quick-start/step-4-start) | A list of the sled's active and saved endpoints via [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | Integrator | 4 min |
-| 5. [Add remote endpoints](/getting-started/quick-start/step-5-read) | CTRL and DATA1 endpoints active and routable via [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | Integrator | 8 min |
-| 6. [Start and stop inventory](/getting-started/quick-start/step-6-stop) | Live `dataEVT` events on the DATA1 topic via [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) | Integrator | 5 min |
-| 7. [Reboot when needed](/getting-started/quick-start/step-7-reboot) | A clean warm reset that preserves management config | Integrator / Fleet operator | 3 min |
+| [Phase 0: Prerequisites](/quick-start/phase-0) | Hardware in hand, credentials in vault, sled paired to a host (Bridged only) | New integrator | ~15 min |
+| [Phase 1: Prepare network and broker](/getting-started/quick-start/step-1-connect) | Reachable broker on 1883/8883 from the sled's network segment | IT / Network admin | 5 min (or 30 if firewall change needed) |
+| [Phase 2: Bootstrap (Direct or Bridged)](/quick-start/phase-2) | Sled with region set and an active MDM endpoint pointing at your broker — via 123RFID Desktop (Direct, USB-C) or 123RFID Mobile (Bridged or Direct, Bluetooth) | Operator with a Windows laptop or Android mobile computer | 8 min |
+| [Phase 3: Verify the bootstrap connection](/getting-started/quick-start/step-3-subscribe) | A [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) response with model, serial, firmware, IoTC version | Integrator | 3 min |
+| [Phase 4: Inspect endpoint state](/getting-started/quick-start/step-4-start) | A list of the sled's active and saved endpoints via [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | Integrator | 4 min |
+| [Phase 5: Add remote endpoints](/getting-started/quick-start/step-5-read) | CTRL and DATA1 endpoints active and routable via [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | Integrator | 8 min |
+| [Phase 6: Start and stop inventory](/getting-started/quick-start/step-6-stop) | Live `dataEVT` events on the DATA1 topic via [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) | Integrator | 5 min |
+| [Phase 7: Reboot when needed](/getting-started/quick-start/step-7-reboot) | A clean warm reset that preserves management config | Integrator / Fleet operator | 3 min |
 
 ### What this tutorial does not cover
 
