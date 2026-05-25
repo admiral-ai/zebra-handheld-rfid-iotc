@@ -45,7 +45,7 @@ def on_connect(client, userdata, flags, rc):
     client.publish(CMD_TOPIC, json.dumps({
         "command": "set_operating_mode",
         "requestId": "py-1",
-        "operatingMode": {"profiles": "BALANCED_PERFORMANCE"}
+        "operatingMode": {"operatingModes": {"profiles": "BALANCED_PERFORMANCE"}}
     }))
 
     print("Starting RFID operation...")

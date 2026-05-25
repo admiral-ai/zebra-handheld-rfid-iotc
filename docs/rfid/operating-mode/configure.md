@@ -21,7 +21,9 @@ This guide shows you how to assemble the `operatingMode` payload for the use cas
   "command": "set_operating_mode",
   "requestId": "mode-2",
   "operatingMode": {
-    "profiles": "BALANCED_PERFORMANCE"
+    "operatingModes": {
+      "profiles": "BALANCED_PERFORMANCE"
+    }
   }
 }
 ```
@@ -30,17 +32,17 @@ Operating mode cannot be changed while an inventory is running — error code 11
 
 ### Configure radio start/stop conditions
 
-Trigger compositions are built from `radioConditions.start.trigger` and `radioConditions.stop.trigger` independently:
+Trigger compositions are built from `radioStartConditions.trigger` and `radioStopConditions.trigger` independently (both live inside `operatingMode.operatingModes`):
 
 ```json
 {
   "command": "set_operating_mode",
   "requestId": "mode-3",
   "operatingMode": {
-    "profiles": "BALANCED_PERFORMANCE",
-    "radioConditions": {
-      "start": {"trigger": "PRESSED"},
-      "stop":  {"trigger": "RELEASED"}
+    "operatingModes": {
+      "profiles": "BALANCED_PERFORMANCE",
+      "radioStartConditions": {"trigger": "PRESSED"},
+      "radioStopConditions":  {"trigger": "RELEASED"}
     }
   }
 }

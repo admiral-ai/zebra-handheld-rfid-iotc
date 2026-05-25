@@ -89,7 +89,7 @@ Certificates must already be installed via [`install_certificate`](https://aa512
 {
   "command": "delete_wifi_profile",
   "requestId": "wifi-5",
-  "wifiConfig": {"essid": "OldWiFi"}
+  "wifiProfileInfo": {"essid": "OldWiFi"}
 }
 ```
 

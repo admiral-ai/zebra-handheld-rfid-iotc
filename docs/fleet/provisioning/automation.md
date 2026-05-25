@@ -26,11 +26,11 @@ def on_mqtt_conn_evt(topic, payload):
 
 ```python
 def provision(serial):
-    golden_config = load_golden_config()
+    golden_config = load_golden_config()  # shaped as {wifiConfig?, epConfig?, applyAfterReboot?}
     publish_command(serial, {
         "command": "set_config",
-        "command_id": f"prov-{serial}",
-        "data": golden_config
+        "requestId": f"prov-{serial}",
+        "configData": golden_config
     })
 ```
 

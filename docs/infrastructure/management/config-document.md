@@ -65,17 +65,44 @@ A [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-referenc
 {
   "command": "set_config",
   "requestId": "cfg-batch-001",
-  "config": {
-    "dataConfiguration": {
-      "batching": {
-        "tagCount": 50
+  "configData": {
+    "applyAfterReboot": false,
+    "wifiConfig": {
+      "operation": "MODIFY",
+      "accessPoint": {
+        "essid": "CORP_WIFI",
+        "connect": true,
+        "isPreferred": true,
+        "enableSecurity": true,
+        "security": {
+          "securityType": "WPA2Personal",
+          "securityDetails": {
+            "WPA2Personal": {"password": "<NEW_PASSWORD>"}
+          }
+        }
+      }
+    },
+    "epConfig": {
+      "operation": "update",
+      "configuration": {
+        "endpointName": "main-mgmt",
+        "epType": "MGMT",
+        "protocol": "MQTT_TLS",
+        "url": "iotc-broker.zebra.com",
+        "port": 8883,
+        "tenantId": "<TENANT_ID>",
+        "verificationType": "VERIFY_HOST_PEER",
+        "activate": true,
+        "qosCommon": 1
       }
     }
   }
 }
 ```
 
-Every field not listed retains its current value. The response carries `response.code: 0` on success; error codes vary by what was attempted (see `mqtt-api-reference/set_config.md`).
+`set_config` accepts `wifiConfig` and/or `epConfig` sub-objects inside `configData` (and an optional `applyAfterReboot` flag) — include only the sub-objects relevant to your change. Per the canonical schema, this is the **only** command that bundles Wi-Fi and endpoint configuration in a single transaction. The response carries `response.code: 0` on success; error codes are the union of `set_wifi` and `config_endpoint` codes (10, 15, 17, 18, 19, 20, 23, 25, 26, 27).
+
+> Tag-data batching is **not** configured via `set_config`. Heartbeat / per-event behaviour lives in [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events); operating-mode behaviour (including `radioStopConditions.tagCount`) lives in [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode).
 
 ### When to fetch instead of cache
 

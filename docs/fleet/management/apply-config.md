@@ -21,17 +21,18 @@ sidebar_label: How to Apply Bulk Configuration
     },
     "epConfig": {
       "operation": "add",
-      "endpointName": "main-mgmt",
       "configuration": {
+        "endpointName": "main-mgmt",
         "epType": "MGMT",
         "protocol": "MQTT_TLS",
         "url": "broker.example.com",
         "port": 8883,
+        "qosCommon": 1,
         "tenantId": "<TENANT_ID>",
         "verificationType": "VERIFY_HOST_PEER",
         "activate": true,
         "mqttParams": { /* ... */ },
-        "securityParams": {"caCertificateFile": "broker-ca", "format": "PEM"}
+        "securityParams": {"caCertificateFile": "broker-ca", "clientCert": "broker-client-cert", "clientKey": "broker-client-key", "format": "PEM"}
       }
     }
   }

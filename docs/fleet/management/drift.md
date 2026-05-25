@@ -40,10 +40,12 @@ Not every difference matters. A reader's connection quality fields drift natural
 ```python
 def remediate(serial, diff):
     patch = build_patch_from_diff(diff)
+    # set_config payload-shape per canonical schema:
+    # configData accepts wifiConfig and/or epConfig sub-objects.
     publish_command(serial, {
         "command": "set_config",
-        "command_id": f"drift-{serial}",
-        "data": {"partial": True, **patch}
+        "requestId": f"drift-{serial}",
+        "configData": patch  # already shaped as {wifiConfig?, epConfig?, applyAfterReboot?}
     })
 ```
 

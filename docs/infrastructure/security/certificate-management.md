@@ -70,7 +70,7 @@ The `type` field determines where the certificate will be used:
 {
   "command": "delete_certificate",
   "requestId": "cert-4",
-  "certDetails": {"name": "old-ca"}
+  "certificateInfo": {"name": "old-ca", "type": "mqtt"}
 }
 ```
 

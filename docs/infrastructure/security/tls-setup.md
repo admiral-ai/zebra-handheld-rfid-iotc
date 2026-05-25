@@ -20,12 +20,13 @@ Follow [Install via HTTP](/infrastructure/security/certificate-management) or [I
   "requestId": "tls-1",
   "epConfig": {
     "operation": "update",
-    "endpointName": "main-mgmt",
     "configuration": {
+      "endpointName": "main-mgmt",
       "epType": "MGMT",
       "protocol": "MQTT_TLS",
       "url": "iotc-broker.zebra.com",
       "port": 8883,
+      "qosCommon": 1,
       "verificationType": "VERIFY_HOST_PEER",
       "tenantId": "<TENANT_ID>",
       "activate": true,
@@ -38,6 +39,8 @@ Follow [Install via HTTP](/infrastructure/security/certificate-management) or [I
       },
       "securityParams": {
         "caCertificateFile": "broker-ca",
+        "clientCert": "broker-client-cert",
+        "clientKey": "broker-client-key",
         "format": "PEM"
       }
     }
