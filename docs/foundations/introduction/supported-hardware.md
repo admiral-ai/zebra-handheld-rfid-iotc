@@ -16,8 +16,8 @@ The most consequential decision in IOTC is which **architecture tier** your sled
 
 | Tier | Sleds | Network attach | Where IOTC runs |
 |---|---|---|---|
-| **🅓 Direct** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
-| **🅑 Bridged** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
+| **🅓 Direct** | RFD40 Premium · RFD40 Premium Plus · RFD90 · RFD9030 | Native Wi-Fi 6 in firmware | Inside the sled |
+| **🅑 Bridged** | RFD40 Standard | Bluetooth to a host device that bridges to MQTT | On the host (Android service / desktop bridge) |
 
 The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct, they ship different radios.
 
@@ -56,7 +56,7 @@ flowchart LR
 | RFID frequency | UHF Gen2 (region-set at first boot) | UHF Gen2 | UHF Gen2 | UHF Gen2 |
 | Native Wi-Fi (on-sled radio) | **—** (depends on host's Wi-Fi) | Wi-Fi 6 | Wi-Fi 6 | Wi-Fi 6 |
 | Bluetooth | 5.0 LE | 5.0 LE | 5.0 LE | 5.0 LE |
-| Read range (typical) | ~6 m | ~6 m | ~6 m | **~21 m** |
+| Read range (typical) | ~6 m | ~6 m | ~6 m | **~21 m** |
 | Internal antenna | Single, forward-facing | Single, forward-facing | Single, forward-facing | Single, higher-gain |
 | Barcode scanner | — | **Yes** (1D/2D) | **Yes** (1D/2D) | Yes |
 | Battery (typical) | 2,400 mAh | 2,400 mAh | 2,400 mAh | 3,000 mAh |

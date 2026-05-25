@@ -28,7 +28,7 @@ On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT clie
 |---|---|---|
 | Saved Wi-Fi profiles per device | **10** | [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) error code `19` (`IOT_ERROR_SSID_LIMIT_OVERFLOW`) when exceeded |
 | SSID length | **≤ 32 characters** (IEEE 802.11 standard) | Longer SSIDs are rejected at save time |
-| Wi-Fi certificate size (Enterprise modes) | **≤ 4 KB** per certificate file | Larger files fail to install via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) |
+| Wi-Fi certificate size (Enterprise modes) | **≤ 4 KB** per certificate file | Larger files fail to install via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) |
 
 Delete unused profiles with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) before adding a new one if you are near the 10-profile cap.
 

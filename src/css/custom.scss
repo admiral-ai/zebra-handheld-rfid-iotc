@@ -147,16 +147,21 @@ article table td {
   word-break: normal;
   overflow-wrap: break-word;
 
-  // Inline code (command names, enum values, payload keys) — break
-  // anywhere because identifiers have no natural break points
+  // Inline code (command names, enum values, payload keys) — `break-word`
+  // so short identifiers like `MGMT_EVT`, `set_wifi`, `epType` stay on
+  // one line (their full token is the min-content). Very long
+  // identifiers like `IOT_ERROR_TAG_MATCH_PATTERN_LENGTH_EXCEEDED` will
+  // still break as a last resort when the column is too narrow.
+  // The previous `anywhere` value was breaking short tokens mid-token.
   code {
     word-break: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     white-space: normal;
   }
 
-  // Links — especially long API-reference anchor URLs that would
-  // otherwise force a fixed column width
+  // Links — long API-reference anchor URLs in the link href are not
+  // visible, but a visible URL in link text would otherwise force a
+  // fixed column width. `anywhere` lets such URLs break at any point.
   a {
     word-break: normal;
     overflow-wrap: anywhere;

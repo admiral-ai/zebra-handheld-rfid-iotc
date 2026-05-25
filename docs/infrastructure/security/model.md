@@ -45,7 +45,7 @@ The reader's certificate parser accepts a narrow format envelope. Mismatches her
 |---|---|
 | Encoding | **PEM** with `-----BEGIN CERTIFICATE-----` / `-----END CERTIFICATE-----` markers |
 | Key encoding | **RSA in PKCS#1 format** (`-----BEGIN RSA PRIVATE KEY-----`). PKCS#8 keys (`-----BEGIN PRIVATE KEY-----`) must be converted first. |
-| Maximum size per file | **4 KB** (applies to CA cert, client cert, and client key independently) |
+| Maximum size per file | **4 KB** (applies to CA cert, client cert, and client key independently) |
 | Required components for TLS | CA certificate (authenticates the server), client certificate (identifies the device), client key (the device's private key) |
 
 Convert a PKCS#8 key to PKCS#1 with `openssl rsa -in key-pkcs8.pem -out key-pkcs1.pem -traditional`. Trim certificate chains to the minimum required CA when approaching the 4 KB ceiling.

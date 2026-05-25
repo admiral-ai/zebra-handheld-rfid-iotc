@@ -33,7 +33,7 @@ Both tools perform the same logical bootstrap steps; the UX and transport differ
 | Discover and attach the sled | Click **FIND READERS**, choose USB or Bluetooth | One of five Bluetooth pairing methods — Tap and Pair (NFC), Scan and Pair (host scans sled), Pair by Barcode (sled scans mobile), Pairing with the Camera, or Manual Android pairing; plus USB / Common IO direct attach without pairing. See [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing). |
 | Set the regulatory region | **Region** tab → choose country → **Apply** | **Settings** → **Region** → choose country → **Apply** |
 | Configure Wi-Fi (Direct only) | Communication → Wi-Fi → Scan and Choose Network | n/a — Bridged sleds rely on the host's Wi-Fi; Wi-Fi for Direct via Mobile is supported when the sled itself has a Wi-Fi radio |
-| Configure the MDM endpoint | Communication → **End Point** → **New** | **Settings** → MQTT / MDM endpoint |
+| Configure the MDM endpoint | Communication → **End Point** → **New** | **Settings** → MQTT / MDM endpoint |
 | Activate and verify the bootstrap connection | End Point Status → **Activate** → **Refresh** | Connection-status indicator on the home screen |
 
 ### Pairing methods supported by 123RFID Mobile

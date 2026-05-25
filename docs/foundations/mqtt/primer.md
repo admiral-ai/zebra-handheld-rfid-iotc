@@ -62,9 +62,9 @@ MQTT defines three Quality of Service levels:
 
 | Level | Meaning | Network cost | Used by IOTC for |
 |---|---|---|---|
-| **QoS 0** | Fire-and-forget. The broker accepts or doesn't; no acknowledgment. | 1 packet | High-volume `dataEVT` (tag reads), when retention compensates for loss |
-| **QoS 1** | At-least-once. Broker acks; publisher retries until acked. **Duplicates possible.** | 2 packets, possibly more | Commands and responses on Management and Control |
-| **QoS 2** | Exactly-once. Four-way handshake. **No duplicates.** | 4 packets | Rarely; almost never worth the cost |
+| **QoS 0** | Fire-and-forget. The broker accepts or doesn't; no acknowledgment. | 1 packet | High-volume `dataEVT` (tag reads), when retention compensates for loss |
+| **QoS 1** | At-least-once. Broker acks; publisher retries until acked. **Duplicates possible.** | 2 packets, possibly more | Commands and responses on Management and Control |
+| **QoS 2** | Exactly-once. Four-way handshake. **No duplicates.** | 4 packets | Rarely; almost never worth the cost |
 
 QoS is per-message, not per-connection. The publisher chooses the QoS at publish time; the subscriber's *maximum* QoS is set at subscribe time. The effective QoS is `min(publisher, subscriber)`.
 

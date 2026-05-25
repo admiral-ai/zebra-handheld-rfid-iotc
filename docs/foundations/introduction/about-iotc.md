@@ -72,7 +72,7 @@ The fixed-reader IOTC product (FX9600, FX7500, ATR7000) and the handheld product
 | Axis | Fixed IOTC | Handheld IOTC |
 |---|---|---|
 | Transport surfaces | MQTT · REST · HTTP POST · WebSocket · TCP/IP · keyboard emulation | **MQTT 3.1.1 only** |
-| Antennas | Up to 8 external; cable-loss compensation; directionality | **1 internal**; no port selection |
+| Antennas | Up to 8 external; cable-loss compensation; directionality | **1 internal**; no port selection |
 | User applications | Yes — Python and Node.js DA apps on-reader | **No** |
 | Network attach | Built-in Ethernet/Wi-Fi | Bluetooth-bridged (Standard) **or** native Wi-Fi 6 in firmware (Premium / RFD90) |
 | Bootstrap | Web console; in-band MQTT | 123RFID Desktop (Windows, USB); out-of-band, one-time |

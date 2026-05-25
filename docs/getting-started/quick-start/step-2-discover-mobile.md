@@ -134,8 +134,8 @@ Same caveat as Certificates Management.
    | **Protocol** | **MQTT** (plain, port 1883) or **MQTT_TLS** (port 8883, requires installed certificates) |
    | **URL / server address** | The broker hostname or IP from Phase 1 |
    | **Port** | `1883` for plain MQTT or `8883` for TLS |
-   | **Keep Alive** | Default (60 s) is fine for evaluation |
-   | **Tenant ID** | `zebra` (lowercase) is the default. Change later for multi-tenant brokers. |
+   | **Keep Alive** | Default (60 s) is fine for evaluation |
+   | **Tenant ID** | `zebra` (lowercase) is the default. Change later for multi-tenant brokers. |
    | **Min Reconnect Delay** | The minimum back-off after a disconnect (seconds) |
    | **Max Reconnect Delay** | The maximum back-off ceiling (seconds) |
    | **Username / Password** | If your broker requires authentication |

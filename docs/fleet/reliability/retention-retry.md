@@ -12,7 +12,7 @@ Networks fail. Brokers restart. Wi-Fi drops. A reader that buffers nothing loses
 
 | Layer | Where it lives | Mechanism | Defends against |
 |---|---|---|---|
-| **MQTT QoS** | Protocol | Per-message delivery effort (0/1/2) | Single packet loss in transit |
+| **MQTT QoS** | Protocol | Per-message delivery effort (0/1/2) | Single packet loss in transit |
 | **Persistent session** | Broker | Broker buffers messages for an offline subscriber | Subscriber temporarily down |
 | **Reader-side retention** | Reader | Reader buffers tag data when broker unreachable | Broker temporarily down |
 | **Application-layer retry** | Application | Resend command with same `requestId` | Response lost |
