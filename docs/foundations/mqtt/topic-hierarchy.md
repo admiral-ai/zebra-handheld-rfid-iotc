@@ -81,7 +81,7 @@ flowchart LR
   ST --> T4["topic D"]
 ```
 
-**Related:** 📘 [§2.4 Interface Model](/foundations/architecture/interface-model) · 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [§8.3 Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [§20.2 Topic Quick Reference](/reference/appendices/topic-quick-reference)
+**Related:** 📘 [Interface Model](/foundations/architecture/interface-model) · 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [Topic Quick Reference](/reference/appendices/topic-quick-reference)
 
 ---
 

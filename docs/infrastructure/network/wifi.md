@@ -40,7 +40,7 @@ The response lists configured profiles with their ESSIDs, security types, and co
 
 ### Create a new profile: WPA2Enterprise (EAP-TLS)
 
-Certificates must already be installed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (see [§7.2](/infrastructure/security/certificate-management)) — reference them by logical `name`:
+Certificates must already be installed via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (see [Certificate management](/infrastructure/security/certificate-management)) — reference them by logical `name`:
 
 ```json
 {
@@ -100,4 +100,4 @@ Cannot delete the currently active SSID (returns code 16 — `IOT_ERROR_DELETE_A
 - **Maximum 10 saved Wi-Fi profiles** per reader. Exceeding returns code 19 (`IOT_ERROR_SSID_LIMIT_OVERFLOW`).
 - **ESSID is case-sensitive.** A mismatch on `MODIFY` triggers code 15.
 
-**Related:** 📘 [§6.1 Network Architecture](/infrastructure/network/architecture) · 📕 [§16.2 Wi-Fi endpoints](#chapter-16--mqtt-api-reference) · 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) (for EAP-TLS prerequisites)
+**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📕 [Wi-Fi endpoints](/reference/api-overview) · 📙 [Certificate Management](/infrastructure/security/certificate-management) (for EAP-TLS prerequisites)

@@ -50,7 +50,7 @@ After successful verification: tag the serial in your fleet database, route the 
 
 Store the golden config in version control. Build a CI pipeline that, on push to `main`:
 
-1. Validates the golden config against the schema in [§20.1](/reference/appendices/config-schema).
+1. Validates the golden config against the schema in [Config schema](/reference/appendices/config-schema).
 2. Tests it against a canary reader in a lab environment.
 3. Promotes to production for the next round of provisioning.
 
@@ -67,4 +67,4 @@ flowchart LR
   Mon --> Rep[Rollout report]
 ```
 
-**Related:** 📕 [§16.2 set_config / get_config](#chapter-16--mqtt-api-reference) · 📕 [§16.6 mqttConnEVT](#chapter-16--mqtt-api-reference) · 📙 [§14.3 Apply Bulk Configuration](/fleet/management/apply-config)
+**Related:** 📕 [set_config / get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config)

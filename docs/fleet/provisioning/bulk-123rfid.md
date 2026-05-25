@@ -43,4 +43,4 @@ flowchart LR
   Imp --> Rn[Reader N]
 ```
 
-**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)
+**Related:** 📘 [Provisioning Models](/fleet/provisioning/models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover)

@@ -53,4 +53,4 @@ flowchart TD
   L4 -->|Yes| L5[Layer 5: Reader / radio behaviour]
 ```
 
-**Related:** 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [§18.3 RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [§18.4 Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [§16.2 get_status](#chapter-16--mqtt-api-reference)
+**Related:** 📙 [Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [get_status](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)

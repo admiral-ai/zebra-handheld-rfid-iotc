@@ -104,7 +104,7 @@ SELECT is the Gen2 protocol-level pre-singulation filter. Up to **32 filters** a
 }
 ```
 
-The eight `action` values map matches and mismatches to inventory state and SL flag transitions, see [§16.3 set_operating_mode Reference](#chapter-16--mqtt-api-reference) for the complete action enum table.
+The eight `action` values map matches and mismatches to inventory state and SL flag transitions, see [set_operating_mode Reference](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) for the complete action enum table.
 
 ### Configure access operations
 
@@ -141,4 +141,4 @@ Per-tag operations executed during inventory. `offset` for access operations is 
 
 `duration: 0` reports every tag read individually. `duration > 0` aggregates reads of the same EPC over that millisecond window and reports `peakRssi` rather than per-read RSSI.
 
-**Related:** 📘 [§9.1 Operating Mode Profiles](/rfid/operating-mode/profiles) · 📕 [§16.3 set_operating_mode](#chapter-16--mqtt-api-reference) · 📙 [§9.4 Start/Stop Operations](/rfid/operating-mode/start-stop) · 📘 [§9.5 Trigger Composition](/rfid/operating-mode/trigger-composition)
+**Related:** 📘 [Operating Mode Profiles](/rfid/operating-mode/profiles) · 📕 [set_operating_mode](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) · 📙 [Start/Stop Operations](/rfid/operating-mode/start-stop) · 📘 [Trigger Composition](/rfid/operating-mode/trigger-composition)

@@ -49,4 +49,4 @@ def call_with_retry(send_fn, max_attempts=5):
 
 Code 12 (`IOT_ERROR_NO_RADIO_OP_IN_PROGRESS`) appears when STOP is sent to an already-idle reader. Treat it as success.
 
-**Related:** 📕 [§17.2 Error Codes](/reference/errors/codes) · 📘 [§11.6 — removed] · 📕 [§16.6 events](#chapter-16--mqtt-api-reference)
+**Related:** 📕 [Error Codes](/reference/errors/codes) · 📕 [Events reference](/reference/api-overview)

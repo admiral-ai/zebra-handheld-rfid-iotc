@@ -60,7 +60,7 @@ The [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-refere
 
 ### `ethConfig` / `wifiConfig`
 
-Per the schemas in [§16.2 get_eth](#chapter-16--mqtt-api-reference) and [§16.2 get_wifi](#chapter-16--mqtt-api-reference).
+Per the schemas in [get_eth](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) and [get_wifi](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi).
 
 ### `epConfig`
 

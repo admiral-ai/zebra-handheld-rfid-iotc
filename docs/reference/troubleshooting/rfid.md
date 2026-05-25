@@ -45,4 +45,4 @@ flowchart TD
   Q4 -->|Yes| Rad[Radio / firmware fault;<br/>check exceptionEVT]
 ```
 
-**Related:** 📙 [§9.2 Configure Operating Mode](/rfid/operating-mode/configure) · 📙 [§9.3b Configure Filters](/rfid/operating-mode/post-filters-configure) · 📕 [§16.3 CTRL endpoints](#chapter-16--mqtt-api-reference) · 📕 [§17.3 Exception Codes](#173--exception-event-codes)
+**Related:** 📙 [Configure Operating Mode](/rfid/operating-mode/configure) · 📙 [Configure Filters](/rfid/operating-mode/post-filters-configure) · 📕 [CTRL endpoints](/reference/api-overview) · 📕 [Exception Codes](/reference/api-overview)

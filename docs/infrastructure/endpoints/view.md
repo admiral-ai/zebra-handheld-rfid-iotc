@@ -29,7 +29,7 @@ This guide shows you how to inspect the current MQTT endpoint configuration on a
 }
 ```
 
-Each interface block shows its broker target. For the full schema, see [§16.2](#chapter-16--mqtt-api-reference).
+Each interface block shows its broker target. For the full schema, see [API Reference](/reference/api-overview).
 
 ```mermaid
 flowchart TB
@@ -42,4 +42,4 @@ flowchart TB
   SE --> EN[epNames: all saved endpoint names]
 ```
 
-**Related:** 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [§16.2 get_endpoint_config](#chapter-16--mqtt-api-reference) · 📙 [§8.3 How to Configure](/infrastructure/endpoints/configure)
+**Related:** 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [get_endpoint_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) · 📙 [How to Configure](/infrastructure/endpoints/configure)

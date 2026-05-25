@@ -65,4 +65,4 @@ flowchart TD
   Q3 -->|No| Sof[Soft failure;<br/>get_status + gap-detect]
 ```
 
-**Related:** 📙 [§6.4 Network Troubleshooting](/infrastructure/network/troubleshooting) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.6 mqttConnEVT, exceptionEVT](#chapter-16--mqtt-api-reference) · 📘 [§3.4 Connection Lifecycle](/foundations/mqtt/connection-lifecycle)
+**Related:** 📙 [Network Troubleshooting](/infrastructure/network/troubleshooting) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [mqttConnEVT, exceptionEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📘 [Connection Lifecycle](/foundations/mqtt/connection-lifecycle)

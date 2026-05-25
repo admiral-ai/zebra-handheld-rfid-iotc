@@ -22,7 +22,7 @@ This guide shows you how to troubleshoot tag-data anomalies on handheld readers.
 #### Symptom: duplicate tag reads
 
 - Expected behaviour for raw (non-coalesced) reporting.
-- Application should deduplicate per [§10.5](/rfid/tag-data/process).
+- Application should deduplicate per [Process tag data](/rfid/tag-data/process).
 
 #### Symptom: timestamp drift
 
@@ -42,4 +42,4 @@ flowchart TD
   Q4 -->|Yes| OK[Data flowing OK]
 ```
 
-**Related:** 📙 [§11.3 Configure Events](/observability/events/configure) · 📕 [§10.2 dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [§10.5 Processing Tag Data](/rfid/tag-data/process) · 📘 [§3.3 QoS Levels](/foundations/mqtt/qos)
+**Related:** 📙 [Configure Events](/observability/events/configure) · 📕 [dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [Processing Tag Data](/rfid/tag-data/process) · 📘 [QoS Levels](/foundations/mqtt/qos)

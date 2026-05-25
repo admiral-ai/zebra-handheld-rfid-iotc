@@ -49,7 +49,7 @@ For SOTI-connected fleets, `alert_short` with predefined `id` values surfaces ba
 
 Per-mode drain figures are deployment-specific. Measure drain over a representative shift in your environment. The canonical telemetry field is `heartBeatEVT.data.batteryAlert.chargePercentage` over time. Operational recommendations for battery-constrained deployments include increasing the heartbeat interval and stopping inventory between active scans.
 
-**Related:** 📘 [§11.5 Alert Events](/observability/events/alerts) · 📕 [§16.6 alerts schema](#chapter-16--mqtt-api-reference) · 📙 [§18.6 Battery Troubleshooting](/reference/troubleshooting/battery)
+**Related:** 📘 [Alert Events](/observability/events/alerts) · 📕 [alerts schema](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alerts) · 📙 [Battery Troubleshooting](/reference/troubleshooting/battery)
 
 ---
 

@@ -59,4 +59,4 @@ flowchart TD
   NET -->|fails| FW[Firewall / port block]
 ```
 
-**Related:** 📙 [§6.2 Wi-Fi Configuration](/infrastructure/network/wifi) · 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection) · 📕 [§16.2 get_status / get_wifi](#chapter-16--mqtt-api-reference)
+**Related:** 📙 [Wi-Fi Configuration](/infrastructure/network/wifi) · 📙 [Connection Troubleshooting](/reference/troubleshooting/connection) · 📕 [get_status / get_wifi](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)

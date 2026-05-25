@@ -52,7 +52,7 @@ flowchart LR
 
 Separate brokers add operational complexity (two sets of credentials, two health metrics, partial-connectivity failure modes) but buy isolation and specialisation. The pattern is justified when scale, latency, or organisational policy demand it, not by default.
 
-**Related:** 📘 [§8.1 Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [§8.3 Configure Endpoints](/infrastructure/endpoints/configure) · 📘 [§15.1 Cloud Integration Patterns](/fleet/cloud-integration/patterns)
+**Related:** 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📘 [Cloud Integration Patterns](/fleet/cloud-integration/patterns)
 
 ---
 

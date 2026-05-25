@@ -10,7 +10,7 @@ This guide shows you how to set the broker target for one or more MQTT interface
 
 ### Decide: single or separate brokers
 
-If you have no specific reason to separate, **use a single broker for all interfaces**. Separate brokers are an architectural choice with operational cost; see [§8.4](/infrastructure/endpoints/multi-endpoint).
+If you have no specific reason to separate, **use a single broker for all interfaces**. Separate brokers are an architectural choice with operational cost; see [Multi-endpoint architectures](/infrastructure/endpoints/multi-endpoint).
 
 ### Configure an interface
 
@@ -55,4 +55,4 @@ flowchart TD
   Q2 -->|Yes| MDMG[MDM-managed endpoint]
 ```
 
-**Related:** 📘 [§8.4 Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference) · 📕 [§16.6 mqttConnEVT](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt)

@@ -43,4 +43,4 @@ flowchart LR
 | Reconnects coincident with AP boundaries | Wi-Fi roaming; check AP placement and channels |
 | Reconnects with no Wi-Fi/BT signal correlation | Investigate broker or upstream network |
 
-**Related:** 📕 [§16.6 heartBeatEVT and mqttConnEVT](#chapter-16--mqtt-api-reference) · 📘 [§11.7 MQTT Connection Events](/observability/events/mqtt-connection) · 📙 [§18.2 Connection Troubleshooting](/reference/troubleshooting/connection)
+**Related:** 📕 [heartBeatEVT and mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-heartbeatevt) · 📘 [MQTT Connection Events](/observability/events/mqtt-connection) · 📙 [Connection Troubleshooting](/reference/troubleshooting/connection)

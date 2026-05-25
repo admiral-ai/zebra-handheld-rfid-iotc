@@ -13,7 +13,7 @@ Returns reader identity and version metadata.
 
 **Response fields:** `readerVersion.firmwareVersion`, `readerVersion.model`, `readerVersion.serialNumber`, `readerVersion.sku`, `readerVersion.detailedVersions.scannerFirmware`, `readerVersion.detailedVersions.radioFirmware`, `readerVersion.detailedVersions.iotcVersion`.
 
-**See Also:** 📘 [§2.2](/foundations/architecture/components) · 📙 [§4.1](/getting-started/prerequisites/requirements)
+**See Also:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📙 [Hardware & software requirements](/getting-started/prerequisites/requirements)
 
 #### [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) (T4)
 

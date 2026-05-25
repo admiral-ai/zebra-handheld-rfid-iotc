@@ -7,7 +7,7 @@ sidebar_label: How to Integrate with Google Cloud IoT
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min
 
 :::info
-Google Cloud IoT Core was deprecated by Google in 2023. This guide targets the successor pattern: GCP-hosted Pub/Sub via an MQTT bridge or a customer-hosted MQTT broker on GCP infrastructure. If you are building on GCP, evaluate [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) using HiveMQ on GKE or EMQX on Compute Engine.
+Google Cloud IoT Core was deprecated by Google in 2023. This guide targets the successor pattern: GCP-hosted Pub/Sub via an MQTT bridge or a customer-hosted MQTT broker on GCP infrastructure. If you are building on GCP, evaluate [Custom MQTT Broker](/fleet/cloud-integration/custom-broker) using HiveMQ on GKE or EMQX on Compute Engine.
 :::
 
 This guide shows you how to connect a handheld reader to a GCP-hosted MQTT broker and route tag data into Pub/Sub for downstream processing.
@@ -22,7 +22,7 @@ Deploy HiveMQ, EMQX, or Mosquitto on GCP per the vendor's instructions. Configur
 
 ### Step 2: Install certificates on the reader
 
-Per [§7.2](/infrastructure/security/certificate-management), install the broker's CA certificate and (if using mutual TLS) the client certificate.
+Per [Certificate management](/infrastructure/security/certificate-management), install the broker's CA certificate and (if using mutual TLS) the client certificate.
 
 ### Step 3: Configure the reader's endpoint
 
@@ -59,4 +59,4 @@ flowchart LR
   PS --> DF[Dataflow]
 ```
 
-**Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§15.5 Custom MQTT Broker](/fleet/cloud-integration/custom-broker) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup)
+**Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [Custom MQTT Broker](/fleet/cloud-integration/custom-broker) · 📙 [TLS Setup](/infrastructure/security/tls-setup)

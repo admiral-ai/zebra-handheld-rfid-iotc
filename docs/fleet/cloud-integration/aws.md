@@ -18,7 +18,7 @@ In AWS IoT Core: **Manage → Things → Create**. Create a Thing named after th
 
 ### Step 2: Install the AWS CA and client cert on the reader
 
-Per [§7.2](/infrastructure/security/certificate-management), install:
+Per [Certificate management](/infrastructure/security/certificate-management), install:
 
 - The Amazon Root CA (`AmazonRootCA1.pem`) as a CA certificate, alias `aws-ca`.
 - The Thing-specific client certificate + key (as PKCS12), alias `aws-client-<serial>`.
@@ -40,7 +40,7 @@ Per [§7.2](/infrastructure/security/certificate-management), install:
 }
 ```
 
-Repeat for `ctrl` and `mgmt` if you want full integration; or keep them on the Zebra-hosted broker and use AWS only for DATA (separate-data-broker pattern, see [§8.4](/infrastructure/endpoints/multi-endpoint)).
+Repeat for `ctrl` and `mgmt` if you want full integration; or keep them on the Zebra-hosted broker and use AWS only for DATA (separate-data-broker pattern, see [Multi-endpoint architectures](/infrastructure/endpoints/multi-endpoint)).
 
 ### Step 4: Topic mapping
 
@@ -60,4 +60,4 @@ flowchart LR
   KDS --> AN[Analytics]
 ```
 
-**Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📙 [§8.3 Endpoint Configuration](/infrastructure/endpoints/configure) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint)

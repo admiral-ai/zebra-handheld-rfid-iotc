@@ -36,4 +36,4 @@ This guide shows you how to check Ethernet status on a reader docked in a cradle
 The sled's own Ethernet hardware does not exist; these fields reflect the cradle's bridge. To change Ethernet behaviour, configure the cradle.
 :::
 
-**Related:** 📘 [§6.1 Network Architecture](/infrastructure/network/architecture) · 📕 [§16.2 get_eth](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📕 [get_eth](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth)

@@ -9,7 +9,7 @@ Five events with canonical schemas drawn from `schemas/events/*.json`:
 
 | Event | Top-level fields |
 |---|---|
-| `dataEVT` | `type`, `timestamp`, `data.tagData[]`, `data.barcodeData[]` (see [§10.2](/rfid/tag-data/dataevt-schema)) |
+| `dataEVT` | `type`, `timestamp`, `data.tagData[]`, `data.barcodeData[]` (see [dataEVT schema](/rfid/tag-data/dataevt-schema)) |
 | `heartBeatEVT` | `eventName`, `timestamp`, `eventNumber`, `upTime`, `data.inventoryStatus`, `data.batteryAlert` |
 | `alerts` | `type`, `timestamp`, `state` (SET/CLEAR/ONESHOT), `id` (BATTERY/FIRMWARE_UPDATE/NETWORK_EVENT/TEMPERATURE/POWER), `priority` (CRITICAL/HIGH/MEDIUM/LOW), `alertDetails` |
 | `alert_short` | `id` (~50-entry enum), `timestamp`, `type` (NOTIFICATION/ALERT), `priority` (CRITICAL/HIGH/LOW), `messageID`, `description` |

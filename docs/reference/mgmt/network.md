@@ -21,7 +21,7 @@ Returns Wi-Fi configuration and connection state.
 
 #### [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) (T2)
 
-Operations: `CREATE`, `MODIFY`. Payload key `wifiConfig`. See [§6.2 How-to](/infrastructure/network/wifi) for examples.
+Operations: `CREATE`, `MODIFY`. Payload key `wifiConfig`. See [How-to](/infrastructure/network/wifi) for examples.
 
 **Errors:** 15 (SSID not found), 17 (SSID missed), 18 (SSID already exists), 19 (profile limit), 20 (Wi-Fi not supported), 23 (invalid enum), 2 (invalid payload).
 

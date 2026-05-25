@@ -14,4 +14,4 @@ sidebar_label: Firmware Version History & Changelog
 | 3.10.25 | 2025-06 | — | DHCP renewal edge case | — | V1.0 |
 | 3.10.20 | 2025-03 | Initial IOTC V1.0 GA | — | — | V1.0 |
 
-**Related:** 📘 [§1.3 V1.1 Features](/foundations/introduction/v1-1-features) · 📙 [§14.5 Migration Planning](/fleet/migration/plan)
+**Related:** 📘 [V1.1 Features](/foundations/introduction/v1-1-features) · 📙 [Migration Planning](/fleet/migration/plan)

@@ -106,4 +106,4 @@ Tag read: EPC=BEDD11112222333344445555, RSSI=-39, channel=911.75
 
 Press Ctrl-C to stop. The program publishes a STOP command before disconnecting.
 
-**Related:** 📕 [§16 API Reference](#chapter-16--mqtt-api-reference) · 📙 [§10.5 Processing Tag Data](/rfid/tag-data/process) · 📕 [§20.6 Third-Party Libraries](/reference/appendices/libraries)
+**Related:** 📕 [API Reference](/reference/api-overview) · 📙 [Processing Tag Data](/rfid/tag-data/process) · 📕 [Third-Party Libraries](/reference/appendices/libraries)

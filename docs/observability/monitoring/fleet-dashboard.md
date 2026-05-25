@@ -41,7 +41,7 @@ def on_event(topic, payload):
 - **Azure IoT Central**: native MQTT consumption; dashboards and alerting built in.
 - **AWS IoT Core**, use rules to route events into CloudWatch or DynamoDB; build dashboards in QuickSight or Grafana.
 
-Each architecture's setup is in the relevant cloud-integration how-to ([§15.2](/fleet/cloud-integration/aws)–[§15.4](/fleet/cloud-integration/gcp)).
+Each architecture's setup is in the relevant cloud-integration how-to ([AWS IoT Core](/fleet/cloud-integration/aws)–[GCP integration](/fleet/cloud-integration/gcp)).
 
 ### Key metrics to display
 
@@ -90,7 +90,7 @@ flowchart LR
 
 Route critical alerts (battery critical, sustained connection loss, high exception rates) to PagerDuty, Opsgenie, or Slack via webhook from your dashboard backend. Threshold tuning is operational — start with conservative thresholds and tighten as the fleet's baseline stabilises.
 
-**Related:** 📕 [§16.6 events](#chapter-16--mqtt-api-reference) · 📙 [§15.2 AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [§15.3 Azure IoT Hub](/fleet/cloud-integration/azure) · 📘 [§11.5 Alert Events](/observability/events/alerts)
+**Related:** 📕 [events](/reference/api-overview) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [Azure IoT Hub](/fleet/cloud-integration/azure) · 📘 [Alert Events](/observability/events/alerts)
 
 ---
 

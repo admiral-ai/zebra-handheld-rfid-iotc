@@ -43,7 +43,7 @@ The response is a nested JSON document. Top-level sections correspond to the ind
 | `rfid` | [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode), [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter) |
 | `events` | (corresponds to [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) settings) |
 
-For the complete schema, see [§20.1](/reference/appendices/config-schema).
+For the complete schema, see [Config schema](/reference/appendices/config-schema).
 
 ```mermaid
 flowchart TB
@@ -60,4 +60,4 @@ flowchart TB
   E --> En[saved endpoint names]
 ```
 
-**Related:** 📕 [§16.2 get_config](#chapter-16--mqtt-api-reference) · 📕 [§20.1 Config Schema](/reference/appendices/config-schema) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config)
+**Related:** 📕 [get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [Config Schema](/reference/appendices/config-schema) · 📙 [Apply Bulk Config](/fleet/management/apply-config)

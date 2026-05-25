@@ -44,10 +44,10 @@ The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exa
 
 | If you are … | Start here |
 |---|---|
-| New to IOTC and want to read a tag in an hour | [§5 Quick Start Tutorial](#chapter-5--quick-start-tutorial) |
-| Architecting a multi-reader deployment | [§2 System Architecture](#chapter-2--system-architecture), then [§13 Fleet Provisioning](#chapter-13--fleet-provisioning) |
-| Writing integration code against the MQTT API | [§16 API Reference](#chapter-16--mqtt-api-reference) |
-| Operating an existing fleet at 3 a.m. | [§18 Troubleshooting Guide](#chapter-18--troubleshooting-guide) |
+| New to IOTC and want to read a tag in an hour | [Quick Start Tutorial](#chapter-5--quick-start-tutorial) |
+| Architecting a multi-reader deployment | [System Architecture](#chapter-2--system-architecture), then [Fleet Provisioning](#chapter-13--fleet-provisioning) |
+| Writing integration code against the MQTT API | [API Reference](/reference/api-overview) |
+| Operating an existing fleet at 3 a.m. | [Troubleshooting Guide](#chapter-18--troubleshooting-guide) |
 
 ```mermaid
 flowchart LR
@@ -72,4 +72,4 @@ flowchart LR
 
 Every page carries breadcrumbs (Part > Chapter > Section), a right-side table of contents, and a "Related" box linking complementary-quadrant pages. The search bar accepts both endpoint names and natural-language queries.
 
-**Related:** 📘 [§2 System Architecture](#chapter-2--system-architecture) · 📘 [§3 MQTT Core Concepts](#chapter-3--mqtt-core-concepts) · external: [diataxis.fr](https://diataxis.fr/)
+**Related:** 📘 [System Architecture](#chapter-2--system-architecture) · 📘 [MQTT Core Concepts](#chapter-3--mqtt-core-concepts) · external: [diataxis.fr](https://diataxis.fr/)

@@ -6,7 +6,7 @@ sidebar_label: About the Authentication & Authorization Model
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
 
-IOTC's authentication and authorization model has three independent layers: who the client is (authentication), what subtree of the topic namespace it can touch (authorization), and how the traffic is encrypted in flight (transport security, covered in [§7.1](/infrastructure/security/model)).
+IOTC's authentication and authorization model has three independent layers: who the client is (authentication), what subtree of the topic namespace it can touch (authorization), and how the traffic is encrypted in flight (transport security, covered in [Security model (TLS & certificates)](/infrastructure/security/model)).
 
 ### Authentication modes
 
@@ -39,13 +39,13 @@ Within a tenant, the broker enforces topic-level access control lists. Common pa
 
 ### Where credentials originate
 
-For Zebra-hosted brokers, credentials are issued through the Zebra developer portal, see [§4.2 Obtain Credentials](/getting-started/prerequisites/credentials). For customer-hosted brokers and SOTI-managed fleets, credentials are configured at the broker and distributed through the MDM layer, see [§13.2 SOTI Connect Provisioning](/fleet/provisioning/soti-connect).
+For Zebra-hosted brokers, credentials are issued through the Zebra developer portal, see [Obtain Credentials](/getting-started/prerequisites/credentials). For customer-hosted brokers and SOTI-managed fleets, credentials are configured at the broker and distributed through the MDM layer, see [SOTI Connect Provisioning](/fleet/provisioning/soti-connect).
 
 ### Threat model
 
 The model defends against: eavesdropping on the wire (TLS), unauthorized command publish (authentication + ACLs), and cross-tenant access (tenant scoping). It does **not** defend against: physical access to a sled (an attacker with the device can extract credentials), Bluetooth interception between sled and host, or a compromised host device. For deployments where these threats matter, layer hardware-level protections — MDM-controlled hosts, sled custody policies, on top of the IOTC model.
 
-**Related:** 📘 [§7.1 Security Model](/infrastructure/security/model) · 📙 [§4.2 Obtaining Credentials](/getting-started/prerequisites/credentials) · 📙 [§7.4 Securing MQTT with TLS](/infrastructure/security/tls-setup)
+**Related:** 📘 [Security Model](/infrastructure/security/model) · 📙 [Obtaining Credentials](/getting-started/prerequisites/credentials) · 📙 [Securing MQTT with TLS](/infrastructure/security/tls-setup)
 
 ---
 

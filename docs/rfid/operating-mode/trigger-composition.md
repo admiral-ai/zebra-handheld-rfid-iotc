@@ -32,4 +32,4 @@ The three behaviour modes Phase 2 v1 documented as separate "trigger modes" are 
 
 A [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation) START produces the same effect as if the trigger fired (subject to the `start.trigger` configuration). The trigger and the API are equivalent input sources; the most recent event wins.
 
-**Related:** 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📙 [§9.4 Start/Stop](/rfid/operating-mode/start-stop) · 📕 [§16.3 set_operating_mode](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📙 [Start/Stop](/rfid/operating-mode/start-stop) · 📕 [set_operating_mode](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode)

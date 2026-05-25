@@ -64,4 +64,4 @@ flowchart LR
   S --> Pe[(Storage)]
 ```
 
-**Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📘 [§3.5 Auth Model](/foundations/mqtt/auth-model) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📕 [§16.2 config_endpoint](#chapter-16--mqtt-api-reference)
+**Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📘 [Auth Model](/foundations/mqtt/auth-model) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint)

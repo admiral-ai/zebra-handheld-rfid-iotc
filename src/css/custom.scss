@@ -102,38 +102,66 @@ h5 {
 }
 
 /* === Tables: fit container width, no horizontal scroll =================
-   Every doc table renders inside the article column. Force the layout to
-   adapt to available width and let long tokens (URLs, command names,
-   tenant.topic paths) break gracefully so no horizontal scroll bar
-   appears at common viewport widths.
+   Every doc table renders inside the article column. Browsers auto-size
+   columns by content via `table-layout: auto`; we override Docusaurus'
+   default `display: block; overflow-x: auto` (which produces a scroll bar
+   when content is wide) so the table is forced to fit and cell content
+   wraps instead. Aggressive `overflow-wrap` lets URLs, long enum names
+   and tenant.topic paths break anywhere rather than push a column out.
+
+   Across the corpus there are 125 tables (41 × 2-col, 62 × 3-col,
+   16 × 4-col, 3 × 5-col, 3 × 6-col). The 6-col error-codes catalogue
+   and the 4-col interface table are the widest; this CSS is tuned so
+   neither needs a horizontal scroll bar at common viewport widths.
 */
 .markdown table,
 article table {
   table-layout: auto;
   width: 100%;
-  display: table; // override Docusaurus default `display: block` + overflow-x: auto
+  max-width: 100%;
+  display: table;          // override Docusaurus default
   overflow-x: visible;
   word-break: normal;
   overflow-wrap: anywhere;
+  border-collapse: collapse;
 }
 
 .markdown table th,
 .markdown table td,
 article table th,
 article table td {
+  vertical-align: top;     // multi-line cells in one row don't grow to match
+  min-width: 0;            // allow cells to shrink narrower than their content
   word-break: normal;
   overflow-wrap: anywhere;
-  // Allow inline code (e.g., command names) and long URLs to wrap rather
-  // than push the column out
+  hyphens: auto;           // graceful hyphenation when wrap is forced
+
+  // Inline code (command names, enum values, payload keys) wraps rather
+  // than pushing the column out
   code {
     word-break: normal;
     overflow-wrap: anywhere;
     white-space: normal;
   }
+
+  // Links — especially long API-reference anchor URLs that would
+  // otherwise force a fixed column width
+  a {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
-// Preserve the "first column is a label" hint, but only when its content
-// is reasonably short. Allow wrapping when needed.
+// Header row: bold, slightly emphasised by the muted background already
+// inherited from the markdown styling
+.markdown table th,
+article table th {
+  text-align: left;
+}
+
+// First column often acts as a row label; allow it to wrap freely.
+// (Previous CSS forced `white-space: nowrap` which caused 1-col-wide
+// labels to push other columns offscreen on narrow viewports.)
 table td:first-child {
   white-space: normal;
 }

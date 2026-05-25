@@ -40,7 +40,7 @@ xychart-beta
   line [100, 84, 68, 51, 33, 12]
 ```
 
-**Related:** 📙 [§12.2 Battery Monitoring](/observability/monitoring/battery) · 📘 [§2.5 Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [§11.5 Alert Events](/observability/events/alerts)
+**Related:** 📙 [Battery Monitoring](/observability/monitoring/battery) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [Alert Events](/observability/events/alerts)
 
 ---
 

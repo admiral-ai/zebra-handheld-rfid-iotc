@@ -33,4 +33,4 @@ Event configuration is reachable through two equivalent paths:
 
 [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) is the convenient default; [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) is the full surface for fleet-scale per-endpoint configuration.
 
-**Related:** 📕 [§11.2 Event Catalog](/observability/events/catalog) · 📕 [§16.6 Events Reference](#chapter-16--mqtt-api-reference) · 📘 [§11.4 Heartbeats](/observability/events/heartbeat) · 📘 [§11.5 Alerts](/observability/events/alerts) · 📘 [§11.7 MQTT Connection](/observability/events/mqtt-connection)
+**Related:** 📕 [Event Catalog](/observability/events/catalog) · 📕 [Events Reference](/reference/api-overview) · 📘 [Heartbeats](/observability/events/heartbeat) · 📘 [Alerts](/observability/events/alerts) · 📘 [MQTT Connection](/observability/events/mqtt-connection)

@@ -63,4 +63,4 @@ flowchart LR
   DB --> ALT[Alert on threshold]
 ```
 
-**Related:** 📙 [§14.2 Read Config](/fleet/management/read-config) · 📙 [§14.3 Apply Bulk Config](/fleet/management/apply-config) · 📙 [§13.4 Automation](/fleet/provisioning/automation)
+**Related:** 📙 [Read Config](/fleet/management/read-config) · 📙 [Apply Bulk Config](/fleet/management/apply-config) · 📙 [Automation](/fleet/provisioning/automation)

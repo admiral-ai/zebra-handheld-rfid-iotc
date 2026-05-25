@@ -52,4 +52,4 @@ If [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-ap
 
 Once 100% of the fleet is on the new alias, issue [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) for the old alias.
 
-**Related:** 📙 [§7.2 Certificate Management](/infrastructure/security/certificate-management) · 📙 [§13.4 Automation](/fleet/provisioning/automation) · 📕 [§16.6 alerts](#chapter-16--mqtt-api-reference) · 📙 [§14.6 Phased Rollout Pattern](/fleet/migration/execute)
+**Related:** 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [Automation](/fleet/provisioning/automation) · 📕 [alerts](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alerts) · 📙 [Phased Rollout Pattern](/fleet/migration/execute)

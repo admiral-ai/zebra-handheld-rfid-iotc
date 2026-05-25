@@ -25,7 +25,7 @@ Generate a device certificate signed by your IoT Hub-uploaded CA. Export as PKCS
 
 ### Step 2: Install certificates on the reader
 
-Per [§7.2](/infrastructure/security/certificate-management), install the DigiCert Global Root G2 (Azure's TLS CA) and the device client certificate.
+Per [Certificate management](/infrastructure/security/certificate-management), install the DigiCert Global Root G2 (Azure's TLS CA) and the device client certificate.
 
 ### Step 3: Configure the reader's endpoint
 
@@ -64,4 +64,4 @@ flowchart LR
   EH --> SA[Stream Analytics]
 ```
 
-**Related:** 📘 [§15.1 Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [§7.4 TLS Setup](/infrastructure/security/tls-setup) · 📙 [§8.3 Endpoint Configuration](/infrastructure/endpoints/configure)
+**Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)

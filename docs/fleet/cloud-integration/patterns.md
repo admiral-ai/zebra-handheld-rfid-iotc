@@ -60,4 +60,4 @@ flowchart LR
 
 Start with **direct** for simplicity. Move to **bridge** or **gateway** when a specific cloud capability or topology constraint demands it.
 
-**Related:** 📙 [§15.2 AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [§15.3 Azure IoT Hub](/fleet/cloud-integration/azure) · 📙 [§15.4 GCP](/fleet/cloud-integration/gcp) · 📙 [§15.5 Custom Broker](/fleet/cloud-integration/custom-broker) · 📘 [§8.4 Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint)
+**Related:** 📙 [AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [Azure IoT Hub](/fleet/cloud-integration/azure) · 📙 [GCP](/fleet/cloud-integration/gcp) · 📙 [Custom Broker](/fleet/cloud-integration/custom-broker) · 📘 [Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint)

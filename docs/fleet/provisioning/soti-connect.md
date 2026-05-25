@@ -49,4 +49,4 @@ flowchart LR
 
 Watch `alert_short` events on the MDM interface: a successfully managed reader emits a "managed" status alert. SOTI Connect's device-detail view shows the same.
 
-**Related:** 📘 [§13.1 Provisioning Models](/fleet/provisioning/models) · 📕 [§16.5 MDM Interface](#chapter-16--mqtt-api-reference) · 📕 [§16.6 alert_short](#chapter-16--mqtt-api-reference) · 📙 [§8.3 Endpoint Configuration](/infrastructure/endpoints/configure)
+**Related:** 📘 [Provisioning Models](/fleet/provisioning/models) · 📕 [MDM Interface](/reference/api-overview) · 📕 [alert_short](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alert-short) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)
