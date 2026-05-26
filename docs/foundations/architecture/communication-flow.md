@@ -165,4 +165,4 @@ For the full topic taxonomy: [How the MQTT plumbing fits together](/infrastructu
 - **Subscribe before publishing.** A subscriber that joins late misses non-retained messages; most events do not retain.
 - **Don't conflate retention with delivery.** Retention buffers tag data when the broker is unreachable, not when the application is. If your application is slow, the broker still holds messages (subject to its own retention); if the broker is down, the reader holds them — up to its configured retention buffer.
 
-**Related:** 📘 [MQTT in five minutes](/foundations/mqtt/primer) · 📘 [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection) · 📕 MQTT API Reference (top nav)
+**Related:** 📘 [MQTT in five minutes](/foundations/mqtt/primer) · 📘 [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Knowing when you're connected](/observability/events/mqtt-connection) · 📕 MQTT API Reference (top nav)

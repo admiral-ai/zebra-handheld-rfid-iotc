@@ -20,7 +20,7 @@ Every command request uses the same envelope:
 }
 ```
 
-Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/architecture/communication-flow) for the request/response and event flows.
+Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/architecture/communication-flow) for the request/response and event flows.
 
 Responses echo `command` and `requestId` and add `apiVersion` and a `response` object:
 
@@ -235,7 +235,7 @@ Every Part 4–6 chapter in these docs ties to one API sub-tag. The pairing is b
 
 ## Related
 
-- [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) — why the on-the-wire MQTT shape differs from the OpenAPI rendering.
+- [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) — why the on-the-wire MQTT shape differs from the OpenAPI rendering.
 - [How commands and responses flow](/foundations/architecture/communication-flow) — the three flow types (command/response, event, tag data).
 - [Error Response Format](/reference/errors/format) — the response envelope.
 - [Command Response Error Codes](/reference/errors/codes) — the full list of 29 codes (0–28).

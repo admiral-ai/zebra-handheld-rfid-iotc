@@ -8,7 +8,7 @@ sidebar_label: Compatibility FAQs
 
 **Q:** Is IOTC V1.0 backward compatible with V1.1?
 **A:** Mostly yes — V1.1 is a delta release; existing V1.0 client code typically works unmodified.
-**Details:** [About IOTC V1.1 Features](/foundations/introduction/v1-1-features)
+**Details:** [About IOTC V1.1 Features](/foundations/v1-1-features)
 
 ---
 

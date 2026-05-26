@@ -60,7 +60,7 @@ Select your region from the drop-down list. Confirm the available channels.
 
 ### Configure WLAN — Direct sleds only 🅓
 
-**Skip this section if your sled is RFD40 Standard 🅑.** Standard sleds have no on-board Wi-Fi radio; their network path is the host's Wi-Fi (or mobile data), and Wi-Fi configuration lives in the host's Android OS settings, not in 123RFID Mobile. See [Two bootstrap tools](/foundations/introduction/bootstrap-tools) for the rationale.
+**Skip this section if your sled is RFD40 Standard 🅑.** Standard sleds have no on-board Wi-Fi radio; their network path is the host's Wi-Fi (or mobile data), and Wi-Fi configuration lives in the host's Android OS settings, not in 123RFID Mobile. See [Two bootstrap tools](/foundations/bootstrap-tools) for the rationale.
 
 For Direct sleds (RFD40 Premium / Premium Plus / RFD90), configure the on-sled Wi-Fi profile so the sled can reach the broker directly:
 
@@ -175,4 +175,4 @@ Same caveat as Certificates Management.
 
 [Phase 3: Verify the bootstrap connection](/getting-started/quick-start/step-3-subscribe) — the first MQTT round-trip using [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version).
 
-**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📙 [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)
+**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📙 [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)

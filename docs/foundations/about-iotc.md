@@ -16,7 +16,7 @@ Handheld reader sleds are accessory devices that attach to a host mobile device 
 
 This shape is what every later chapter inherits. Battery-powered. Bluetooth- or Wi-Fi-attached. One antenna. MQTT-only. Region-locked at first-boot via 123RFID Desktop.
 
-For the supported-hardware specifics and the Direct ↔ Bridged fork: [Which sled do you have?](/foundations/introduction/supported-hardware).
+For the supported-hardware specifics and the Direct ↔ Bridged fork: [Which sled do you have?](/foundations/hardware-tiers).
 
 ### The four MQTT interfaces
 
@@ -34,7 +34,7 @@ Two further endpoint types act as combinations of these:
 - **`MDM`**, a *hybrid* endpoint that carries Management + Control + Data on a single topic family. Bootstrap default on every Premium/RFD90 sled. The reader you just connected via 123RFID Desktop is already publishing here.
 - **`SOTI`**, a vendor-specific variant of MDM used by SOTI Connect for fleet management.
 
-The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/orient/docs-and-api-ref).
+The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).
 
 ```mermaid
 flowchart TB
@@ -84,7 +84,7 @@ These differences are not stylistic. They follow from the physics of a battery-p
 
 - New to MQTT? Start at [MQTT in five minutes](/foundations/mqtt/primer).
 - Want a tag read in the next hour? Skip to [Your first 30 minutes](/getting-started/quick-start/overview).
-- Architecting a fleet? Read [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) to [Going from one reader to a fleet](/fleet/provisioning/models).
-- Coming from a fixed reader? Jump to [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) before writing any code.
+- Architecting a fleet? Read [Roles: Reader, Host, Broker, Application](/foundations/actors) to [Going from one reader to a fleet](/fleet/provisioning/models).
+- Coming from a fixed reader? Jump to [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) before writing any code.
 
-**Related:** 📘 [Which sled do you have?](/foundations/introduction/supported-hardware) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 MQTT API Reference (top nav)
+**Related:** 📘 [Which sled do you have?](/foundations/hardware-tiers) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 MQTT API Reference (top nav)

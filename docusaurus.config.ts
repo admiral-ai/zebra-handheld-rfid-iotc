@@ -38,6 +38,18 @@ const config: Config = {
             from: '/api/reference',
             to: '/reference/api-overview',
           },
+          // URL-naming rulebook pass — see /brain/URL-NAMING.md §9.
+          // Each entry redirects the legacy URL to the rulebook-aligned URL.
+          { from: '/foundations/introduction/about-iotc',          to: '/foundations/about-iotc' },
+          { from: '/foundations/introduction/supported-hardware',  to: '/foundations/hardware-tiers' },
+          { from: '/foundations/introduction/bootstrap-tools',     to: '/foundations/bootstrap-tools' },
+          { from: '/foundations/introduction/glossary',            to: '/reference/glossary' },
+          { from: '/foundations/introduction/documentation-guide', to: '/foundations/documentation-guide' },
+          { from: '/foundations/introduction/v1-1-features',       to: '/foundations/v1-1-features' },
+          { from: '/foundations/concepts/native-mqtt-vs-openapi',  to: '/foundations/native-mqtt-vs-openapi' },
+          { from: '/foundations/orient/about',                     to: '/foundations/start' },
+          { from: '/foundations/orient/docs-and-api-ref',          to: '/foundations/docs-and-api-reference' },
+          { from: '/foundations/architecture/components',          to: '/foundations/actors' },
         ],
       },
     ],

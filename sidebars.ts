@@ -39,9 +39,9 @@ const sidebars: SidebarsConfig = {
         slug: '/part-1',
       },
       items: [
-        'foundations/orient/about',
+        'foundations/start',
         'foundations/mqtt/primer',
-        'foundations/orient/docs-and-api-ref',
+        'foundations/docs-and-api-reference',
       ],
     },
     {
@@ -58,12 +58,12 @@ const sidebars: SidebarsConfig = {
         slug: '/part-2',
       },
       items: [
-        'foundations/introduction/about-iotc',
-        'foundations/introduction/supported-hardware',
-        'foundations/architecture/components',
-        'foundations/introduction/bootstrap-tools',
+        'foundations/about-iotc',
+        'foundations/hardware-tiers',
+        'foundations/actors',
+        'foundations/bootstrap-tools',
         'foundations/architecture/communication-flow',
-        'foundations/concepts/native-mqtt-vs-openapi',
+        'foundations/native-mqtt-vs-openapi',
       ],
     },
     {
@@ -225,7 +225,7 @@ const sidebars: SidebarsConfig = {
         'reference/diagnose/two-edges',
         'reference/diagnose/recovery-playbooks',
         'reference/diagnose/misconceptions',
-        'foundations/introduction/glossary',
+        'reference/glossary',
       ],
     },
   ],

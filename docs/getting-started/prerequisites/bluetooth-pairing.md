@@ -103,8 +103,8 @@ Once paired, the sled persists in the host's Android **Paired devices** list unt
 
 ### Out of scope
 
-- **Why pair in the first place** (Bluetooth as the network path on Bridged), see [Roles: Reader, Host, Broker, Application](/foundations/architecture/components).
-- **Bootstrap-tool comparison**, see [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools).
+- **Why pair in the first place** (Bluetooth as the network path on Bridged), see [Roles: Reader, Host, Broker, Application](/foundations/actors).
+- **Bootstrap-tool comparison**, see [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools).
 - **Sled-side button combinations and LED patterns**, see the RFD40 / RFD4031 / RFD90 Product Reference Guides on `support.zebra.com`. This documentation does not duplicate the per-SKU hardware operation manuals.
 
-**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/architecture/components) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📗 [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)
+**Related:** 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📗 [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) · 📕 [Hardware & Software Requirements](/getting-started/prerequisites/requirements)

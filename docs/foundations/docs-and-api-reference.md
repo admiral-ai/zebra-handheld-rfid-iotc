@@ -74,8 +74,8 @@ Every code example on this site uses **native MQTT flattened payloads**, the run
 }
 ```
 
-The OpenAPI rendering on the API Reference site may show nested envelopes (`ctrlOprPayload`, `params`). Those do not work over MQTT. The native flat shape is canonical; the nested shape is a documentation artifact of `docusaurus-plugin-openapi-docs`. See [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi) for why both exist and how to read each.
+The OpenAPI rendering on the API Reference site may show nested envelopes (`ctrlOprPayload`, `params`). Those do not work over MQTT. The native flat shape is canonical; the nested shape is a documentation artifact of `docusaurus-plugin-openapi-docs`. See [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) for why both exist and how to read each.
 
 ### Where to go next
 
-For the IOTC mental model: [What the IoT Connector is](/foundations/introduction/about-iotc). For the protocol primer: [MQTT in five minutes](/foundations/mqtt/primer). For the OpenAPI disambiguation: [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi).
+For the IOTC mental model: [What the IoT Connector is](/foundations/about-iotc). For the protocol primer: [MQTT in five minutes](/foundations/mqtt/primer). For the OpenAPI disambiguation: [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi).

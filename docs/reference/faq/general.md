@@ -8,7 +8,7 @@ sidebar_label: General Questions
 
 **Q:** What hardware does IOTC for Handheld RFID support?
 **A:** The RFD40 (Standard and Premium) and RFD90 sleds running firmware 3.10.27 or later.
-**Details:** [About Supported Hardware](/foundations/introduction/supported-hardware)
+**Details:** [About Supported Hardware](/foundations/hardware-tiers)
 
 ---
 
@@ -20,7 +20,7 @@ sidebar_label: General Questions
 
 **Q:** Is there a REST API?
 **A:** No. Handheld IOTC communicates only over MQTT.
-**Details:** [About Zebra IoT Connector for Handheld RFID](/foundations/introduction/about-iotc)
+**Details:** [About Zebra IoT Connector for Handheld RFID](/foundations/about-iotc)
 
 ---
 

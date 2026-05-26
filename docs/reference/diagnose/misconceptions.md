@@ -16,7 +16,7 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 
 - *Wrong:* The schema corpus and OpenAPI rendering describe the runtime contract.
 - *Right:* Each command has a named payload object (`ctrlOprPayload`, `epConfig`, `operatingMode`, `postFilterPayload`, `eventConfiguration`); generic wrappers like `params`, `payload`, `requestBody` are not part of the native MQTT shape. The OpenAPI rendering may add them. Always copy from `mqtt-api-reference/<command>.md`.
-- *See:* [The OpenAPI Illusion](/foundations/concepts/native-mqtt-vs-openapi)
+- *See:* [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi)
 
 #### MM-02: `FAST_READ` is not a usable operating-mode profile {#mm-02}
 
@@ -116,7 +116,7 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 
 - *Wrong:* Bridged sleds run a different IoTC API, or the host translates between two protocols, or [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) behaves differently across tiers.
 - *Right:* The tier name reflects (a) which **bootstrap tool** you use for first-light (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and (b) the **network topology** (sled-owns-Wi-Fi on Direct, host-owns-Wi-Fi-and-carries-BT-bridge on Bridged). **Once the MDM endpoint is active, every IoTC MQTT command, response, event, topic, retention behavior, and TLS behavior is identical across tiers.** The only operational asymmetries are: (i) Bridged sleds emit `terminalConnection` events because there's a host link to report on; (ii) [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) is a no-op surface on Bridged because there's no on-sled Wi-Fi radio to configure. Build your application against the API contract, not the tier.
-- *See:* [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/introduction/bootstrap-tools) and [Which sled do you have?](/foundations/introduction/supported-hardware)
+- *See:* [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Which sled do you have?](/foundations/hardware-tiers)
 
 ---
 
@@ -126,4 +126,4 @@ Misconceptions cluster around **defaults you assumed** (region, persistence, FAS
 
 If you encounter a recurring wrong belief not on this list, add it. The MM-N identifiers are stable; new entries get new numbers.
 
-**Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📘 [Where things fail](/reference/diagnose/two-edges) · 📙 [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) · 🩺 [Failure modes](/reference/diagnose/failure-modes) · 📕 [Glossary, limits, and cheat sheets](/foundations/introduction/glossary)
+**Related:** 📘 [Something's broken?](/reference/diagnose/symptom-index) · 📘 [Where things fail](/reference/diagnose/two-edges) · 📙 [Playbooks for getting back online](/reference/diagnose/recovery-playbooks) · 🩺 [Failure modes](/reference/diagnose/failure-modes) · 📕 [Glossary, limits, and cheat sheets](/reference/glossary)

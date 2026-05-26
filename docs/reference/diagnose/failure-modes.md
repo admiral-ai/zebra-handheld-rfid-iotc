@@ -282,7 +282,7 @@ The entries are grouped:
 
 **Fix.** Bring the host within range, wake it, and re-pair via 123RFID Desktop if needed. If the problem is chronic, audit the host's Bluetooth power-management settings.
 
-**See.** [Roles: Reader, Host, Broker, Application](/foundations/architecture/components)
+**See.** [Roles: Reader, Host, Broker, Application](/foundations/actors)
 
 ### FM-DEV-02: Bridge routing {#fm-dev-02}
 
@@ -292,7 +292,7 @@ The entries are grouped:
 
 **Fix.** Inspect host bridge logs to confirm it sees incoming commands. Verify the bridge subscribes to the same topic shape as [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) defined. Restart the bridge process. If the bridge is custom-built, add logging on both Bluetooth and MQTT sides.
 
-**See.** [Roles: Reader, Host, Broker, Application](/foundations/architecture/components)
+**See.** [Roles: Reader, Host, Broker, Application](/foundations/actors)
 
 ### FM-DEV-03: Mobility breaks bridge {#fm-dev-03}
 
@@ -302,7 +302,7 @@ The entries are grouped:
 
 **Fix.** Keep sled and host within 5 m of each other on the body, with the host on the same side as the sled (line-of-sight, not blocked by torso). Disable AP isolation on the relevant Wi-Fi infrastructure. For mobility-critical deployments, switch to a Direct sled (RFD40 Premium / Premium Plus / RFD90), which removes the host dependency entirely.
 
-**See.** [Which sled do you have?](/foundations/introduction/supported-hardware)
+**See.** [Which sled do you have?](/foundations/hardware-tiers)
 
 ---
 
