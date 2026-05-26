@@ -14,4 +14,4 @@ This section contains three independent, parallel language tutorials. Each is a 
 | Node.js 20 LTS | `mqtt` (mqtt.js) | [Tutorial: Read Your First Tag with Node.js](/sdks/nodejs) |
 | C# / .NET 8 | `MQTTnet` | [Tutorial: Read Your First Tag with C# (.NET)](/sdks/csharp) |
 
-If you prefer command-line testing first, complete the [Quick Start](/getting-started/quick-start/overview) before any of the language tutorials.
+If you prefer command-line testing first, complete the [Quick Start](/quick-start/overview) before any of the language tutorials.

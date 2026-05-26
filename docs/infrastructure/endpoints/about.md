@@ -103,7 +103,7 @@ You can also query a single endpoint:
 ### Out of scope
 
 - **TLS setup and certificate installation**: [Securing the connection](/infrastructure/security/model).
-- **Per-endpoint event flag configuration**: `eventConfiguration` and `heartbeatConfiguration` within [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) are covered in [Choose what the reader tells you](/observability/events/configure).
-- **Bulk endpoint configuration across a fleet**: [Keeping a fleet in sync](/fleet/management/about-bulk).
+- **Per-endpoint event flag configuration**: `eventConfiguration` and `heartbeatConfiguration` within [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) are covered in [Choose what the reader tells you](/observability/configure-events).
+- **Bulk endpoint configuration across a fleet**: [Keeping a fleet in sync](/fleet/bulk-management).
 
-**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [The reader's configuration document](/infrastructure/management/config-document) · 📕 [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)
+**Related:** 📘 [How commands and responses flow](/foundations/communication-flow) · 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [The reader's configuration document](/infrastructure/config-document) · 📕 [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

@@ -35,7 +35,7 @@ function HomepageHero() {
         <div className={styles.heroButtons}>
           <Link
             className="button button--primary button--lg"
-            to="/getting-started/quick-start/overview">
+            to="/quick-start/overview">
             Quick Start: Read your first tag
           </Link>
           <Link
@@ -58,13 +58,13 @@ function FeatureGrid() {
             badge="tutorial"
             title="New here? Start with the Quick Start"
             description="Connect a reader to a broker and read your first tag in under an hour using mosquitto_pub and mosquitto_sub."
-            to="/getting-started/quick-start/overview"
+            to="/quick-start/overview"
           />
           <FeatureCard
             badge="explanation"
             title="Understand the architecture"
             description="Reader, host, broker, application. MQTT 3.1.1, seven endpoint types, three-part topic structure."
-            to="/foundations/architecture/components"
+            to="/foundations/actors"
           />
           <FeatureCard
             badge="reference"
@@ -82,13 +82,13 @@ function FeatureGrid() {
             badge="howto"
             title="Manage a fleet"
             description="123RFID Desktop, SOTI Connect, and 42Gears SureMDM. Bulk configuration, drift detection, retention buffers."
-            to="/fleet/provisioning/models"
+            to="/fleet/provisioning-models"
           />
           <FeatureCard
             badge="reference"
             title="Diagnose an issue"
             description="Symptom-first index across bootstrap, commands, inventory, firmware, events, TLS, and fleet drift."
-            to="/reference/diagnose/symptom-index"
+            to="/diagnose/symptoms"
           />
         </div>
       </div>
@@ -105,12 +105,12 @@ function PersonaSection() {
           <div className={styles.persona}>
             <h3>New Integrator</h3>
             <p>I want to read a tag as fast as possible.</p>
-            <Link to="/getting-started/quick-start/overview">→ Quick Start tutorial</Link>
+            <Link to="/quick-start/overview">→ Quick Start tutorial</Link>
           </div>
           <div className={styles.persona}>
             <h3>Solution Builder</h3>
             <p>I&apos;m architecting a multi-reader deployment.</p>
-            <Link to="/foundations/architecture/components">→ System architecture</Link>
+            <Link to="/foundations/actors">→ System architecture</Link>
           </div>
           <div className={styles.persona}>
             <h3>API Consumer</h3>
@@ -120,7 +120,7 @@ function PersonaSection() {
           <div className={styles.persona}>
             <h3>Fleet Operator</h3>
             <p>I manage deployed reader populations.</p>
-            <Link to="/fleet/provisioning/models">→ Fleet operations</Link>
+            <Link to="/fleet/provisioning-models">→ Fleet operations</Link>
           </div>
         </div>
       </div>

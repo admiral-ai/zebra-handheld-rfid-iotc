@@ -42,4 +42,4 @@ flowchart TD
   Q4 -->|Yes| OK[Data flowing OK]
 ```
 
-**Related:** 📙 [Configure Events](/observability/events/configure) · 📕 [dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [Processing Tag Data](/rfid/tag-data/process) · 📘 [QoS Levels](/foundations/mqtt/qos)
+**Related:** 📙 [Configure Events](/observability/configure-events) · 📕 [dataEVT Schema](/rfid/dataevt-schema) · 📙 [Processing Tag Data](/rfid/tag-data/process) · 📘 [QoS Levels](/foundations/mqtt/qos)

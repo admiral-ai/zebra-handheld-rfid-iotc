@@ -56,4 +56,4 @@ In `locationing` mode, `phase` reports the angle in radians at which the tag's r
 
 In coalesced mode, `seen_count` indicates how many reads of this EPC occurred in the window. `first_seen` and `last_seen` bound the window. Together they give a presence-duration estimate.
 
-**Related:** 📕 [dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📕 [DATA Interface](/reference/api-overview) · 📕 [RFID Standards](/reference/appendices/tag-standards)
+**Related:** 📕 [dataEVT Schema](/rfid/dataevt-schema) · 📕 [DATA Interface](/reference/api-overview) · 📕 [RFID Standards](/reference/appendices/tag-standards)

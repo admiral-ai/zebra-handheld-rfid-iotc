@@ -18,7 +18,7 @@ Three motivations:
 
 ### How channel assignment is configured
 
-Channel assignment is set via [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) (see [Configure events](/observability/events/configure)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
+Channel assignment is set via [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) (see [Configure events](/observability/configure-events)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
 
 ```mermaid
 flowchart LR
@@ -38,4 +38,4 @@ flowchart LR
 
 Applications must subscribe to **the channel the reader is configured to use**. Subscribing to `data1event` when readers are configured for `data2event` results in no data. Fleet-wide dashboards typically subscribe to **both** channels using wildcard topics; per-channel specialised consumers subscribe to one.
 
-**Related:** 📘 [Tag Data Architecture](/rfid/tag-data/architecture) · 📙 [Configure Event Reporting](/observability/events/configure) · 📕 [DATA Interface](/reference/api-overview) · 📕 [config_events](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events)
+**Related:** 📘 [Tag Data Architecture](/rfid/tag-data/architecture) · 📙 [Configure Event Reporting](/observability/configure-events) · 📕 [DATA Interface](/reference/api-overview) · 📕 [config_events](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events)

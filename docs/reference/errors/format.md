@@ -99,5 +99,5 @@ For per-command error details, including the subset of codes a specific command 
 
 - [Command Response Error Codes](/reference/errors/codes) — the full 0–28 table.
 - [MQTT API Reference](/reference/api-overview) — directory of all 27 operations and events.
-- [How commands and responses flow](/foundations/architecture/communication-flow) — the three flow types.
-- [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — payload-shape gotchas, including the [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) code discrepancy.
+- [How commands and responses flow](/foundations/communication-flow) — the three flow types.
+- [Things people get wrong about IOTC](/diagnose/misconceptions) — payload-shape gotchas, including the [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) code discrepancy.

@@ -143,4 +143,4 @@ Per-tag operations executed during inventory. `offset` for access operations is 
 
 `duration: 0` reports every tag read individually. `duration > 0` aggregates reads of the same EPC over that millisecond window and reports `peakRssi` rather than per-read RSSI.
 
-**Related:** 📘 [Operating Mode Profiles](/rfid/operating-mode/profiles) · 📕 [set_operating_mode](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) · 📙 [Start/Stop Operations](/rfid/operating-mode/start-stop) · 📘 [Trigger Composition](/rfid/operating-mode/trigger-composition)
+**Related:** 📘 [Operating Mode Profiles](/rfid/operating-mode-profiles) · 📕 [set_operating_mode](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) · 📙 [Start/Stop Operations](/rfid/start-stop-inventory) · 📘 [Trigger Composition](/rfid/operating-mode/trigger-composition)

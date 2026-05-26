@@ -42,4 +42,4 @@ flowchart TD
   Q4 -->|Yes| OK[Operational —<br/>look elsewhere]
 ```
 
-**Related:** 📙 [Bluetooth Pairing](/getting-started/prerequisites/bluetooth-pairing) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations)
+**Related:** 📙 [Bluetooth Pairing](/quick-start/prerequisites/bluetooth-pairing) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations)

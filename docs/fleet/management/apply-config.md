@@ -56,7 +56,7 @@ sidebar_label: How to Apply Bulk Configuration
 
 If a [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) change disconnects the reader, the recovery path is 123RFID Desktop via cradle — reset the MDM endpoint, the reader comes back online, and you can re-issue the corrected [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
 
-**Related:** 📘 [Bulk Configuration](/fleet/management/about-bulk) · 📕 [set_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) · 📙 [Read Config](/fleet/management/read-config)
+**Related:** 📘 [Bulk Configuration](/fleet/bulk-management) · 📕 [set_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) · 📙 [Read Config](/fleet/management/read-config)
 
 ---
 

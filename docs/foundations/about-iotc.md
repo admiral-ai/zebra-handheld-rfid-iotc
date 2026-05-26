@@ -63,7 +63,7 @@ The Data interface is special because tag-read volume is bursty and can be high 
 - **Retention buffer.** The sled buffers up to **150,000 tag events** locally when the broker is unreachable, and replays them at up to **500 TPS** when the connection returns. Configurable via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config).
 - **Batching.** Multiple tag events can be grouped into one MQTT message, reducing network and CPU cost.
 
-Retention is enabled by default. See [What happens when the network drops](/fleet/reliability/retention-retry).
+Retention is enabled by default. See [What happens when the network drops](/fleet/retention-and-retry).
 
 ### How handheld IOTC differs from fixed-reader IOTC
 
@@ -82,9 +82,9 @@ These differences are not stylistic. They follow from the physics of a battery-p
 
 ### Where to go next
 
-- New to MQTT? Start at [MQTT in five minutes](/foundations/mqtt/primer).
-- Want a tag read in the next hour? Skip to [Your first 30 minutes](/getting-started/quick-start/overview).
-- Architecting a fleet? Read [Roles: Reader, Host, Broker, Application](/foundations/actors) to [Going from one reader to a fleet](/fleet/provisioning/models).
+- New to MQTT? Start at [MQTT in five minutes](/foundations/mqtt-primer).
+- Want a tag read in the next hour? Skip to [Your first 30 minutes](/quick-start/overview).
+- Architecting a fleet? Read [Roles: Reader, Host, Broker, Application](/foundations/actors) to [Going from one reader to a fleet](/fleet/provisioning-models).
 - Coming from a fixed reader? Jump to [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) before writing any code.
 
-**Related:** 📘 [Which sled do you have?](/foundations/hardware-tiers) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 MQTT API Reference (top nav)
+**Related:** 📘 [Which sled do you have?](/foundations/hardware-tiers) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [How commands and responses flow](/foundations/communication-flow) · 📕 MQTT API Reference (top nav)

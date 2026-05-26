@@ -118,7 +118,7 @@ mosquitto_sub -h iotc-broker.zebra.com -p 8883 \
 
 You provisioned, secured, configured, and monitored a three-reader fleet end-to-end. The replay pattern in Step 5 — per-domain commands derived from a [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) baseline — scales to fleets of any size; only the orchestration changes.
 
-**Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config) · 📙 [Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
+**Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct) · 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config) · 📙 [Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
 
 ---
 

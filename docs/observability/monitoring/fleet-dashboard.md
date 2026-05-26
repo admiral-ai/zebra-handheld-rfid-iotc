@@ -90,7 +90,7 @@ flowchart LR
 
 Route critical alerts (battery critical, sustained connection loss, high exception rates) to PagerDuty, Opsgenie, or Slack via webhook from your dashboard backend. Threshold tuning is operational — start with conservative thresholds and tighten as the fleet's baseline stabilises.
 
-**Related:** 📕 [events](/reference/api-overview) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [Azure IoT Hub](/fleet/cloud-integration/azure) · 📘 [Alert Events](/observability/events/alerts)
+**Related:** 📕 [events](/reference/api-overview) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [Azure IoT Hub](/fleet/cloud-integration/azure) · 📘 [Alert Events](/observability/alerts)
 
 ---
 

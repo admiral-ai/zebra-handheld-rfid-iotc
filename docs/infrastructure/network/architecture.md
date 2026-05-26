@@ -108,13 +108,13 @@ Radio  →  Access Point  →  LAN  →  WAN / VPN  →  Broker
   set_wifi    Wi-Fi env   IT-managed  IT-managed   broker config
 ```
 
-Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/reference/diagnose/two-edges) for the edge-isolation diagnostic frame.
+Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/diagnose/where-things-fail) for the edge-isolation diagnostic frame.
 
 ### Out of scope
 
 - **TLS over MQTT**, see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
 - **The full configuration of an MQTT endpoint**, see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
-- **Network failure modes**, see [Where things fail](/reference/diagnose/two-edges).
+- **Network failure modes**, see [Where things fail](/diagnose/where-things-fail).
 - **Bridged host-bridge configuration**: host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
 
 **Related:** 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

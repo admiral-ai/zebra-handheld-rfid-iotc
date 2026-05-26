@@ -102,12 +102,12 @@ For HTTP-sourced installs, replace `certificateBundle` with a `url` array per ce
 
 ### Confirmation via `alert_short`
 
-Successful and failed certificate operations generate `alert_short` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/events/alerts).
+Successful and failed certificate operations generate `alert_short` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/alerts).
 
 ### Out of scope
 
 - **Broker-side ACLs**, that lives in your broker's documentation (Mosquitto, HiveMQ, AWS IoT Core, etc.).
-- **Region and regulatory**: different surface; see [What your reader knows about itself](/infrastructure/management/device-state).
+- **Region and regulatory**: different surface; see [What your reader knows about itself](/infrastructure/device-state).
 - **PKI design at organizational scale**, see the Ristić *Bulletproof TLS and PKI* reference and your security team.
 
-**Related:** 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) · 📘 [When the reader needs to interrupt you](/observability/events/alerts) · 📕 [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)
+**Related:** 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) · 📘 [When the reader needs to interrupt you](/observability/alerts) · 📕 [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

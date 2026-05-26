@@ -1,5 +1,5 @@
 ---
-id: components
+id: actors
 title: "Roles: Reader, Host, Broker, Application"
 sidebar_label: "Roles: Reader, Host, Broker, Application"
 ---
@@ -44,7 +44,7 @@ On **Bridged** sleds (RFD40 Standard), the sled has no on-board Wi-Fi radio. A *
 
 On **Direct** sleds (Premium / Premium Plus / RFD90), there is **no host in the network path**. The sled joins Wi-Fi directly and speaks MQTT to the broker over its own radio. A host device may still be present as an operator UI (123RFID Mobile, an SDK-based app), but it is not in the data plane.
 
-The IOTC surface a developer integrates against is the same on either side. The bootstrap tool (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and the network topology differ; the MQTT contract does not. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Where things fail](/reference/diagnose/two-edges).
+The IOTC surface a developer integrates against is the same on either side. The bootstrap tool (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and the network topology differ; the MQTT contract does not. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Where things fail](/diagnose/where-things-fail).
 
 ### MQTT Broker
 
@@ -73,7 +73,7 @@ For more than a handful of sleds, an MDM platform takes over the cold-start, con
 - **SOTI Connect**: Zebra's reference MDM partner. Receives `alert_short` (compact alerts) on the SOTI endpoint.
 - **42Gears SureMDM**: alternative MDM with first-class IOTC support.
 
-In MDM-managed deployments, the bootstrap tool (**123RFID Desktop** for Direct sleds, **123RFID Mobile** for Bridged) is used once to set the region and seed the MDM endpoint. After that, the MDM platform owns provisioning, firmware, and policy. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Going from one reader to a fleet](/fleet/provisioning/models) for the comparison matrix.
+In MDM-managed deployments, the bootstrap tool (**123RFID Desktop** for Direct sleds, **123RFID Mobile** for Bridged) is used once to set the region and seed the MDM endpoint. After that, the MDM platform owns provisioning, firmware, and policy. See [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Going from one reader to a fleet](/fleet/provisioning-models) for the comparison matrix.
 
 ### Authority hierarchy
 
@@ -85,6 +85,6 @@ When the same fact disagrees across actors, this hierarchy resolves it:
 4. **The bootstrap tool** (123RFID Desktop on Direct, 123RFID Mobile on Bridged) is authoritative for region (no other actor can change it).
 5. **Application caches** are advisory (discard on reconnect).
 
-Disputes between (3) and (1) (between intended state and observed state)are *drift* and are addressed in [Keeping a fleet in sync](/fleet/management/about-bulk).
+Disputes between (3) and (1) (between intended state and observed state)are *drift* and are addressed in [Keeping a fleet in sync](/fleet/bulk-management).
 
-**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📗 [Phase 2: Bootstrap with 123RFID Desktop](/getting-started/quick-start/step-2-discover) · 📘 [Going from one reader to a fleet](/fleet/provisioning/models)
+**Related:** 📘 [How commands and responses flow](/foundations/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📗 [Phase 2: Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct) · 📘 [Going from one reader to a fleet](/fleet/provisioning-models)

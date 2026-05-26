@@ -30,6 +30,6 @@ Curated list of MQTT 3.1.1 client libraries tested against the Zebra Handheld RF
 - **Backend service consuming tag data at scale:** Go or Rust for throughput; Java or C# for enterprise integration.
 - **Mobile host-side app:** Swift (iOS) or the Android Paho Java client.
 - **Embedded gateway or bridge:** Paho C, or Rust with `rumqttc`.
-- **CLI tooling and quick prototypes:** `mosquitto_pub` / `mosquitto_sub` from the [Mosquitto project](https://mosquitto.org/) — used throughout the [Quick Start Tutorial](/getting-started/quick-start/overview).
+- **CLI tooling and quick prototypes:** `mosquitto_pub` / `mosquitto_sub` from the [Mosquitto project](https://mosquitto.org/) — used throughout the [Quick Start Tutorial](/quick-start/overview).
 
-**Related:** 📗 [Python tutorial](/sdks/python) · 📗 [Node.js tutorial](/sdks/nodejs) · 📗 [C# tutorial](/sdks/csharp) · 📘 [About MQTT 3.1.1](/foundations/mqtt/primer)
+**Related:** 📗 [Python tutorial](/sdks/python) · 📗 [Node.js tutorial](/sdks/nodejs) · 📗 [C# tutorial](/sdks/csharp) · 📘 [About MQTT 3.1.1](/foundations/mqtt-primer)

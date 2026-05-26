@@ -1,5 +1,5 @@
 ---
-id: about
+id: start
 title: Start here
 sidebar_label: Start here
 ---
@@ -33,14 +33,14 @@ For exact command signatures, payload schemas, and the full error-code table, th
 
 | Who you are | Where to start |
 |---|---|
-| New integrator on a Premium or RFD90 sled (Windows laptop) | [Your first 30 minutes](/getting-started/quick-start/overview), Setup Path A (Direct, 123RFID Desktop) |
-| New integrator on a Standard sled (Android host) | [Two bootstrap tools](/foundations/bootstrap-tools) → pair via [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing) → bootstrap with 123RFID Mobile |
+| New integrator on a Premium or RFD90 sled (Windows laptop) | [Your first 30 minutes](/quick-start/overview), Setup Path A (Direct, 123RFID Desktop) |
+| New integrator on a Standard sled (Android host) | [Two bootstrap tools](/foundations/bootstrap-tools) → pair via [Bluetooth pairing](/quick-start/prerequisites/bluetooth-pairing) → bootstrap with 123RFID Mobile |
 | New integrator on Premium / RFD90 without a Windows laptop | [Two bootstrap tools](/foundations/bootstrap-tools) — use 123RFID Mobile over Bluetooth |
 | Coming from a fixed reader (FX9600 / FX7500 / ATR7000) | [What the IoT Connector is](/foundations/about-iotc) → [Which sled do you have?](/foundations/hardware-tiers) → [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) |
-| Coming from REST/HTTP, no MQTT exposure | [MQTT in five minutes](/foundations/mqtt/primer) first |
-| Solution builder shaping an integration | [Roles: Reader, Host, Broker, Application](/foundations/actors) → [How commands and responses flow](/foundations/architecture/communication-flow) |
-| Fleet operator | [Going from one reader to a fleet](/fleet/provisioning/models) |
-| In an incident right now | [Something's broken?](/reference/diagnose/symptom-index) |
+| Coming from REST/HTTP, no MQTT exposure | [MQTT in five minutes](/foundations/mqtt-primer) first |
+| Solution builder shaping an integration | [Roles: Reader, Host, Broker, Application](/foundations/actors) → [How commands and responses flow](/foundations/communication-flow) |
+| Fleet operator | [Going from one reader to a fleet](/fleet/provisioning-models) |
+| In an incident right now | [Something's broken?](/diagnose/symptoms) |
 | API consumer (look-up only) | MQTT API Reference (top nav) |
 
 ### Tier badges
@@ -53,4 +53,4 @@ Conceptual chapters explain *why* and *what*. The API Reference explains *how to
 
 ### Where to go next
 
-New to MQTT? Read [MQTT in five minutes](/foundations/mqtt/primer). Already comfortable with MQTT? Skip to [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).
+New to MQTT? Read [MQTT in five minutes](/foundations/mqtt-primer). Already comfortable with MQTT? Skip to [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).

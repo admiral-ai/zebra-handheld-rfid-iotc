@@ -14,7 +14,7 @@ The sled reaches the network only through its paired host device, over Bluetooth
 
 ### Battery is the primary constraint
 
-Persistent MQTT connections, frequent heartbeats, high-throughput tag reads, all of these draw battery. A heartbeat at 5-second intervals consumes meaningfully more battery than one at 60-second intervals. An always-on inventory drains a fully-charged RFD90 in 4–6 hours. [Battery Monitoring](/observability/monitoring/battery) and [About Heartbeat Events](/observability/events/heartbeat) name the trade-offs.
+Persistent MQTT connections, frequent heartbeats, high-throughput tag reads, all of these draw battery. A heartbeat at 5-second intervals consumes meaningfully more battery than one at 60-second intervals. An always-on inventory drains a fully-charged RFD90 in 4–6 hours. [Battery Monitoring](/observability/monitoring/battery) and [About Heartbeat Events](/observability/heartbeat) name the trade-offs.
 
 ### A single internal antenna
 
@@ -45,4 +45,4 @@ The sled has a hardware trigger button. Pulling it generates events that map to 
 
 These constraints surface in Part III (network and security must work through the host), Part IV (operating modes are tuned to the single antenna), Part V (events focus on battery and BT state), and Part VI (provisioning at scale assumes MDM-managed host devices). They are not caveats footnoted on isolated pages; they are structural.
 
-**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📙 [Bluetooth Pairing](/getting-started/prerequisites/bluetooth-pairing) · 📘 [Trigger Operations](/rfid/operating-mode/trigger-composition) · 📙 [Battery Monitoring](/observability/monitoring/battery)
+**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📙 [Bluetooth Pairing](/quick-start/prerequisites/bluetooth-pairing) · 📘 [Trigger Operations](/rfid/operating-mode/trigger-composition) · 📙 [Battery Monitoring](/observability/monitoring/battery)

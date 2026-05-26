@@ -67,7 +67,7 @@ Common architecture: an MQTT consumer service deduplicates and batches; writes t
 
 If the application cannot keep up, MQTT QoS 0 silently drops messages, the broker does not buffer. For high-availability requirements: increase consumer concurrency, run multiple consumers on different channels ([Dual data channels](/rfid/tag-data/dual-channels)), and consider configuring `dataEVT` at QoS 1 with sized retention. See [MQTT QoS](/foundations/mqtt/qos).
 
-**Related:** 📕 [dataEVT Schema](/rfid/tag-data/dataevt-schema) · 📙 [Interpret Fields](/rfid/tag-data/interpret) · 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws)
+**Related:** 📕 [dataEVT Schema](/rfid/dataevt-schema) · 📙 [Interpret Fields](/rfid/tag-data/interpret) · 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws)
 
 ---
 

@@ -130,4 +130,4 @@ When the OpenAPI rendering and a field-validated MQTT example disagree, trust th
 
 If you suspect this is what's happening, log the exact JSON your client publishes. The reader's error response will name the offending field. Compare against the canonical example in `mqtt-api-reference/<command>.md`, the difference is the bug.
 
-**Related:** 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — entry **MM-01** · MQTT API Reference (top nav)
+**Related:** 📘 [How commands and responses flow](/foundations/communication-flow) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [Things people get wrong about IOTC](/diagnose/misconceptions) — entry **MM-01** · MQTT API Reference (top nav)

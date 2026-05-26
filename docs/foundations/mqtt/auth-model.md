@@ -39,13 +39,13 @@ Within a tenant, the broker enforces topic-level access control lists. Common pa
 
 ### Where credentials originate
 
-For Zebra-hosted brokers, credentials are issued through the Zebra developer portal, see [Obtain Credentials](/getting-started/prerequisites/credentials). For customer-hosted brokers and SOTI-managed fleets, credentials are configured at the broker and distributed through the MDM layer, see [SOTI Connect Provisioning](/fleet/provisioning/soti-connect).
+For Zebra-hosted brokers, credentials are issued through the Zebra developer portal, see [Obtain Credentials](/quick-start/prerequisites/credentials). For customer-hosted brokers and SOTI-managed fleets, credentials are configured at the broker and distributed through the MDM layer, see [SOTI Connect Provisioning](/fleet/provisioning/soti-connect).
 
 ### Threat model
 
 The model defends against: eavesdropping on the wire (TLS), unauthorized command publish (authentication + ACLs), and cross-tenant access (tenant scoping). It does **not** defend against: physical access to a sled (an attacker with the device can extract credentials), Bluetooth interception between sled and host, or a compromised host device. For deployments where these threats matter, layer hardware-level protections — MDM-controlled hosts, sled custody policies, on top of the IOTC model.
 
-**Related:** 📘 [Security Model](/infrastructure/security/model) · 📙 [Obtaining Credentials](/getting-started/prerequisites/credentials) · 📙 [Securing MQTT with TLS](/infrastructure/security/tls-setup)
+**Related:** 📘 [Security Model](/infrastructure/security/model) · 📙 [Obtaining Credentials](/quick-start/prerequisites/credentials) · 📙 [Securing MQTT with TLS](/infrastructure/security/tls-setup)
 
 ---
 

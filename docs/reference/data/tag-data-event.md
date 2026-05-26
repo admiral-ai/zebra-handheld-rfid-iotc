@@ -5,4 +5,4 @@ sidebar_label: Data Interface — dataEVT
 ---
 > 📕 **REFERENCE**
 
-Two parallel topic channels for `dataEVT`. Channel assignment is via `epType: DATA1` vs `epType: DATA2` on the configured data endpoint. Schema canonical in [dataEVT schema](/rfid/tag-data/dataevt-schema).
+Two parallel topic channels for `dataEVT`. Channel assignment is via `epType: DATA1` vs `epType: DATA2` on the configured data endpoint. Schema canonical in [dataEVT schema](/rfid/dataevt-schema).

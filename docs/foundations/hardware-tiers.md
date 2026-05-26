@@ -1,5 +1,5 @@
 ---
-id: supported-hardware
+id: hardware-tiers
 title: "Which sled do you have? (Direct vs Bridged)"
 sidebar_label: "Which sled do you have? (Direct vs Bridged)"
 ---
@@ -40,7 +40,7 @@ flowchart LR
 - The sled connects to Wi-Fi directly. The host mobile device is optional — useful for the operator UI, but not in the network path.
 - One physical edge between the sled and the broker: **Reader ↔ Wi-Fi ↔ Broker**.
 - The sled is the MQTT client. Credentials, certificates, and topic subscriptions all live in firmware.
-- Reading the failure-mode chapter [Where things fail](/reference/diagnose/two-edges) requires considering **one** edge.
+- Reading the failure-mode chapter [Where things fail](/diagnose/where-things-fail) requires considering **one** edge.
 
 **On a Bridged sled** (RFD40 Standard):
 
@@ -83,10 +83,10 @@ flowchart LR
 
 ### Minimum firmware
 
-All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events), the [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) HTTP source, and several event flags. Older deployments will need a [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) update before the docs apply cleanly. See [Updating firmware and rebooting](/infrastructure/management/system-operations).
+All chapters assume firmware **3.10.27 or later**. Earlier firmware lacks [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events), the [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) HTTP source, and several event flags. Older deployments will need a [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) update before the docs apply cleanly. See [Updating firmware and rebooting](/infrastructure/system-operations).
 
 ### What this implies for scope
 
 Because every sled has one internal antenna, this documentation does **not** cover external-antenna selection, cable-loss compensation, or directionality settings; those exist only on fixed readers. Because every sled is battery-powered, the docs give sustained attention to battery lifecycle, the OPTIMAL_BATTERY profile, and heartbeat-emission cost. These are not caveats; they shape every chapter.
 
-**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📘 [How commands and responses flow](/foundations/architecture/communication-flow) · 📕 [Capacity and limits](/reference/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)
+**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) · 📘 [How commands and responses flow](/foundations/communication-flow) · 📕 [Capacity and limits](/reference/glossary) · 📕 [Regulatory & regional information](/reference/appendices/regulatory)

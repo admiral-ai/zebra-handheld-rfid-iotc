@@ -155,4 +155,4 @@ Events do **not** use this shape, they have their own root structures. See per-e
 
 Treat this file as the **single internal source of truth** for terminology when the documentation set itself is referenced. Where the user's `zebra-handheld-rfid-iotc-content.md` working draft or older Zebra documentation disagrees, this glossary holds. For the field-level API contract, the `mqtt-api-reference/` corpus wins over everything.
 
-**Related:** 📘 [Things people get wrong about IOTC](/reference/diagnose/misconceptions) · 📘 [Pairing the docs with the API Reference](/foundations/docs-and-api-reference) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 MQTT API Reference (top nav)
+**Related:** 📘 [Things people get wrong about IOTC](/diagnose/misconceptions) · 📘 [Pairing the docs with the API Reference](/foundations/docs-and-api-reference) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 MQTT API Reference (top nav)

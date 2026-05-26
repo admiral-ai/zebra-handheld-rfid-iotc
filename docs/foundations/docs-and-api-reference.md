@@ -1,5 +1,5 @@
 ---
-id: docs-and-api-ref
+id: docs-and-api-reference
 title: Pairing the docs with the API Reference
 sidebar_label: Pairing the docs with the API Reference
 ---
@@ -78,4 +78,4 @@ The OpenAPI rendering on the API Reference site may show nested envelopes (`ctrl
 
 ### Where to go next
 
-For the IOTC mental model: [What the IoT Connector is](/foundations/about-iotc). For the protocol primer: [MQTT in five minutes](/foundations/mqtt/primer). For the OpenAPI disambiguation: [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi).
+For the IOTC mental model: [What the IoT Connector is](/foundations/about-iotc). For the protocol primer: [MQTT in five minutes](/foundations/mqtt-primer). For the OpenAPI disambiguation: [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi).

@@ -20,7 +20,7 @@ Every command request uses the same envelope:
 }
 ```
 
-Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/architecture/communication-flow) for the request/response and event flows.
+Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `command` and `requestId`. Commands with parameters add a single named payload object whose key is operation-specific (`ctrlOprPayload`, `epConfig`, `operatingMode`, etc.). See [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) for the canonical shape, and [How commands and responses flow](/foundations/communication-flow) for the request/response and event flows.
 
 Responses echo `command` and `requestId` and add `apiVersion` and a `response` object:
 
@@ -69,7 +69,7 @@ The **Management** tag group covers device identity, network setup, MQTT endpoin
 
 ### Device Status
 
-Live identity, runtime health, and regulatory region. See [What your reader knows about itself](/infrastructure/management/device-state).
+Live identity, runtime health, and regulatory region. See [What your reader knows about itself](/infrastructure/device-state).
 
 | API | Type | Description |
 |---|---|---|
@@ -109,7 +109,7 @@ Install, inspect, and remove TLS certificates for MQTT, Wi-Fi, and the file stor
 
 ### Device Configuration
 
-Read and write the reader's device-wide configuration document. See [The reader's configuration document](/infrastructure/management/config-document).
+Read and write the reader's device-wide configuration document. See [The reader's configuration document](/infrastructure/config-document).
 
 | API | Type | Description |
 |---|---|---|
@@ -118,7 +118,7 @@ Read and write the reader's device-wide configuration document. See [The reader'
 
 ### System Operations
 
-Firmware update and warm reset. See [Updating firmware and rebooting](/infrastructure/management/system-operations).
+Firmware update and warm reset. See [Updating firmware and rebooting](/infrastructure/system-operations).
 
 | API | Type | Description |
 |---|---|---|
@@ -133,7 +133,7 @@ The **Control** tag group covers the RFID radio: operating mode, tag filtering, 
 
 ### Operating Mode
 
-Profile selection, query parameters, access operations, and metadata enablement. See [Choose how the reader reads tags](/rfid/operating-mode/profiles).
+Profile selection, query parameters, access operations, and metadata enablement. See [Choose how the reader reads tags](/rfid/operating-mode-profiles).
 
 | API | Type | Description |
 |---|---|---|
@@ -142,7 +142,7 @@ Profile selection, query parameters, access operations, and metadata enablement.
 
 ### Tag Filtering
 
-Post-read report filters scoped to a data endpoint. See [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about).
+Post-read report filters scoped to a data endpoint. See [Filter tags before vs after the read](/rfid/post-filters).
 
 | API | Type | Description |
 |---|---|---|
@@ -151,7 +151,7 @@ Post-read report filters scoped to a data endpoint. See [Filter tags before vs a
 
 ### Inventory Control
 
-Start and stop RFID inventory (or scanner) operations. See [Start, stop, and the trigger button](/rfid/operating-mode/start-stop).
+Start and stop RFID inventory (or scanner) operations. See [Start, stop, and the trigger button](/rfid/start-stop-inventory).
 
 | API | Type | Description |
 |---|---|---|
@@ -165,7 +165,7 @@ The **Events** tag group covers the reader's asynchronous management-event surfa
 
 ### Event Configuration
 
-Configure which events the reader emits and at what thresholds. See [Choose what the reader tells you](/observability/events/configure).
+Configure which events the reader emits and at what thresholds. See [Choose what the reader tells you](/observability/configure-events).
 
 | API | Type | Description |
 |---|---|---|
@@ -173,7 +173,7 @@ Configure which events the reader emits and at what thresholds. See [Choose what
 
 ### Device Health
 
-Periodic liveness with optional inventory and battery sub-payloads. See [Watch your reader's pulse](/observability/events/heartbeat).
+Periodic liveness with optional inventory and battery sub-payloads. See [Watch your reader's pulse](/observability/heartbeat).
 
 | API | Type | Description |
 |---|---|---|
@@ -181,7 +181,7 @@ Periodic liveness with optional inventory and battery sub-payloads. See [Watch y
 
 ### Alerts
 
-Threshold-driven and state-transition notifications. Two payload variants. See [When the reader needs to interrupt you](/observability/events/alerts).
+Threshold-driven and state-transition notifications. Two payload variants. See [When the reader needs to interrupt you](/observability/alerts).
 
 | API | Type | Description |
 |---|---|---|
@@ -190,7 +190,7 @@ Threshold-driven and state-transition notifications. Two payload variants. See [
 
 ### MQTT Connectivity
 
-Endpoint connection state transitions. See [Knowing when you're connected](/observability/events/mqtt-connection).
+Endpoint connection state transitions. See [Knowing when you're connected](/observability/mqtt-connection).
 
 | API | Type | Description |
 |---|---|---|
@@ -204,7 +204,7 @@ The **Data** tag group covers tag-read events emitted during active inventory.
 
 ### Tag Data Event
 
-Per-tag (or aggregated) inventory output. See [Where tag reads come from](/rfid/tag-data/dataevt-schema).
+Per-tag (or aggregated) inventory output. See [Where tag reads come from](/rfid/dataevt-schema).
 
 | API | Type | Description |
 |---|---|---|
@@ -218,25 +218,25 @@ Every Part 4–6 chapter in these docs ties to one API sub-tag. The pairing is b
 
 | Concept chapter | API sub-tag |
 |---|---|
-| [What your reader knows about itself](/infrastructure/management/device-state) | Device Status |
+| [What your reader knows about itself](/infrastructure/device-state) | Device Status |
 | [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) | Network Configuration |
 | [How the MQTT plumbing fits together](/infrastructure/endpoints/about) | MQTT Endpoint Configuration |
 | [Securing the connection (TLS & certificates)](/infrastructure/security/model) | Certificate Management |
-| [The reader's configuration document](/infrastructure/management/config-document) | Device Configuration |
-| [Updating firmware and rebooting](/infrastructure/management/system-operations) | System Operations |
-| [Choose how the reader reads tags](/rfid/operating-mode/profiles) | Operating Mode |
-| [Filter tags before vs after the read](/rfid/operating-mode/post-filters-about) | Tag Filtering |
-| [Start, stop, and the trigger button](/rfid/operating-mode/start-stop) | Inventory Control |
-| [Choose what the reader tells you](/observability/events/configure) | Event Configuration |
-| [Watch your reader's pulse](/observability/events/heartbeat) | Device Health |
-| [When the reader needs to interrupt you](/observability/events/alerts) | Alerts |
-| [Knowing when you're connected](/observability/events/mqtt-connection) | MQTT Connectivity |
-| [Where tag reads come from](/rfid/tag-data/dataevt-schema) | Tag Data Event |
+| [The reader's configuration document](/infrastructure/config-document) | Device Configuration |
+| [Updating firmware and rebooting](/infrastructure/system-operations) | System Operations |
+| [Choose how the reader reads tags](/rfid/operating-mode-profiles) | Operating Mode |
+| [Filter tags before vs after the read](/rfid/post-filters) | Tag Filtering |
+| [Start, stop, and the trigger button](/rfid/start-stop-inventory) | Inventory Control |
+| [Choose what the reader tells you](/observability/configure-events) | Event Configuration |
+| [Watch your reader's pulse](/observability/heartbeat) | Device Health |
+| [When the reader needs to interrupt you](/observability/alerts) | Alerts |
+| [Knowing when you're connected](/observability/mqtt-connection) | MQTT Connectivity |
+| [Where tag reads come from](/rfid/dataevt-schema) | Tag Data Event |
 
 ## Related
 
 - [The OpenAPI Illusion](/foundations/native-mqtt-vs-openapi) — why the on-the-wire MQTT shape differs from the OpenAPI rendering.
-- [How commands and responses flow](/foundations/architecture/communication-flow) — the three flow types (command/response, event, tag data).
+- [How commands and responses flow](/foundations/communication-flow) — the three flow types (command/response, event, tag data).
 - [Error Response Format](/reference/errors/format) — the response envelope.
 - [Command Response Error Codes](/reference/errors/codes) — the full list of 29 codes (0–28).
-- [Things people get wrong about IOTC](/reference/diagnose/misconceptions) — common integration mistakes and their fixes.
+- [Things people get wrong about IOTC](/diagnose/misconceptions) — common integration mistakes and their fixes.

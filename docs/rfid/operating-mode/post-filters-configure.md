@@ -64,4 +64,4 @@ sidebar_label: How to Configure Post-Filters
 
 `operation: MODIFY` updates an existing filter; `operation: DELETE` removes one.
 
-**Related:** 📘 [Post-Filters](/rfid/operating-mode/post-filters-about) · 📕 [set_post_filter](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter)
+**Related:** 📘 [Post-Filters](/rfid/post-filters) · 📕 [set_post_filter](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter)

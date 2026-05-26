@@ -14,7 +14,7 @@ sidebar_label: General Questions
 
 **Q:** Which MQTT version does IOTC use?
 **A:** MQTT 3.1.1, exclusively.
-**Details:** [About MQTT 3.1.1](/foundations/mqtt/primer)
+**Details:** [About MQTT 3.1.1](/foundations/mqtt-primer)
 
 ---
 
@@ -26,10 +26,10 @@ sidebar_label: General Questions
 
 **Q:** Where do I get IOTC credentials?
 **A:** From the Zebra developer portal, under IoT Connector to Tenants.
-**Details:** [How to Obtain IOTC Credentials & Tenant ID](/getting-started/prerequisites/credentials)
+**Details:** [How to Obtain IOTC Credentials & Tenant ID](/quick-start/prerequisites/credentials)
 
 ---
 
 **Q:** What is the minimum firmware version?
 **A:** 3.10.27.
-**Details:** [Hardware & Software Requirements](/getting-started/prerequisites/requirements)
+**Details:** [Hardware & Software Requirements](/quick-start/prerequisites/requirements)

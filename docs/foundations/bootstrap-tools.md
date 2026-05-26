@@ -11,7 +11,7 @@ A sled out of the box has no regulatory region, no Wi-Fi credentials (Direct) or
 | Tool | Platform | First attach | Tier it bootstraps |
 |---|---|---|---|
 | **123RFID Desktop** | Windows 10 / 11 | USB-C (or Bluetooth after pairing) | 🅓 Direct: RFD40 Premium, Premium Plus, RFD90 |
-| **123RFID Mobile** | Android 7+ (Nougat) | Bluetooth 5.0 LE (NFC tap, host-scans-sled, sled-scans-mobile, camera, or manual) — see availability matrix in [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing) | 🅑 Bridged: RFD40 Standard. Also works for Direct sleds over BT. |
+| **123RFID Mobile** | Android 7+ (Nougat) | Bluetooth 5.0 LE (NFC tap, host-scans-sled, sled-scans-mobile, camera, or manual) — see availability matrix in [Bluetooth pairing](/quick-start/prerequisites/bluetooth-pairing) | 🅑 Bridged: RFD40 Standard. Also works for Direct sleds over BT. |
 
 Both tools download free from `support.zebra.com`. **Once a sled is online, every IoTC MQTT operation behaves identically across tiers** — the bootstrap-tool choice is a one-time decision about which onboarding flow your operator follows.
 
@@ -30,7 +30,7 @@ Both tools perform the same logical bootstrap steps; the UX and transport differ
 
 | Bootstrap step | 123RFID Desktop | 123RFID Mobile |
 |---|---|---|
-| Discover and attach the sled | Click **FIND READERS**, choose USB or Bluetooth | One of five Bluetooth pairing methods — Tap and Pair (NFC), Scan and Pair (host scans sled), Pair by Barcode (sled scans mobile), Pairing with the Camera, or Manual Android pairing; plus USB / Common IO direct attach without pairing. See [Bluetooth pairing](/getting-started/prerequisites/bluetooth-pairing). |
+| Discover and attach the sled | Click **FIND READERS**, choose USB or Bluetooth | One of five Bluetooth pairing methods — Tap and Pair (NFC), Scan and Pair (host scans sled), Pair by Barcode (sled scans mobile), Pairing with the Camera, or Manual Android pairing; plus USB / Common IO direct attach without pairing. See [Bluetooth pairing](/quick-start/prerequisites/bluetooth-pairing). |
 | Set the regulatory region | **Region** tab → choose country → **Apply** | **Settings** → **Region** → choose country → **Apply** |
 | Configure Wi-Fi (Direct only) | Communication → Wi-Fi → Scan and Choose Network | n/a — Bridged sleds rely on the host's Wi-Fi; Wi-Fi for Direct via Mobile is supported when the sled itself has a Wi-Fi radio |
 | Configure the MDM endpoint | Communication → **End Point** → **New** | **Settings** → MQTT / MDM endpoint |
@@ -38,7 +38,7 @@ Both tools perform the same logical bootstrap steps; the UX and transport differ
 
 ### Pairing methods supported by 123RFID Mobile
 
-For Bluetooth pairing the mobile app supports **five** methods, each with its own sled-tier and host-device availability constraints (full procedures in [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing)):
+For Bluetooth pairing the mobile app supports **five** methods, each with its own sled-tier and host-device availability constraints (full procedures in [How to pair the reader sled with a host](/quick-start/prerequisites/bluetooth-pairing)):
 
 - **Tap and Pair (NFC).** Touch the host phone to the sled's NFC tag area on the handle. **Available only on RFD40 Premium and Premium Plus** (per the *123RFID Mobile User Guide*; Standard has no NFC tag).
 - **Scan and Pair.** The host's integrated barcode scanner reads a code on the sled to obtain the sled's Bluetooth MAC. **Available only on RFD40 Premium Plus, and only on Zebra Enterprise Mobile Computing devices** (not third-party Android phones).
@@ -75,8 +75,8 @@ The **only** operational differences after bootstrap:
 
 ### Out of scope
 
-- **OS-level Bluetooth pairing as a separate concept**, see [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing).
-- **The full bootstrap walkthroughs (with screenshots)**, see the two Phase 2 pages of the Quick Start: [Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) and [Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile).
+- **OS-level Bluetooth pairing as a separate concept**, see [How to pair the reader sled with a host](/quick-start/prerequisites/bluetooth-pairing).
+- **The full bootstrap walkthroughs (with screenshots)**, see the two Phase 2 pages of the Quick Start: [Direct (123RFID Desktop)](/quick-start/phase-2/direct) and [Bridged (123RFID Mobile)](/quick-start/phase-2/bridged).
 - **Tier identification by SKU label**, see [Which sled do you have?](/foundations/hardware-tiers).
 
-**Related:** 📘 [Which sled do you have? (Direct vs Bridged)](/foundations/hardware-tiers) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📗 [Phase 2: Direct (123RFID Desktop)](/getting-started/quick-start/step-2-discover) · 📗 [Phase 2: Bridged (123RFID Mobile)](/getting-started/quick-start/step-2-discover-mobile) · 📙 [How to pair the reader sled with a host](/getting-started/prerequisites/bluetooth-pairing)
+**Related:** 📘 [Which sled do you have? (Direct vs Bridged)](/foundations/hardware-tiers) · 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📗 [Phase 2: Direct (123RFID Desktop)](/quick-start/phase-2/direct) · 📗 [Phase 2: Bridged (123RFID Mobile)](/quick-start/phase-2/bridged) · 📙 [How to pair the reader sled with a host](/quick-start/prerequisites/bluetooth-pairing)

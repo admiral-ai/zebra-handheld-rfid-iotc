@@ -54,4 +54,4 @@ stateDiagram-v2
 
 Each PINGREQ wakes the radio. A 30-second keep-alive at moderate battery draws ~3% extra per shift compared to a 120-second keep-alive. For deployments where battery is the binding constraint, increase the keep-alive interval and accept slightly slower offline-detection latency. The trade-off is operational, not protocol-level.
 
-**Related:** 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [MQTT Connection Events](/observability/events/mqtt-connection) · 📙 [Connection Quality](/observability/monitoring/connection-quality) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt)
+**Related:** 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [MQTT Connection Events](/observability/mqtt-connection) · 📙 [Connection Quality](/observability/monitoring/connection-quality) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt)
