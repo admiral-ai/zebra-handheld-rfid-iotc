@@ -24,9 +24,9 @@ cluster.
 
 | | Count |
 |---|---|
-| Total docs in `/docs/**` | 129 |
-| Surfaced in sidebar | 45 |
-| Not surfaced (orphans) | 84 |
+| Total docs in `/docs/**` | 128 (was 129; `/sdks/overview` deleted) |
+| Surfaced in sidebar | 48 (was 45; +3 promoted from orphan audit: documentation-guide, api-overview, v1-1-features) |
+| Not surfaced (orphans) | 80 |
 | ↳ Reachable from sidebar-surfaced (direct in-link) | 8 |
 | ↳ Reachable via a cluster (in a coherent deep-ref group) | 72 |
 | ↳ Truly accidental orphans (no path in) | 4 |
@@ -142,13 +142,17 @@ pages spread from there via in-page links.
 | `/sdks/nodejs` | ✅ Intentional |
 | `/sdks/python` | ✅ Intentional |
 | `/sdks/libraries` | ✅ Intentional — landing list |
-| `/sdks/overview` | ⚠️ **Accidental orphan** (see below) |
+| `/sdks/overview` | 🗑️ **Deleted** (see below) |
 
 > **Note.** Language-specific quick-starts duplicate the canonical
 > Part-3 Quick Start in each language. The navbar's "Developer Portal"
 > link goes to developer.zebra.com which is the primary SDK surface.
-> The `/sdks/overview` page acts as a landing within the docs and *is*
-> orphaned — see "promoted" below.
+> The `/sdks/overview` page was a docs-side landing that duplicated the
+> sibling `/sdks/libraries` table. It was briefly promoted to the
+> sidebar in an earlier orphan-audit pass, then **deleted** as
+> not-required — no doc page cross-linked to it, and the sidebar
+> doesn't need a separate SDK section above and beyond Quick Start
+> Part 3 and the navbar Developer Portal link.
 
 ### `/fleet/cloud-integration/*` cluster (5 pages) — cloud-broker how-tos
 
@@ -288,17 +292,17 @@ pages spread from there via in-page links.
 > **Note.** Sidebar surfaces `/rfid/dataevt-schema`; these deeper pages
 > spread from it.
 
-## Truly accidental orphans — promoted to sidebar
+## Truly accidental orphans — promoted to sidebar (or deleted)
 
-These 4 pages have no incoming links and don't belong to a coherent
-reachable cluster. They are promoted to the sidebar.
+These 4 pages had no incoming links and didn't belong to a coherent
+reachable cluster. Three are promoted to the sidebar; one was deleted.
 
-| Page | H1 | Best placement |
+| Page | H1 | Disposition |
 |---|---|---|
-| `/foundations/documentation-guide` | "About the Structure of This Documentation" | Part 1 (Get oriented) — between `start` and `mqtt-primer`. This *is* the docs reading guide; a reader who can't find it can't find the docs. |
-| `/foundations/v1-1-features` | "About IOTC V1.1 Features" | Part 8 (Diagnose and reference) — release notes belong with reference material |
-| `/sdks/overview` | "SDKs & Language Tutorials" | Part 3 (Quick start) as a sibling of overview — code-sample alternatives to the mosquitto_pub/sub canonical quick-start |
-| `/reference/api-overview` | "MQTT API Reference" | Part 8 (Diagnose and reference) — the canonical internal landing for the API reference (the navbar's "API Reference" goes to the *external* render; this internal page is the docs-side index) |
+| `/foundations/documentation-guide` | "About the Structure of This Documentation" | **Promoted to Part 1** (Get oriented) — between `start` and `mqtt-primer`. This *is* the docs reading guide; a reader who can't find it can't find the docs. |
+| `/foundations/v1-1-features` | "About IOTC V1.1 Features" | **Promoted to Part 8** (Diagnose and reference) — release notes belong with reference material |
+| `/reference/api-overview` | "MQTT API Reference" | **Promoted to Part 8** (Diagnose and reference) — the canonical internal landing for the API reference (the navbar's "API Reference" goes to the *external* render; this internal page is the docs-side index) |
+| `/sdks/overview` | "SDKs & Language Tutorials" | **Deleted** — duplicated `/sdks/libraries` and had no incoming cross-references. The navbar Developer Portal + Part 3 Quick Start + `/sdks/libraries` already cover the SDK surface. |
 
 > The other 8 reachable-from-surfaced pages are kept as deep reference,
 > consistent with the design philosophy. They are linked at the right

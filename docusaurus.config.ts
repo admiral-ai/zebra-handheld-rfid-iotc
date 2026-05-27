@@ -84,6 +84,9 @@ const config: Config = {
           { from: '/reference/diagnose/two-edges',                         to: '/diagnose/where-things-fail' },
           { from: '/reference/diagnose/recovery-playbooks',                to: '/diagnose/recovery-playbooks' },
           { from: '/reference/diagnose/misconceptions',                    to: '/diagnose/misconceptions' },
+          // /sdks/overview deleted as not-required (duplicated /sdks/libraries with no inbound links).
+          // Redirect to the surviving SDK landing so any external bookmarks still resolve.
+          { from: '/sdks/overview',                                        to: '/sdks/libraries' },
         ],
       },
     ],

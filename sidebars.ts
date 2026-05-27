@@ -82,7 +82,6 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'quick-start/overview',
-        'sdks/overview',
         {
           type: 'category',
           label: 'Phase 0: Prerequisites',
