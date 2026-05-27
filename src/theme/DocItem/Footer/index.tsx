@@ -1,29 +1,31 @@
 /**
  * Swizzled @theme/DocItem/Footer.
  *
- * Replaces Docusaurus' default doc footer (tags row + Edit-this-page +
- * last-updated meta) with the PushFeedback widget rendered inline at
- * the bottom of every doc page.
+ * Renders a compact "Was this helpful?" prompt with thumbs-up /
+ * thumbs-down trigger buttons. Clicking a thumb opens the PushFeedback
+ * modal pre-set with that rating, where the user can add a free-text
+ * message, email, optional screenshot, and submit.
  *
- * Configuration ("Inline Thumbs" layout):
- *   - <feedback-modal embedded="true">  — inline form, not floating
- *   - rating-mode="thumbs"               — thumbs-up / thumbs-down
- *   - rating-placeholder="Was this helpful?"  — label above rating
- *   - rating="0"                         — neutral (no rating yet)
- *   - modal-position="center"
+ * Pattern: official "Like / dislike feedback widget" example from
+ * PushFeedback's docs CodePen
+ * (https://codepen.io/David-Garcia-the-bashful/pen/jOgWaOp), surfaced
+ * at https://docs.pushfeedback.com/customization/layout under the
+ * "Like / dislike buttons" heading.
  *
- * Implementation note:
- * Stencil web components (which is what <feedback-modal> is) do not
- * always reliably hydrate when React renders the element via JSX —
- * React sets attributes/props in a way that can race against the
- * Stencil bootstrap. Creating the element imperatively via
- * document.createElement + setAttribute + appendChild in a useEffect
- * matches the pattern the official docusaurus-pushfeedback plugin
- * uses for <feedback-button>, and is the path that reliably triggers
- * Stencil's connectedCallback → componentWillLoad → render lifecycle.
+ * The trick: two <feedback-button> elements, one with rating="1"
+ * (thumbs up) and one with rating="0" (thumbs down). Each
+ * <feedback-button> wraps a custom <button> with the SVG icon — the
+ * PushFeedback web component uses its slotted content as the trigger
+ * and opens the standard feedback modal (Share your thoughts +
+ * Email + Add a screenshot + Send) when clicked.
  *
- * The PushFeedback CSS and ESM bundle are loaded globally via
- * `stylesheets` / `scripts` in docusaurus.config.ts.
+ * Implementation note (imperative DOM creation):
+ *   Stencil web components can race against React's hydration. The
+ *   docusaurus-pushfeedback plugin (used in earlier iterations) sets
+ *   up <feedback-button> by document.createElement + setAttribute, so
+ *   we follow the same pattern here in a useEffect rather than via
+ *   JSX. The custom element bundle is loaded globally via
+ *   `stylesheets` + `scripts` entries in docusaurus.config.ts.
  */
 
 import React, { useEffect, useRef, type ReactNode } from 'react';
@@ -33,29 +35,64 @@ import styles from './styles.module.css';
 
 const PROJECT_ID = 'fv5awvu82c';
 
+// SVG icons taken from the official "Like / dislike feedback widget"
+// CodePen, with stroke="currentColor" so the inner <button> controls
+// the colour (via CSS) rather than hardcoding a hex.
+const THUMB_UP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>`;
+
+const THUMB_DOWN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg>`;
+
+function makeThumbTrigger(
+  rating: '1' | '0',
+  title: string,
+  innerSvg: string,
+  buttonClass: string,
+): HTMLElement {
+  const fb = document.createElement('feedback-button');
+  fb.setAttribute('project', PROJECT_ID);
+  fb.setAttribute('rating', rating);
+  fb.setAttribute('button-style', 'default');
+  fb.setAttribute('modal-position', 'center');
+
+  const inner = document.createElement('button');
+  inner.className = buttonClass;
+  inner.setAttribute('type', 'button');
+  inner.setAttribute('title', title);
+  inner.setAttribute('aria-label', title);
+  inner.innerHTML = innerSvg;
+
+  fb.appendChild(inner);
+  return fb;
+}
+
 export default function DocItemFooter(): ReactNode {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const c = containerRef.current;
+    if (!c) return;
+    c.innerHTML = '';
 
-    // Clear any prior render (in case of client-side route change).
-    container.innerHTML = '';
+    // Label
+    const label = document.createElement('div');
+    label.className = styles.label;
+    label.textContent = 'Was this helpful?';
+    c.appendChild(label);
 
-    const modal = document.createElement('feedback-modal');
-    modal.setAttribute('project', PROJECT_ID);
-    modal.setAttribute('embedded', 'true');
-    modal.setAttribute('rating-mode', 'thumbs');
-    modal.setAttribute('rating-placeholder', 'Was this helpful?');
-    modal.setAttribute('rating', '0');
-    modal.setAttribute('modal-position', 'center');
-    container.appendChild(modal);
+    // Thumbs row
+    const row = document.createElement('div');
+    row.className = styles.thumbsRow;
+    row.appendChild(
+      makeThumbTrigger('1', 'Yes, this was helpful', THUMB_UP_SVG, styles.thumbBtn),
+    );
+    row.appendChild(
+      makeThumbTrigger('0', 'No, this was not helpful', THUMB_DOWN_SVG, styles.thumbBtn),
+    );
+    c.appendChild(row);
 
-    // Cleanup on unmount (route change) — remove the modal so it
-    // doesn't pile up across navigations.
+    // Cleanup on unmount (client-side route change) so widgets don't pile up.
     return () => {
-      container.innerHTML = '';
+      c.innerHTML = '';
     };
   }, []);
 
@@ -67,7 +104,7 @@ export default function DocItemFooter(): ReactNode {
         styles.feedbackFooter,
       )}
     >
-      <div ref={containerRef} className={styles.feedbackContainer} />
+      <div ref={containerRef} className={styles.feedbackWidget} />
     </footer>
   );
 }
