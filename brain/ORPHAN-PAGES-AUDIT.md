@@ -151,8 +151,12 @@ pages spread from there via in-page links.
 > primary SDK surface. The two library-reference pages
 > (`/sdks/libraries` and `/reference/appendices/libraries`) were also
 > deleted as out-of-scope. The `docs/sdks/` directory is empty and
-> removed. Redirects route every old URL to `/foundations/mqtt-primer`
-> (the closest surviving concept) so external bookmarks still resolve.
+> removed. **No redirects are kept** — these URLs intentionally 404.
+> (An earlier attempt added redirects to `/foundations/mqtt-primer`,
+> but `@docusaurus/plugin-client-redirects` generates a redirect-shell
+> HTML page at each `from` URL, which means the "deleted" URLs were
+> still resolving as redirect pages instead of true 404s. The redirects
+> were removed so the URLs truly disappear.)
 
 ### `/fleet/cloud-integration/*` cluster (5 pages) — cloud-broker how-tos
 

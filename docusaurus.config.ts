@@ -84,19 +84,12 @@ const config: Config = {
           { from: '/reference/diagnose/two-edges',                         to: '/diagnose/where-things-fail' },
           { from: '/reference/diagnose/recovery-playbooks',                to: '/diagnose/recovery-playbooks' },
           { from: '/reference/diagnose/misconceptions',                    to: '/diagnose/misconceptions' },
-          // The entire /sdks/* section was deleted as not-required. The canonical
-          // Quick Start at /quick-start/overview is language-agnostic (uses
-          // mosquitto_pub / mosquitto_sub) and the navbar "Developer Portal" link
-          // (https://developer.zebra.com) is the primary SDK surface. The two
-          // library-reference pages (/sdks/libraries and /reference/appendices/libraries)
-          // were also deleted as out-of-scope. Redirects route old URLs to the
-          // MQTT primer — the closest surviving concept for someone landing here.
-          { from: '/sdks/overview',                       to: '/foundations/mqtt-primer' },
-          { from: '/sdks/python',                         to: '/foundations/mqtt-primer' },
-          { from: '/sdks/nodejs',                         to: '/foundations/mqtt-primer' },
-          { from: '/sdks/csharp',                         to: '/foundations/mqtt-primer' },
-          { from: '/sdks/libraries',                      to: '/foundations/mqtt-primer' },
-          { from: '/reference/appendices/libraries',      to: '/foundations/mqtt-primer' },
+          // NOTE. The entire /sdks/* section and /reference/appendices/libraries
+          // were deleted as not-required. No redirects are kept for these URLs —
+          // they intentionally 404. (Earlier passes added redirects pointing them
+          // at /foundations/mqtt-primer; those were removed because the plugin
+          // generates a redirect-shell HTML page at each "from" URL, which kept
+          // the deleted URLs resolving as redirect pages instead of true 404s.)
         ],
       },
     ],
