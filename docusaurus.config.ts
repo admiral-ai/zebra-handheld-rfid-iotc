@@ -30,24 +30,13 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
   plugins: [
     'docusaurus-plugin-sass',
-    // PushFeedback widget — feedback button on every docs page.
-    // Install/setup docs: https://docs.pushfeedback.com/installation/docusaurus
-    // Project ID is not secret (it ships in the public JS bundle, same
-    // as the Algolia appId/apiKey below); hardcoding is intentional.
-    //
-    // Widget appears as a vertical "Feedback" label on the right edge
-    // of the viewport (center-right). Clicking it opens the feedback
-    // modal on the right side.
-    [
-      'docusaurus-pushfeedback',
-      {
-        project: 'fv5awvu82c',
-        buttonPosition: 'center-right',
-        modalPosition: 'sidebar-right',
-        buttonStyle: 'dark',
-        modalTitle: 'Send feedback on this page',
-      },
-    ],
+    // PushFeedback web component bundle. We DO NOT use the
+    // docusaurus-pushfeedback plugin because it only creates a
+    // floating <feedback-button> in the body. We want an inline
+    // embedded <feedback-modal> at the bottom of every doc page —
+    // see src/theme/DocItem/Footer/index.tsx for the swizzle that
+    // renders the actual widget element. Here we just load the CDN
+    // assets (CSS + ESM bundle) on every page.
     [
       '@docusaurus/plugin-client-redirects',
       {
@@ -237,7 +226,9 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           sidebarCollapsible: true,
-          editUrl: 'https://github.com/al1913-zebra/zebra-handheld-rfid-iotc/tree/main/',
+          // editUrl intentionally omitted to hide the "Edit this page" link
+          // on every doc page. The feedback widget at the bottom of each
+          // page replaces this affordance (see src/theme/DocItem/Footer).
           routeBasePath: '/',
           breadcrumbs: true,
         },
@@ -251,8 +242,21 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-  scripts: [],
-  stylesheets: [],
+  scripts: [
+    // PushFeedback web component bundle. Loaded once per page; the
+    // <feedback-modal> tag is rendered in src/theme/DocItem/Footer.
+    {
+      src: 'https://cdn.jsdelivr.net/npm/pushfeedback/dist/pushfeedback/pushfeedback.esm.js',
+      type: 'module',
+      async: true,
+    },
+  ],
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/pushfeedback/dist/pushfeedback/pushfeedback.css',
+      rel: 'stylesheet',
+    },
+  ],
   clientModules: ['./src/client-modules/img-zoom'],
 };
 

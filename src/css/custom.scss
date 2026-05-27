@@ -36,6 +36,30 @@
   --menu-secondary-color: var(--ifm-menu-color);
   --docusaurus-highlighted-code-line-bg: rgba(0, 76, 151, 0.08);
   --bordered-img-color: rgb(226, 226, 226);
+
+  /* === PushFeedback widget — light theme ===
+   * The embedded <feedback-modal> at the bottom of every doc page picks
+   * up these CSS custom properties to match the site's brand. See
+   * https://docs.pushfeedback.com/customization/styles for the full
+   * variable list. */
+  --feedback-primary-color:                       var(--ifm-color-primary);
+  --feedback-secondary-color:                     var(--ifm-color-emphasis-100);
+  --feedback-text-color:                          var(--ifm-color-emphasis-800);
+  --feedback-dark-color:                          var(--ifm-heading-color);
+  --feedback-font-family:                         var(--ifm-font-family-base);
+  --feedback-heading-font-size:                   1.1rem;
+  --feedback-text-font-size:                      0.95rem;
+  --feedback-button-border-radius:                4px;
+  --feedback-modal-content-border-radius:         6px;
+  --feedback-modal-button-border-radius:          4px;
+  --feedback-modal-button-bg-color:               var(--ifm-background-color);
+  --feedback-modal-button-border-color:           var(--ifm-color-emphasis-300);
+  --feedback-modal-button-border-color-active:    var(--ifm-color-primary);
+  --feedback-modal-button-icon-color:             var(--ifm-color-emphasis-700);
+  --feedback-modal-button-icon-color-active:      var(--ifm-color-primary);
+  --feedback-modal-button-submit-bg-color:        var(--ifm-color-primary);
+  --feedback-modal-button-submit-bg-color-active: var(--ifm-color-primary-dark);
+  --feedback-button-text-font-weight:             600;
 }
 
 [data-theme='dark'] {
@@ -51,6 +75,19 @@
   --menu-secondary-color: rgb(192, 192, 192);
   --docusaurus-highlighted-code-line-bg: rgba(108, 180, 238, 0.12);
   --bordered-img-color: rgb(138, 138, 138);
+
+  /* === PushFeedback widget — dark theme === */
+  --feedback-primary-color:                       var(--ifm-color-primary);
+  --feedback-secondary-color:                     var(--ifm-color-emphasis-200);
+  --feedback-text-color:                          var(--ifm-color-emphasis-700);
+  --feedback-dark-color:                          var(--ifm-heading-color);
+  --feedback-modal-button-bg-color:               var(--ifm-color-emphasis-100);
+  --feedback-modal-button-border-color:           var(--ifm-color-emphasis-400);
+  --feedback-modal-button-border-color-active:    var(--ifm-color-primary);
+  --feedback-modal-button-icon-color:             var(--ifm-color-emphasis-700);
+  --feedback-modal-button-icon-color-active:      var(--ifm-color-primary);
+  --feedback-modal-button-submit-bg-color:        var(--ifm-color-primary);
+  --feedback-modal-button-submit-bg-color-active: var(--ifm-color-primary-dark);
 }
 
 .theme-code-block-highlighted-line {
