@@ -32,14 +32,12 @@ const config: Config = {
     'docusaurus-plugin-sass',
     // PushFeedback widget — feedback button on every docs page.
     // Install/setup docs: https://docs.pushfeedback.com/installation/docusaurus
-    // Set PUSHFEEDBACK_PROJECT_ID in the build environment, or replace
-    // the fallback string below with the project ID from your
-    // PushFeedback dashboard. Until the real ID is supplied the widget
-    // renders but cannot submit feedback.
+    // Project ID is not secret (it ships in the public JS bundle, same
+    // as the Algolia appId/apiKey below); hardcoding is intentional.
     [
       'docusaurus-pushfeedback',
       {
-        project: process.env.PUSHFEEDBACK_PROJECT_ID || '<YOUR_PUSHFEEDBACK_PROJECT_ID>',
+        project: 'fv5awvu82c',
         buttonPosition: 'center-right',
         modalPosition: 'sidebar-right',
         buttonStyle: 'dark',
