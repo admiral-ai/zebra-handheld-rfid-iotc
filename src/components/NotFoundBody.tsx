@@ -41,7 +41,13 @@ const RECOVERY_JUMPS: Array<{ label: string; to: string; description: string }> 
   { label: 'Something not working?', to: '/diagnose/symptoms', description: 'Symptom-first failure index' },
 ];
 
-const GITHUB_ISSUES_URL = 'https://github.com/al1913-zebra/zebra-handheld-rfid-iotc/issues/new';
+// The 404's "Report broken link" affordance points at an INTERNAL
+// page (src/pages/report-broken-link.tsx) — not GitHub Issues
+// directly — so visitors without a GitHub account aren't blocked
+// by a login wall. The internal page offers three submission
+// channels (copy, email, GitHub issue) and pre-fills the URL +
+// referrer from the query string.
+const REPORT_BROKEN_LINK_PATH = '/report-broken-link';
 
 function stripBaseUrl(path: string, baseUrl: string): string {
   if (baseUrl !== '/' && path.startsWith(baseUrl)) {
@@ -65,13 +71,14 @@ function computeSuggestion(attemptedPath: string | null): string | null {
 }
 
 function buildReportUrl(attempted: string | null, referrer: string | null): string {
-  const title = `Broken link: ${attempted ?? 'unknown URL'}`;
-  const body =
-    `**Attempted URL:** ${attempted ?? '(client-side detection failed)'}\n\n` +
-    `**Referrer:** ${referrer ?? '(none)'}\n\n` +
-    `**Description:**\n\n` +
-    `_What did you expect to find at this URL? Where did you click from?_\n`;
-  return `${GITHUB_ISSUES_URL}?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+  // Build a query string with the attempted URL and referrer pre-filled.
+  // The /report-broken-link page reads these on mount and pre-populates
+  // its form, so the visitor doesn't have to retype anything.
+  const params = new URLSearchParams();
+  if (attempted) params.set('url', attempted);
+  if (referrer) params.set('referrer', referrer);
+  const qs = params.toString();
+  return qs ? `${REPORT_BROKEN_LINK_PATH}?${qs}` : REPORT_BROKEN_LINK_PATH;
 }
 
 export default function NotFoundBody(): JSX.Element {
@@ -229,16 +236,13 @@ export default function NotFoundBody(): JSX.Element {
           </ul>
         </section>
 
-        {/* §3f Report broken link */}
+        {/* §3f Report broken link — opens internal /report-broken-link
+            page in the same tab (not GitHub, which would gate visitors
+            behind a login wall). */}
         <section className={styles.reportSection}>
           <p>
             Think this URL should resolve?{' '}
-            <Link
-              to={reportUrl}
-              className={styles.reportLink}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <Link to={reportUrl} className={styles.reportLink}>
               Report broken link →
             </Link>
           </p>

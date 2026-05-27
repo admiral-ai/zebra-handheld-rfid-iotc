@@ -1,0 +1,216 @@
+/* Report-broken-link page | Zebra Handheld RFID Reader IOTC */
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1.5rem 5rem;
+  min-height: 60vh;
+}
+
+.container {
+  max-width: 720px;
+  width: 100%;
+}
+
+.intro {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+  color: var(--ifm-heading-color);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form fields */
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.fieldLabel {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--ifm-heading-color);
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9em;
+}
+
+.fieldHint {
+  margin: 0.4rem 0 0 0;
+  font-size: 0.82rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  font-size: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+  box-sizing: border-box;
+}
+
+.input {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.92rem;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 1px;
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .input,
+[data-theme='dark'] .textarea {
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+/* Submission options */
+.actions {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--ifm-heading-color);
+}
+
+.actionsHint {
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+.actionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.actionButton,
+.actionButtonPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--ifm-font-family-base);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.actionButton:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-500);
+  text-decoration: none;
+}
+
+.actionButtonPrimary {
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.actionButtonPrimary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+.actionButton:focus-visible,
+.actionButtonPrimary:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.actionButtonNote {
+  font-weight: 400;
+  font-size: 0.82em;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.actionButtonPrimary .actionButtonNote {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Divider + recovery */
+.divider {
+  margin: 2.5rem 0 1.5rem;
+  border: none;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.jumpsList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.7;
+}
+
+.jumpsList li {
+  margin-bottom: 0.25rem;
+}
+
+.jumpsList li::before {
+  content: '▸ ';
+  color: var(--ifm-color-primary);
+  margin-right: 0.35rem;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .main {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .actionList {
+    flex-direction: column;
+  }
+  .actionButton,
+  .actionButtonPrimary {
+    width: 100%;
+    justify-content: center;
+  }
+}
