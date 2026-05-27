@@ -3,7 +3,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Zebra Handheld RFID | IoT Connector',
+  title: 'Zebra Handheld RFID Reader | IoT Connector',
   tagline: 'MQTT API Documentation for RFD40 / RFD90 Series Handheld RFID Reader Sleds',
   url: 'https://al1913-zebra.github.io',
   baseUrl: '/zebra-handheld-rfid-iotc/',
@@ -97,8 +97,8 @@ const config: Config = {
   themeConfig: {
     image: 'img/zebra-social-card.png',
     metadata: [
-      { name: 'og:site_name', content: 'Zebra IoT Connector | Handheld RFID Documentation' },
-      { name: 'og:title', content: 'Zebra IoT Connector | Handheld RFID Developer Documentation' },
+      { name: 'og:site_name', content: 'Zebra IoT Connector | Handheld RFID Reader Documentation' },
+      { name: 'og:title', content: 'Zebra IoT Connector | Handheld RFID Reader Developer Documentation' },
       { name: 'og:description', content: 'MQTT API documentation for Zebra RFD40/RFD90 handheld RFID reader sleds. Guides, API reference, and fleet management resources.' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@ZebraTechnology' },

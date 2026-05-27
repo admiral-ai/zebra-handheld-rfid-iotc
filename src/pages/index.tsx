@@ -27,7 +27,7 @@ function HomepageHero() {
   return (
     <header className={styles.hero}>
       <div className="container">
-        <h1 className={styles.heroTitle}>Zebra IoT Connector for Handheld RFID</h1>
+        <h1 className={styles.heroTitle}>Zebra IoT Connector for Handheld RFID Reader</h1>
         <p className={styles.heroSubtitle}>
           MQTT API documentation for RFD40 and RFD90 reader sleds. Build
           integrations, manage fleets, and stream tag data.

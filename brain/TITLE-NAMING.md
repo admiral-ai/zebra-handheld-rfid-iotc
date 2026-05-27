@@ -189,6 +189,39 @@ Lowercase everything else, including:
 
 ## 5. Brand and product qualifier rules
 
+### 5a. Canonical product name
+
+The hardware family this documentation is about has exactly one
+canonical name: **Zebra Handheld RFID Reader** (full form), or
+**Handheld RFID Reader** (when the *Zebra* prefix is already established
+by surrounding context). Notably, "Reader" is part of the name — the
+shorter form *Zebra Handheld RFID* is incomplete and must not appear in
+title-shaped fields.
+
+| Surface | ✅ Canonical | ❌ Incomplete |
+|---|---|---|
+| Site title (`docusaurus.config.ts` `title:`) | `Zebra Handheld RFID Reader \| IoT Connector` | `Zebra Handheld RFID \| IoT Connector` |
+| Open Graph `og:site_name` | `Zebra IoT Connector \| Handheld RFID Reader Documentation` | `Zebra IoT Connector \| Handheld RFID Documentation` |
+| Open Graph `og:title` | `Zebra IoT Connector \| Handheld RFID Reader Developer Documentation` | `Zebra IoT Connector \| Handheld RFID Developer Documentation` |
+| Homepage hero H1 (`src/pages/index.tsx`) | `Zebra IoT Connector for Handheld RFID Reader` | `Zebra IoT Connector for Handheld RFID` |
+| Repository README H1 | `# Zebra IoT Connector for Handheld RFID Reader \| Documentation` | `# Zebra IoT Connector for Handheld RFID \| Documentation` |
+
+**Why "Reader" is required.** The RFD40 and RFD90 are *handheld RFID
+readers* — devices that read RFID tags. "Zebra Handheld RFID" alone is a
+category descriptor (a *kind of thing*), not a product name. Adding
+"Reader" turns it into the canonical product noun phrase.
+
+**Scope.** The rule applies to **title-shaped fields** — anywhere the
+phrase functions as a brand/product name in a title or heading. In
+flowing body prose (paragraphs, table cells, descriptive sentences),
+the lowercase descriptive form *handheld RFID* (often without the
+*Zebra* prefix, often without "reader") is acceptable when the meaning
+is clear from context. Front-matter `description:` fields may use the
+lowercase descriptive form ("for handheld RFID", "handheld RFID sleds")
+since they read as prose, not as a brand declaration.
+
+### 5b. Ambiguous bare terms — add a qualifier
+
 Some terms are ambiguous without a product or protocol prefix:
 
 | Bare term | Ambiguity | Add qualifier |
@@ -260,6 +293,7 @@ When adding or editing a title:
 - [ ] No filler prefix (no "About ", no "Understanding ", no "Introduction to ")
 - [ ] Brand qualifier added if the bare term is ambiguous
 - [ ] No marketing fluff, no inside jokes, no jargon-only phrasing
+- [ ] If the title names the product family, it uses the canonical form "Zebra Handheld RFID Reader" or "Handheld RFID Reader" (with the word *Reader*) — never the truncated "Zebra Handheld RFID" or "Handheld RFID" alone (see §5a)
 - [ ] No em-dash (—) or en-dash (–) anywhere in the title; use vertical pipe (`\|`) for sub-clauses
 - [ ] Matches the H1 of the page (Docusaurus uses `title:` as H1 by default)
 - [ ] Sidebar label is consistent (same or a shorter scent-phrased variant), and also free of em/en dashes

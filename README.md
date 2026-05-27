@@ -1,4 +1,4 @@
-# Zebra IoT Connector for Handheld RFID — Documentation
+# Zebra IoT Connector for Handheld RFID Reader | Documentation
 
 > MQTT API documentation for the Zebra RFD40 and RFD90 handheld RFID reader sled family. Built with [Docusaurus 3](https://docusaurus.io/) and organised on the [Diátaxis framework](https://diataxis.fr/) (Tutorials · How-to guides · Reference · Explanation).
 
