@@ -5,7 +5,7 @@ sidebar_label: How to Configure MQTT Endpoints
 description: "Configure IOTC MQTT endpoints with config_endpoint: add, update, delete operations for the seven endpoint types (MDM, MGMT, CTRL, EVT, DATA1, DATA2, ALERT)."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min
 
 This guide shows you how to set the broker target for one or more MQTT interfaces.
 

@@ -5,7 +5,7 @@ sidebar_label: About QoS Levels & Delivery Guarantees
 description: "MQTT 3.1.1 QoS 0, 1, 2 explained: what each guarantees, what each costs in latency, and which QoS IOTC uses for commands, events, and tag data."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 MQTT defines three Quality-of-Service levels. IOTC uses two: QoS 0 (fire-and-forget) and QoS 1 (at-least-once). Understanding the trade-off between them is a foundation for sound application design.
 

@@ -5,7 +5,7 @@ sidebar_label: How to Monitor Connection Quality
 description: "Monitor IOTC reader MQTT connection quality: mqttConnEVT reconnect counts, terminalConnection bounces (Bridged), Wi-Fi RSSI, broker drop signals."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~10 min
 
 This guide shows you how to monitor the connection quality of a handheld reader continuously.
 

@@ -5,7 +5,7 @@ sidebar_label: How to Manage TLS/SSL Certificates
 description: "Manage TLS / SSL certificates on IOTC readers: install via install_certificate (HTTP source), inspect with get_installed_certificates, delete and rotate."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder, Fleet Operator · Time: ~10 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder, Fleet Operator · **Time:** ~10 min
 
 This guide shows you how to install, list, and delete certificates on a handheld reader.
 

@@ -5,7 +5,7 @@ sidebar_label: About Multi-Endpoint Architectures
 description: "When and how to use multiple MQTT endpoints in IOTC: split control vs data brokers, MDM separation, dual data channels, per-endpoint TLS config."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min
 
 Three architectural patterns are available for IOTC deployments. The differences matter when fleet size or tag volume reaches scale.
 

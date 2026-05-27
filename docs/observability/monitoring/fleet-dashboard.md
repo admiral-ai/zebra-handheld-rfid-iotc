@@ -5,7 +5,7 @@ sidebar_label: How to Build a Fleet Health Dashboard
 description: "Build a fleet-wide IOTC health dashboard: ingest heartbeats and alerts, compute uptime and last-seen, surface drift, visualise per-reader health."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~30 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~30 min
 
 This guide shows you how to build a fleet health dashboard from IOTC events.
 

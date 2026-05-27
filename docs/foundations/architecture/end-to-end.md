@@ -5,7 +5,7 @@ sidebar_label: About the End-to-End System
 description: "End-to-end architecture of an IOTC deployment: sled, host, broker, application, MDM, and the four edges between them. Data and control paths covered."
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~5 min
 
 An RFID tag, the reader sled that detects it, and the application that acts on the resulting data are separated by five hops. Understanding those hops is the foundation for every operational decision in IOTC — where to put the broker, what QoS to use, how to monitor fleet health.
 

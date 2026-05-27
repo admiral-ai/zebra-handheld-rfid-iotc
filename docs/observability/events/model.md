@@ -5,7 +5,7 @@ sidebar_label: About the Event Model
 description: "The IOTC event model: which events the reader emits, who subscribes (application vs MDM), QoS defaults, retention behaviour, and how to compose event pipelines."
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~5 min
 
 IOTC defines **five** events emitted by the reader:
 

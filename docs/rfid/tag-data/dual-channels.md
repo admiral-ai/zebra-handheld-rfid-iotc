@@ -5,7 +5,7 @@ sidebar_label: "About Dual Data Channels (data1event / data2event)"
 description: "Why and how IOTC supports two parallel tag-data channels (data1event / data2event): use cases (split brokers, A/B routing), config, per-channel filters."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~4 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~4 min
 
 IOTC exposes two tag-data channels: `data1event` and `data2event`. They are independent topic families carrying the same `dataEVT` payload schema. A reader is configured to publish on one channel; configuration is per-reader, not per-tag.
 

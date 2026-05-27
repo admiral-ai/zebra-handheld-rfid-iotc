@@ -5,7 +5,7 @@ sidebar_label: How to Plan a Migration
 description: "Plan a migration to (or within) IOTC: inventory readers, choose target firmware and config, define cohorts and rollout rings, set verification gates."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator, Solution Builder · Time: ~2 hours planning
+> 📙 **HOW-TO** · **Audience:** Fleet Operator, Solution Builder · **Time:** ~2 hours planning
 
 A handheld-reader migration is firmware-version-based. The IOTC V1.0 and V1.1 API surfaces are both accepted on firmware 3.10.27+; "migration" therefore means rolling firmware forward and confirming the deployment continues to function.
 

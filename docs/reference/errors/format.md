@@ -5,7 +5,7 @@ sidebar_label: Error Response Format
 description: "Reference for the IOTC error-response envelope: canonical fields (code, message, command_id) and how every response shape includes them."
 ---
 
-> 📕 **REFERENCE** · Audience: API Consumer · Use: parse error responses
+> 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** parse error responses
 
 Every IOTC command response carries a standard envelope. Errors are reported in the `response` object, never via MQTT-level mechanisms such as Last Will. The envelope is identical across all 22 commands.
 

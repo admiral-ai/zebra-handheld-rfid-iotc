@@ -5,7 +5,7 @@ sidebar_label: About Trigger Composition
 description: "How the IOTC trigger button composes with control_operation: trigger modes, what each pull sends, and how host-app and trigger-driven inventory interact."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 The handheld sled has a physical trigger button. Its behaviour with respect to RFID inventory is **composed** from two independent enums — `radioConditions.start.trigger` and `radioConditions.stop.trigger`, set inside `set_operating_mode.operatingMode`.
 

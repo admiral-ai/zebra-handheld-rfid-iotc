@@ -5,7 +5,7 @@ sidebar_label: How to Detect and Remediate Configuration Drift
 description: "Detect IOTC configuration drift across a fleet: periodic get_config sweeps, diff against desired state, surface deltas, apply corrective set_config."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~30 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~30 min
 
 This guide shows you how to detect and remediate configuration drift across a reader fleet.
 

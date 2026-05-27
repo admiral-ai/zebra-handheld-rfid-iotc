@@ -5,7 +5,7 @@ sidebar_label: About IOTC V1.1 Features
 description: What changed in IOTC V1.1, the current API baseline for handheld RFID readers on firmware 3.10.27+. V1.0 compatibility, per-endpoint version support.
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~3 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~3 min
 
 IOTC V1.1 is the current API baseline for handheld RFID readers running firmware 3.10.27 or later. The V1.1 surface is what this documentation describes; V1.0 remains accepted by V1.1 firmware for backward compatibility.
 

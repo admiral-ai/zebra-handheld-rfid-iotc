@@ -5,7 +5,7 @@ sidebar_label: How to Integrate with a Custom MQTT Broker
 description: "Integrate IOTC readers with a self-hosted broker (Mosquitto, HiveMQ, EMQX): credentials, TLS, topic ACLs, broker-side rate-limit considerations."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~60 min
 
 This guide shows you how to connect a handheld reader to a customer-hosted MQTT broker (Mosquitto, HiveMQ, EMQX, VerneMQ).
 

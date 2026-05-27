@@ -5,7 +5,7 @@ sidebar_label: How to Provision Readers in Bulk with 123RFID Desktop
 description: "Provision IOTC readers in bulk with 123RFID Desktop: connect each sled over USB-C, push a saved profile (Wi-Fi, region, MDM), verify with get_version."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min for 10 readers
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~30 min for 10 readers
 
 This guide shows you how to provision multiple handheld readers using 123RFID Desktop profiles.
 

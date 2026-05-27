@@ -5,7 +5,7 @@ sidebar_label: Command Response Error Codes
 description: Reference for IOTC command-response error codes 0-15. Each entry lists the code, canonical name, semantic meaning, and the recovery action to take.
 ---
 
-> 📕 **REFERENCE** · Audience: API Consumer · Use: look up codes appearing in command responses
+> 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** look up codes appearing in command responses
 
 Twenty-nine response codes (0–28). Code `0` is success; codes `1`–`28` indicate specific conditions. Codes are command-scoped — each command's schema lists the subset it can return. The table below is the canonical superset, taken verbatim from `error_codes.json` in the API schema reference.
 

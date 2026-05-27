@@ -5,7 +5,7 @@ sidebar_label: How to Check Device Status & Health
 description: "Check IOTC reader device health: get_status (battery, temp, antennas), get_version (firmware), and how to combine them into a fleet-wide health metric."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~5 min
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~5 min
 
 This guide shows you how to check the health of a handheld reader on demand and continuously.
 

@@ -5,7 +5,7 @@ sidebar_label: How to Rotate Certificates at Scale
 description: "Rotate IOTC TLS certificates across a fleet: pre-stage new CA, switch endpoints, expire old cert, recover when rotation leaves readers stranded."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~30 min
 
 This guide shows you how to rotate TLS certificates across a fleet of handheld readers without downtime.
 

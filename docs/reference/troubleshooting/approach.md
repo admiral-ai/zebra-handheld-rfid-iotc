@@ -5,7 +5,7 @@ sidebar_label: How to Approach Troubleshooting Systematically
 description: "A systematic approach to IOTC troubleshooting: scope the symptom, isolate the edge, eliminate easy causes, then escalate. Pairs with /diagnose/ symptoms."
 ---
 
-> 📙 **HOW-TO** · Audience: All · Time: ~10 min reading; varies in practice
+> 📙 **HOW-TO** · **Audience:** All · **Time:** ~10 min reading; varies in practice
 
 This guide shows you how to systematically diagnose IOTC issues, layer by layer.
 

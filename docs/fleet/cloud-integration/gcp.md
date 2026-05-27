@@ -5,7 +5,7 @@ sidebar_label: How to Integrate with Google Cloud IoT
 description: Integrate IOTC readers with Google Cloud via MQTT bridge or HiveMQ Cloud (GCP IoT Core is sunset). Device registry, JWT auth, tag routing into BigQuery.
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~60 min
 
 :::info
 Google Cloud IoT Core was deprecated by Google in 2023. This guide targets the successor pattern: GCP-hosted Pub/Sub via an MQTT bridge or a customer-hosted MQTT broker on GCP infrastructure. If you are building on GCP, evaluate [Custom MQTT Broker](/fleet/cloud-integration/custom-broker) using HiveMQ on GKE or EMQX on Compute Engine.

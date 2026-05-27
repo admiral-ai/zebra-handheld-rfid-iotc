@@ -5,7 +5,7 @@ sidebar_label: "Event Types Catalog (Index)"
 description: "Index of every IOTC event with one-line scope: heartbeatEVT, alerts, alert_short, mqttConnEVT, terminalConnection, dataEVT. Links to per-event detail."
 ---
 
-> 📕 **REFERENCE** · Use: navigation index
+> 📕 **REFERENCE** · **Use:** navigation index
 
 | Event | Default endpoint convention | Direction | Trigger | Consumer | Full schema |
 |---|---|---|---|---|---|

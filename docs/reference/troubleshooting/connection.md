@@ -5,7 +5,7 @@ sidebar_label: How to Troubleshoot Connection Issues
 description: "Troubleshoot IOTC reader-broker MQTT connection issues: connect failure causes, TLS handshake errors, reconnect-loop diagnosis, mqttConnEVT timestamps."
 ---
 
-> 📙 **HOW-TO** · Audience: All · Time: ~15 min per symptom
+> 📙 **HOW-TO** · **Audience:** All · **Time:** ~15 min per symptom
 
 This guide shows you how to troubleshoot MQTT connection issues on handheld readers.
 

@@ -5,7 +5,7 @@ sidebar_label: How to Integrate with Azure IoT Hub
 description: "Integrate IOTC readers with Azure IoT Hub: device provisioning via DPS, MQTT endpoint config, SAS vs X.509 auth, route tag data into Event Hubs."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~60 min
 
 This guide shows you how to connect a handheld reader to Azure IoT Hub as the MQTT broker.
 

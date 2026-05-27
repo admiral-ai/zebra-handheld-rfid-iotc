@@ -5,7 +5,7 @@ sidebar_label: How to Interpret Tag Data Fields
 description: "Interpret IOTC dataEVT fields: EPC encoding (hex / GS1), RSSI in dBm, antenna ID (always 1 on handhelds), timestamp, optional embedded user-memory."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder, API Consumer · Time: ~15 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder, API Consumer · **Time:** ~15 min
 
 This guide shows you how to interpret the fields in a `dataEVT` payload for application logic.
 

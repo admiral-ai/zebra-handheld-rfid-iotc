@@ -5,7 +5,7 @@ sidebar_label: About Connection Lifecycle & Keep-Alive
 description: "The IOTC reader's MQTT connection lifecycle: CONNECT, keep-alive PING, DISCONNECT, last-will. Covers reconnect cadence and connection-state reporting."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 An MQTT client's connection to the broker is a stateful, long-lived TCP session. Its lifecycle has named stages, and understanding them is the difference between diagnosing a flaky reader in five minutes and chasing it for an afternoon.
 

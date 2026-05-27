@@ -5,7 +5,7 @@ sidebar_label: How to Configure the Operating Mode
 description: "Configure the IOTC operating mode via set_operating_mode: profile selection, advancedConfigurations (when ADVANCED), query, select filters, reportFilter."
 ---
 
-> 📙 **HOW-TO** · Audience: Solution Builder · Time: ~20 min
+> 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~20 min
 
 This guide shows you how to assemble the `operatingMode` payload for the use cases your application needs.
 

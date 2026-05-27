@@ -5,7 +5,7 @@ sidebar_label: How to Troubleshoot Battery & Power Issues
 description: "Troubleshoot IOTC reader battery and power: low-battery alerts, USB-C charging failures, cradle behaviour, OPTIMAL_BATTERY profile, drain diagnosis."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min per symptom
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~10 min per symptom
 
 This guide shows you how to troubleshoot battery and power issues on handheld readers.
 

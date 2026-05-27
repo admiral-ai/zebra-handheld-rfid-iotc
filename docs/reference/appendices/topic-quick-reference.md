@@ -5,7 +5,7 @@ sidebar_label: MQTT Topic Quick Reference
 description: Quick-reference card for every IOTC MQTT topic by endpoint type (MDM, MGMT, CTRL, EVT, DATA1, DATA2, ALERT). Three-segment pattern, QoS recs.
 ---
 
-> 📕 **REFERENCE** · Audience: All · Use: printable cheat sheet
+> 📕 **REFERENCE** · **Audience:** All · **Use:** printable cheat sheet
 
 Three-part topic structure: `<tenantId> / <topic> / <deviceSerialNumber>`. The middle `<topic>` is configured per endpoint via `publishTopics` and `subscribeTopics`.
 

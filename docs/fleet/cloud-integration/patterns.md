@@ -5,7 +5,7 @@ sidebar_label: About Integration Architecture Patterns
 description: "Three integration patterns for cloud-backed IOTC: direct-to-cloud, edge-hub-in-the-middle, dual-broker (control vs data). Trade-offs in latency and cost."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 Three patterns dominate cloud-backed IOTC deployments. The choice is structural: each has different latency, complexity, and scale characteristics.
 

@@ -5,7 +5,7 @@ sidebar_label: About Tag Data Event Architecture
 description: "How IOTC tag-data events are produced: radio singulation, dataEVT composition, dual-channel split (data1event / data2event), end-to-end flow."
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~6 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~6 min
 
 Tag data flows from the antenna to the application through five stages. Knowing the path is the foundation for capacity planning, latency budgeting, and deduplication strategy.
 

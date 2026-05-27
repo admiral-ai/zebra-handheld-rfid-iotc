@@ -5,7 +5,7 @@ sidebar_label: MQTT API Reference
 description: "Index of the IOTC MQTT API surface: 22 commands and 5 events across MGMT, CTRL, EVT, DATA, MDM. Each operation links to the external API Reference site."
 ---
 
-> 📕 **REFERENCE** · Audience: API Consumer · Use: directory of all 27 commands and events
+> 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** directory of all 27 commands and events
 
 The IOTC MQTT API surface is **22 commands and 5 events**, organised into 4 top-level tag groups and 14 sub-tags. Every operation listed here is fully documented — payload schema, response schema, field-by-field descriptions, error codes, and worked examples — on the canonical **[MQTT API Reference site](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)**. Click any operation in the tables below to jump straight to its section there.
 

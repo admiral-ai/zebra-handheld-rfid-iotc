@@ -5,7 +5,7 @@ sidebar_label: About the Structure of This Documentation
 description: "How the IOTC docs are organised: eight Parts, the Diataxis split (concept / how-to / tutorial / reference), and pairing with the MQTT API Reference."
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~3 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~3 min
 
 This documentation is organised into eight Parts that follow the developer's actual workflow: get oriented, read the foundations, walk the Quick Start, manage the reader, read tags, observe what happens, scale to a fleet, and diagnose problems. The order is a dependency chain — content in any Part assumes you have read or skimmed earlier Parts as needed.
 

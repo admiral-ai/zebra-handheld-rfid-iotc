@@ -5,7 +5,7 @@ sidebar_label: About the Authentication & Authorization Model
 description: "How IOTC authenticates MQTT connections: username, password, client ID, TLS client certs, and tenant ID. Per-broker variations and ACL implications."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min
 
 IOTC's authentication and authorization model has three independent layers: who the client is (authentication), what subtree of the topic namespace it can touch (authorization), and how the traffic is encrypted in flight (transport security, covered in [Security model (TLS & certificates)](/infrastructure/security/model)).
 

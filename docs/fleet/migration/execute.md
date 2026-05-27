@@ -5,7 +5,7 @@ sidebar_label: How to Execute a Phased Migration
 description: "Execute a phased IOTC migration: ring-deploy by cohort, smoke tests at each ring, rollback triggers, and how to handle stragglers without rolling back."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: days to weeks for a full fleet
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** days to weeks for a full fleet
 
 ```json
 {

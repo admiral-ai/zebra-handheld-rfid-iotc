@@ -5,7 +5,7 @@ sidebar_label: How to Troubleshoot RFID Operation Issues
 description: "Troubleshoot IOTC RFID operations: tags not reading, inventory not starting, dense-reader interference, antenna range, operating-mode behaviour."
 ---
 
-> 📙 **HOW-TO** · Audience: All · Time: ~15 min per symptom
+> 📙 **HOW-TO** · **Audience:** All · **Time:** ~15 min per symptom
 
 This guide shows you how to troubleshoot RFID read failures on handheld readers.
 

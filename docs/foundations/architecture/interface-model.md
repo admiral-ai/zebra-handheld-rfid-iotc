@@ -5,7 +5,7 @@ sidebar_label: About the Interface Model
 description: "The five interface surfaces of an IOTC reader: MGMT, CTRL, EVT, DATA, MDM. What each carries, sub-tag grouping, how apps subscribe and publish."
 ---
 
-> 📘 **EXPLANATION** · Audience: All · Read time: ~5 min
+> 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~5 min
 
 An IOTC reader exposes its functionality through **endpoints** — named MQTT connections, each typed by role. There are seven endpoint types; a reader has at least one (the MDM endpoint, configured at bootstrap), and typically several more (configured remotely once the reader is online).
 

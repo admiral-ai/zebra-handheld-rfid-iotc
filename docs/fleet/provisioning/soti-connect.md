@@ -5,7 +5,7 @@ sidebar_label: How to Set Up Zero-Touch Provisioning with SOTI Connect
 description: "Zero-touch IOTC provisioning with SOTI Connect: device templates, MDM endpoint enrolment, cert push, mapping SOTI policies to IOTC config_endpoint."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~45 min
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~45 min
 
 This guide shows you how to set up zero-touch provisioning for handheld readers using SOTI Connect.
 

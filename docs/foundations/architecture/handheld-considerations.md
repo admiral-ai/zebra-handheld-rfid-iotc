@@ -5,7 +5,7 @@ sidebar_label: About Handheld-Specific Architecture Considerations
 description: "Architectural constraints unique to handheld RFID: battery lifecycle, single antenna, intermittent connectivity, trigger button. Why IOTC is shaped this way."
 ---
 
-> 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min
+> 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min
 
 Five architectural facts make handheld IOTC different from fixed-reader IOTC. They are not edge cases. Every operational decision rests on them.
 

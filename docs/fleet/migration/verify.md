@@ -5,7 +5,7 @@ sidebar_label: How to Verify a Successful Migration
 description: "Verify a successful IOTC migration: per-cohort smoke tests (get_version, get_status, control_operation), fleet drift check, SLO-anchored criteria."
 ---
 
-> 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min
+> 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~30 min
 
 1. [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) on every reader — confirm `firmwareVersion` matches target.
 2. [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) on every reader — diff against pre-migration baseline.
