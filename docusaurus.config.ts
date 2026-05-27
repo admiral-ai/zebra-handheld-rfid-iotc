@@ -30,6 +30,22 @@ const config: Config = {
   themes: ['@docusaurus/theme-mermaid'],
   plugins: [
     'docusaurus-plugin-sass',
+    // PushFeedback widget — feedback button on every docs page.
+    // Install/setup docs: https://docs.pushfeedback.com/installation/docusaurus
+    // Set PUSHFEEDBACK_PROJECT_ID in the build environment, or replace
+    // the fallback string below with the project ID from your
+    // PushFeedback dashboard. Until the real ID is supplied the widget
+    // renders but cannot submit feedback.
+    [
+      'docusaurus-pushfeedback',
+      {
+        project: process.env.PUSHFEEDBACK_PROJECT_ID || '<YOUR_PUSHFEEDBACK_PROJECT_ID>',
+        buttonPosition: 'center-right',
+        modalPosition: 'sidebar-right',
+        buttonStyle: 'dark',
+        modalTitle: 'Send feedback on this page',
+      },
+    ],
     [
       '@docusaurus/plugin-client-redirects',
       {
