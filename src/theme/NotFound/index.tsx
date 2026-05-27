@@ -1,14 +1,26 @@
 /**
- * Override @theme/NotFound so the client-side router uses our custom
- * 404 page (src/pages/404.tsx) for unmatched routes — not just the
- * static build/404.html served by the host.
+ * Override @theme/NotFound — the React component the client-side router
+ * uses for the wildcard `*` catch-all route.
  *
- * Without this override, Docusaurus' client router falls back to the
- * default @theme/NotFound after hydration. The visitor briefly sees
- * our custom 404 (rendered from build/404.html) then it gets replaced
- * by the bland default. With this override, both surfaces use the
- * same component.
- *
- * See /brain/404-PAGE.md §7 for the technical conformance rationale.
+ * This is one of three surfaces that render the same content; see the
+ * comment header in src/components/NotFoundBody.tsx for the architecture.
  */
-export { default } from '@site/src/pages/404';
+
+import React from 'react';
+import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
+import NotFoundBody from '@site/src/components/NotFoundBody';
+
+export default function NotFound(): JSX.Element {
+  return (
+    <Layout
+      title="Page not found"
+      description="The URL you requested isn't part of this documentation."
+    >
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <NotFoundBody />
+    </Layout>
+  );
+}
