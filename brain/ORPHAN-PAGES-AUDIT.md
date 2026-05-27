@@ -24,11 +24,11 @@ cluster.
 
 | | Count |
 |---|---|
-| Total docs in `/docs/**` | 125 (was 129; deleted: `/sdks/overview`, `/sdks/python`, `/sdks/nodejs`, `/sdks/csharp`) |
+| Total docs in `/docs/**` | 123 (was 129; deleted: entire `/sdks/*` section — 5 pages — plus `/reference/appendices/libraries`) |
 | Surfaced in sidebar | 48 (was 45; +3 promoted from orphan audit: documentation-guide, api-overview, v1-1-features) |
-| Not surfaced (orphans) | 77 |
-| ↳ Reachable from sidebar-surfaced (direct in-link) | 8 |
-| ↳ Reachable via a cluster (in a coherent deep-ref group) | 69 |
+| Not surfaced (orphans) | 75 |
+| ↳ Reachable from sidebar-surfaced (direct in-link) | 7 (was 8; `/reference/appendices/libraries` deleted) |
+| ↳ Reachable via a cluster (in a coherent deep-ref group) | 68 |
 | ↳ Truly accidental orphans (no path in) | 4 |
 
 ## Reachable from a sidebar-surfaced page (intentional)
@@ -120,7 +120,7 @@ pages spread from there via in-page links.
 | Page | Intentional? | Notes |
 |---|---|---|
 | `/reference/appendices/config-schema` | ✅ Intentional | Linked from fleet management pages |
-| `/reference/appendices/libraries` | ✅ Intentional | Cross-linked from `/sdks/libraries` |
+| `/reference/appendices/libraries` | 🗑️ **Deleted** | Duplicated `/sdks/libraries`; both deleted along with the SDK section |
 | `/reference/appendices/tag-standards` | ✅ Intentional | Linked from `/rfid/tag-data/interpret` |
 | `/reference/appendices/topic-quick-reference` | ✅ Intentional | Linked from `/foundations/mqtt/topic-hierarchy` |
 
@@ -134,24 +134,25 @@ pages spread from there via in-page links.
 | `/reference/errors/handling` | ✅ Intentional — how-to for error handling |
 | `/reference/mdm/about` | ✅ Intentional — MDM/SOTI interface ref |
 
-### `/sdks/*` cluster — language tutorials (most deleted)
+### `/sdks/*` cluster — entire section deleted
 
 | Page | Disposition |
 |---|---|
-| `/sdks/libraries` | ✅ Intentional — surviving MQTT client library reference |
-| `/sdks/csharp` | 🗑️ **Deleted** — per-language tutorial duplicated the canonical Quick Start; navbar Developer Portal + `/quick-start/overview` (mosquitto_pub/sub) + `/sdks/libraries` cover the surface |
-| `/sdks/nodejs` | 🗑️ **Deleted** — same rationale as `/sdks/csharp` |
-| `/sdks/python` | 🗑️ **Deleted** — same rationale as `/sdks/csharp` |
 | `/sdks/overview` | 🗑️ **Deleted** — duplicated `/sdks/libraries` with no inbound links |
+| `/sdks/csharp` | 🗑️ **Deleted** — per-language tutorial duplicated the canonical Quick Start |
+| `/sdks/nodejs` | 🗑️ **Deleted** — same rationale |
+| `/sdks/python` | 🗑️ **Deleted** — same rationale |
+| `/sdks/libraries` | 🗑️ **Deleted** — out-of-scope MQTT-library reference; the navbar Developer Portal covers the SDK surface |
 
-> **Note.** The SDK section originally had a docs-side landing
-> (`/sdks/overview`) and three per-language tutorials (Python, Node.js,
-> C#). All four were deleted as not-required: the canonical Quick Start
-> at `/quick-start/overview` is language-agnostic (uses
-> `mosquitto_pub` / `mosquitto_sub`), `/sdks/libraries` covers the
-> production library list, and the navbar's "Developer Portal" link to
-> developer.zebra.com is the primary SDK surface. Redirects keep external
-> bookmarks resolving (see `docusaurus.config.ts`).
+> **Note.** The entire `/sdks/*` section was deleted as not-required.
+> The canonical Quick Start at `/quick-start/overview` is
+> language-agnostic (uses `mosquitto_pub` / `mosquitto_sub`); the
+> navbar's "Developer Portal" link to developer.zebra.com is the
+> primary SDK surface. The two library-reference pages
+> (`/sdks/libraries` and `/reference/appendices/libraries`) were also
+> deleted as out-of-scope. The `docs/sdks/` directory is empty and
+> removed. Redirects route every old URL to `/foundations/mqtt-primer`
+> (the closest surviving concept) so external bookmarks still resolve.
 
 ### `/fleet/cloud-integration/*` cluster (5 pages) — cloud-broker how-tos
 
@@ -301,7 +302,7 @@ reachable cluster. Three are promoted to the sidebar; one was deleted.
 | `/foundations/documentation-guide` | "About the Structure of This Documentation" | **Promoted to Part 1** (Get oriented) — between `start` and `mqtt-primer`. This *is* the docs reading guide; a reader who can't find it can't find the docs. |
 | `/foundations/v1-1-features` | "About IOTC V1.1 Features" | **Promoted to Part 8** (Diagnose and reference) — release notes belong with reference material |
 | `/reference/api-overview` | "MQTT API Reference" | **Promoted to Part 8** (Diagnose and reference) — the canonical internal landing for the API reference (the navbar's "API Reference" goes to the *external* render; this internal page is the docs-side index) |
-| `/sdks/overview` | "SDKs & Language Tutorials" | **Deleted** — duplicated `/sdks/libraries` and had no incoming cross-references. The navbar Developer Portal + Part 3 Quick Start + `/sdks/libraries` already cover the SDK surface. |
+| `/sdks/overview` | "SDKs & Language Tutorials" | **Deleted** — duplicated `/sdks/libraries` and had no incoming cross-references. Subsequently the entire `/sdks/*` section was deleted (see the SDK cluster section above). |
 
 > The other 8 reachable-from-surfaced pages are kept as deep reference,
 > consistent with the design philosophy. They are linked at the right

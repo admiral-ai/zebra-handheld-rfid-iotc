@@ -84,14 +84,19 @@ const config: Config = {
           { from: '/reference/diagnose/two-edges',                         to: '/diagnose/where-things-fail' },
           { from: '/reference/diagnose/recovery-playbooks',                to: '/diagnose/recovery-playbooks' },
           { from: '/reference/diagnose/misconceptions',                    to: '/diagnose/misconceptions' },
-          // /sdks/overview and the three per-language tutorial pages deleted as not-required.
-          // The canonical Quick Start uses mosquitto_pub / mosquitto_sub (language-agnostic);
-          // production language libraries are listed at /sdks/libraries.
-          // Redirects ensure external bookmarks resolve.
-          { from: '/sdks/overview',                                        to: '/sdks/libraries' },
-          { from: '/sdks/python',                                          to: '/sdks/libraries' },
-          { from: '/sdks/nodejs',                                          to: '/sdks/libraries' },
-          { from: '/sdks/csharp',                                          to: '/sdks/libraries' },
+          // The entire /sdks/* section was deleted as not-required. The canonical
+          // Quick Start at /quick-start/overview is language-agnostic (uses
+          // mosquitto_pub / mosquitto_sub) and the navbar "Developer Portal" link
+          // (https://developer.zebra.com) is the primary SDK surface. The two
+          // library-reference pages (/sdks/libraries and /reference/appendices/libraries)
+          // were also deleted as out-of-scope. Redirects route old URLs to the
+          // MQTT primer — the closest surviving concept for someone landing here.
+          { from: '/sdks/overview',                       to: '/foundations/mqtt-primer' },
+          { from: '/sdks/python',                         to: '/foundations/mqtt-primer' },
+          { from: '/sdks/nodejs',                         to: '/foundations/mqtt-primer' },
+          { from: '/sdks/csharp',                         to: '/foundations/mqtt-primer' },
+          { from: '/sdks/libraries',                      to: '/foundations/mqtt-primer' },
+          { from: '/reference/appendices/libraries',      to: '/foundations/mqtt-primer' },
         ],
       },
     ],
