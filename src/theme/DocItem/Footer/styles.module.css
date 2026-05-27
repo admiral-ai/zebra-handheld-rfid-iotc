@@ -86,3 +86,15 @@
   width: 22px;
   height: 22px;
 }
+
+/* PushFeedback's CSS sets `feedback-button, feedback-modal { visibility: hidden }`
+ * until its Stencil runtime hydrates the component. On this site that
+ * hydration sometimes lags (or doesn't complete at all in certain
+ * environments), which would leave our slotted thumb buttons invisible
+ * along with the host. Override the visibility so the trigger buttons
+ * remain visible regardless of Stencil's bootstrap state — clicking
+ * still works because the click handler lives on the host element. */
+.feedbackWidget feedback-button {
+  visibility: visible !important;
+  display: inline-block;
+}
