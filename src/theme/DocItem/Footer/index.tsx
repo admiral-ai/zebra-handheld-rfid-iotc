@@ -5,56 +5,60 @@
  * last-updated meta) with the PushFeedback widget rendered inline at
  * the bottom of every doc page.
  *
- * Configuration (matches the requested "Inline Thumbs" layout):
- *   - <feedback-modal embedded="true">  — embedded form, not a
- *     floating button
+ * Configuration ("Inline Thumbs" layout):
+ *   - <feedback-modal embedded="true">  — inline form, not floating
  *   - rating-mode="thumbs"               — thumbs-up / thumbs-down
- *   - rating-placeholder="Was this helpful?"  — the label above the
- *     rating control
- *   - rating="0"                         — neutral default (no rating
- *     selected)
+ *   - rating-placeholder="Was this helpful?"  — label above rating
+ *   - rating="0"                         — neutral (no rating yet)
  *   - modal-position="center"
  *
- * The PushFeedback CSS and ESM bundle are loaded once globally via the
- * `stylesheets` / `scripts` entries in docusaurus.config.ts. This
- * component only renders the element tag (a Stencil web component);
- * the bundle wires it up when it loads.
+ * Implementation note:
+ * Stencil web components (which is what <feedback-modal> is) do not
+ * always reliably hydrate when React renders the element via JSX —
+ * React sets attributes/props in a way that can race against the
+ * Stencil bootstrap. Creating the element imperatively via
+ * document.createElement + setAttribute + appendChild in a useEffect
+ * matches the pattern the official docusaurus-pushfeedback plugin
+ * uses for <feedback-button>, and is the path that reliably triggers
+ * Stencil's connectedCallback → componentWillLoad → render lifecycle.
  *
- * Editorial note: the `editUrl` for docs is intentionally omitted from
- * docusaurus.config.ts so the default "Edit this page" link doesn't
- * render. The original DocItemFooter conditionally rendered
- * tags-row + edit-meta-row; with no edit-url and no tags on most
- * pages, that footer was empty. We replace it entirely with the
- * feedback widget.
+ * The PushFeedback CSS and ESM bundle are loaded globally via
+ * `stylesheets` / `scripts` in docusaurus.config.ts.
  */
 
-import React, { type ReactNode } from 'react';
+import React, { useEffect, useRef, type ReactNode } from 'react';
 import clsx from 'clsx';
 import { ThemeClassNames } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
-// TypeScript: <feedback-modal> is a Web Component (custom element),
-// so we declare it as a JSX intrinsic element.
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      'feedback-modal': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        project?: string;
-        embedded?: string;
-        'rating-mode'?: string;
-        'rating-placeholder'?: string;
-        rating?: string;
-        'modal-position'?: string;
-      };
-    }
-  }
-}
+const PROJECT_ID = 'fv5awvu82c';
 
 export default function DocItemFooter(): ReactNode {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Clear any prior render (in case of client-side route change).
+    container.innerHTML = '';
+
+    const modal = document.createElement('feedback-modal');
+    modal.setAttribute('project', PROJECT_ID);
+    modal.setAttribute('embedded', 'true');
+    modal.setAttribute('rating-mode', 'thumbs');
+    modal.setAttribute('rating-placeholder', 'Was this helpful?');
+    modal.setAttribute('rating', '0');
+    modal.setAttribute('modal-position', 'center');
+    container.appendChild(modal);
+
+    // Cleanup on unmount (route change) — remove the modal so it
+    // doesn't pile up across navigations.
+    return () => {
+      container.innerHTML = '';
+    };
+  }, []);
+
   return (
     <footer
       className={clsx(
@@ -63,14 +67,7 @@ export default function DocItemFooter(): ReactNode {
         styles.feedbackFooter,
       )}
     >
-      <feedback-modal
-        project="fv5awvu82c"
-        embedded="true"
-        rating-mode="thumbs"
-        rating-placeholder="Was this helpful?"
-        rating="0"
-        modal-position="center"
-      />
+      <div ref={containerRef} className={styles.feedbackContainer} />
     </footer>
   );
 }

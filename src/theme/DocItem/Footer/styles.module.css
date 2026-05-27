@@ -22,3 +22,7 @@
   display: block;
   max-width: 720px;
 }
+
+.feedbackContainer {
+  max-width: 720px;
+}
