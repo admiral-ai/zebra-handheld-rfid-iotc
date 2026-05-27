@@ -1,0 +1,305 @@
+/* 404 page | Zebra Handheld RFID Reader IOTC
+ * Styles for src/pages/404.tsx.
+ * Tracks /brain/404-PAGE.md §4 visual design rules and §8 accessibility.
+ */
+
+.notFoundMain {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1.5rem 5rem;
+  min-height: 60vh;
+}
+
+.container {
+  max-width: 820px;
+  width: 100%;
+}
+
+/* §3a Status acknowledgement */
+.statusBlock {
+  margin-bottom: 1.25rem;
+}
+
+.statusCode {
+  font-size: 6.5rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-300);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.5rem;
+  font-feature-settings: 'tnum' 1;
+}
+
+[data-theme='dark'] .statusCode {
+  color: var(--ifm-color-emphasis-400);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+  color: var(--ifm-heading-color);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* §3b Diagnostics strip */
+.diagnostics {
+  margin: 1.5rem 0;
+  padding: 0.85rem 1rem;
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 4px;
+  border-left: 3px solid var(--ifm-color-emphasis-400);
+}
+
+[data-theme='dark'] .diagnostics {
+  background-color: var(--ifm-color-emphasis-200);
+  border-left-color: var(--ifm-color-emphasis-500);
+}
+
+.diagnosticsLine {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.diagnosticsLine:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.diagnosticsLabel {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.urlCode {
+  font-family: var(--ifm-font-family-monospace);
+  background-color: var(--ifm-color-emphasis-200);
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.88em;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+[data-theme='dark'] .urlCode {
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+.diagnosticsMeta {
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* §6 Did-you-mean callout */
+.didYouMean {
+  margin: 1.5rem 0;
+  padding: 0.85rem 1rem;
+  background-color: rgba(59, 130, 246, 0.08);
+  border-radius: 4px;
+  border-left: 3px solid #3b82f6;
+  font-size: 1rem;
+}
+
+.didYouMean p {
+  margin: 0;
+  color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] .didYouMean {
+  background-color: rgba(96, 165, 250, 0.14);
+  border-left-color: #60a5fa;
+}
+
+.suggestionLink {
+  font-weight: 600;
+}
+
+/* §3c / §3d / §3e Generic section blocks */
+.section {
+  margin-top: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.85rem 0;
+  color: var(--ifm-heading-color);
+}
+
+.reasonList {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.7;
+}
+
+.reasonList li {
+  margin-bottom: 0.25rem;
+}
+
+/* §3d Search */
+.searchForm {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  font-size: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+}
+
+.searchInput:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 1px;
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .searchInput {
+  background-color: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+.searchButton {
+  padding: 0.65rem 1.4rem;
+  font-size: 1rem;
+  border: 1px solid var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: var(--ifm-font-family-base);
+  white-space: nowrap;
+}
+
+.searchButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+.searchButton:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.searchHint {
+  margin: 0.55rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* §3e Curated recovery jumps */
+.jumpsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.jumpItem {
+  margin-bottom: 0.35rem;
+}
+
+.jumpLink {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.jumpLink:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  text-decoration: none;
+}
+
+[data-theme='dark'] .jumpLink:hover {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+.jumpLink:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 1px;
+}
+
+.jumpLink::before {
+  content: '▸';
+  color: var(--ifm-color-primary);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+.jumpLabel {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.jumpDescription {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+/* §3f Report broken link */
+.reportSection {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.reportSection p {
+  margin: 0;
+}
+
+.reportLink {
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .notFoundMain {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .statusCode {
+    font-size: 4.5rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .searchForm {
+    flex-direction: column;
+  }
+  .jumpLink {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding-left: 0.4rem;
+  }
+  .jumpLink::before {
+    display: none;
+  }
+}
