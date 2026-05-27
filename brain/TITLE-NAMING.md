@@ -102,7 +102,7 @@ Reference pages document a fixed contract. The title names the
 |---|---|
 | `<ObjectName>` (singular for canonical items) | "Glossary" |
 | `<ObjectName> reference` | "Error codes reference" |
-| `<Operation> (<sub-tag>)` for API ops | "set_wifi (MGMT — Network)" |
+| `<Operation> (<sub-tag>)` for API ops | "set_wifi (MGMT/Network)" |
 | `<EventName>: <one-line scope>` | "dataEVT: tag-read event schema" |
 | `Appendix: <subject>` | "Appendix: Regulatory & regional information" |
 
@@ -118,11 +118,43 @@ Reference pages document a fixed contract. The title names the
 | Rule | Example ✅ | Example ❌ |
 |---|---|---|
 | Sentence case (only proper nouns and acronyms capitalised) | "How to install a TLS certificate" | "How To Install A TLS Certificate" (title case) |
-| Em-dashes for sub-clauses (or colons) | "Phase 2: Bootstrap — Direct" | "Phase 2: Bootstrap, Direct" (comma is weaker visually) |
+| **Vertical pipe (`\|`) for sub-clauses; never em-dash (—) or en-dash (–)** | "Events reference \| full schemas" | "Events reference — full schemas" (em-dash), "Events reference – full schemas" (en-dash) |
 | ASCII apostrophes; no smart quotes | `Your first 30 minutes` | `Your first 30 minutes` (curly apostrophe → encoding risk) |
 | Question marks allowed for question-shaped titles | "Which sled do you have?" | n/a |
 | Parentheticals for variant / qualifier | "Phase 2: Bootstrap (Direct, 123RFID Desktop)" | "Phase 2: Bootstrap, Direct, 123RFID Desktop" |
 | Brand qualifier when needed | "MQTT QoS levels" (MQTT is the brand of the standard) | "QoS levels" (ambiguous; QoS in mobile networks ≠ MQTT QoS) |
+
+### 3a. Why pipes, not dashes, for sub-clause separation in titles
+
+Titles are not body prose. They are read in dense lists (search results,
+sidebars, browser tabs) where every character competes for attention,
+and they are spoken aloud (screen readers, voice search), where en-dash
+and em-dash collapse to indistinguishable pauses. The vertical pipe
+(`|`) is a clean visual divider that:
+
+- **Renders identically across fonts and zooms.** Em-dashes and en-dashes
+  have inconsistent widths across system fonts; some monospace fonts
+  render em-dash as a hyphen, breaking the visual rhythm.
+- **Is unambiguous to screen readers.** Screen readers announce `|` as
+  "vertical bar" (or skip it as a separator depending on settings),
+  which signals to listeners that a new clause begins. Dashes get
+  announced as "dash" interchangeably and listeners can't tell em from
+  en from hyphen.
+- **Survives copy-paste and search.** ASCII `|` (U+007C) is part of
+  basic ASCII and is keyboard-typable; em-dash (U+2014) and en-dash
+  (U+2013) require special input methods and are sometimes mangled by
+  legacy editors, search indexes, and clipboard transforms.
+- **Mirrors common title patterns in technical search results.** Many
+  technical-doc sites (MDN, AWS, Stripe, Datadog) already use `|` in
+  HTML `<title>` tags for site-name appending (`Page title | Site
+  name`), so readers are pre-trained on the convention.
+
+**This applies to titles only.** Body prose (paragraphs, captions,
+list items) may use em-dashes — they're more readable in flowing text.
+
+> **Migration note.** Existing titles that use em-dash or en-dash for
+> sub-clause separation should be replaced with `|`. Add a space on
+> each side of the pipe (`Foo | Bar`, not `Foo|Bar`) for readability.
 
 **Capitalisation policy: sentence case.** Capitalise:
 - The first word
@@ -228,8 +260,9 @@ When adding or editing a title:
 - [ ] No filler prefix (no "About ", no "Understanding ", no "Introduction to ")
 - [ ] Brand qualifier added if the bare term is ambiguous
 - [ ] No marketing fluff, no inside jokes, no jargon-only phrasing
+- [ ] No em-dash (—) or en-dash (–) anywhere in the title; use vertical pipe (`\|`) for sub-clauses
 - [ ] Matches the H1 of the page (Docusaurus uses `title:` as H1 by default)
-- [ ] Sidebar label is consistent (same or a shorter scent-phrased variant)
+- [ ] Sidebar label is consistent (same or a shorter scent-phrased variant), and also free of em/en dashes
 - [ ] No trailing punctuation except `?` for genuine question titles
 
 ---
@@ -253,7 +286,7 @@ operation name in the title:
 
 | Pattern | Example ✅ |
 |---|---|
-| `<op_name> (<sub-tag>)` | "set_wifi (MGMT — Network)" |
+| `<op_name> (<sub-tag>)` | "set_wifi (MGMT/Network)" |
 | For events | "heartbeatEVT (Events)" |
 
 The operation name uses the canonical casing (`set_wifi` not `Set Wifi`).
