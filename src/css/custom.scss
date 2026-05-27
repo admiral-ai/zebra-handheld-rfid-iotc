@@ -67,6 +67,26 @@
   --feedback-modal-close-color:                   var(--ifm-color-emphasis-800);
   --feedback-modal-close-bg-color:                transparent;
   --feedback-modal-screenshot-close-color:        var(--ifm-color-emphasis-800);
+
+  /* Modal title (also used for the success/error confirmation title).
+   * The defaults inherit from --feedback-dark-color / --feedback-heading-
+   * font-size / weight 500. Override so titles look like a real
+   * Docusaurus h3: heading colour, slightly larger size, weight 600. */
+  --feedback-modal-header-text-color:             var(--ifm-heading-color);
+  --feedback-modal-header-font-size:              1.15rem;
+  --feedback-modal-header-font-weight:            600;
+
+  /* Modal body (the success / error message paragraph and the
+   * textarea/email/etc. on the input form). Default cascades through
+   * --feedback-text-color and --feedback-text-font-size; pin to the
+   * site's body type so all sizes match the docs. */
+  --feedback-modal-content-text-color:            var(--ifm-font-color-base);
+  --feedback-modal-content-bg-color:              var(--ifm-background-color);
+  --feedback-modal-content-border-color:          var(--ifm-color-emphasis-300);
+  --feedback-modal-message-font-size:             0.95rem;
+
+  /* "Powered by PushFeedback" footer link in the modal */
+  --feedback-modal-footer-link:                   var(--ifm-color-emphasis-700);
 }
 
 [data-theme='dark'] {
@@ -100,6 +120,17 @@
   --feedback-modal-close-color:                   var(--ifm-color-emphasis-700);
   --feedback-modal-close-bg-color:                transparent;
   --feedback-modal-screenshot-close-color:        var(--ifm-color-emphasis-700);
+
+  /* Modal title / body — dark theme.
+   * The default --feedback-modal-content-bg-color cascades to
+   * --feedback-white-color (literally #fff) which would leave a glaring
+   * white modal in the middle of a dark page. Override to the site's
+   * background and heading colours. */
+  --feedback-modal-header-text-color:             var(--ifm-heading-color);
+  --feedback-modal-content-text-color:            var(--ifm-font-color-base);
+  --feedback-modal-content-bg-color:              var(--ifm-color-emphasis-100);
+  --feedback-modal-content-border-color:          var(--ifm-color-emphasis-400);
+  --feedback-modal-footer-link:                   var(--ifm-color-emphasis-600);
 }
 
 .theme-code-block-highlighted-line {
