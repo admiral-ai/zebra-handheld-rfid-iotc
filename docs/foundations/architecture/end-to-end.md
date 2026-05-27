@@ -39,6 +39,6 @@ A fixed Zebra reader (FXR90) is a standalone network device, it has its own Wi-F
 
 ### What this implies
 
-The five-hop topology means IOTC documentation must address failure modes at each hop separately. [Network Configuration](#chapter-6--network-configuration) covers the Wi-Fi link. [Bluetooth Troubleshooting](/reference/troubleshooting/bluetooth) covers the BT link. [Connection Troubleshooting](/reference/troubleshooting/connection) covers the MQTT link. Treating "the connection" as a single entity is the most common operational mistake; there are five.
+The five-hop topology means IOTC documentation must address failure modes at each hop separately. [Network Configuration](/infrastructure/network/architecture) covers the Wi-Fi link. [Bluetooth Troubleshooting](/reference/troubleshooting/bluetooth) covers the BT link. [Connection Troubleshooting](/reference/troubleshooting/connection) covers the MQTT link. Treating "the connection" as a single entity is the most common operational mistake; there are five.
 
 **Related:** 📘 [Component Architecture](/foundations/actors) · 📘 [Network Architecture](/infrastructure/network/architecture) · 📘 [Handheld-Specific Considerations](/foundations/architecture/handheld-considerations)

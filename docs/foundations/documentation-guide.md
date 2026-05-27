@@ -7,17 +7,18 @@ description: "How the IOTC docs are organised: eight Parts, the Diataxis split (
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~3 min
 
-This documentation is organised into seven Parts that follow the developer's actual workflow: discover the system, get started, set up infrastructure, operate the RFID radio, observe what happens, manage at fleet scale, and look things up. The order is a dependency chain — content in any Part assumes you have read or skimmed earlier Parts as needed.
+This documentation is organised into eight Parts that follow the developer's actual workflow: get oriented, read the foundations, walk the Quick Start, manage the reader, read tags, observe what happens, scale to a fleet, and diagnose problems. The order is a dependency chain — content in any Part assumes you have read or skimmed earlier Parts as needed.
 
-### The seven Parts
+### The eight Parts
 
-- **Part I: Foundations**: what this is, what's in it, how MQTT works
-- **Part II: Getting Started**: prerequisites and the Quick Start tutorial
-- **Part III: Infrastructure**: network, security, MQTT endpoints
-- **Part IV: RFID Operations**: operating modes, post-filters, tag data
-- **Part V: Observability & Events**: heartbeats, alerts, exceptions, monitoring
-- **Part VI: Fleet Operations**: provisioning, bulk configuration, migration, cloud integration
-- **Part VII: Reference & Troubleshooting**: endpoint reference, error codes, troubleshooting, FAQ, appendices
+- **Part 1: Get oriented**: where to start, the MQTT primer, how this site pairs with the MQTT API Reference
+- **Part 2: Foundations**: what IOTC is, which sled you have, the actors, the bootstrap tools, how commands and responses flow
+- **Part 3: Quick start**: a seven-phase end-to-end walkthrough from a sealed box to live inventory
+- **Part 4: Manage your reader**: device state, network, MQTT endpoints, TLS, configuration document, firmware
+- **Part 5: Read tags**: operating-mode profiles, start/stop, post-filters
+- **Part 6: Observe and monitor**: configure events, heartbeats, alerts, MQTT connection, tag-data event schema
+- **Part 7: Scale to a fleet**: provisioning models, bulk management, retention and retry
+- **Part 8: Diagnose and reference**: symptoms, failure modes, where things fail, recovery playbooks, misconceptions, glossary, API reference, release notes
 
 ```mermaid
 flowchart LR
@@ -45,10 +46,10 @@ The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exa
 
 | If you are … | Start here |
 |---|---|
-| New to IOTC and want to read a tag in an hour | [Quick Start Tutorial](#chapter-5--quick-start-tutorial) |
-| Architecting a multi-reader deployment | [System Architecture](#chapter-2--system-architecture), then [Fleet Provisioning](#chapter-13--fleet-provisioning) |
+| New to IOTC and want to read a tag in an hour | [Quick Start Tutorial](/quick-start/overview) |
+| Architecting a multi-reader deployment | [System Architecture](/foundations/architecture/end-to-end), then [Fleet Provisioning](/fleet/provisioning-models) |
 | Writing integration code against the MQTT API | [API Reference](/reference/api-overview) |
-| Operating an existing fleet at 3 a.m. | [Troubleshooting Guide](#chapter-18--troubleshooting-guide) |
+| Operating an existing fleet at 3 a.m. | [Troubleshooting Guide](/diagnose/symptoms) |
 
 ```mermaid
 flowchart LR
@@ -71,6 +72,6 @@ flowchart LR
 
 ### How to navigate
 
-Every page carries breadcrumbs (Part > Chapter > Section), a right-side table of contents, and a "Related" box linking complementary-quadrant pages. The search bar accepts both endpoint names and natural-language queries.
+Every page carries breadcrumbs (Part > Page), a right-side table of contents, and a "Related" box linking complementary-quadrant pages. The search bar accepts both endpoint names and natural-language queries.
 
-**Related:** 📘 [System Architecture](#chapter-2--system-architecture) · 📘 [MQTT Core Concepts](#chapter-3--mqtt-core-concepts) · external: [diataxis.fr](https://diataxis.fr/)
+**Related:** 📘 [System Architecture](/foundations/architecture/end-to-end) · 📘 [MQTT Core Concepts](/foundations/mqtt-primer) · external: [diataxis.fr](https://diataxis.fr/)
