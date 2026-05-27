@@ -22,15 +22,21 @@ import styles from './404.module.css';
 
 // Suggestions for known-deleted paths. When a visitor lands on one of
 // these URLs, surface a "Did you mean" pointer (styleguide §6).
-const DID_YOU_MEAN: Record<string, string> = {
-  '/sdks': '/foundations/mqtt-primer',
-  '/sdks/overview': '/foundations/mqtt-primer',
-  '/sdks/python': '/foundations/mqtt-primer',
-  '/sdks/nodejs': '/foundations/mqtt-primer',
-  '/sdks/csharp': '/foundations/mqtt-primer',
-  '/sdks/libraries': '/foundations/mqtt-primer',
+//
+// Two layers of matching:
+//   1. Exact match in DID_YOU_MEAN_EXACT
+//   2. Prefix match in DID_YOU_MEAN_PREFIX (covers any sub-path under a
+//      deleted section)
+const DID_YOU_MEAN_EXACT: Record<string, string> = {
   '/reference/appendices/libraries': '/foundations/mqtt-primer',
 };
+
+const DID_YOU_MEAN_PREFIX: Array<[string, string]> = [
+  // The entire /sdks/* section was deleted; any URL under it should
+  // suggest the MQTT primer (the closest surviving concept).
+  ['/sdks/', '/foundations/mqtt-primer'],
+  ['/sdks', '/foundations/mqtt-primer'],
+];
 
 // Curated recovery jumps (styleguide §3e). Keep to 4-6 entries.
 const RECOVERY_JUMPS: Array<{ label: string; to: string; description: string }> = [
@@ -73,7 +79,18 @@ function computeSuggestion(attemptedPath: string | null): string | null {
     .split('?')[0]
     .split('#')[0]
     .replace(/\/$/, '');
-  return DID_YOU_MEAN[normalised] ?? null;
+  // Tier 1: exact match
+  if (DID_YOU_MEAN_EXACT[normalised]) {
+    return DID_YOU_MEAN_EXACT[normalised];
+  }
+  // Tier 2: prefix match (with trailing slash on the prefix so '/sdks/foo'
+  // matches but '/sdksomething' does not).
+  for (const [prefix, target] of DID_YOU_MEAN_PREFIX) {
+    if (normalised === prefix.replace(/\/$/, '') || normalised.startsWith(prefix)) {
+      return target;
+    }
+  }
+  return null;
 }
 
 function buildReportUrl(attempted: string | null, referrer: string | null): string {
