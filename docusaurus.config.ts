@@ -34,6 +34,10 @@ const config: Config = {
     // Install/setup docs: https://docs.pushfeedback.com/installation/docusaurus
     // Project ID is not secret (it ships in the public JS bundle, same
     // as the Algolia appId/apiKey below); hardcoding is intentional.
+    //
+    // Widget appears as a vertical "Feedback" label on the right edge
+    // of the viewport (center-right). Clicking it opens the feedback
+    // modal on the right side.
     [
       'docusaurus-pushfeedback',
       {
