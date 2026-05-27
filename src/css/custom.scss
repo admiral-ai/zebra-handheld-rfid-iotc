@@ -60,6 +60,13 @@
   --feedback-modal-button-submit-bg-color:        var(--ifm-color-primary);
   --feedback-modal-button-submit-bg-color-active: var(--ifm-color-primary-dark);
   --feedback-button-text-font-weight:             600;
+
+  /* Close (×) button in the modal corner. Without these the default
+   * close-button colours can render invisible against our --ifm-
+   * background-color, so set them explicitly. */
+  --feedback-modal-close-color:                   var(--ifm-color-emphasis-800);
+  --feedback-modal-close-bg-color:                transparent;
+  --feedback-modal-screenshot-close-color:        var(--ifm-color-emphasis-800);
 }
 
 [data-theme='dark'] {
@@ -88,6 +95,11 @@
   --feedback-modal-button-icon-color-active:      var(--ifm-color-primary);
   --feedback-modal-button-submit-bg-color:        var(--ifm-color-primary);
   --feedback-modal-button-submit-bg-color-active: var(--ifm-color-primary-dark);
+
+  /* Close (×) button — dark theme */
+  --feedback-modal-close-color:                   var(--ifm-color-emphasis-700);
+  --feedback-modal-close-bg-color:                transparent;
+  --feedback-modal-screenshot-close-color:        var(--ifm-color-emphasis-700);
 }
 
 .theme-code-block-highlighted-line {
