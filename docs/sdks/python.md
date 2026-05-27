@@ -1,7 +1,8 @@
 ---
 id: python
-title: "Tutorial: Read Your First Tag with Python"
+title: "Tutorial: read your first tag with Python"
 sidebar_label: "Tutorial: Read Your First Tag with Python"
+description: "End-to-end IOTC tutorial in Python (3.9+) with paho-mqtt: connect to broker, send control_operation START, subscribe to dataEVT, process first tag read."
 ---
 
 > 📗 **TUTORIAL** · Audience: Python developer · Time: ~15 min

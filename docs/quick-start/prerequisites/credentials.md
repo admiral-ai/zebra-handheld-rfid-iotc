@@ -1,7 +1,8 @@
 ---
 id: credentials
-title: How to Obtain IOTC Credentials & Tenant ID
+title: How to obtain IOTC credentials and tenant ID
 sidebar_label: "IOTC credentials & tenant ID"
+description: Obtain your IOTC tenant ID and broker credentials (username, password, client ID). Zebra-managed brokers, customer-hosted brokers, rotation.
 ---
 
 > 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~5 min

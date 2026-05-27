@@ -1,7 +1,8 @@
 ---
 id: about
-title: MDM and SOTI Interfaces
+title: MDM and SOTI interfaces
 sidebar_label: MDM and SOTI Interfaces
+description: "Reference for the IOTC MDM endpoint: the bootstrap default that 123RFID Desktop creates first, plus SOTI Connect and 42Gears SureMDM integration."
 ---
 > 📕 **REFERENCE**
 

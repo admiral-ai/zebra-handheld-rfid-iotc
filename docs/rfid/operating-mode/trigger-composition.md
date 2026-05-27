@@ -1,7 +1,8 @@
 ---
 id: trigger-composition
-title: About Trigger Composition
+title: Trigger composition for IOTC reader sleds
 sidebar_label: About Trigger Composition
+description: "How the IOTC trigger button composes with control_operation: trigger modes, what each pull sends, and how host-app and trigger-driven inventory interact."
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~5 min

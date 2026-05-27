@@ -1,7 +1,8 @@
 ---
 id: network
-title: "Network Configuration (MGMT)"
+title: Network configuration (MGMT endpoint)
 sidebar_label: "Network Configuration (MGMT)"
+description: "Reference for the MGMT network-configuration surface: set_wifi (Direct only), get_wifi, set_ethernet (cradle), get_current_network, reboot persistence."
 ---
 > 📕 **REFERENCE**
 

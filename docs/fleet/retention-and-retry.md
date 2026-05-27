@@ -2,6 +2,7 @@
 id: retention-and-retry
 title: What happens when the network drops
 sidebar_label: What happens when the network drops
+description: "How IOTC readers survive network outages: the four-layer reliability model (QoS, retention buffer, application retry, dead-letter) and when each kicks in."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~7 min

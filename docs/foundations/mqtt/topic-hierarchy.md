@@ -1,7 +1,8 @@
 ---
 id: topic-hierarchy
-title: About Topic Hierarchy & Naming Conventions
+title: MQTT topic hierarchy and naming conventions
 sidebar_label: About Topic Hierarchy & Naming Conventions
+description: "How IOTC structures MQTT topics: the three-segment pattern (tenantId / topic / deviceSerialNumber), reserved prefixes, fleet-scale topic design."
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~5 min

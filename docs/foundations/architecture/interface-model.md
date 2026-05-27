@@ -1,7 +1,8 @@
 ---
 id: interface-model
-title: About the Interface Model
+title: IOTC interface model
 sidebar_label: About the Interface Model
+description: "The five interface surfaces of an IOTC reader: MGMT, CTRL, EVT, DATA, MDM. What each carries, sub-tag grouping, how apps subscribe and publish."
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~5 min

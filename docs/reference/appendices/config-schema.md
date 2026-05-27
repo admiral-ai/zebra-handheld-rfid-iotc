@@ -1,7 +1,8 @@
 ---
 id: config-schema
-title: "get_config Response Schema"
+title: get_config response schema
 sidebar_label: "get_config Response Schema"
+description: Authoritative reference for the get_config response schema in IOTC. Field-by-field breakdown of every persistent configuration element with types and defaults.
 ---
 
 > 📕 **REFERENCE**

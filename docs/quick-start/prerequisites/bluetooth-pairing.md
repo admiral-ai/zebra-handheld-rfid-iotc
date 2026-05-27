@@ -1,7 +1,8 @@
 ---
 id: bluetooth-pairing
-title: How to Pair the Reader Sled with a Host
+title: How to pair a reader sled with a host
 sidebar_label: "Bluetooth pairing"
+description: Pair an RFD40 or RFD90 sled with a host phone over Bluetooth 5.0 LE. Covers the 123RFID Mobile pairing flow, retry behaviour, common pairing failures.
 ---
 
 > 📙 **HOW-TO** · **Audience:** New Integrator · **Time:** ~5 min · **Source of truth:** *123RFID Mobile Application User Guide* (Zebra, MN-003765-09EN Rev A)

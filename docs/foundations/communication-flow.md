@@ -2,6 +2,7 @@
 id: communication-flow
 title: How commands and responses flow
 sidebar_label: How commands and responses flow
+description: "End-to-end flow of an IOTC MQTT command: how the payload reaches the reader, how the reader publishes a response, and req/resp pairing."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, API Consumer · **Read time:** ~6 min

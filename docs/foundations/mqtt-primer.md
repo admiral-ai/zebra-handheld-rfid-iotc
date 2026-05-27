@@ -2,6 +2,7 @@
 id: mqtt-primer
 title: MQTT in five minutes
 sidebar_label: MQTT in five minutes
+description: Five-minute MQTT 3.1.1 primer for engineers new to pub/sub. Covers topics, broker role, QoS, retained vs non-retained messages, and how MQTT differs from HTTP.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** New Integrator (no prior MQTT) · **Read time:** ~5 min

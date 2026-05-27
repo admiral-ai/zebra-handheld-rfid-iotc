@@ -1,7 +1,8 @@
 ---
 id: inventory-control
-title: "Inventory Control (CTRL)"
+title: Inventory control (CTRL endpoint)
 sidebar_label: "Inventory Control (CTRL)"
+description: "Reference for the CTRL endpoint inventory-control surface: control_operation (START / STOP) and its payload. Maps to the canonical CTRL sub-tag."
 ---
 > 📕 **REFERENCE**
 

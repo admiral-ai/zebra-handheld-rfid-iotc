@@ -2,6 +2,7 @@
 id: configure-events
 title: Choose what the reader tells you
 sidebar_label: Choose what the reader tells you
+description: "Configure which IOTC events a reader emits via config_events: heartbeats, alerts, mqttConnEVT, terminalConnection, dataEVT enable / interval / verbosity."
 ---
 
 > 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min · **Ties to:** Event Configuration sub-tag of the API Reference

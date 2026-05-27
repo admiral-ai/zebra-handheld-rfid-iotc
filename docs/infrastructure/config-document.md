@@ -2,6 +2,7 @@
 id: config-document
 title: The reader's configuration document
 sidebar_label: The reader's configuration document
+description: The unified IOTC configuration document returned by get_config. Every persistent setting (Wi-Fi, endpoints, certs, events), and what survives reboot.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~5 min · **Ties to:** Device Configuration sub-tag of the API Reference

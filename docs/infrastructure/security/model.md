@@ -1,7 +1,8 @@
 ---
 id: model
-title: Securing the connection (TLS & certificates)
+title: Securing the connection (TLS and certificates)
 sidebar_label: Securing the connection (TLS & certificates)
+description: "The IOTC security model: TLS 1.2 for MQTT, CA trust chain, client cert options, MQTT_TLS vs MQTT_PLAIN endpoint types, cert rotation hooks."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min · **Ties to:** Certificate Management sub-tag of the API Reference

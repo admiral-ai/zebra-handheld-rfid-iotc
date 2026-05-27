@@ -1,7 +1,8 @@
 ---
 id: custom-broker
-title: How to Integrate with a Custom MQTT Broker
+title: How to integrate IOTC with a custom MQTT broker
 sidebar_label: How to Integrate with a Custom MQTT Broker
+description: "Integrate IOTC readers with a self-hosted broker (Mosquitto, HiveMQ, EMQX): credentials, TLS, topic ACLs, broker-side rate-limit considerations."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min

@@ -1,7 +1,8 @@
 ---
 id: v1-1-features
-title: About IOTC V1.1 Features
+title: IOTC V1.1 release features
 sidebar_label: About IOTC V1.1 Features
+description: What changed in IOTC V1.1, the current API baseline for handheld RFID readers on firmware 3.10.27+. V1.0 compatibility, per-endpoint version support.
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~3 min

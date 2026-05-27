@@ -1,7 +1,8 @@
 ---
 id: wifi
-title: How to Configure Wi-Fi Profiles
+title: How to configure Wi-Fi profiles
 sidebar_label: How to Configure Wi-Fi Profiles
+description: "Configure Wi-Fi profiles on a Direct-tier IOTC reader via set_wifi: SSID, security mode (Open/WPA2/WPA3), credentials, multi-SSID fallback."
 ---
 
 > 📙 **HOW-TO** · **Audience:** Solution Builder, Fleet Operator · **Time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference

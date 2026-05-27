@@ -2,6 +2,7 @@
 id: phase-1
 title: "Phase 1: Prepare network and broker"
 sidebar_label: "Phase 1: Prepare network and broker"
+description: "Phase 1 of the IOTC Quick Start: prepare the network and broker. By the end you have a reachable MQTT 3.1.1 broker and credentials."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 1 of 7 · **Audience:** IT / Network Admin · **Time:** ~5 min (or 30 if you need a firewall change)

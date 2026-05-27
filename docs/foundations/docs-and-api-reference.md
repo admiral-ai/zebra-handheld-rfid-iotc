@@ -1,7 +1,8 @@
 ---
 id: docs-and-api-reference
-title: Pairing the docs with the API Reference
+title: How these docs pair with the MQTT API Reference
 sidebar_label: Pairing the docs with the API Reference
+description: How the conceptual IOTC docs pair with the auto-generated MQTT API Reference. When to read which, how to navigate between them, what each surface owns.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~3 min

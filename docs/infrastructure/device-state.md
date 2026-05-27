@@ -2,6 +2,7 @@
 id: device-state
 title: What your reader knows about itself
 sidebar_label: What your reader knows about itself
+description: "The IOTC reader's self-knowledge: model, serial, firmware, region, antenna, MAC, IP. Which fields get_version returns and which get_status returns."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~5 min · **Ties to:** Device Status sub-tag of the API Reference

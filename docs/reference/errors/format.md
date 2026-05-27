@@ -1,7 +1,8 @@
 ---
 id: format
-title: Error Response Format
+title: Error response format
 sidebar_label: Error Response Format
+description: "Reference for the IOTC error-response envelope: canonical fields (code, message, command_id) and how every response shape includes them."
 ---
 
 > 📕 **REFERENCE** · Audience: API Consumer · Use: parse error responses

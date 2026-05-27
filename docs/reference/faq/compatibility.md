@@ -2,6 +2,7 @@
 id: compatibility
 title: Compatibility FAQs
 sidebar_label: Compatibility FAQs
+description: "Frequently asked questions about IOTC compatibility: which sleds, firmware, host devices, host OSes, brokers, and TLS versions are supported and tested."
 ---
 
 > 📕 **REFERENCE** · **Audience:** All personas · **Use:** compatibility lookup · Migration procedure is in [Plan the migration](/fleet/migration/plan), not in this FAQ.

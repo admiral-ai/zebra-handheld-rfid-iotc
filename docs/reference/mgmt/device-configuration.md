@@ -1,7 +1,8 @@
 ---
 id: device-configuration
-title: "Device Configuration (MGMT)"
+title: Device configuration (MGMT endpoint)
 sidebar_label: "Device Configuration (MGMT)"
+description: "Reference for the MGMT device-configuration surface: set_config, get_config, set_logging_level. What each writes to or reads from the config document."
 ---
 > 📕 **REFERENCE**
 

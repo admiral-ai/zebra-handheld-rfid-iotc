@@ -2,6 +2,7 @@
 id: heartbeat
 title: Watch your reader's pulse
 sidebar_label: Watch your reader's pulse
+description: "The IOTC heartbeatEVT: a periodic 'reader is alive' signal with uptime, sequence, and optional battery and inventory state. Tuning and absence detection."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~4 min · **Ties to:** Device Health sub-tag of the API Reference

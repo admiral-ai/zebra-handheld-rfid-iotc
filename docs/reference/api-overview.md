@@ -2,6 +2,7 @@
 id: api-overview
 title: MQTT API Reference
 sidebar_label: MQTT API Reference
+description: "Index of the IOTC MQTT API surface: 22 commands and 5 events across MGMT, CTRL, EVT, DATA, MDM. Each operation links to the external API Reference site."
 ---
 
 > 📕 **REFERENCE** · Audience: API Consumer · Use: directory of all 27 commands and events

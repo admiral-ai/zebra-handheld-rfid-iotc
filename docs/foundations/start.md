@@ -2,6 +2,7 @@
 id: start
 title: Start here
 sidebar_label: Start here
+description: Where to start with the Zebra IoT Connector (IOTC) docs for handheld RFID. Covers what IOTC is, what's in scope (RFD40 / RFD90 sleds), and where to go next.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~3 min

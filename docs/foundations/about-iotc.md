@@ -2,6 +2,7 @@
 id: about-iotc
 title: What the IoT Connector is
 sidebar_label: What the IoT Connector is
+description: The Zebra IoT Connector (IOTC) is the in-firmware MQTT control and data plane for RFD40 / RFD90 handheld RFID sleds. What it does, scope, and how it differs.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas · **Read time:** ~5 min

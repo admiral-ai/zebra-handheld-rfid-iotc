@@ -1,7 +1,8 @@
 ---
 id: codes
-title: Command Response Error Codes
+title: Command response error codes
 sidebar_label: Command Response Error Codes
+description: Reference for IOTC command-response error codes 0-15. Each entry lists the code, canonical name, semantic meaning, and the recovery action to take.
 ---
 
 > 📕 **REFERENCE** · Audience: API Consumer · Use: look up codes appearing in command responses

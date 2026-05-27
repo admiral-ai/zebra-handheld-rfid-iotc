@@ -2,6 +2,7 @@
 id: glossary
 title: Glossary, limits, and cheat sheets
 sidebar_label: Glossary, limits, and cheat sheets
+description: Glossary of IOTC, MQTT, and RFID terms used in the docs, plus published limits (broker, retention, payload) and quick-reference cheat sheets.
 ---
 
 > 📕 **REFERENCE** · **Audience:** All · **Use:** lookup while reading

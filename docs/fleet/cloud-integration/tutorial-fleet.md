@@ -1,7 +1,8 @@
 ---
 id: tutorial-fleet
-title: "Tutorial: Provision a Three-Reader Fleet"
+title: "Tutorial: provision a three-reader fleet"
 sidebar_label: "Tutorial: Provision a Three-Reader Fleet"
+description: "Tutorial: provision a three-reader IOTC fleet against a cloud MQTT broker. Naming, certificate setup, MDM endpoint, bulk smoke-testing each reader."
 ---
 
 > 📗 **TUTORIAL** · **Audience:** Solution Builder, Fleet Operator · **Time:** ~45 min

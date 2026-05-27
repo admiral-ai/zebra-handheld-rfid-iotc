@@ -1,7 +1,8 @@
 ---
 id: symptoms
-title: Something's broken?
+title: "Something's broken?"
 sidebar_label: Something's broken?
+description: "Symptom-first index for the Zebra IOTC docs: pick the signal, get the failure mode and recovery playbook. Bootstrap, MQTT, inventory, TLS, fleet."
 ---
 
 > 🩺 **FAILURE MODE INDEX** · **Audience:** All personas in incident response · **Use:** symptom-first lookup

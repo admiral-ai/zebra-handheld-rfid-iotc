@@ -1,7 +1,8 @@
 ---
 id: documentation-guide
-title: About the Structure of This Documentation
+title: How to read this documentation
 sidebar_label: About the Structure of This Documentation
+description: "How the IOTC docs are organised: eight Parts, the Diataxis split (concept / how-to / tutorial / reference), and pairing with the MQTT API Reference."
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~3 min

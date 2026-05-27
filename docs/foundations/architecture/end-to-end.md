@@ -1,7 +1,8 @@
 ---
 id: end-to-end
-title: About the End-to-End System
+title: End-to-end IOTC system architecture
 sidebar_label: About the End-to-End System
+description: "End-to-end architecture of an IOTC deployment: sled, host, broker, application, MDM, and the four edges between them. Data and control paths covered."
 ---
 
 > 📘 **EXPLANATION** · Audience: All · Read time: ~5 min

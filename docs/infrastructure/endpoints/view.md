@@ -1,7 +1,8 @@
 ---
 id: view
-title: How to View Endpoint Configuration
+title: How to view endpoint configuration
 sidebar_label: How to View Endpoint Configuration
+description: "How to inspect IOTC MQTT endpoint configuration: get_endpoints lists every endpoint with its type, broker URL, credentials, TLS state, and topic prefix."
 ---
 
 > 📙 **HOW-TO** · Audience: All · Time: ~2 min

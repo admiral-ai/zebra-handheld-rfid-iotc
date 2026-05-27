@@ -2,6 +2,7 @@
 id: bulk-management
 title: Keeping a fleet in sync
 sidebar_label: Keeping a fleet in sync
+description: "Bulk fleet management for IOTC readers: apply config across many readers, detect and remediate drift, and read current state via get_config."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~5 min

@@ -1,7 +1,8 @@
 ---
 id: where-things-fail
-title: Where things fail
+title: Where things fail (the two-edges model)
 sidebar_label: Where things fail
+description: "The two-edges mental model for IOTC fault isolation: reader-host edge (Bridged) vs host-broker edge. How terminalConnection events show which edge broke."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas in incident response · **Read time:** ~4 min

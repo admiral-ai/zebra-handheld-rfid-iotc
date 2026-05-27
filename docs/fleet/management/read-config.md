@@ -1,7 +1,8 @@
 ---
 id: read-config
-title: How to Read Full Device Configuration
+title: How to read full device configuration
 sidebar_label: How to Read Full Device Configuration
+description: "Read a full IOTC device configuration with get_config: response schema, every persistent setting, and how to use it as source of truth for drift detection."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~5 min

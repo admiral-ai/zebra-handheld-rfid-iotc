@@ -2,6 +2,7 @@
 id: start-stop-inventory
 title: Start, stop, and the trigger button
 sidebar_label: Start, stop, and the trigger button
+description: "Start and stop an IOTC tag inventory: control_operation START / STOP, the physical trigger, trigger-mode composition, what each interaction sends on the wire."
 ---
 
 > 📙 **HOW-TO** · **Audience:** All · **Time:** ~5 min · **Ties to:** Inventory Control sub-tag of the API Reference

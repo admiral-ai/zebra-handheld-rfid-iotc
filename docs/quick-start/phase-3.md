@@ -2,6 +2,7 @@
 id: phase-3
 title: "Phase 3: Verify the bootstrap connection (get_version)"
 sidebar_label: "Phase 3: Verify the bootstrap connection"
+description: "Phase 3 of the IOTC Quick Start: send your first MQTT command (get_version) and read the response. Proves the reader is reachable and ready for Phase 4."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 3 of 7 · **Audience:** Integrator · **Time:** ~3 min

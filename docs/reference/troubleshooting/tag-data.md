@@ -1,7 +1,8 @@
 ---
 id: tag-data
-title: How to Troubleshoot Tag Data Issues
+title: How to troubleshoot tag-data issues
 sidebar_label: How to Troubleshoot Tag Data Issues
+description: "Troubleshoot IOTC tag-data issues: duplicate reads, missing reads, dataEVT not arriving, channel mismatch (data1event/data2event), QoS, dedup strategies."
 ---
 
 > 📙 **HOW-TO** · Audience: All · Time: ~10 min per symptom

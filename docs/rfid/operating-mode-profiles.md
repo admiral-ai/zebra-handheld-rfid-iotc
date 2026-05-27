@@ -2,6 +2,7 @@
 id: operating-mode-profiles
 title: Choose how the reader reads tags
 sidebar_label: Choose how the reader reads tags
+description: "Operating-mode profiles in IOTC: CYCLE_COUNT, DENSE_READERS, OPTIMAL_BATTERY, BALANCED_PERFORMANCE, ADVANCED. What each tunes and when to pick which."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~6 min · **Ties to:** Operating Mode sub-tag of the API Reference

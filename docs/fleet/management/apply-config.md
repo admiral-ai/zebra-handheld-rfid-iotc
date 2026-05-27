@@ -1,7 +1,8 @@
 ---
 id: apply-config
-title: How to Apply Bulk Configuration
+title: How to apply bulk configuration
 sidebar_label: How to Apply Bulk Configuration
+description: "Apply configuration to many IOTC readers at once: scripted set_config over MQTT, idempotency, batching, retry strategy, and per-reader verification."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min

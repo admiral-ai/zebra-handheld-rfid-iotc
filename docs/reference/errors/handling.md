@@ -1,7 +1,8 @@
 ---
 id: handling
-title: How to Handle Errors in Application Code
+title: How to handle errors in application code
 sidebar_label: How to Handle Errors in Application Code
+description: "Structure error handling for IOTC MQTT commands: idempotency, retry-with-backoff, when to escalate to the user, patterns for the five common failure modes."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~20 min

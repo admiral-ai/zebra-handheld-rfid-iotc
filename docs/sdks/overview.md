@@ -1,7 +1,8 @@
 ---
 id: overview
-title: SDKs & Language Tutorials
+title: SDKs and language tutorials
 sidebar_label: Overview
+description: "Choose a language for an IOTC tutorial: Python (paho-mqtt), Node.js (mqtt.js), or C# / .NET 8 (MQTTnet). Each is a complete end-to-end walkthrough."
 ---
 
 > 📘 **EXPLANATION** · Audience: New Integrator · Use: choose a language before starting a tutorial

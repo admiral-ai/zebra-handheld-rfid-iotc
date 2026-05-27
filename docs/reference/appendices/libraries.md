@@ -1,7 +1,8 @@
 ---
 id: libraries
-title: Third-Party MQTT Client Libraries
+title: Third-party MQTT client libraries
 sidebar_label: Third-Party MQTT Client Libraries
+description: "Recommended MQTT 3.1.1 client libraries for IOTC apps: paho-mqtt (Python), mqtt.js (Node), MQTTnet (C#), Eclipse Paho (Java/Android, iOS/Swift)."
 ---
 
 > 📕 **REFERENCE** · Curated list of libraries tested with IOTC

@@ -2,6 +2,7 @@
 id: alerts
 title: When the reader needs to interrupt you
 sidebar_label: When the reader needs to interrupt you
+description: "IOTC alerts and alert_short: two variants of the async signal a reader sends on threshold crossings (battery, temperature, firmware). When each fires."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~5 min · **Ties to:** Alerts sub-tag of the API Reference

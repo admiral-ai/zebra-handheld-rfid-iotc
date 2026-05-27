@@ -1,7 +1,8 @@
 ---
 id: bluetooth
-title: How to Troubleshoot Bluetooth & Host Device Issues
+title: How to troubleshoot Bluetooth and host-device issues
 sidebar_label: How to Troubleshoot Bluetooth & Host Device Issues
+description: "Troubleshoot Bluetooth and host-device issues on Bridged-tier IOTC readers: pairing failures, terminalConnection signals, Android compatibility, re-pair flow."
 ---
 
 > 📙 **HOW-TO** · Audience: All · Time: ~10 min per symptom

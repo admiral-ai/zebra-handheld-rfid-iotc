@@ -2,6 +2,7 @@
 id: misconceptions
 title: Things people get wrong about IOTC
 sidebar_label: Things people get wrong about IOTC
+description: "Common IOTC misconceptions (MM-NN): the OpenAPI illusion, FAST_READ unsupported, casing varies, reboot code 1 means success, region not MQTT-settable."
 toc_min_heading_level: 3
 toc_max_heading_level: 4
 ---

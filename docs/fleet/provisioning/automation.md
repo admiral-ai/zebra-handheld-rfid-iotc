@@ -1,7 +1,8 @@
 ---
 id: automation
-title: How to Automate Provisioning Workflows
+title: How to automate provisioning workflows
 sidebar_label: How to Automate Provisioning Workflows
+description: "Automate IOTC provisioning beyond 123RFID Desktop / Mobile: scripted set_config after first-light, MDM template push, CI-driven smoke tests."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~60 min for first build

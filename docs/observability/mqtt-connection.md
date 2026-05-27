@@ -2,6 +2,7 @@
 id: mqtt-connection
 title: Knowing when you're connected
 sidebar_label: Knowing when you're connected
+description: "The mqttConnEVT event: how an IOTC reader signals MQTT connection state changes. The non-ISO timestamp format and how to detect reconnect cycles."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator · **Read time:** ~4 min · **Ties to:** MQTT Connectivity sub-tag of the API Reference

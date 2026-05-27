@@ -1,7 +1,8 @@
 ---
 id: configure
-title: How to Configure the Operating Mode
+title: How to configure the operating mode
 sidebar_label: How to Configure the Operating Mode
+description: "Configure the IOTC operating mode via set_operating_mode: profile selection, advancedConfigurations (when ADVANCED), query, select filters, reportFilter."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~20 min

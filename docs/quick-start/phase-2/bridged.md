@@ -2,6 +2,7 @@
 id: bridged
 title: "Phase 2: Bootstrap (Bridged, 123RFID Mobile)"
 sidebar_label: "Bridged (123RFID Mobile)"
+description: "Phase 2 (Bridged tier) of the IOTC Quick Start: use 123RFID Mobile on Android to pair an RFD40 Standard sled over Bluetooth and configure the broker."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with an Android mobile computer · **Time:** ~10 min · **Path:** 🅑 Bridged (RFD40 Standard) — also valid for 🅓 Direct sleds when no Windows laptop is available

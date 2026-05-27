@@ -2,6 +2,7 @@
 id: post-filters
 title: Filter tags before vs after the read
 sidebar_label: Filter tags before vs after the read
+description: "Post-singulation filters in IOTC: PREFIX, SUFFIX, REGEX matching applied after the radio singulates a tag. When to post-filter vs pre-filter via Gen2 SELECT."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~4 min · **Ties to:** Tag Filtering sub-tag of the API Reference

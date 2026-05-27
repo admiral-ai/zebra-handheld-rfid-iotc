@@ -1,7 +1,8 @@
 ---
 id: dual-channels
-title: "About Dual Data Channels (data1event / data2event)"
+title: Dual data channels (data1event / data2event)
 sidebar_label: "About Dual Data Channels (data1event / data2event)"
+description: "Why and how IOTC supports two parallel tag-data channels (data1event / data2event): use cases (split brokers, A/B routing), config, per-channel filters."
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~4 min

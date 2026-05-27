@@ -2,6 +2,7 @@
 id: recovery-playbooks
 title: Playbooks for getting back online
 sidebar_label: Playbooks for getting back online
+description: "Step-by-step recovery playbooks (RP-NN) for IOTC failures: re-bootstrap a sled, recover broker connection, reset a stalled inventory, rotate expired cert."
 ---
 
 > 📙 **HOW-TO** · **Audience:** All personas in incident response · **Time:** ~10 min per playbook

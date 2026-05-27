@@ -1,7 +1,8 @@
 ---
 id: battery
-title: How to Monitor Battery Lifecycle
+title: How to monitor battery lifecycle
 sidebar_label: How to Monitor Battery Lifecycle
+description: "Monitor IOTC reader battery lifecycle: heartbeat battery snapshots (current state) vs alerts (transitions like LOW set / CLEAR). How to pipeline both."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min

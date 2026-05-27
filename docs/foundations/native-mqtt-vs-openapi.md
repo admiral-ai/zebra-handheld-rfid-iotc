@@ -1,7 +1,8 @@
 ---
 id: native-mqtt-vs-openapi
-title: The OpenAPI Illusion
+title: "The OpenAPI Illusion: native MQTT payloads vs OpenAPI rendering"
 sidebar_label: The OpenAPI Illusion
+description: Why the IOTC OpenAPI rendering is not the wire contract. The native MQTT payload uses named objects (ctrlOprPayload, epConfig) — not generic wrappers.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** API Consumer, Solution Builder · **Read time:** ~5 min

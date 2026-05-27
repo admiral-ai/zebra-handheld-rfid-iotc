@@ -2,6 +2,7 @@
 id: failure-modes
 title: Failure modes
 sidebar_label: Failure modes
+description: "Catalogue of IOTC failure modes (FM-NN): canonical faults covering bootstrap, MQTT connect, command failure, inventory stall, cert expiry, fleet drift."
 ---
 
 > 🩺 **FAILURE MODE CATALOGUE** · **Audience:** All personas in incident response · **Use:** explain *why* a symptom is happening

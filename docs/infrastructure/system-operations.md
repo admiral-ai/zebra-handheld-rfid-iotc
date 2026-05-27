@@ -2,6 +2,7 @@
 id: system-operations
 title: Updating firmware and rebooting
 sidebar_label: Updating firmware and rebooting
+description: "Update IOTC firmware and reboot a reader over MQTT: set_os, reboot, response codes (the 0/1/5 nuance), what config survives versus what resets."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Fleet Operator, Solution Builder · **Read time:** ~5 min · **Ties to:** System Operations sub-tag of the API Reference

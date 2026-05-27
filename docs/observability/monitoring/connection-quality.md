@@ -1,7 +1,8 @@
 ---
 id: connection-quality
-title: How to Monitor Connection Quality
+title: How to monitor connection quality
 sidebar_label: How to Monitor Connection Quality
+description: "Monitor IOTC reader MQTT connection quality: mqttConnEVT reconnect counts, terminalConnection bounces (Bridged), Wi-Fi RSSI, broker drop signals."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min

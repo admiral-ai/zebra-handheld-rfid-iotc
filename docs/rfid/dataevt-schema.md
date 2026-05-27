@@ -2,6 +2,7 @@
 id: dataevt-schema
 title: Where tag reads come from
 sidebar_label: Where tag reads come from
+description: "The dataEVT schema: the IOTC event carrying singulated tag reads (EPC, RSSI, antenna, timestamp). Dual-channel split (data1event / data2event)."
 ---
 
 > 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** field-level schema lookup · **Ties to:** Tag Data Event sub-tag of the API Reference

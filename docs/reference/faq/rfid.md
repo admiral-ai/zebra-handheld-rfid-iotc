@@ -1,7 +1,8 @@
 ---
 id: rfid
-title: RFID Operations FAQs
+title: RFID operations FAQs
 sidebar_label: RFID Operations FAQs
+description: "FAQ about IOTC RFID operations: operating modes, tag-read rate, antenna range, GS1/EPC standards, dense reader environments, inventory loss."
 ---
 
 > 📕 **REFERENCE**

@@ -2,6 +2,7 @@
 id: hardware-tiers
 title: "Which sled do you have? (Direct vs Bridged)"
 sidebar_label: "Which sled do you have? (Direct vs Bridged)"
+description: "Zebra RFD40 / RFD90 sleds come in two tiers: Direct (sled owns Wi-Fi) and Bridged (host bridges Bluetooth to MQTT). Tell them apart by SKU and topology."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** New Integrator, Solution Builder · **Read time:** ~4 min

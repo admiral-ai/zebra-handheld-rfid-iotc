@@ -1,7 +1,8 @@
 ---
 id: process
-title: How to Process Tag Data in Your Application
+title: How to process tag data in your application
 sidebar_label: How to Process Tag Data in Your Application
+description: "Process IOTC dataEVT in an application: windowed dedup, EPC normalisation, RSSI thresholding, batch vs streaming, absorbing QoS 0 drops gracefully."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~20 min

@@ -2,6 +2,7 @@
 id: bootstrap-tools
 title: "Two bootstrap tools: 123RFID Desktop and 123RFID Mobile"
 sidebar_label: "Two bootstrap tools: Desktop & Mobile"
+description: "The two IOTC first-light tools: 123RFID Desktop (Windows, USB-C, Direct tier) and 123RFID Mobile (Android, Bluetooth, Bridged). When to use which."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** New Integrator, Solution Builder · **Read time:** ~5 min

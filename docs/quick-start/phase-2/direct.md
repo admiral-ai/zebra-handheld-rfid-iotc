@@ -2,6 +2,7 @@
 id: direct
 title: "Phase 2: Bootstrap (Direct, 123RFID Desktop)"
 sidebar_label: "Direct (123RFID Desktop)"
+description: "Phase 2 (Direct tier) of the IOTC Quick Start: use 123RFID Desktop on Windows to set Wi-Fi, region, and the MDM endpoint over USB-C. Bridged: phase-2/bridged."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with a Windows laptop · **Time:** ~8 min · **Path:** 🅓 Direct (USB-C)

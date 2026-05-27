@@ -1,7 +1,8 @@
 ---
 id: all-events
-title: Events Reference — Full Schemas
+title: Events reference — full schemas
 sidebar_label: Events Reference — Full Schemas
+description: "Reference for every IOTC event schema in one place: heartbeatEVT, alerts, alert_short, mqttConnEVT, terminalConnection, dataEVT. Field-by-field schemas."
 ---
 > 📕 **REFERENCE**
 

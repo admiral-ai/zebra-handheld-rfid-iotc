@@ -2,6 +2,7 @@
 id: phase-7
 title: "Phase 7: Reboot when needed"
 sidebar_label: "Phase 7: Reboot when needed"
+description: "Phase 7 of the IOTC Quick Start: when and how to reboot the reader. Covers what survives a reboot (most config) vs what is reset (active inventory state)."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 7 of 7 · **Audience:** Integrator / Fleet Operator · **Time:** ~3 min

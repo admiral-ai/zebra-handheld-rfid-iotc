@@ -1,7 +1,8 @@
 ---
 id: operating-mode
-title: "Operating Mode (CTRL)"
+title: Operating mode (CTRL endpoint)
 sidebar_label: "Operating Mode (CTRL)"
+description: "Reference for the CTRL endpoint operating-mode surface: set_operating_mode payload (profiles, advancedConfigurations, query, select, reportFilter)."
 ---
 > 📕 **REFERENCE**
 

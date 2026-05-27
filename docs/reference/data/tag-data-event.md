@@ -1,7 +1,8 @@
 ---
 id: tag-data-event
-title: Data Interface — dataEVT
+title: Data interface — dataEVT
 sidebar_label: Data Interface — dataEVT
+description: "Reference for the IOTC dataEVT schema: the event a reader publishes when it singulates a tag. EPC, RSSI, antenna, timestamp, channel, embedded data."
 ---
 > 📕 **REFERENCE**
 

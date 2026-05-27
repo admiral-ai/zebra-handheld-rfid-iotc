@@ -1,7 +1,8 @@
 ---
 id: nodejs
-title: "Tutorial: Read Your First Tag with Node.js"
+title: "Tutorial: read your first tag with Node.js"
 sidebar_label: "Tutorial: Read Your First Tag with Node.js"
+description: "End-to-end IOTC tutorial in Node.js (20 LTS) with mqtt.js: connect to the broker, send control_operation START, subscribe to dataEVT, process first tag."
 ---
 
 > 📗 **TUTORIAL** · Audience: Node.js developer · Time: ~15 min

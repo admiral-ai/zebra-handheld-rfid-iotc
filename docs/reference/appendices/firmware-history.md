@@ -1,7 +1,8 @@
 ---
 id: firmware-history
-title: Firmware Version History & Changelog
+title: Firmware version history and changelog
 sidebar_label: Firmware Version History & Changelog
+description: "Version history of IOTC firmware: what changed in 3.10.27 (the doc baseline) and later. New commands, behaviour changes, known issues per version."
 ---
 
 > 📕 **REFERENCE** · Reverse-chronological

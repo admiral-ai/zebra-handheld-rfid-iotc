@@ -1,7 +1,8 @@
 ---
 id: tag-filtering
-title: "Tag Filtering (CTRL)"
+title: Tag filtering (CTRL endpoint)
 sidebar_label: "Tag Filtering (CTRL)"
+description: "Reference for the CTRL endpoint tag-filtering surface: set_post_filter (ADD/MODIFY/DELETE, target DATA_EP1/DATA_EP2, method PREFIX/SUFFIX/REGEX)."
 ---
 > 📕 **REFERENCE**
 

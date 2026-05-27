@@ -1,7 +1,8 @@
 ---
 id: tls-setup
-title: How to Secure the MQTT Connection with TLS
+title: How to secure the MQTT connection with TLS
 sidebar_label: How to Secure the MQTT Connection with TLS
+description: "Enable TLS 1.2 on an IOTC reader-broker connection: install CA cert, switch endpoint to MQTT_TLS, verify with mqttConnEVT, troubleshoot handshake errors."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~15 min

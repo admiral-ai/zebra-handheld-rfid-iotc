@@ -2,6 +2,7 @@
 id: overview
 title: Your first 30 minutes
 sidebar_label: Your first 30 minutes
+description: A 30-minute IOTC walkthrough — from sealed box to live tag reads in seven phases. Phase 0 prerequisites; Phase 2 splits Direct (Desktop) vs Bridged (Mobile).
 ---
 
 > 📗 **TUTORIAL** · **Audience:** New Integrator · **Time:** ~30 min hands-on, ~45 min full chapter · **Path:** 🅓 Direct or 🅑 Bridged

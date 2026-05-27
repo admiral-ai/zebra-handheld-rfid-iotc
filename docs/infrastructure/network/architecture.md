@@ -1,7 +1,8 @@
 ---
 id: architecture
-title: Getting on the network (Wi-Fi & Ethernet)
+title: Getting on the network (Wi-Fi and Ethernet)
 sidebar_label: Getting on the network (Wi-Fi & Ethernet)
+description: "How IOTC sleds get on the network: Direct-tier Wi-Fi 6 in firmware, Bridged-tier Bluetooth bridging via the host. Includes Ethernet cradle support."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference

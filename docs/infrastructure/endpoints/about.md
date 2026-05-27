@@ -2,6 +2,7 @@
 id: about
 title: How the MQTT plumbing fits together
 sidebar_label: How the MQTT plumbing fits together
+description: How IOTC's seven MQTT endpoint types (MDM, MGMT, CTRL, EVT, DATA1, DATA2, ALERT) interconnect. Topic three-segment pattern, retention, per-endpoint TLS.
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** MQTT Endpoint Configuration sub-tag of the API Reference

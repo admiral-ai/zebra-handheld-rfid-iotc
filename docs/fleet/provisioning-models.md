@@ -2,6 +2,7 @@
 id: provisioning-models
 title: Going from one reader to a fleet
 sidebar_label: Going from one reader to a fleet
+description: "Four ways to scale IOTC from one reader to a fleet: 123RFID Desktop, 123RFID Mobile pair-and-go, SOTI Connect zero-touch, 42Gears SureMDM."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder, Fleet Operator · **Read time:** ~5 min

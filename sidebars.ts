@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'foundations/start',
+        'foundations/documentation-guide',
         'foundations/mqtt-primer',
         'foundations/docs-and-api-reference',
       ],
@@ -81,6 +82,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'quick-start/overview',
+        'sdks/overview',
         {
           type: 'category',
           label: 'Phase 0: Prerequisites',
@@ -225,7 +227,9 @@ const sidebars: SidebarsConfig = {
         'diagnose/where-things-fail',
         'diagnose/recovery-playbooks',
         'diagnose/misconceptions',
+        'reference/api-overview',
         'reference/glossary',
+        'foundations/v1-1-features',
       ],
     },
   ],

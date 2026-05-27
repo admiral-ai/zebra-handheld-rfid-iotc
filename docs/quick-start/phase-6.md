@@ -1,7 +1,8 @@
 ---
 id: phase-6
-title: "Phase 6: Start and stop inventory (control_operation)"
+title: "Phase 6: Stop the inventory (control_operation STOP)"
 sidebar_label: "Phase 6: Start and stop inventory"
+description: "Phase 6 of the IOTC Quick Start: cleanly stop inventory with control_operation STOP. When to use STOP vs trigger button vs disconnect to halt reads."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 6 of 7 · **Audience:** Integrator · **Time:** ~5 min

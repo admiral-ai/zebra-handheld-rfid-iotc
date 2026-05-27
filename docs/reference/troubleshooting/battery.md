@@ -1,7 +1,8 @@
 ---
 id: battery
-title: How to Troubleshoot Battery & Power Issues
+title: How to troubleshoot battery and power issues
 sidebar_label: How to Troubleshoot Battery & Power Issues
+description: "Troubleshoot IOTC reader battery and power: low-battery alerts, USB-C charging failures, cradle behaviour, OPTIMAL_BATTERY profile, drain diagnosis."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~10 min per symptom

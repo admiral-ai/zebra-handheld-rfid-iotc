@@ -1,7 +1,8 @@
 ---
 id: verify
-title: How to Verify a Successful Migration
+title: How to verify a successful migration
 sidebar_label: How to Verify a Successful Migration
+description: "Verify a successful IOTC migration: per-cohort smoke tests (get_version, get_status, control_operation), fleet drift check, SLO-anchored criteria."
 ---
 
 > 📙 **HOW-TO** · Audience: Fleet Operator · Time: ~30 min

@@ -1,7 +1,8 @@
 ---
 id: regulatory
-title: Regulatory & Regional Information
+title: "Appendix: regulatory and regional information"
 sidebar_label: Regulatory & Regional Information
+description: IOTC region codes (US, EU1, EU2, IN, JP, BR, CN, KR, AU) with UHF Gen2 bands, plus FCC, ISED, CE, MIC compliance for RFD40 and RFD90.
 ---
 
 > 📕 **REFERENCE**

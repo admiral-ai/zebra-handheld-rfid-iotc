@@ -1,7 +1,8 @@
 ---
 id: post-filters-configure
-title: How to Configure Post-Filters
+title: How to configure post-filters
 sidebar_label: How to Configure Post-Filters
+description: "Configure IOTC post-singulation filters with set_post_filter: ADD a PREFIX/SUFFIX/REGEX to DATA_EP1 or DATA_EP2, MODIFY existing, DELETE one."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~10 min

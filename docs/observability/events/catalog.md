@@ -1,7 +1,8 @@
 ---
 id: catalog
-title: "Event Types Catalog (Index)"
+title: Event types catalog
 sidebar_label: "Event Types Catalog (Index)"
+description: "Index of every IOTC event with one-line scope: heartbeatEVT, alerts, alert_short, mqttConnEVT, terminalConnection, dataEVT. Links to per-event detail."
 ---
 
 > 📕 **REFERENCE** · Use: navigation index

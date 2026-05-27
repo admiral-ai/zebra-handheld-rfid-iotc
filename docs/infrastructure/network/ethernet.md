@@ -1,7 +1,8 @@
 ---
 id: ethernet
-title: "How to Check Ethernet Status (Cradle-Connected)"
+title: How to check Ethernet status (cradle-connected)
 sidebar_label: "How to Check Ethernet Status (Cradle-Connected)"
+description: "Check Ethernet status on an IOTC reader connected via charging cradle: get_current_network fields, link state, how cradle Ethernet co-exists with Wi-Fi."
 ---
 
 > 📙 **HOW-TO** · Audience: Solution Builder · Time: ~3 min

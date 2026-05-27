@@ -2,6 +2,7 @@
 id: actors
 title: "Roles: Reader, Host, Broker, Application"
 sidebar_label: "Roles: Reader, Host, Broker, Application"
+description: "The five actors in an IOTC deployment: reader, host, MQTT broker, application, MDM. How they connect, who owns what state, and where each piece lives."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min

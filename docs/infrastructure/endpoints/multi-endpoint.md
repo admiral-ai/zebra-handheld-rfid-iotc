@@ -1,7 +1,8 @@
 ---
 id: multi-endpoint
-title: About Multi-Endpoint Architectures
+title: Multi-endpoint architectures
 sidebar_label: About Multi-Endpoint Architectures
+description: "When and how to use multiple MQTT endpoints in IOTC: split control vs data brokers, MDM separation, dual data channels, per-endpoint TLS config."
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min

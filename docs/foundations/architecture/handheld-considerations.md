@@ -1,7 +1,8 @@
 ---
 id: handheld-considerations
-title: About Handheld-Specific Architecture Considerations
+title: Handheld-specific architecture considerations
 sidebar_label: About Handheld-Specific Architecture Considerations
+description: "Architectural constraints unique to handheld RFID: battery lifecycle, single antenna, intermittent connectivity, trigger button. Why IOTC is shaped this way."
 ---
 
 > 📘 **EXPLANATION** · Audience: Solution Builder · Read time: ~6 min
