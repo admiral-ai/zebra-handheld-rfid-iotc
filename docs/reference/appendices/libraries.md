@@ -9,9 +9,9 @@ description: "Recommended MQTT 3.1.1 client libraries for IOTC apps: paho-mqtt (
 
 | Language | Library | Min. version | IOTC compatibility note |
 |---|---|---|---|
-| Python | `paho-mqtt` | 1.6.1 | Used in [Python SDK](/sdks/python); fully supported |
-| Node.js | `mqtt` (mqtt.js) | 5.0.0 | Used in [Node.js SDK](/sdks/nodejs); fully supported |
-| C# (.NET) | `MQTTnet` | 4.3.0 | Used in [C# SDK](/sdks/csharp); fully supported |
+| Python | `paho-mqtt` | 1.6.1 | Fully supported |
+| Node.js | `mqtt` (mqtt.js) | 5.0.0 | Fully supported |
+| C# (.NET) | `MQTTnet` | 4.3.0 | Fully supported (.NET 6+) |
 | Java | `org.eclipse.paho.client.mqttv3` | 1.2.5 | Fully supported |
 | Go | `eclipse/paho.mqtt.golang` | 1.4.0 | Fully supported |
 | C / C++ | `paho.mqtt.c` | 1.3.13 | Fully supported (embedded contexts) |
@@ -21,9 +21,9 @@ description: "Recommended MQTT 3.1.1 client libraries for IOTC apps: paho-mqtt (
 **Notes:**
 
 - Libraries supporting MQTT 3.1.1 are compatible. MQTT 5.0-only libraries can connect to the IOTC broker (which speaks both) but 5.0-specific features are not exposed by IOTC.
-- The Quick Start tutorials in [Python SDK](/sdks/python)–[C# SDK](/sdks/csharp) show the listed libraries in action.
+- For a richer comparison with per-library "choosing a library" guidance, see [Recommended MQTT client libraries](/sdks/libraries).
 
-**Related:** 📗 [Python Tutorial](/sdks/python) · 📗 [Node.js Tutorial](/sdks/nodejs) · 📗 [C# Tutorial](/sdks/csharp)
+**Related:** 📕 [Recommended MQTT client libraries](/sdks/libraries) · 📗 [Quick Start tutorial](/quick-start/overview) · 📘 [About MQTT 3.1.1](/foundations/mqtt-primer)
 
 ---
 

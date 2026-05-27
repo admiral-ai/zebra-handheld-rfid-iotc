@@ -84,9 +84,14 @@ const config: Config = {
           { from: '/reference/diagnose/two-edges',                         to: '/diagnose/where-things-fail' },
           { from: '/reference/diagnose/recovery-playbooks',                to: '/diagnose/recovery-playbooks' },
           { from: '/reference/diagnose/misconceptions',                    to: '/diagnose/misconceptions' },
-          // /sdks/overview deleted as not-required (duplicated /sdks/libraries with no inbound links).
-          // Redirect to the surviving SDK landing so any external bookmarks still resolve.
+          // /sdks/overview and the three per-language tutorial pages deleted as not-required.
+          // The canonical Quick Start uses mosquitto_pub / mosquitto_sub (language-agnostic);
+          // production language libraries are listed at /sdks/libraries.
+          // Redirects ensure external bookmarks resolve.
           { from: '/sdks/overview',                                        to: '/sdks/libraries' },
+          { from: '/sdks/python',                                          to: '/sdks/libraries' },
+          { from: '/sdks/nodejs',                                          to: '/sdks/libraries' },
+          { from: '/sdks/csharp',                                          to: '/sdks/libraries' },
         ],
       },
     ],

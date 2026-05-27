@@ -24,11 +24,11 @@ cluster.
 
 | | Count |
 |---|---|
-| Total docs in `/docs/**` | 128 (was 129; `/sdks/overview` deleted) |
+| Total docs in `/docs/**` | 125 (was 129; deleted: `/sdks/overview`, `/sdks/python`, `/sdks/nodejs`, `/sdks/csharp`) |
 | Surfaced in sidebar | 48 (was 45; +3 promoted from orphan audit: documentation-guide, api-overview, v1-1-features) |
-| Not surfaced (orphans) | 80 |
+| Not surfaced (orphans) | 77 |
 | ↳ Reachable from sidebar-surfaced (direct in-link) | 8 |
-| ↳ Reachable via a cluster (in a coherent deep-ref group) | 72 |
+| ↳ Reachable via a cluster (in a coherent deep-ref group) | 69 |
 | ↳ Truly accidental orphans (no path in) | 4 |
 
 ## Reachable from a sidebar-surfaced page (intentional)
@@ -120,7 +120,7 @@ pages spread from there via in-page links.
 | Page | Intentional? | Notes |
 |---|---|---|
 | `/reference/appendices/config-schema` | ✅ Intentional | Linked from fleet management pages |
-| `/reference/appendices/libraries` | ✅ Intentional | Linked from `/sdks/python` |
+| `/reference/appendices/libraries` | ✅ Intentional | Cross-linked from `/sdks/libraries` |
 | `/reference/appendices/tag-standards` | ✅ Intentional | Linked from `/rfid/tag-data/interpret` |
 | `/reference/appendices/topic-quick-reference` | ✅ Intentional | Linked from `/foundations/mqtt/topic-hierarchy` |
 
@@ -134,25 +134,24 @@ pages spread from there via in-page links.
 | `/reference/errors/handling` | ✅ Intentional — how-to for error handling |
 | `/reference/mdm/about` | ✅ Intentional — MDM/SOTI interface ref |
 
-### `/sdks/*` cluster (5 pages) — language tutorials
+### `/sdks/*` cluster — language tutorials (most deleted)
 
-| Page | Intentional? |
+| Page | Disposition |
 |---|---|
-| `/sdks/csharp` | ✅ Intentional — language-specific Quick Start |
-| `/sdks/nodejs` | ✅ Intentional |
-| `/sdks/python` | ✅ Intentional |
-| `/sdks/libraries` | ✅ Intentional — landing list |
-| `/sdks/overview` | 🗑️ **Deleted** (see below) |
+| `/sdks/libraries` | ✅ Intentional — surviving MQTT client library reference |
+| `/sdks/csharp` | 🗑️ **Deleted** — per-language tutorial duplicated the canonical Quick Start; navbar Developer Portal + `/quick-start/overview` (mosquitto_pub/sub) + `/sdks/libraries` cover the surface |
+| `/sdks/nodejs` | 🗑️ **Deleted** — same rationale as `/sdks/csharp` |
+| `/sdks/python` | 🗑️ **Deleted** — same rationale as `/sdks/csharp` |
+| `/sdks/overview` | 🗑️ **Deleted** — duplicated `/sdks/libraries` with no inbound links |
 
-> **Note.** Language-specific quick-starts duplicate the canonical
-> Part-3 Quick Start in each language. The navbar's "Developer Portal"
-> link goes to developer.zebra.com which is the primary SDK surface.
-> The `/sdks/overview` page was a docs-side landing that duplicated the
-> sibling `/sdks/libraries` table. It was briefly promoted to the
-> sidebar in an earlier orphan-audit pass, then **deleted** as
-> not-required — no doc page cross-linked to it, and the sidebar
-> doesn't need a separate SDK section above and beyond Quick Start
-> Part 3 and the navbar Developer Portal link.
+> **Note.** The SDK section originally had a docs-side landing
+> (`/sdks/overview`) and three per-language tutorials (Python, Node.js,
+> C#). All four were deleted as not-required: the canonical Quick Start
+> at `/quick-start/overview` is language-agnostic (uses
+> `mosquitto_pub` / `mosquitto_sub`), `/sdks/libraries` covers the
+> production library list, and the navbar's "Developer Portal" link to
+> developer.zebra.com is the primary SDK surface. Redirects keep external
+> bookmarks resolving (see `docusaurus.config.ts`).
 
 ### `/fleet/cloud-integration/*` cluster (5 pages) — cloud-broker how-tos
 

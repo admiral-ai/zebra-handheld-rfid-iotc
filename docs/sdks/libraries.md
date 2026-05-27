@@ -7,13 +7,13 @@ description: "Recommended MQTT 3.1.1 client libraries for IOTC apps: paho-mqtt (
 
 > 📕 **REFERENCE** · Audience: New Integrator · Use: pick a library before you start coding
 
-Curated list of MQTT 3.1.1 client libraries tested against the Zebra Handheld RFID IOTC. The Quick Start tutorials in [Python](/sdks/python), [Node.js](/sdks/nodejs), and [C#](/sdks/csharp) use the libraries marked **(used in tutorial)**.
+Curated list of MQTT 3.1.1 client libraries tested against the Zebra Handheld RFID IOTC. The canonical [Quick Start tutorial](/quick-start/overview) uses `mosquitto_pub` / `mosquitto_sub` from the command line; the libraries below are for production application code in each language.
 
 | Language | Library | Min. version | Notes |
 |---|---|---|---|
-| Python | `paho-mqtt` | 1.6.1 | **Used in tutorial.** Reference implementation; well-supported on Linux, macOS, Windows. |
-| Node.js | `mqtt` (mqtt.js) | 5.0.0 | **Used in tutorial.** Native TLS support via Node.js TLS module. |
-| C# / .NET | `MQTTnet` | 4.3.0 | **Used in tutorial.** Async/await native. Works on .NET 6+ including .NET 8. |
+| Python | `paho-mqtt` | 1.6.1 | Reference implementation; well-supported on Linux, macOS, Windows. |
+| Node.js | `mqtt` (mqtt.js) | 5.0.0 | Native TLS support via Node.js TLS module. |
+| C# / .NET | `MQTTnet` | 4.3.0 | Async/await native. Works on .NET 6+ including .NET 8. |
 | Java | `org.eclipse.paho.client.mqttv3` | 1.2.5 | Battle-tested on Android and JVM backends. |
 | Go | `eclipse/paho.mqtt.golang` | 1.4.0 | Idiomatic Go API with goroutine-friendly callbacks. |
 | C / C++ | `paho.mqtt.c` | 1.3.13 | Suitable for embedded systems and high-performance backends. |
@@ -33,4 +33,4 @@ Curated list of MQTT 3.1.1 client libraries tested against the Zebra Handheld RF
 - **Embedded gateway or bridge:** Paho C, or Rust with `rumqttc`.
 - **CLI tooling and quick prototypes:** `mosquitto_pub` / `mosquitto_sub` from the [Mosquitto project](https://mosquitto.org/) — used throughout the [Quick Start Tutorial](/quick-start/overview).
 
-**Related:** 📗 [Python tutorial](/sdks/python) · 📗 [Node.js tutorial](/sdks/nodejs) · 📗 [C# tutorial](/sdks/csharp) · 📘 [About MQTT 3.1.1](/foundations/mqtt-primer)
+**Related:** 📗 [Quick Start tutorial](/quick-start/overview) · 📘 [About MQTT 3.1.1](/foundations/mqtt-primer) · 📙 [How to secure the MQTT connection with TLS](/infrastructure/security/tls-setup)
