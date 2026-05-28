@@ -38,6 +38,9 @@ Two further endpoint types act as combinations of these:
 The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).
 
 ```d2
+grid-rows: 2
+grid-columns: 2
+
 M: Management Interface {
   M1: "get_status, get_version,\nget_current_region"
   M2: "config_endpoint, set_wifi,\nset_config"

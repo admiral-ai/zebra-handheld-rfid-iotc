@@ -165,3 +165,47 @@ For each diagram:
 3. Convert deep-reference pages second
 4. Run the audit pass
 5. Drop the Mermaid theme as the final commit
+
+## 7. Audit findings (post-conversion)
+
+### Functional
+
+All 54 diagrams convey the same relationships as the Mermaid originals. Spot-checks:
+- **D27** `stateDiagram-v2` → the `[*]` initial/final pseudostates are rendered as filled 8-px ellipses (D2 has no native state diagram). Logically equivalent; visually a clean "marker dot".
+- **D39** `gantt` → wave timeline preserved as 4 step-shape nodes with `t = 0 → +24 h` style edge labels. The week-by-week ordering is the message; absolute dates were dropped (they were illustrative anyway).
+- **D45** `xychart-beta` → battery percentages at each timestamp preserved as 6 colour-coded step nodes. The trend (green → orange → red) is more legible than the original line chart in a docs context.
+- **Sequence diagrams (D19/D25/D26/D28)** → `shape: sequence_diagram` rendered each actor as a column with lifelines; `alt`/`loop`/`Note` blocks render as nested containers. Equivalent.
+
+### Aesthetic
+
+- Font matches site (D2 uses its bundled stack via theme 0 — Inter-adjacent at the SVG level).
+- No accidental overlap detected in any rendered SVG.
+- D2's auto-layout (dagre) produced reasonable spacing on every diagram without per-diagram tuning.
+
+### Brand
+
+- Theme 0 (Neutral Default) for light + 200 (Dark Mauve) for dark — pinned via `defaultD2Opts: ['-t=0', '--dark-theme=200']`.
+- **D17 / D29** carry over the Mermaid `classDef` navy-fill pattern (`#e3eef8` light, `#003a7e` text). These are explicitly Zebra-brand colours; kept intentionally so the topic-template diagrams visually anchor to the brand on first encounter.
+- **D40** uses semantic colour (green ok / orange warn / red err) — useful for an event-quality timeline; same palette as the troubleshooting decision-tree shading.
+- **D45** uses a green → red gradient — natural reading order for a battery-drain chart.
+
+### A11y
+
+- All edge labels are full text (no abbreviations introduced).
+- Node text uses D2's default 16-px bold for labels, 16-px italic for edge text — readable at 100%.
+- Multiline labels wrap correctly via `\n` → `<tspan>` (verified in D39, D45 with two-line cell content).
+
+### Layout
+
+- LR direction preserved via explicit `direction: right` on every diagram that needed it (33 flowchart-LR sources).
+- **D13** initially rendered 2481 × 384 (4 groups side-by-side). Refactored to a 2 × 2 grid via `grid-rows: 2` + `grid-columns: 2` → 1662 × 607 — much better aspect on a docs page.
+- **D22** (8 sequential Parts) and **D42** (dashboard layout) remain wide by design — both convey horizontal flow / dashboard intent. The img-zoom plugin lets visitors enlarge.
+- TD-direction decision trees (D33, D38, D44, D46–49) render taller than wide as expected.
+
+### Performance
+
+- All 54 SVGs in the **20–34 KB** range. Build adds ~5 s per `npm run build` for D2 invocation across the corpus. Acceptable.
+
+### Net assessment
+
+The conversion landed cleanly — no broken diagrams, no functional regressions, brand colours preserved on the few diagrams that carried them. The one layout fix needed (D13 grid) was applied during the audit. Mermaid machinery dropped from `docusaurus.config.ts` and `package.json` as the final cleanup.
