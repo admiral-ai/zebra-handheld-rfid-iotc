@@ -31,10 +31,6 @@ export default async function createConfig(): Promise<Config> {
       removeLegacyPostBuildHeadAttribute: true,
     },
   },
-  markdown: {
-    mermaid: true,
-  },
-  themes: ['@docusaurus/theme-mermaid'],
   plugins: [
     'docusaurus-plugin-sass',
     // PushFeedback web component bundle. We DO NOT use the
@@ -221,9 +217,6 @@ export default async function createConfig(): Promise<Config> {
     imgZoom: {
       selector: '.markdown img:not([src^="http"])',
       zoomedInClass: 'zoomed-in-img',
-    },
-    mermaid: {
-      theme: { light: 'neutral', dark: 'forest' },
     },
   } satisfies Preset.ThemeConfig,
   presets: [
