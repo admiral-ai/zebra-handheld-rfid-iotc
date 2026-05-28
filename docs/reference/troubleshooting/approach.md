@@ -41,17 +41,26 @@ State the hypothesis concretely ("the reader cannot resolve `iotc-broker.zebra.c
 
 A change that "seems to work" but is unconfirmed has a habit of returning. After applying a fix, exercise the original failure path and confirm the failure is gone. Then check: is the fix narrow (this device, this moment) or general (the fleet, the future)?
 
-```mermaid
-flowchart TD
-  S[Symptom observed] --> L1{Reader powered<br/>and reachable?}
-  L1 -->|No| Phy[Layer 1: Physical / power]
-  L1 -->|Yes| L2{Network path<br/>to broker?}
-  L2 -->|No| Net[Layer 2: Network]
-  L2 -->|Yes| L3{MQTT session<br/>established?}
-  L3 -->|No| Tra[Layer 3: Transport / TLS]
-  L3 -->|Yes| L4{Commands<br/>delivered?}
-  L4 -->|No| App[Layer 4: Application / topic routing]
-  L4 -->|Yes| L5[Layer 5: Reader / radio behaviour]
+```d2
+S: Symptom observed
+L1: "Reader powered\nand reachable?" { shape: diamond }
+Phy: "Layer 1: Physical / power"
+L2: "Network path\nto broker?" { shape: diamond }
+Net: "Layer 2: Network"
+L3: "MQTT session\nestablished?" { shape: diamond }
+Tra: "Layer 3: Transport / TLS"
+L4: "Commands\ndelivered?" { shape: diamond }
+App: "Layer 4: Application / topic routing"
+L5: "Layer 5: Reader / radio behaviour"
+S -> L1
+L1 -> Phy: No
+L1 -> L2: Yes
+L2 -> Net: No
+L2 -> L3: Yes
+L3 -> Tra: No
+L3 -> L4: Yes
+L4 -> App: No
+L4 -> L5: Yes
 ```
 
 **Related:** 📙 [Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [get_status](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)

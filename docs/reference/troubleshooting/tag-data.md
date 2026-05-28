@@ -30,17 +30,26 @@ This guide shows you how to troubleshoot tag-data anomalies on handheld readers.
 - The reader's clock has drifted beyond NTP correction range; check `exceptionEVT` for code `5010 clock_drift_detected`.
 - Reboot to force NTP sync.
 
-```mermaid
-flowchart TD
-  S[Tag-data symptom] --> Q1{Events arriving?}
-  Q1 -->|No| RFID[See RFID-symptom tree]
-  Q1 -->|Yes| Q2{Timestamps<br/>correct?}
-  Q2 -->|No| Clock[Clock drift;<br/>check NTP, exceptionEVT 5010]
-  Q2 -->|Yes| Q3{Duplicates<br/>excessive?}
-  Q3 -->|Yes| Dedupe[Enable Unique Tag<br/>reporting / app-side dedupe]
-  Q3 -->|No| Q4{Expected fields<br/>present?}
-  Q4 -->|No| Meta[Update tagMetaDataToEnable<br/>via set_operating_mode]
-  Q4 -->|Yes| OK[Data flowing OK]
+```d2
+S: Tag-data symptom
+Q1: Events arriving? { shape: diamond }
+RFID: See RFID-symptom tree
+Q2: "Timestamps\ncorrect?" { shape: diamond }
+Clock: "Clock drift;\ncheck NTP, exceptionEVT 5010"
+Q3: "Duplicates\nexcessive?" { shape: diamond }
+Dedupe: "Enable Unique Tag\nreporting / app-side dedupe"
+Q4: "Expected fields\npresent?" { shape: diamond }
+Meta: "Update tagMetaDataToEnable\nvia set_operating_mode"
+OK: Data flowing OK
+S -> Q1
+Q1 -> RFID: No
+Q1 -> Q2: Yes
+Q2 -> Clock: No
+Q2 -> Q3: Yes
+Q3 -> Dedupe: Yes
+Q3 -> Q4: No
+Q4 -> Meta: No
+Q4 -> OK: Yes
 ```
 
 **Related:** 📙 [Configure Events](/observability/configure-events) · 📕 [dataEVT Schema](/rfid/dataevt-schema) · 📙 [Processing Tag Data](/rfid/tag-data/process) · 📘 [QoS Levels](/foundations/mqtt/qos)

@@ -18,16 +18,25 @@ The EPC is a hex string. To interpret it:
 
 For most applications, the EPC is opaque — applications use it as an identifier looked up in a database. Decoding to GS1 components matters when the application reasons about company prefix, item reference, or serial number.
 
-```mermaid
-flowchart LR
-  EPC["EPC hex<br/>96 bits"] --> Bin["Binary"]
-  Bin --> H["Header<br/>(8 bits)"]
-  Bin --> F["Filter value<br/>(3 bits)"]
-  Bin --> P["Partition<br/>(3 bits)"]
-  Bin --> CG["Company prefix"]
-  Bin --> IR["Item reference"]
-  Bin --> SN["Serial number"]
-  H -.-> H2["= SGTIN-96 marker"]
+```d2
+direction: right
+EPC: "EPC hex\n96 bits"
+Bin: Binary
+H: "Header\n(8 bits)"
+F: "Filter value\n(3 bits)"
+P: "Partition\n(3 bits)"
+CG: Company prefix
+IR: Item reference
+SN: Serial number
+H2: = SGTIN-96 marker
+EPC -> Bin
+Bin -> H
+Bin -> F
+Bin -> P
+Bin -> CG
+Bin -> IR
+Bin -> SN
+H -> H2: { style.stroke-dash: 4 }
 ```
 
 ### Interpret RSSI

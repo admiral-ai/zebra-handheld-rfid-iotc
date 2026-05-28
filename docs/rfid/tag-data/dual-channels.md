@@ -21,18 +21,27 @@ Three motivations:
 
 Channel assignment is set via [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) (see [Configure events](/observability/configure-events)). A reader publishes all its tag data on the configured channel; the assignment is sticky across reboots.
 
-```mermaid
-flowchart LR
-  subgraph S["Single-channel"]
-    direction LR
-    SR[Reader] -->|"DATA1"| SB((Broker)) --> SA[App]
-  end
-  subgraph D["Dual-channel"]
-    direction LR
-    DR[Reader]
-    DR -->|"DATA1<br/>(local app)"| DB1((Broker A)) --> DA1[Operational app]
-    DR -->|"DATA2<br/>(analytics)"| DB2((Broker B)) --> DA2[Analytics pipeline]
-  end
+```d2
+S: Single-channel {
+  direction: right
+  SR: Reader
+  SB: Broker { shape: oval }
+  SA: App
+  SR -> SB: DATA1
+  SB -> SA
+}
+D: Dual-channel {
+  direction: right
+  DR: Reader
+  DB1: Broker A { shape: oval }
+  DA1: Operational app
+  DB2: Broker B { shape: oval }
+  DA2: Analytics pipeline
+  DR -> DB1: "DATA1\n(local app)"
+  DB1 -> DA1
+  DR -> DB2: "DATA2\n(analytics)"
+  DB2 -> DA2
+}
 ```
 
 ### What this implies for application architecture

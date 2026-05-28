@@ -21,18 +21,14 @@ The `heartbeatEVT.data.bt_link_quality` field reports the BT link health (0–10
 
 Maintain a count of `mqttConnEVT` transitions per reader over rolling windows. A reader with more than 10 reconnects per hour likely has a connectivity issue — Wi-Fi roaming, BT instability, or broker capacity.
 
-```mermaid
-flowchart LR
-  T1["t=0<br/>heartbeat"] --> T2["t=60<br/>heartbeat"]
-  T2 --> T3["t=90<br/>mqttConnEVT<br/>DISCONNECTED"]
-  T3 --> T4["t=95<br/>mqttConnEVT<br/>CONNECTED"]
-  T4 --> T5["t=120<br/>heartbeat<br/>(gap detected)"]
-  classDef ok fill:#e8f5e8,stroke:#1b5e20,color:#1b5e20
-  classDef warn fill:#fff3e0,stroke:#e65100,color:#e65100
-  classDef err fill:#fce4ec,stroke:#880e4f,color:#880e4f
-  class T1,T2,T4 ok
-  class T3 err
-  class T5 warn
+```d2
+direction: right
+T1: "t=0\nheartbeat" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
+T2: "t=60\nheartbeat" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
+T3: "t=90\nmqttConnEVT\nDISCONNECTED" { style: { fill: "#fce4ec"; stroke: "#880e4f"; font-color: "#880e4f" } }
+T4: "t=95\nmqttConnEVT\nCONNECTED" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
+T5: "t=120\nheartbeat\n(gap detected)" { style: { fill: "#fff3e0"; stroke: "#e65100"; font-color: "#e65100" } }
+T1 -> T2 -> T3 -> T4 -> T5
 ```
 
 ### Correlating to environmental causes

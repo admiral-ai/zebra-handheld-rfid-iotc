@@ -55,15 +55,22 @@ Connection never establishes; no `mqttConnEVT` ever fires.
 - Test outbound 8883 from the host device's network using `nc -zv broker.example.com 8883`.
 - Coordinate with network operations to allow outbound MQTT traffic to the broker.
 
-```mermaid
-flowchart TD
-  S[Connection symptom] --> Q1{mqttConnEVT<br/>ever received?}
-  Q1 -->|No| Q2{Port open?<br/>nc -zv host 8883}
-  Q1 -->|"Yes,<br/>then DISCONNECTED"| Q3{LWT<br/>received?}
-  Q2 -->|No| FW[Firewall / port block]
-  Q2 -->|Yes| Cred[Bad credentials /<br/>cert chain]
-  Q3 -->|Yes| Drop[Network drop;<br/>check signal]
-  Q3 -->|No| Sof[Soft failure;<br/>get_status + gap-detect]
+```d2
+S: Connection symptom
+Q1: "mqttConnEVT\never received?" { shape: diamond }
+Q2: "Port open?\nnc -zv host 8883" { shape: diamond }
+Q3: "LWT\nreceived?" { shape: diamond }
+FW: Firewall / port block
+Cred: "Bad credentials /\ncert chain"
+Drop: "Network drop;\ncheck signal"
+Sof: "Soft failure;\nget_status + gap-detect"
+S -> Q1
+Q1 -> Q2: No
+Q1 -> Q3: "Yes,\nthen DISCONNECTED"
+Q2 -> FW: No
+Q2 -> Cred: Yes
+Q3 -> Drop: Yes
+Q3 -> Sof: No
 ```
 
 **Related:** 📙 [Network Troubleshooting](/infrastructure/network/troubleshooting) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [mqttConnEVT, exceptionEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📘 [Connection Lifecycle](/foundations/mqtt/connection-lifecycle)

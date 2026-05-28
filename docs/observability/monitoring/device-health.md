@@ -17,20 +17,32 @@ This guide shows you how to check the health of a handheld reader on demand and 
 
 The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [API Reference](/reference/api-overview).
 
-```mermaid
-flowchart TB
-  R[get_status response] --> DS[deviceStatus]
-  R --> RR["response<br/>(code, description)"]
-  DS --> PS[powerSource]
-  DS --> BS[batteryStatus]
-  DS --> RA[radioActivity]
-  DS --> RC[radioConnection]
-  DS --> NT[ntp.reach]
-  DS --> ST[systemTime]
-  DS --> TC[terminalConnection]
-  DS --> TM[temperature]
-  BS --> BC[chargePercentage]
-  BS --> BH[stateOfHealth]
+```d2
+R: get_status response
+DS: deviceStatus
+RR: "response\n(code, description)"
+PS: powerSource
+BS: batteryStatus
+RA: radioActivity
+RC: radioConnection
+NT: ntp.reach
+ST: systemTime
+TC: terminalConnection
+TM: temperature
+BC: chargePercentage
+BH: stateOfHealth
+R -> DS
+R -> RR
+DS -> PS
+DS -> BS
+DS -> RA
+DS -> RC
+DS -> NT
+DS -> ST
+DS -> TC
+DS -> TM
+BS -> BC
+BS -> BH
 ```
 
 ### Continuous: subscribe to `heartbeatEVT`

@@ -52,14 +52,21 @@ def on_tag(event):
 
 ### Integration with inventory management systems
 
-```mermaid
-flowchart LR
-  B((Broker)) -->|"subscribe DATA1/#"| S[MQTT consumer]
-  S --> D["Deduplicate<br/>(by EPC + window)"]
-  D --> Bu[Buffer / batch]
-  Bu --> Pe[("Persist<br/>warehouse / TSDB")]
-  Pe --> Al[Alert rules]
-  Al --> Out[PagerDuty / Slack]
+```d2
+direction: right
+B: Broker { shape: oval }
+S: MQTT consumer
+D: "Deduplicate\n(by EPC + window)"
+Bu: Buffer / batch
+Pe: "Persist\nwarehouse / TSDB" { shape: cylinder }
+Al: Alert rules
+Out: PagerDuty / Slack
+B -> S: subscribe DATA1/#
+S -> D
+D -> Bu
+Bu -> Pe
+Pe -> Al
+Al -> Out
 ```
 
 Common architecture: an MQTT consumer service deduplicates and batches; writes to a time-series database (Timescale, Influx) for analytics and to an operational database (Postgres, Mongo) for current-state queries; publishes alerts to an event bus (Kafka, EventBridge) for downstream subscribers.

@@ -33,12 +33,16 @@ This guide shows you how to troubleshoot battery and power issues on handheld re
 - Stop inventory operations when not in active use
 - Use cradle charging during operator breaks
 
-```mermaid
-xychart-beta
-  title "Battery drain over a shift (example)"
-  x-axis ["08:00", "10:00", "12:00", "14:00", "16:00", "18:00"]
-  y-axis "Battery %" 0 --> 100
-  line [100, 84, 68, 51, 33, 12]
+```d2
+title: "Battery drain over a shift (example)" { near: top-center; shape: text; style.font-size: 16; style.bold: true }
+direction: right
+H08: "08:00\n100%" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
+H10: "10:00\n84%" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
+H12: "12:00\n68%" { style: { fill: "#f1f8e9"; stroke: "#558b2f"; font-color: "#33691e" } }
+H14: "14:00\n51%" { style: { fill: "#fffde7"; stroke: "#9e7d0a"; font-color: "#9e7d0a" } }
+H16: "16:00\n33%" { style: { fill: "#fff3e0"; stroke: "#e65100"; font-color: "#e65100" } }
+H18: "18:00\n12%" { style: { fill: "#fce4ec"; stroke: "#880e4f"; font-color: "#880e4f" } }
+H08 -> H10 -> H12 -> H14 -> H16 -> H18
 ```
 
 **Related:** 📙 [Battery Monitoring](/observability/monitoring/battery) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [Alert Events](/observability/alerts)

@@ -56,13 +56,19 @@ Azure IoT Hub uses its own MQTT topic convention (`devices/{deviceId}/messages/e
 
 Use `az iot hub monitor-events --hub-name <iot-hub-name>` to watch incoming messages. Start an inventory on the reader. Events should appear in the CLI output.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] -->|"MQTT_TLS<br/>devices/.../messages/events"| H((Azure IoT Hub))
-  H --> EH[Event Hubs]
-  H --> SB[Service Bus]
-  EH --> ADX[Azure Data Explorer]
-  EH --> SA[Stream Analytics]
+```d2
+direction: right
+R: IOTC Reader
+H: Azure IoT Hub { shape: oval }
+EH: Event Hubs
+SB: Service Bus
+ADX: Azure Data Explorer
+SA: Stream Analytics
+R -> H: "MQTT_TLS\ndevices/.../messages/events"
+H -> EH
+H -> SB
+EH -> ADX
+EH -> SA
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)

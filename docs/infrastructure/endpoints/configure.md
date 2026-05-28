@@ -47,13 +47,18 @@ If the new endpoint configuration causes loss of MQTT connectivity:
 
 This is why endpoint changes should be canaried on a single device before fleet rollout.
 
-```mermaid
-flowchart TD
-  S[Choose endpoint topology] --> Q1{Tag volume<br/>&gt; 100 TPS sustained?}
-  Q1 -->|No| Q2{MDM platform<br/>required?}
-  Q1 -->|Yes| SEP[Separate DATA broker]
-  Q2 -->|No| SINGLE[Single broker]
-  Q2 -->|Yes| MDMG[MDM-managed endpoint]
+```d2
+S: Choose endpoint topology
+Q1: "Tag volume\n> 100 TPS sustained?" { shape: diamond }
+Q2: "MDM platform\nrequired?" { shape: diamond }
+SEP: Separate DATA broker
+SINGLE: Single broker
+MDMG: MDM-managed endpoint
+S -> Q1
+Q1 -> Q2: No
+Q1 -> SEP: Yes
+Q2 -> SINGLE: No
+Q2 -> MDMG: Yes
 ```
 
 **Related:** 📘 [Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt)

@@ -37,24 +37,23 @@ Two further endpoint types act as combinations of these:
 
 The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).
 
-```mermaid
-flowchart TB
-  subgraph M["Management Interface"]
-    M1["get_status, get_version,<br/>get_current_region"]
-    M2["config_endpoint, set_wifi,<br/>set_config"]
-    M3["install_certificate, set_os,<br/>reboot"]
-  end
-  subgraph E["Event Interface"]
-    E1["heartbeatEVT, alerts,<br/>alert_short"]
-    E2["mqttConnEVT, exceptionEVT"]
-  end
-  subgraph C["Control Interface"]
-    C1["set_operating_mode"]
-    C2["control_operation,<br/>set_post_filter"]
-  end
-  subgraph D["Data Interface"]
-    D1["dataEVT — tag reads"]
-  end
+```d2
+M: Management Interface {
+  M1: "get_status, get_version,\nget_current_region"
+  M2: "config_endpoint, set_wifi,\nset_config"
+  M3: "install_certificate, set_os,\nreboot"
+}
+E: Event Interface {
+  E1: "heartbeatEVT, alerts,\nalert_short"
+  E2: "mqttConnEVT, exceptionEVT"
+}
+C: Control Interface {
+  C1: set_operating_mode
+  C2: "control_operation,\nset_post_filter"
+}
+D: Data Interface {
+  D1: dataEVT — tag reads
+}
 ```
 
 ### Retention, batching, and reliability built into Data

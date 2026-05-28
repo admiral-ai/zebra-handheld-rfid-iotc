@@ -54,16 +54,25 @@ def remediate(serial, diff):
 
 Maintain a per-reader drift score over time. Dashboards highlight readers that drift repeatedly (indicating misconfiguration source) and readers whose drift was successfully remediated.
 
-```mermaid
-flowchart LR
-  GC["Golden config<br/>(version control)"] --> CMP[Comparison engine]
-  R1["Reader 1<br/>get_config"] --> CMP
-  R2["Reader 2<br/>get_config"] --> CMP
-  Rn["Reader N<br/>get_config"] --> CMP
-  CMP --> DR[Drift report]
-  DR --> DB[(Drift database)]
-  DB --> DASH[Dashboard]
-  DB --> ALT[Alert on threshold]
+```d2
+direction: right
+GC: "Golden config\n(version control)"
+CMP: Comparison engine
+R1: "Reader 1\nget_config"
+R2: "Reader 2\nget_config"
+Rn: "Reader N\nget_config"
+DR: Drift report
+DB: Drift database { shape: cylinder }
+DASH: Dashboard
+ALT: Alert on threshold
+GC -> CMP
+R1 -> CMP
+R2 -> CMP
+Rn -> CMP
+CMP -> DR
+DR -> DB
+DB -> DASH
+DB -> ALT
 ```
 
 **Related:** 📙 [Read Config](/fleet/management/read-config) · 📙 [Apply Bulk Config](/fleet/management/apply-config) · 📙 [Automation](/fleet/provisioning/automation)

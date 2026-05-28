@@ -25,17 +25,27 @@ There is one antenna. There are no antenna ports to choose between, no cable los
 
 The reader has no externally-visible IP address. The host device's network is the path to MQTT. This means: the host's Wi-Fi credentials matter (the reader uses them indirectly), the host's firewall posture matters, and the host's app lifecycle matters — when the OS suspends the host app, the reader's MQTT traffic suspends with it.
 
-```mermaid
-flowchart LR
-  T[Tag] --> R["Reader<br/>(single antenna)"]
-  R --> H["Host or<br/>direct Wi-Fi"]
-  H --> B((Broker))
-  B --> A[Application]
-  c1{{"Battery<br/>(every PINGREQ wakes radio)"}} -.- R
-  c2{{"Single antenna<br/>(no port selection)"}} -.- R
-  c3{{"Hardware trigger<br/>(input source)"}} -.- R
-  c4{{"Mobility<br/>(roaming Wi-Fi)"}} -.- H
-  c5{{"Tier choice<br/>(Direct vs Bridged)"}} -.- R
+```d2
+direction: right
+T: Tag
+R: "Reader\n(single antenna)"
+H: "Host or\ndirect Wi-Fi"
+B: Broker { shape: oval }
+A: Application
+c1: "Battery\n(every PINGREQ wakes radio)" { shape: hexagon }
+c2: "Single antenna\n(no port selection)" { shape: hexagon }
+c3: "Hardware trigger\n(input source)" { shape: hexagon }
+c4: "Mobility\n(roaming Wi-Fi)" { shape: hexagon }
+c5: "Tier choice\n(Direct vs Bridged)" { shape: hexagon }
+T -> R
+R -> H
+H -> B
+B -> A
+c1 -- R: { style.stroke-dash: 4 }
+c2 -- R: { style.stroke-dash: 4 }
+c3 -- R: { style.stroke-dash: 4 }
+c4 -- H: { style.stroke-dash: 4 }
+c5 -- R: { style.stroke-dash: 4 }
 ```
 
 ### The physical trigger is an input source

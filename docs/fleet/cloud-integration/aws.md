@@ -51,14 +51,21 @@ AWS IoT Core does not impose a topic convention; you choose. A common pattern is
 
 In AWS IoT Core's **Test to MQTT test client**, subscribe to `<tenantId>/data1event/clients/#`. Start an inventory on the reader. Tag-data events should appear in the AWS test client.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] -->|"MQTT_TLS<br/>port 8883"| AWS((AWS IoT Core))
-  AWS --> RU[IoT Rules]
-  RU --> KDS[Kinesis Data Stream]
-  RU --> L[Lambda]
-  RU --> SQ[SQS]
-  KDS --> AN[Analytics]
+```d2
+direction: right
+R: IOTC Reader
+AWS: AWS IoT Core { shape: oval }
+RU: IoT Rules
+KDS: Kinesis Data Stream
+L: Lambda
+SQ: SQS
+AN: Analytics
+R -> AWS: "MQTT_TLS\nport 8883"
+AWS -> RU
+RU -> KDS
+RU -> L
+RU -> SQ
+KDS -> AN
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint)

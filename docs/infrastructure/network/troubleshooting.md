@@ -48,16 +48,24 @@ For systematic diagnosis, run in order:
 3. [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) — broker target settings
 4. Inspect `heartbeatEVT` events over a 5-minute window for connection-quality dropouts
 
-```mermaid
-flowchart TD
-  Start[Symptom: reader offline?] --> Q1{mqttConnEVT<br/>received recently?}
-  Q1 -->|No| Q2{Sled has<br/>Wi-Fi link?}
-  Q1 -->|"Yes, DISCONNECTED"| RC[Run get_status<br/>over MDM]
-  Q2 -->|No| WF[Fix Wi-Fi:<br/>set_wifi or 123RFID Desktop]
-  Q2 -->|Yes| NET[Check broker reachability<br/>nc -vz host port]
-  RC -->|responds| OK[Reader healthy;<br/>broker reachable]
-  RC -->|no response| MDM[MDM endpoint inactive;<br/>re-bootstrap]
-  NET -->|fails| FW[Firewall / port block]
+```d2
+Start: "Symptom: reader offline?"
+Q1: "mqttConnEVT\nreceived recently?" { shape: diamond }
+Q2: "Sled has\nWi-Fi link?" { shape: diamond }
+RC: "Run get_status\nover MDM"
+WF: "Fix Wi-Fi:\nset_wifi or 123RFID Desktop"
+NET: "Check broker reachability\nnc -vz host port"
+OK: "Reader healthy;\nbroker reachable"
+MDM: "MDM endpoint inactive;\nre-bootstrap"
+FW: Firewall / port block
+Start -> Q1
+Q1 -> Q2: No
+Q1 -> RC: "Yes, DISCONNECTED"
+Q2 -> WF: No
+Q2 -> NET: Yes
+RC -> OK: responds
+RC -> MDM: no response
+NET -> FW: fails
 ```
 
 **Related:** 📙 [Wi-Fi Configuration](/infrastructure/network/wifi) · 📙 [Connection Troubleshooting](/reference/troubleshooting/connection) · 📕 [get_status / get_wifi](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)

@@ -51,13 +51,19 @@ Deploy a bridge service (a Cloud Run service, a GKE pod, or a Cloud Function wit
 
 Watch Pub/Sub topic metrics — message rate should match the reader's tag-emission rate.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] -->|"MQTT_TLS"| B(("GCP-hosted broker<br/>HiveMQ on GKE /<br/>EMQX on Compute Engine"))
-  B --> BR["Bridge service<br/>(Cloud Run / GKE /<br/>Cloud Function)"]
-  BR --> PS["Pub/Sub topic"]
-  PS --> BQ[BigQuery]
-  PS --> DF[Dataflow]
+```d2
+direction: right
+R: IOTC Reader
+B: "GCP-hosted broker\nHiveMQ on GKE /\nEMQX on Compute Engine" { shape: oval }
+BR: "Bridge service\n(Cloud Run / GKE /\nCloud Function)"
+PS: Pub/Sub topic
+BQ: BigQuery
+DF: Dataflow
+R -> B: MQTT_TLS
+B -> BR
+BR -> PS
+PS -> BQ
+PS -> DF
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [Custom MQTT Broker](/fleet/cloud-integration/custom-broker) · 📙 [TLS Setup](/infrastructure/security/tls-setup)

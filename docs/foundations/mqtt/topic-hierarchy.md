@@ -59,27 +59,35 @@ Three reasons motivated the three-part design:
 - **Maximum 1 subscribe topic** per endpoint (exceeding returns error code 26 — `IOT_ERROR_SUBSCRIBE_TOPIC_EXCEEDED`).
 - **`tenantId` length is bounded** (exceeding returns error code 27 — `IOT_ERROR_INVALID_TENANTID_LENGTH`).
 
-```mermaid
-flowchart LR
-  Te["&lt;tenantId&gt;<br/>e.g., zebra"]:::seg
-  To["&lt;topic&gt;<br/>e.g., MGMT/clients/resp"]:::seg
-  Sn["&lt;deviceSerialNumber&gt;<br/>e.g., RFD40-24190525100255"]:::seg
-  Te --> To --> Sn
-  Te -.- L1[("reader<br/>prepends")]
-  To -.- L2[("you<br/>configure")]
-  Sn -.- L3[("reader<br/>appends")]
-  classDef seg fill:#e3eef8,stroke:#003a7e,color:#003a7e
+```d2
+direction: right
+Te: "<tenantId>\ne.g., zebra" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+To: "<topic>\ne.g., MGMT/clients/resp" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+Sn: "<deviceSerialNumber>\ne.g., RFD40-24190525100255" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+L1: "reader\nprepends" { shape: cylinder }
+L2: "you\nconfigure" { shape: cylinder }
+L3: "reader\nappends" { shape: cylinder }
+Te -> To -> Sn
+Te -- L1: { style.stroke-dash: 4 }
+To -- L2: { style.stroke-dash: 4 }
+Sn -- L3: { style.stroke-dash: 4 }
 ```
 
-```mermaid
-flowchart LR
-  EP["Endpoint<br/>(MGMT / CTRL / DATA1)"]
-  EP --> PT["publishTopics[]<br/>max 3 per endpoint"]
-  EP --> ST["subscribeTopics[]<br/>max 1 per endpoint"]
-  PT --> T1["topic A"]
-  PT --> T2["topic B"]
-  PT --> T3["topic C"]
-  ST --> T4["topic D"]
+```d2
+direction: right
+EP: "Endpoint\n(MGMT / CTRL / DATA1)"
+PT: "publishTopics[]\nmax 3 per endpoint"
+ST: "subscribeTopics[]\nmax 1 per endpoint"
+T1: topic A
+T2: topic B
+T3: topic C
+T4: topic D
+EP -> PT
+EP -> ST
+PT -> T1
+PT -> T2
+PT -> T3
+ST -> T4
 ```
 
 **Related:** 📘 [Interface Model](/foundations/architecture/interface-model) · 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [Topic Quick Reference](/reference/appendices/topic-quick-reference)

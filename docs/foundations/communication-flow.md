@@ -38,16 +38,16 @@ The application publishes a command on a **request topic**; the reader subscribe
 }
 ```
 
-```mermaid
-sequenceDiagram
-  participant App as Application
-  participant B as MQTT Broker
-  participant R as Reader
-  App->>B: publish to .../cmnd<br/>{command, requestId}
-  B->>R: deliver command
-  R->>R: execute<br/>(query state)
-  R->>B: publish to .../resp<br/>{requestId, response}
-  B->>App: deliver response
+```d2
+shape: sequence_diagram
+App: Application
+B: MQTT Broker
+R: Reader
+App -> B: "publish to .../cmnd\n{command, requestId}"
+B -> R: deliver command
+R -> R: "execute\n(query state)"
+R -> B: "publish to .../resp\n{requestId, response}"
+B -> App: deliver response
 ```
 
 Used for every operation in the Management and Control groups: [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status), [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version), [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region), [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth), [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi), [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile), [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate), [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate), [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate), [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config), [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot), [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode), [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter), [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events).
@@ -83,14 +83,19 @@ The reader publishes events on event topics; one or more applications subscribe.
 }
 ```
 
-```mermaid
-flowchart LR
-  R[Reader] -->|"heartbeatEVT<br/>(interval)"| B((Broker))
-  R -->|"alerts / alert_short<br/>(transitions)"| B
-  R -->|"mqttConnEVT<br/>(state change)"| B
-  B --> A1[Application 1]
-  B --> A2[Application 2]
-  B --> M[MDM Platform]
+```d2
+direction: right
+R: Reader
+B: Broker { shape: oval }
+A1: Application 1
+A2: Application 2
+M: MDM Platform
+R -> B: "heartbeatEVT\n(interval)"
+R -> B: "alerts / alert_short\n(transitions)"
+R -> B: "mqttConnEVT\n(state change)"
+B -> A1
+B -> A2
+B -> M
 ```
 
 Events do **not** use the `{response: {code, description}}` envelope that command responses use. Each event class has its own root shape:
@@ -129,13 +134,18 @@ A specialised event-streaming case with much higher throughput. While an invento
 }
 ```
 
-```mermaid
-flowchart LR
-  T[Tag reads] --> R[Reader]
-  R -->|"normal flow<br/>up to ~500 TPS"| B((Broker))
-  R -.->|"if broker down:<br/>buffer 150K events"| RB[(Retention<br/>Buffer)]
-  RB -.->|"on reconnect:<br/>flush at ~500 TPS"| B
-  B --> A[Application]
+```d2
+direction: right
+T: Tag reads
+R: Reader
+B: Broker { shape: oval }
+RB: "Retention\nBuffer" { shape: cylinder }
+A: Application
+T -> R
+R -> B: "normal flow\nup to ~500 TPS"
+R -> RB: "if broker down:\nbuffer 150K events" { style.stroke-dash: 4 }
+RB -> B: "on reconnect:\nflush at ~500 TPS" { style.stroke-dash: 4 }
+B -> A
 ```
 
 Notice that `dataEVT` does not include the `command`/`requestId`/`response` envelope. Its `type` field carries the active profile name (`CYCLE_COUNT`, `DENSE_READERS`, `OPTIMAL_BATTERY`, `BALANCED_PERFORMANCE`, `ADVANCED`). Telemetry fields (`channel`, `phase`, `seenCount`) appear conditionally. `channel` and `phase` only when `reportFilter duration` is `0` (every read reported separately); when greater than `0`, reads are aggregated and `peakRssi` reflects the peak since the last report.

@@ -30,19 +30,16 @@ Update the canary readers' [`config_endpoint`](https://aa5123.github.io/RFID-40-
 | 3 | 50% | 12 hours | Same |
 | 4 | 100% | — | Same |
 
-```mermaid
-gantt
-  title Certificate rotation rollout
-  dateFormat HH:mm
-  axisFormat %H:%M
-  section Wave 1 (canary, 1%)
-    Install + monitor :a1, 00:00, 24h
-  section Wave 2 (10%)
-    Install + monitor :a2, after a1, 24h
-  section Wave 3 (50%)
-    Install + monitor :a3, after a2, 12h
-  section Wave 4 (100%)
-    Install :a4, after a3, 8h
+```d2
+title: "Certificate rotation rollout" { near: top-center; shape: text; style.font-size: 16; style.bold: true }
+direction: right
+W1: "Wave 1 — canary 1%\nInstall + monitor 24 h" { shape: step }
+W2: "Wave 2 — 10%\nInstall + monitor 24 h" { shape: step }
+W3: "Wave 3 — 50%\nInstall + monitor 12 h" { shape: step }
+W4: "Wave 4 — 100%\nInstall 8 h" { shape: step }
+W1 -> W2: t = 0 -> +24 h
+W2 -> W3: +48 h
+W3 -> W4: +60 h
 ```
 
 ### Handle install failures

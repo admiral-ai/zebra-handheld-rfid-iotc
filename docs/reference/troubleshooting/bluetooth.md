@@ -30,17 +30,26 @@ This guide shows you how to troubleshoot Bluetooth and host-device-related issue
 - The host application that mediates sled ↔ broker traffic may be suspended by Android's battery optimization. Whitelist the app in Android settings.
 - Verify the host has its own MQTT path to the broker by running a test MQTT client on the host directly.
 
-```mermaid
-flowchart TD
-  S[Bridged sled offline?] --> Q1{Host application<br/>running?}
-  Q1 -->|No| Wake[Wake / restart<br/>host app]
-  Q1 -->|Yes| Q2{BT link<br/>connected?}
-  Q2 -->|No| Pair[Re-pair sled<br/>via 123RFID Mobile]
-  Q2 -->|Yes| Q3{Host has<br/>broker connectivity?}
-  Q3 -->|No| Net[Fix host's Wi-Fi /<br/>cellular]
-  Q3 -->|Yes| Q4{terminalConnection<br/>events flowing?}
-  Q4 -->|No| HostBattery[Check Android<br/>battery optimisation]
-  Q4 -->|Yes| OK[Operational —<br/>look elsewhere]
+```d2
+S: Bridged sled offline?
+Q1: "Host application\nrunning?" { shape: diamond }
+Wake: "Wake / restart\nhost app"
+Q2: "BT link\nconnected?" { shape: diamond }
+Pair: "Re-pair sled\nvia 123RFID Mobile"
+Q3: "Host has\nbroker connectivity?" { shape: diamond }
+Net: "Fix host's Wi-Fi /\ncellular"
+Q4: "terminalConnection\nevents flowing?" { shape: diamond }
+HostBattery: "Check Android\nbattery optimisation"
+OK: "Operational —\nlook elsewhere"
+S -> Q1
+Q1 -> Wake: No
+Q1 -> Q2: Yes
+Q2 -> Pair: No
+Q2 -> Q3: Yes
+Q3 -> Net: No
+Q3 -> Q4: Yes
+Q4 -> HostBattery: No
+Q4 -> OK: Yes
 ```
 
 **Related:** 📙 [Bluetooth Pairing](/quick-start/prerequisites/bluetooth-pairing) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations)

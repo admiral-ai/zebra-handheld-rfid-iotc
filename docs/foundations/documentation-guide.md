@@ -20,15 +20,17 @@ This documentation is organised into eight Parts that follow the developer's act
 - **Part 7: Scale to a fleet**: provisioning models, bulk management, retention and retry
 - **Part 8: Diagnose and reference**: symptoms, failure modes, where things fail, recovery playbooks, misconceptions, glossary, API reference, release notes
 
-```mermaid
-flowchart LR
-  P1[Part 1<br/>Get oriented] --> P2[Part 2<br/>Foundations]
-  P2 --> P3[Part 3<br/>Quick Start]
-  P3 --> P4[Part 4<br/>Manage reader]
-  P4 --> P5[Part 5<br/>Read tags]
-  P5 --> P6[Part 6<br/>Observe & monitor]
-  P6 --> P7[Part 7<br/>Scale to fleet]
-  P7 --> P8[Part 8<br/>Diagnose & reference]
+```d2
+direction: right
+P1: "Part 1\nGet oriented"
+P2: "Part 2\nFoundations"
+P3: "Part 3\nQuick Start"
+P4: "Part 4\nManage reader"
+P5: "Part 5\nRead tags"
+P6: "Part 6\nObserve & monitor"
+P7: "Part 7\nScale to fleet"
+P8: "Part 8\nDiagnose & reference"
+P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P7 -> P8
 ```
 
 ### About the content-type badges
@@ -51,23 +53,32 @@ The badges follow the [Diátaxis framework](https://diataxis.fr/). Pages are exa
 | Writing integration code against the MQTT API | [API Reference](/reference/api-overview) |
 | Operating an existing fleet at 3 a.m. | [Troubleshooting Guide](/diagnose/symptoms) |
 
-```mermaid
-flowchart LR
-  subgraph NI["New Integrator"]
-    direction LR
-    NI1[Part 1] --> NI2[Part 2] --> NI3[Part 3]
-  end
-  subgraph SB["Solution Builder"]
-    direction LR
-    SB1[Part 2] --> SB2[Part 4] --> SB3[Part 5]
-  end
-  subgraph FO["Fleet Operator"]
-    direction LR
-    FO1[Part 7] --> FO2[Part 4] --> FO3[Part 6]
-  end
-  subgraph IR["Incident Responder"]
-    IR1[Part 8]
-  end
+```d2
+direction: right
+NI: New Integrator {
+  direction: right
+  NI1: Part 1
+  NI2: Part 2
+  NI3: Part 3
+  NI1 -> NI2 -> NI3
+}
+SB: Solution Builder {
+  direction: right
+  SB1: Part 2
+  SB2: Part 4
+  SB3: Part 5
+  SB1 -> SB2 -> SB3
+}
+FO: Fleet Operator {
+  direction: right
+  FO1: Part 7
+  FO2: Part 4
+  FO3: Part 6
+  FO1 -> FO2 -> FO3
+}
+IR: Incident Responder {
+  IR1: Part 8
+}
 ```
 
 ### How to navigate

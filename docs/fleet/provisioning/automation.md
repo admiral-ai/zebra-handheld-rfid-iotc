@@ -55,17 +55,27 @@ Store the golden config in version control. Build a CI pipeline that, on push to
 2. Tests it against a canary reader in a lab environment.
 3. Promotes to production for the next round of provisioning.
 
-```mermaid
-flowchart LR
-  Push[git push to main] --> CI[CI pipeline]
-  CI --> V[Validate config schema]
-  V --> Build[Build artifact]
-  Build --> SOTI[SOTI Connect API]
-  SOTI --> R1[Reader 1]
-  SOTI --> R2[Reader 2]
-  SOTI --> Rn[Reader N]
-  R1 --> Mon[Monitor mqttConnEVT]
-  Mon --> Rep[Rollout report]
+```d2
+direction: right
+Push: git push to main
+CI: CI pipeline
+V: Validate config schema
+Build: Build artifact
+SOTI: SOTI Connect API
+R1: Reader 1
+R2: Reader 2
+Rn: Reader N
+Mon: Monitor mqttConnEVT
+Rep: Rollout report
+Push -> CI
+CI -> V
+V -> Build
+Build -> SOTI
+SOTI -> R1
+SOTI -> R2
+SOTI -> Rn
+R1 -> Mon
+Mon -> Rep
 ```
 
 **Related:** 📕 [set_config / get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config)

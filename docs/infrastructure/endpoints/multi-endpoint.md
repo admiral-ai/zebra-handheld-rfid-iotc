@@ -13,10 +13,13 @@ Three architectural patterns are available for IOTC deployments. The differences
 
 All four interfaces connect to the same broker. The simplest pattern; recommended for deployments below a few hundred readers.
 
-```mermaid
-flowchart LR
-  R[Reader] -->|"MGMT, CTRL, DATA*"| B((Single Broker))
-  B --> A[Application]
+```d2
+direction: right
+R: Reader
+B: Single Broker { shape: oval }
+A: Application
+R -> B: "MGMT, CTRL, DATA*"
+B -> A
 ```
 
 **Use when:** straightforward operations matter more than scale specialisation.
@@ -25,12 +28,17 @@ flowchart LR
 
 MGMT, CTRL, and MDM share one broker; DATA routes to a dedicated tag-data broker (commonly a managed IoT platform).
 
-```mermaid
-flowchart LR
-  R[Reader] -->|"MGMT, CTRL"| B1((Management Broker))
-  R -->|"DATA1, DATA2"| B2((Data Broker))
-  B1 --> A1[Control App]
-  B2 --> A2[Analytics Pipeline]
+```d2
+direction: right
+R: Reader
+B1: Management Broker { shape: oval }
+B2: Data Broker { shape: oval }
+A1: Control App
+A2: Analytics Pipeline
+R -> B1: "MGMT, CTRL"
+R -> B2: "DATA1, DATA2"
+B1 -> A1
+B2 -> A2
 ```
 
 **Use when:** tag volume threatens to starve command-response latency, or DATA needs to flow directly into a cloud analytics pipeline.
@@ -39,12 +47,17 @@ flowchart LR
 
 SOTI Connect sets the endpoint configuration on the reader's behalf; the reader does not need application-side endpoint configuration.
 
-```mermaid
-flowchart LR
-  R[Reader] -->|"MDM hybrid"| BM((MDM Broker))
-  R -->|"CTRL, DATA*"| BO((Operational Broker))
-  BM --> M[MDM Platform<br/>SOTI / SureMDM]
-  BO --> A[Application]
+```d2
+direction: right
+R: Reader
+BM: MDM Broker { shape: oval }
+BO: Operational Broker { shape: oval }
+M: "MDM Platform\nSOTI / SureMDM"
+A: Application
+R -> BM: MDM hybrid
+R -> BO: "CTRL, DATA*"
+BM -> M
+BO -> A
 ```
 
 **Use when:** enterprise MDM is mandated by IT policy or fleet operations.

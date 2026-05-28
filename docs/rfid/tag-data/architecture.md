@@ -17,13 +17,19 @@ RF antenna → Reader firmware (singulation) → Post-filter → MQTT publish �
 
 Each stage has its own latency and back-pressure characteristics. The total path budget from "tag energised" to "application receives event" is typically 50–500 ms depending on broker proximity.
 
-```mermaid
-flowchart LR
-  T[RFID Tag] -->|"~µs"| R["Reader<br/>(singulation)"]
-  R -->|"~ms"| PF[Post-filter]
-  PF -->|"~10 ms"| MP[MQTT publish]
-  MP -->|"~50 ms"| B((Broker))
-  B -->|"~10 ms"| A[Application]
+```d2
+direction: right
+T: RFID Tag
+R: "Reader\n(singulation)"
+PF: Post-filter
+MP: MQTT publish
+B: Broker { shape: oval }
+A: Application
+T -> R: "~µs"
+R -> PF: "~ms"
+PF -> MP: "~10 ms"
+MP -> B: "~50 ms"
+B -> A: "~10 ms"
 ```
 
 ### Event generation rate
@@ -37,16 +43,24 @@ The rate at which `dataEVT` events are emitted depends on:
 
 Typical event rates: 100–700 events/second for active inventory in a moderate-density environment.
 
-```mermaid
-flowchart TB
-  R[dataEVT generation rate] --> F1[Tag population density]
-  R --> F2[Operating mode profile]
-  R --> F3[RF power]
-  R --> F4[Antenna gain & orientation]
-  R --> F5[Environment / RF noise]
-  F1 -.-> R1[Higher density → higher rate]
-  F2 -.-> R2[CYCLE_COUNT fastest;<br/>DENSE_READERS slowest]
-  F3 -.-> R3[Higher power → larger field]
+```d2
+R: dataEVT generation rate
+F1: Tag population density
+F2: Operating mode profile
+F3: RF power
+F4: Antenna gain & orientation
+F5: Environment / RF noise
+R1: Higher density -> higher rate
+R2: "CYCLE_COUNT fastest;\nDENSE_READERS slowest"
+R3: Higher power -> larger field
+R -> F1
+R -> F2
+R -> F3
+R -> F4
+R -> F5
+F1 -> R1: { style.stroke-dash: 4 }
+F2 -> R2: { style.stroke-dash: 4 }
+F3 -> R3: { style.stroke-dash: 4 }
 ```
 
 ### Deduplication considerations

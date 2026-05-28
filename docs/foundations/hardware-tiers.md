@@ -22,16 +22,21 @@ The most consequential decision in IOTC is which **architecture tier** your sled
 
 The tier is a property of the SKU. You cannot upgrade a Standard sled to Direct, they ship different radios.
 
-```mermaid
-flowchart LR
-  subgraph DIR["🅓 Direct (Premium / Premium Plus / RFD90)"]
-    direction LR
-    D_R["Reader<br/>(Wi-Fi 6)"] -->|"single edge"| D_B((Broker))
-  end
-  subgraph BRG["🅑 Bridged (RFD40 Standard)"]
-    direction LR
-    B_R["Reader<br/>(no Wi-Fi)"] -->|"Bluetooth"| B_H[Host Phone] -->|"Wi-Fi"| B_B((Broker))
-  end
+```d2
+DIR: "🅓 Direct (Premium / Premium Plus / RFD90)" {
+  direction: right
+  D_R: "Reader\n(Wi-Fi 6)"
+  D_B: Broker { shape: oval }
+  D_R -> D_B: single edge
+}
+BRG: "🅑 Bridged (RFD40 Standard)" {
+  direction: right
+  B_R: "Reader\n(no Wi-Fi)"
+  B_H: Host Phone
+  B_B: Broker { shape: oval }
+  B_R -> B_H: Bluetooth
+  B_H -> B_B: Wi-Fi
+}
 ```
 
 ### How they differ in practice

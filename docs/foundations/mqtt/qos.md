@@ -13,18 +13,19 @@ MQTT defines three Quality-of-Service levels. IOTC uses two: QoS 0 (fire-and-for
 
 The publisher sends the message and forgets it. The broker may deliver it; it may not. There is no acknowledgement. Latency is lowest. Loss is possible — if the network drops the packet, the message is gone.
 
-```mermaid
-sequenceDiagram
-  participant P as Publisher
-  participant B as Broker
-  Note over P,B: QoS 0 — Fire and forget
-  P->>B: PUBLISH (no ack)
-  Note over P,B: QoS 1 — At least once
-  P->>B: PUBLISH (dup=0)
-  B->>P: PUBACK
-  Note right of P: on PUBACK timeout
-  P->>B: PUBLISH (dup=1) — resend
-  B->>P: PUBACK
+```d2
+shape: sequence_diagram
+P: Publisher
+B: Broker
+qos0: QoS 0 — Fire and forget {
+  P -> B: PUBLISH (no ack)
+}
+qos1: QoS 1 — At least once {
+  P -> B: PUBLISH (dup=0)
+  B -> P: PUBACK
+  P -> B: "PUBLISH (dup=1) — resend on PUBACK timeout"
+  B -> P: PUBACK
+}
 ```
 
 ### QoS 1, at least once

@@ -13,10 +13,13 @@ Three patterns dominate cloud-backed IOTC deployments. The choice is structural:
 
 Readers point their MQTT endpoints directly at a cloud-platform broker. AWS IoT Core, Azure IoT Hub MQTT, GCP, or HiveMQ Cloud. The cloud broker is the only broker in the path.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] --> B((Cloud-hosted MQTT broker))
-  B --> A[Application services]
+```d2
+direction: right
+R: IOTC Reader
+B: Cloud-hosted MQTT broker { shape: oval }
+A: Application services
+R -> B
+B -> A
 ```
 
 **When:** simple deployments, fleets where Zebra-hosted broker is unnecessary.
@@ -25,11 +28,15 @@ flowchart LR
 
 A small MQTT bridge translates between IOTC's topic namespace and the cloud platform's preferred topic structure. The reader publishes to its Zebra-namespace topic; the bridge republishes to a cloud-namespace topic; the cloud platform consumes natively.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] --> B((IOTC-shaped broker))
-  B --> BR["Bridge<br/>(topic-namespace translation)"]
-  BR --> CB(("Cloud-native ingest<br/>AWS IoT Core / Pub/Sub /<br/>IoT Hub"))
+```d2
+direction: right
+R: IOTC Reader
+B: IOTC-shaped broker { shape: oval }
+BR: "Bridge\n(topic-namespace translation)"
+CB: "Cloud-native ingest\nAWS IoT Core / Pub/Sub /\nIoT Hub" { shape: oval }
+R -> B
+B -> BR
+BR -> CB
 ```
 
 **When:** the cloud platform has a specific topic convention you need to honour (e.g., AWS IoT Core's `$aws/things/...`); useful for retrofitting existing pipelines.
@@ -38,13 +45,19 @@ flowchart LR
 
 An application service subscribes to IOTC events from the broker, transforms or enriches them, and pushes to the cloud platform's native ingest API (often non-MQTT).
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] --> B((MQTT broker))
-  B --> G["Gateway service<br/>(transform + enrich)"]
-  G --> ST["Stream platform<br/>(Kafka / Kinesis)"]
-  ST --> S1[Service 1]
-  ST --> S2[Service 2]
+```d2
+direction: right
+R: IOTC Reader
+B: MQTT broker { shape: oval }
+G: "Gateway service\n(transform + enrich)"
+ST: "Stream platform\n(Kafka / Kinesis)"
+S1: Service 1
+S2: Service 2
+R -> B
+B -> G
+G -> ST
+ST -> S1
+ST -> S2
 ```
 
 **When:** the cloud platform's ingest is not MQTT-shaped, or you need to do significant transformation before persistence.

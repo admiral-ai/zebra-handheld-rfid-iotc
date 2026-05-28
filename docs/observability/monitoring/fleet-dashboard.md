@@ -52,39 +52,45 @@ Each architecture's setup is in the relevant cloud-integration how-to ([AWS IoT 
 - **Alert counts**: last 24h, segmented by category
 - **Connection-quality outliers**: readers with reconnect rate above threshold
 
-```mermaid
-flowchart TB
-  subgraph DB["Fleet Health Dashboard"]
-    direction TB
-    subgraph Row1["Overview KPIs"]
-      direction LR
-      KPI1["Online<br/>487 / 500"]
-      KPI2["Battery avg<br/>78%"]
-      KPI3["Active scans<br/>23"]
-      KPI4["Alerts 24h<br/>12"]
-    end
-    subgraph Row2["Charts"]
-      direction LR
-      C1[Battery histogram]
-      C2[Connection quality]
-    end
-    subgraph Row3["Outliers"]
-      direction LR
-      O1["Readers reconnecting<br/>&gt;5x / hr"]
-      O2["Battery &lt; 20%"]
-    end
-  end
+```d2
+DB: Fleet Health Dashboard {
+  Row1: Overview KPIs {
+    direction: right
+    KPI1: "Online\n487 / 500"
+    KPI2: "Battery avg\n78%"
+    KPI3: "Active scans\n23"
+    KPI4: "Alerts 24h\n12"
+  }
+  Row2: Charts {
+    direction: right
+    C1: Battery histogram
+    C2: Connection quality
+  }
+  Row3: Outliers {
+    direction: right
+    O1: "Readers reconnecting\n>5x / hr"
+    O2: "Battery < 20%"
+  }
+}
 ```
 
-```mermaid
-flowchart LR
-  R1[Reader 1] --> B((Broker))
-  R2[Reader 2] --> B
-  Rn[Reader N] --> B
-  B --> C[MQTT consumer]
-  C --> SS[("State store<br/>Redis / Postgres")]
-  SS --> DQ[Dashboard query layer]
-  DQ --> UI[Web UI]
+```d2
+direction: right
+R1: Reader 1
+R2: Reader 2
+Rn: Reader N
+B: Broker { shape: oval }
+C: MQTT consumer
+SS: "State store\nRedis / Postgres" { shape: cylinder }
+DQ: Dashboard query layer
+UI: Web UI
+R1 -> B
+R2 -> B
+Rn -> B
+B -> C
+C -> SS
+SS -> DQ
+DQ -> UI
 ```
 
 ### Alerting integration

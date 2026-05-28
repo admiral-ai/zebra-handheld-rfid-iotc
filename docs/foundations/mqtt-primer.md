@@ -17,19 +17,23 @@ In MQTT, a client publishes a message to a **topic**, a string like `acme/mgmt/c
 
 The MQTT broker is the post office in this analogy: it routes by topic, not by recipient. The reader publishes; the broker fans out to subscribers.
 
-```mermaid
-flowchart LR
-  subgraph HTTP["HTTP — Request / Response"]
-    direction LR
-    HC[Client] -->|"GET /resource"| HS[Server]
-    HS -->|"200 OK"| HC
-  end
-  subgraph MQTT["MQTT — Publish / Subscribe"]
-    direction LR
-    MP[Publisher] -->|publish topic+message| MB((Broker))
-    MS[Subscriber] -.->|subscribe to topic| MB
-    MB -->|deliver| MS
-  end
+```d2
+HTTP: "HTTP — Request / Response" {
+  direction: right
+  HC: Client
+  HS: Server
+  HC -> HS: GET /resource
+  HS -> HC: 200 OK
+}
+MQTT: "MQTT — Publish / Subscribe" {
+  direction: right
+  MP: Publisher
+  MB: Broker { shape: oval }
+  MS: Subscriber
+  MP -> MB: publish topic+message
+  MS -> MB: subscribe to topic { style.stroke-dash: 4 }
+  MB -> MS: deliver
+}
 ```
 
 This decoupling fits IoT well. An IOTC reader can publish tag data at full speed without caring whether the application is processing in real time, queueing in Kafka, or batching to S3. The reader's job ends at `publish`.
@@ -41,11 +45,14 @@ This decoupling fits IoT well. An IOTC reader can publish tag data at full speed
 - **Topic**, a hierarchical string identifying a message stream. IOTC topics follow the pattern `<tenantId>/<userTopic>/<serialNumber>` — e.g. `acme/mgmt/clients/app/SN1234567890`.
 - **Message**, a binary payload (in IOTC, JSON) published to a topic. MQTT itself imposes no schema; IOTC defines the JSON schemas for each operation and event.
 
-```mermaid
-flowchart LR
-  P[Publisher Client] -->|"publish<br/>topic + message"| B((MQTT Broker))
-  S[Subscriber Client] -.->|"subscribe<br/>topic filter"| B
-  B -->|"deliver matching<br/>messages"| S
+```d2
+direction: right
+P: Publisher Client
+B: MQTT Broker { shape: oval }
+S: Subscriber Client
+P -> B: "publish\ntopic + message"
+S -> B: "subscribe\ntopic filter" { style.stroke-dash: 4 }
+B -> S: "deliver matching\nmessages"
 ```
 
 ### Subscribe-before-publish

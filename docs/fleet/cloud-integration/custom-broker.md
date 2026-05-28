@@ -57,12 +57,17 @@ mosquitto_sub -h broker.example.com -p 8883 \
 
 Start an inventory on the reader; events should arrive in the subscriber output.
 
-```mermaid
-flowchart LR
-  R[IOTC Reader] -->|"MQTT / MQTT_TLS"| B(("Customer-hosted Broker<br/>HiveMQ / EMQX / Mosquitto"))
-  B --> A1[Application]
-  B --> S[Subscriber service]
-  S --> Pe[(Storage)]
+```d2
+direction: right
+R: IOTC Reader
+B: "Customer-hosted Broker\nHiveMQ / EMQX / Mosquitto" { shape: oval }
+A1: Application
+S: Subscriber service
+Pe: Storage { shape: cylinder }
+R -> B: "MQTT / MQTT_TLS"
+B -> A1
+B -> S
+S -> Pe
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📘 [Auth Model](/foundations/mqtt/auth-model) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint)

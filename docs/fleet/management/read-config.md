@@ -46,19 +46,30 @@ The response is a nested JSON document. Top-level sections correspond to the ind
 
 For the complete schema, see [Config schema](/reference/appendices/config-schema).
 
-```mermaid
-flowchart TB
-  GC[get_config response] --> C[config object]
-  GC --> RR["response<br/>(code, description)"]
-  C --> N[network]
-  C --> E[endpoints]
-  C --> RF[rfid]
-  C --> SE[security / certs]
-  C --> SY[system]
-  N --> Nw[wifi profiles]
-  N --> Ne[ethernet]
-  E --> Em[active endpoints]
-  E --> En[saved endpoint names]
+```d2
+GC: get_config response
+C: config object
+RR: "response\n(code, description)"
+N: network
+E: endpoints
+RF: rfid
+SE: security / certs
+SY: system
+Nw: wifi profiles
+Ne: ethernet
+Em: active endpoints
+En: saved endpoint names
+GC -> C
+GC -> RR
+C -> N
+C -> E
+C -> RF
+C -> SE
+C -> SY
+N -> Nw
+N -> Ne
+E -> Em
+E -> En
 ```
 
 **Related:** 📕 [get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [Config Schema](/reference/appendices/config-schema) · 📙 [Apply Bulk Config](/fleet/management/apply-config)

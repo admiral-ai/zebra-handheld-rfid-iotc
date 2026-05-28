@@ -35,32 +35,36 @@ The middle segment (`<topic>`)is **configured per endpoint** via the endpoint's 
 
 The reader **prepends `tenantId` and appends `deviceSerialNumber` automatically** at runtime. Never include them in the configured `topic` field.
 
-```mermaid
-flowchart LR
-  T["zebra"]:::seg --> M["MGMT/clients/resp"]:::seg --> S["RFD40-24190525100255"]:::seg
-  T -.- t1["tenantId<br/>(reader prepends)"]
-  M -.- t2["topic<br/>(you configure)"]
-  S -.- t3["deviceSerialNumber<br/>(reader appends)"]
-  classDef seg fill:#e3eef8,stroke:#003a7e,stroke-width:1px,color:#003a7e
+```d2
+direction: right
+T: zebra { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+M: MGMT/clients/resp { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+S: RFD40-24190525100255 { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+t1: "tenantId\n(reader prepends)"
+t2: "topic\n(you configure)"
+t3: "deviceSerialNumber\n(reader appends)"
+T -> M -> S
+T -- t1: { style.stroke-dash: 4 }
+M -- t2: { style.stroke-dash: 4 }
+S -- t3: { style.stroke-dash: 4 }
 ```
 
-```mermaid
-flowchart TB
-  subgraph Mgmt["Management"]
-    MGMT["MGMT<br/>commands / responses"]
-    MGMT_EVT["MGMT_EVT<br/>events only"]
-  end
-  subgraph Ctrl["Control"]
-    CTRL["CTRL<br/>radio control"]
-  end
-  subgraph Data["Data"]
-    DATA1["DATA1<br/>tag data"]
-    DATA2["DATA2<br/>tag data (second channel)"]
-  end
-  subgraph Hybrid["Hybrid / MDM"]
-    MDM["MDM<br/>all roles combined<br/>(bootstrap default)"]
-    SOTI["SOTI<br/>SOTI Connect variant"]
-  end
+```d2
+Mgmt: Management {
+  MGMT: "MGMT\ncommands / responses"
+  MGMT_EVT: "MGMT_EVT\nevents only"
+}
+Ctrl: Control {
+  CTRL: "CTRL\nradio control"
+}
+Data: Data {
+  DATA1: "DATA1\ntag data"
+  DATA2: "DATA2\ntag data (second channel)"
+}
+Hybrid: Hybrid / MDM {
+  MDM: "MDM\nall roles combined\n(bootstrap default)"
+  SOTI: "SOTI\nSOTI Connect variant"
+}
 ```
 
 ### The MDM-endpoint-as-bootstrap pattern

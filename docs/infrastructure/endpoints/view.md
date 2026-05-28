@@ -32,15 +32,22 @@ This guide shows you how to inspect the current MQTT endpoint configuration on a
 
 Each interface block shows its broker target. For the full schema, see [API Reference](/reference/api-overview).
 
-```mermaid
-flowchart TB
-  R[get_endpoint_config response] --> AE[activeEndpoints]
-  R --> SE[savedEndpoints]
-  R --> RR["response<br/>(code, description)"]
-  AE --> EP1[epConfig: MGMT endpoint]
-  AE --> EP2[epConfig: CTRL endpoint]
-  AE --> EP3[epConfig: DATA1 endpoint]
-  SE --> EN[epNames: all saved endpoint names]
+```d2
+R: get_endpoint_config response
+AE: activeEndpoints
+SE: savedEndpoints
+RR: "response\n(code, description)"
+EP1: "epConfig: MGMT endpoint"
+EP2: "epConfig: CTRL endpoint"
+EP3: "epConfig: DATA1 endpoint"
+EN: "epNames: all saved endpoint names"
+R -> AE
+R -> SE
+R -> RR
+AE -> EP1
+AE -> EP2
+AE -> EP3
+SE -> EN
 ```
 
 **Related:** 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📕 [get_endpoint_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) · 📙 [How to Configure](/infrastructure/endpoints/configure)
