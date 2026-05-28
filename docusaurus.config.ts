@@ -9,11 +9,17 @@ import type * as Preset from '@docusaurus/preset-classic';
 export default async function createConfig(): Promise<Config> {
   const remarkD2 = (await import('remark-d2')).default;
 
+  // Site base URL. remark-d2's linkPath must include this prefix or
+  // generated img src attributes will skip /zebra-handheld-rfid-iotc/
+  // and 404 in production. Define once and reference below.
+  const baseUrl = '/zebra-handheld-rfid-iotc/';
+  const d2LinkPath = `${baseUrl}d2`.replace(/\/+/g, '/');
+
   const config: Config = {
   title: 'Zebra Handheld RFID Reader | IoT Connector',
   tagline: 'MQTT API Documentation for RFD40 / RFD90 Series Handheld RFID Reader Sleds',
   url: 'https://al1913-zebra.github.io',
-  baseUrl: '/zebra-handheld-rfid-iotc/',
+  baseUrl,
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -243,6 +249,11 @@ export default async function createConfig(): Promise<Config> {
           //                      <img> tags ("Cannot handle unknown
           //                      node `raw`"). Markdown ![] syntax is
           //                      what we want anyway.
+          //   linkPath: must include the site baseUrl so generated
+          //             img tags resolve correctly under GitHub Pages.
+          //             The default "/d2" produces absolute URLs that
+          //             skip our /zebra-handheld-rfid-iotc/ prefix and
+          //             404 in production.
           remarkPlugins: [
             [
               remarkD2,
@@ -250,6 +261,7 @@ export default async function createConfig(): Promise<Config> {
                 defaultD2Opts: ['-t=0', '--dark-theme=200'],
                 htmlImage: false,
                 defaultImageAttrs: { alt: 'Diagram' },
+                linkPath: d2LinkPath,
               },
             ],
           ],
