@@ -2,7 +2,14 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const config: Config = {
+// remark-d2 is ESM-only; Docusaurus' config-loader (jiti) chokes on
+// top-level await, so we wrap the whole config in an async default
+// export and resolve the dynamic import inside it.
+
+export default async function createConfig(): Promise<Config> {
+  const remarkD2 = (await import('remark-d2')).default;
+
+  const config: Config = {
   title: 'Zebra Handheld RFID Reader | IoT Connector',
   tagline: 'MQTT API Documentation for RFD40 / RFD90 Series Handheld RFID Reader Sleds',
   url: 'https://al1913-zebra.github.io',
@@ -231,6 +238,28 @@ const config: Config = {
           // page replaces this affordance (see src/theme/DocItem/Footer).
           routeBasePath: '/',
           breadcrumbs: true,
+          // remark-d2 compiles every ```d2``` fenced block to SVG via the
+          // `d2` CLI (must be on PATH at build time) and rewrites the
+          // fence to an <img> tag.
+          //   defaultD2Opts: pin themes — 0 (Neutral Default) light + 200
+          //                  (Dark Mauve) dark per /brain/D2-MIGRATION.md §3.
+          //                  Layout engine left as default (dagre); switch
+          //                  to elk per-diagram via fence metadata when
+          //                  needed for nested architectures.
+          //   htmlImage: false — Docusaurus' MDX pipeline rejects raw
+          //                      <img> tags ("Cannot handle unknown
+          //                      node `raw`"). Markdown ![] syntax is
+          //                      what we want anyway.
+          remarkPlugins: [
+            [
+              remarkD2,
+              {
+                defaultD2Opts: ['-t=0', '--dark-theme=200'],
+                htmlImage: false,
+                defaultImageAttrs: { alt: 'Diagram' },
+              },
+            ],
+          ],
         },
         theme: {
           customCss: './src/css/custom.scss',
@@ -258,6 +287,7 @@ const config: Config = {
     },
   ],
   clientModules: ['./src/client-modules/img-zoom'],
-};
+  };
 
-export default config;
+  return config;
+}
