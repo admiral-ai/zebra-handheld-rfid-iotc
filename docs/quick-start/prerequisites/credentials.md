@@ -20,8 +20,6 @@ A Zebra developer account. Sign up at [developer.zebra.com](https://developer.ze
 3. **Create a tenant** if you do not yet have one. Provide a tenant name (descriptive; this is for your reference); the portal assigns the `tenantId`.
 4. **Capture three values** from the tenant detail page: `tenantId`, MQTT username, MQTT password. Store them in your credentials vault.
 
-[DIAGRAM: D-4.2.A. annotated screenshot of the tenant detail page with the three values circled]
-
 ### Verify
 
 Confirm the credentials work by attempting an MQTT CONNECT:

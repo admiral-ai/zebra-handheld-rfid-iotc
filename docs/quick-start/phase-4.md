@@ -1,8 +1,8 @@
 ---
 id: phase-4
-title: "Phase 4: Start an inventory (control_operation START)"
+title: "Phase 4: Inspect endpoint state (get_endpoint_config)"
 sidebar_label: "Phase 4: Inspect endpoint state"
-description: "Phase 4 of the IOTC Quick Start: send control_operation with operation=START to begin reading tags. Operating-mode prerequisites and response semantics."
+description: "Phase 4 of the IOTC Quick Start: use get_endpoint_config to list the sled's active and saved endpoints and confirm the bootstrap state before adding more."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 4 of 7 · **Audience:** Integrator · **Time:** ~4 min

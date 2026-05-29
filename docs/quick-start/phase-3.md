@@ -105,7 +105,7 @@ Within a few hundred milliseconds, your subscriber prints something like:
 ### Success check
 
 - A JSON response arrives on `MDM/clients/resp/...` within a few seconds.
-- `requestId` echoes your value (`abc123`).
+- `requestId` echoes your value (`ver-001`).
 - `response.code` is `0` and `response.description` is `Success`.
 - `readerVersion.serialNumber` matches the physical label.
 

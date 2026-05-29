@@ -1,7 +1,7 @@
 ---
 id: requirements
 title: Hardware and software requirements
-sidebar_label: Hardware & Software Requirements
+sidebar_label: Hardware & software requirements
 description: "Phase 0 prerequisites: hardware (RFD40 or RFD90 sled, host, tags), software (123RFID tool, MQTT client), firmware baseline (3.10.27+)."
 ---
 

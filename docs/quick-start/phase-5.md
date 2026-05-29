@@ -1,8 +1,8 @@
 ---
 id: phase-5
-title: "Phase 5: Read tag data (dataEVT)"
+title: "Phase 5: Add remote endpoints (config_endpoint)"
 sidebar_label: "Phase 5: Add remote endpoints"
-description: "Phase 5 of the IOTC Quick Start: subscribe to dataEVT and watch tag reads stream in. Covers the schema, channel selection, and live filtering."
+description: "Phase 5 of the IOTC Quick Start: add CTRL and DATA1 endpoints with config_endpoint, then verify all three endpoints are active and routable."
 ---
 
 > 📗 **TUTORIAL** · **Phase:** 5 of 7 · **Audience:** Integrator · **Time:** ~8 min
