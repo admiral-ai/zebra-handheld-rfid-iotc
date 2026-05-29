@@ -16,10 +16,11 @@ All four interfaces connect to the same broker. The simplest pattern; recommende
 ```d2
 direction: right
 R: Reader
-B: Single Broker { shape: oval }
+B: Single Broker { shape: queue }
 A: Application
 R -> B: "MGMT, CTRL, DATA*"
 B -> A
+
 ```
 
 **Use when:** straightforward operations matter more than scale specialisation.
@@ -31,14 +32,15 @@ MGMT, CTRL, and MDM share one broker; DATA routes to a dedicated tag-data broker
 ```d2
 direction: right
 R: Reader
-B1: Management Broker { shape: oval }
-B2: Data Broker { shape: oval }
+B1: Management Broker { shape: queue }
+B2: Data Broker { shape: queue }
 A1: Control App
 A2: Analytics Pipeline
 R -> B1: "MGMT, CTRL"
 R -> B2: "DATA1, DATA2"
 B1 -> A1
 B2 -> A2
+
 ```
 
 **Use when:** tag volume threatens to starve command-response latency, or DATA needs to flow directly into a cloud analytics pipeline.
@@ -50,14 +52,15 @@ SOTI Connect sets the endpoint configuration on the reader's behalf; the reader 
 ```d2
 direction: right
 R: Reader
-BM: MDM Broker { shape: oval }
-BO: Operational Broker { shape: oval }
+BM: MDM Broker { shape: queue }
+BO: Operational Broker { shape: queue }
 M: "MDM Platform\nSOTI / SureMDM"
 A: Application
 R -> BM: MDM hybrid
 R -> BO: "CTRL, DATA*"
 BM -> M
 BO -> A
+
 ```
 
 **Use when:** enterprise MDM is mandated by IT policy or fleet operations.

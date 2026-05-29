@@ -30,22 +30,23 @@ direction: right
 T: Tag
 R: "Reader\n(single antenna)"
 H: "Host or\ndirect Wi-Fi"
-B: Broker { shape: oval }
+B: Broker { shape: queue }
 A: Application
+T -> R
+R -> H
+H -> B
+B -> A
 c1: "Battery\n(every PINGREQ wakes radio)" { shape: hexagon }
 c2: "Single antenna\n(no port selection)" { shape: hexagon }
 c3: "Hardware trigger\n(input source)" { shape: hexagon }
 c4: "Mobility\n(roaming Wi-Fi)" { shape: hexagon }
 c5: "Tier choice\n(Direct vs Bridged)" { shape: hexagon }
-T -> R
-R -> H
-H -> B
-B -> A
-c1 -- R: { style.stroke-dash: 4 }
-c2 -- R: { style.stroke-dash: 4 }
-c3 -- R: { style.stroke-dash: 4 }
-c4 -- H: { style.stroke-dash: 4 }
-c5 -- R: { style.stroke-dash: 4 }
+c1 -- R { style.stroke-dash: 4 }
+c2 -- R { style.stroke-dash: 4 }
+c3 -- R { style.stroke-dash: 4 }
+c4 -- H { style.stroke-dash: 4 }
+c5 -- R { style.stroke-dash: 4 }
+
 ```
 
 ### The physical trigger is an input source

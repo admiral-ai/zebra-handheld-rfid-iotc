@@ -17,15 +17,16 @@ The publisher sends the message and forgets it. The broker may deliver it; it ma
 shape: sequence_diagram
 P: Publisher
 B: Broker
-qos0: QoS 0 — Fire and forget {
+qos0: QoS 0 - at most once {
   P -> B: PUBLISH (no ack)
 }
-qos1: QoS 1 — At least once {
+qos1: QoS 1 - at least once {
   P -> B: PUBLISH (dup=0)
   B -> P: PUBACK
-  P -> B: "PUBLISH (dup=1) — resend on PUBACK timeout"
+  P -> B: "PUBLISH (dup=1)\nresend on PUBACK timeout"
   B -> P: PUBACK
 }
+
 ```
 
 ### QoS 1, at least once

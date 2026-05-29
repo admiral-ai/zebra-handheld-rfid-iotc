@@ -59,6 +59,7 @@ Q1 -> Q2: No
 Q1 -> SEP: Yes
 Q2 -> SINGLE: No
 Q2 -> MDMG: Yes
+
 ```
 
 **Related:** 📘 [Multi-Endpoint Architectures](/infrastructure/endpoints/multi-endpoint) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt)

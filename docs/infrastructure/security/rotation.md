@@ -31,15 +31,16 @@ Update the canary readers' [`config_endpoint`](https://aa5123.github.io/RFID-40-
 | 4 | 100% | — | Same |
 
 ```d2
-title: "Certificate rotation rollout" { near: top-center; shape: text; style.font-size: 16; style.bold: true }
+title: "Certificate rotation rollout" { near: top-center; shape: text; style.font-size: 18; style.bold: true }
 direction: right
-W1: "Wave 1 — canary 1%\nInstall + monitor 24 h" { shape: step }
-W2: "Wave 2 — 10%\nInstall + monitor 24 h" { shape: step }
-W3: "Wave 3 — 50%\nInstall + monitor 12 h" { shape: step }
-W4: "Wave 4 — 100%\nInstall 8 h" { shape: step }
-W1 -> W2: t = 0 -> +24 h
+W1: "Wave 1 - canary 1%\nInstall + monitor 24 h" { shape: step }
+W2: "Wave 2 - 10%\nInstall + monitor 24 h" { shape: step }
+W3: "Wave 3 - 50%\nInstall + monitor 12 h" { shape: step }
+W4: "Wave 4 - 100%\nInstall 8 h" { shape: step }
+W1 -> W2: "t=0 -> +24 h"
 W2 -> W3: +48 h
 W3 -> W4: +60 h
+
 ```
 
 ### Handle install failures

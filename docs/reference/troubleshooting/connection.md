@@ -56,14 +56,18 @@ Connection never establishes; no `mqttConnEVT` ever fires.
 - Coordinate with network operations to allow outbound MQTT traffic to the broker.
 
 ```d2
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
 S: Connection symptom
 Q1: "mqttConnEVT\never received?" { shape: diamond }
 Q2: "Port open?\nnc -zv host 8883" { shape: diamond }
 Q3: "LWT\nreceived?" { shape: diamond }
-FW: Firewall / port block
-Cred: "Bad credentials /\ncert chain"
-Drop: "Network drop;\ncheck signal"
-Sof: "Soft failure;\nget_status + gap-detect"
+FW: Firewall / port block { class: bad }
+Cred: "Bad credentials /\ncert chain" { class: bad }
+Drop: "Network drop;\ncheck signal" { class: bad }
+Sof: "Soft failure;\nget_status + gap-detect" { class: bad }
 S -> Q1
 Q1 -> Q2: No
 Q1 -> Q3: "Yes,\nthen DISCONNECTED"
@@ -71,6 +75,7 @@ Q2 -> FW: No
 Q2 -> Cred: Yes
 Q3 -> Drop: Yes
 Q3 -> Sof: No
+
 ```
 
 **Related:** 📙 [Network Troubleshooting](/infrastructure/network/troubleshooting) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📕 [mqttConnEVT, exceptionEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📘 [Connection Lifecycle](/foundations/mqtt/connection-lifecycle)

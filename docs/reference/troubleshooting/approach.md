@@ -44,14 +44,14 @@ A change that "seems to work" but is unconfirmed has a habit of returning. After
 ```d2
 S: Symptom observed
 L1: "Reader powered\nand reachable?" { shape: diamond }
-Phy: "Layer 1: Physical / power"
+Phy: "Layer 1 - Physical / power"
 L2: "Network path\nto broker?" { shape: diamond }
-Net: "Layer 2: Network"
+Net: "Layer 2 - Network"
 L3: "MQTT session\nestablished?" { shape: diamond }
-Tra: "Layer 3: Transport / TLS"
+Tra: "Layer 3 - Transport / TLS"
 L4: "Commands\ndelivered?" { shape: diamond }
-App: "Layer 4: Application / topic routing"
-L5: "Layer 5: Reader / radio behaviour"
+App: "Layer 4 - Application / topic routing"
+L5: "Layer 5 - Reader / radio behaviour"
 S -> L1
 L1 -> Phy: No
 L1 -> L2: Yes
@@ -61,6 +61,7 @@ L3 -> Tra: No
 L3 -> L4: Yes
 L4 -> App: No
 L4 -> L5: Yes
+
 ```
 
 **Related:** 📙 [Connection Troubleshooting](/reference/troubleshooting/connection) · 📙 [RFID Troubleshooting](/reference/troubleshooting/rfid) · 📙 [Tag Data Troubleshooting](/reference/troubleshooting/tag-data) · 📕 [get_status](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status)

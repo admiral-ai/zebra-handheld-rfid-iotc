@@ -36,7 +36,8 @@ Bin -> P
 Bin -> CG
 Bin -> IR
 Bin -> SN
-H -> H2: { style.stroke-dash: 4 }
+H -> H2 { style.stroke-dash: 4 }
+
 ```
 
 ### Interpret RSSI

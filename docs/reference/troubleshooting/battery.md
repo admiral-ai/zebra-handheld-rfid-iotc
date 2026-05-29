@@ -34,15 +34,21 @@ This guide shows you how to troubleshoot battery and power issues on handheld re
 - Use cradle charging during operator breaks
 
 ```d2
-title: "Battery drain over a shift (example)" { near: top-center; shape: text; style.font-size: 16; style.bold: true }
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  warn: { style: { fill: "#fef7e0"; stroke: "#f9ab00"; font-color: "#b06000" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
+title: "Battery drain over a shift (example)" { near: top-center; shape: text; style.font-size: 18; style.bold: true }
 direction: right
-H08: "08:00\n100%" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
-H10: "10:00\n84%" { style: { fill: "#e8f5e8"; stroke: "#1b5e20"; font-color: "#1b5e20" } }
-H12: "12:00\n68%" { style: { fill: "#f1f8e9"; stroke: "#558b2f"; font-color: "#33691e" } }
-H14: "14:00\n51%" { style: { fill: "#fffde7"; stroke: "#9e7d0a"; font-color: "#9e7d0a" } }
-H16: "16:00\n33%" { style: { fill: "#fff3e0"; stroke: "#e65100"; font-color: "#e65100" } }
-H18: "18:00\n12%" { style: { fill: "#fce4ec"; stroke: "#880e4f"; font-color: "#880e4f" } }
+H08: "08:00 - 100%" { class: good }
+H10: "10:00 - 84%" { class: good }
+H12: "12:00 - 68%" { class: good }
+H14: "14:00 - 51%" { class: warn }
+H16: "16:00 - 33%" { class: warn }
+H18: "18:00 - 12%" { class: bad }
 H08 -> H10 -> H12 -> H14 -> H16 -> H18
+
 ```
 
 **Related:** 📙 [Battery Monitoring](/observability/monitoring/battery) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations) · 📘 [Alert Events](/observability/alerts)

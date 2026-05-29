@@ -18,7 +18,7 @@ This guide shows you how to check the health of a handheld reader on demand and 
 The response includes operating state (idle/running), battery level, temperature, firmware version, uptime, and connection states per interface. For the full field list, see [API Reference](/reference/api-overview).
 
 ```d2
-R: get_status response
+R: "get_status response" { shape: page }
 DS: deviceStatus
 RR: "response\n(code, description)"
 PS: powerSource
@@ -43,6 +43,7 @@ DS -> TC
 DS -> TM
 BS -> BC
 BS -> BH
+
 ```
 
 ### Continuous: subscribe to `heartbeatEVT`

@@ -23,12 +23,13 @@ C: Client (Reader / App)
 B: MQTT Broker
 C -> B: "CONNECT\nusername + password + clientId"
 B -> B: "validate credentials\n+ tenant ACL check"
-valid: "credentials valid" {
+valid: credentials valid {
   B -> C: "CONNACK\nreturnCode = 0 (accepted)"
 }
-rejected: "credentials rejected" {
+rejected: credentials rejected {
   B -> C: "CONNACK\nreturnCode = 4 or 5"
 }
+
 ```
 
 ### Tenant scoping

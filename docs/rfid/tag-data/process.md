@@ -54,19 +54,20 @@ def on_tag(event):
 
 ```d2
 direction: right
-B: Broker { shape: oval }
+B: Broker { shape: queue }
 S: MQTT consumer
-D: "Deduplicate\n(by EPC + window)"
+Dd: "Deduplicate\n(by EPC + window)"
 Bu: Buffer / batch
 Pe: "Persist\nwarehouse / TSDB" { shape: cylinder }
 Al: Alert rules
 Out: PagerDuty / Slack
 B -> S: subscribe DATA1/#
-S -> D
-D -> Bu
+S -> Dd
+Dd -> Bu
 Bu -> Pe
 Pe -> Al
 Al -> Out
+
 ```
 
 Common architecture: an MQTT consumer service deduplicates and batches; writes to a time-series database (Timescale, Influx) for analytics and to an operational database (Postgres, Mongo) for current-state queries; publishes alerts to an event bus (Kafka, EventBridge) for downstream subscribers.

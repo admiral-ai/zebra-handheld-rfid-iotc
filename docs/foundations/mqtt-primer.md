@@ -18,22 +18,24 @@ In MQTT, a client publishes a message to a **topic**, a string like `acme/mgmt/c
 The MQTT broker is the post office in this analogy: it routes by topic, not by recipient. The reader publishes; the broker fans out to subscribers.
 
 ```d2
-HTTP: "HTTP — Request / Response" {
+direction: right
+HTTP: "HTTP - Request / Response" {
   direction: right
   HC: Client
   HS: Server
   HC -> HS: GET /resource
   HS -> HC: 200 OK
 }
-MQTT: "MQTT — Publish / Subscribe" {
+MQTT: "MQTT - Publish / Subscribe" {
   direction: right
   MP: Publisher
-  MB: Broker { shape: oval }
+  MB: Broker { shape: queue }
   MS: Subscriber
-  MP -> MB: publish topic+message
-  MS -> MB: subscribe to topic { style.stroke-dash: 4 }
+  MP -> MB: publish (topic + message)
+  MS -> MB: subscribe (topic) { style.stroke-dash: 4 }
   MB -> MS: deliver
 }
+
 ```
 
 This decoupling fits IoT well. An IOTC reader can publish tag data at full speed without caring whether the application is processing in real time, queueing in Kafka, or batching to S3. The reader's job ends at `publish`.
@@ -47,12 +49,15 @@ This decoupling fits IoT well. An IOTC reader can publish tag data at full speed
 
 ```d2
 direction: right
-P: Publisher Client
-B: MQTT Broker { shape: oval }
-S: Subscriber Client
-P -> B: "publish\ntopic + message"
-S -> B: "subscribe\ntopic filter" { style.stroke-dash: 4 }
-B -> S: "deliver matching\nmessages"
+C: Client
+B: MQTT Broker { shape: queue }
+S: Subscriber
+C -> B: "1 - CONNECT"
+C -> B: "2 - PUBLISH (topic + payload)"
+S -> B: "3 - SUBSCRIBE (topic filter)" { style.stroke-dash: 4 }
+B -> S: deliver
+C -> B: "4 - DISCONNECT"
+
 ```
 
 ### Subscribe-before-publish

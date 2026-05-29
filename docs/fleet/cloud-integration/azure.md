@@ -59,16 +59,19 @@ Use `az iot hub monitor-events --hub-name <iot-hub-name>` to watch incoming mess
 ```d2
 direction: right
 R: IOTC Reader
-H: Azure IoT Hub { shape: oval }
-EH: Event Hubs
-SB: Service Bus
-ADX: Azure Data Explorer
-SA: Stream Analytics
-R -> H: "MQTT_TLS\ndevices/.../messages/events"
-H -> EH
-H -> SB
-EH -> ADX
-EH -> SA
+H: Azure IoT Hub { shape: queue }
+cloud: Azure Pipeline {
+  EH: Event Hubs
+  SB: Service Bus
+  ADX: Azure Data Explorer
+  SA: Stream Analytics
+}
+R -> H: "MQTT/TLS\ndevices/.../messages/events"
+H -> cloud.EH
+H -> cloud.SB
+cloud.EH -> cloud.ADX
+cloud.EH -> cloud.SA
+
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)

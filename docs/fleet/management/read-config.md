@@ -47,7 +47,7 @@ The response is a nested JSON document. Top-level sections correspond to the ind
 For the complete schema, see [Config schema](/reference/appendices/config-schema).
 
 ```d2
-GC: get_config response
+GC: "get_config response" { shape: page }
 C: config object
 RR: "response\n(code, description)"
 N: network
@@ -70,6 +70,7 @@ N -> Nw
 N -> Ne
 E -> Em
 E -> En
+
 ```
 
 **Related:** 📕 [get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [Config Schema](/reference/appendices/config-schema) · 📙 [Apply Bulk Config](/fleet/management/apply-config)

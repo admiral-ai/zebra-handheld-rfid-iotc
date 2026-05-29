@@ -31,16 +31,20 @@ This guide shows you how to troubleshoot Bluetooth and host-device-related issue
 - Verify the host has its own MQTT path to the broker by running a test MQTT client on the host directly.
 
 ```d2
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
 S: Bridged sled offline?
 Q1: "Host application\nrunning?" { shape: diamond }
-Wake: "Wake / restart\nhost app"
+Wake: "Wake / restart\nhost app" { class: bad }
 Q2: "BT link\nconnected?" { shape: diamond }
-Pair: "Re-pair sled\nvia 123RFID Mobile"
+Pair: "Re-pair sled\nvia 123RFID Mobile" { class: bad }
 Q3: "Host has\nbroker connectivity?" { shape: diamond }
-Net: "Fix host's Wi-Fi /\ncellular"
+Net: "Fix host Wi-Fi /\ncellular" { class: bad }
 Q4: "terminalConnection\nevents flowing?" { shape: diamond }
-HostBattery: "Check Android\nbattery optimisation"
-OK: "Operational —\nlook elsewhere"
+HostBattery: "Check Android\nbattery optimisation" { class: bad }
+OK: "Operational -\nlook elsewhere" { class: good }
 S -> Q1
 Q1 -> Wake: No
 Q1 -> Q2: Yes
@@ -50,6 +54,7 @@ Q3 -> Net: No
 Q3 -> Q4: Yes
 Q4 -> HostBattery: No
 Q4 -> OK: Yes
+
 ```
 
 **Related:** 📙 [Bluetooth Pairing](/quick-start/prerequisites/bluetooth-pairing) · 📘 [Handheld Considerations](/foundations/architecture/handheld-considerations)

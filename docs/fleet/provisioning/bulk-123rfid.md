@@ -37,18 +37,21 @@ After provisioning, power on each reader and pair with its host device. The read
 ```d2
 direction: right
 RC: "Reference Reader\n(configured manually)"
-Exp: "Export profile\n(.iotcprofile file)"
+Exp: "Export profile\n(.iotcprofile)"
 VC: Version control { shape: cylinder }
 Imp: "Import profile\n(123RFID Desktop)"
-R1: Reader 1
-R2: Reader 2
-Rn: Reader N
+fleet: Target Readers {
+  R1: Reader 1
+  R2: Reader 2
+  Rn: Reader N
+}
 RC -> Exp
 Exp -> VC
 VC -> Imp
-Imp -> R1
-Imp -> R2
-Imp -> Rn
+Imp -> fleet.R1
+Imp -> fleet.R2
+Imp -> fleet.Rn
+
 ```
 
 **Related:** 📘 [Provisioning Models](/fleet/provisioning-models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct)

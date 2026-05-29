@@ -22,15 +22,16 @@ This documentation is organised into eight Parts that follow the developer's act
 
 ```d2
 direction: right
-P1: "Part 1\nGet oriented"
-P2: "Part 2\nFoundations"
-P3: "Part 3\nQuick Start"
-P4: "Part 4\nManage reader"
-P5: "Part 5\nRead tags"
-P6: "Part 6\nObserve & monitor"
-P7: "Part 7\nScale to fleet"
-P8: "Part 8\nDiagnose & reference"
+P1: "Part 1\nGet oriented" { shape: step }
+P2: "Part 2\nFoundations" { shape: step }
+P3: "Part 3\nQuick Start" { shape: step }
+P4: "Part 4\nManage reader" { shape: step }
+P5: "Part 5\nRead tags" { shape: step }
+P6: "Part 6\nObserve & monitor" { shape: step }
+P7: "Part 7\nScale to fleet" { shape: step }
+P8: "Part 8\nDiagnose & reference" { shape: step }
 P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P7 -> P8
+
 ```
 
 ### About the content-type badges
@@ -77,8 +78,12 @@ FO: Fleet Operator {
   FO1 -> FO2 -> FO3
 }
 IR: Incident Responder {
+  direction: right
   IR1: Part 8
+  IR2: Part 6
+  IR1 -> IR2
 }
+
 ```
 
 ### How to navigate

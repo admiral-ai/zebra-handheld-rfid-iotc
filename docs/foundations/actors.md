@@ -13,14 +13,15 @@ An IOTC deployment is the cooperation of **five actors**. Knowing what each one 
 direction: right
 R: "Reader Firmware\n(IOTC Agent)"
 H: "Host Device\n(Bridged: required)"
-B: "MQTT Broker" { shape: oval }
+B: MQTT Broker { shape: queue }
 A: Application Client
 M: "MDM Platform\n(SOTI / SureMDM)"
-R -> H: "Bluetooth\n(Bridged only)"
-H -> B: "Wi-Fi / Cellular"
+R -> H: "Bluetooth\n(Bridged only)" { style.stroke-dash: 4 }
+H -> B: Wi-Fi / Cellular
 R -> B: Direct Wi-Fi 6
-B <-> A: "commands\nresponses\nevents"
-M -> B: "policy\nfirmware\nconfig" { style.stroke-dash: 4 }
+B <-> A: "commands - responses - events"
+M -> B: "policy - firmware - config" { style.stroke-dash: 4 }
+
 ```
 
 ### Reader Firmware (the IOTC Agent)

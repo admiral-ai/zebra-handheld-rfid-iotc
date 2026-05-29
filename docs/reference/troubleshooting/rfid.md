@@ -34,16 +34,20 @@ This guide shows you how to troubleshoot RFID read failures on handheld readers.
 - Trigger was released (in `press_to_start` mode): operator-initiated stop is normal.
 
 ```d2
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
 S: RFID symptom
 Q1: "control_operation\nSTART accepted?" { shape: diamond }
-Stop: "Already running;\nsend STOP first"
-Cfg: "Check operating-mode\nconfig"
+Stop: "Already running;\nsend STOP first" { class: bad }
+Cfg: "Check operating-mode\nconfig" { class: bad }
 Q2: "dataEVT events\narriving?" { shape: diamond }
 Q3: "Post-filter\nexcluding tags?" { shape: diamond }
-Filt: Adjust post-filter
+Filt: Adjust post-filter { class: bad }
 Q4: "Tag in\nread range?" { shape: diamond }
-Range: "Move tags into range;\ncheck antenna power"
-Rad: "Radio / firmware fault;\ncheck exceptionEVT"
+Range: "Move tags into range;\ncheck antenna power" { class: bad }
+Rad: "Radio / firmware fault;\ncheck exceptionEVT" { class: bad }
 S -> Q1
 Q1 -> Stop: "No, code 11"
 Q1 -> Cfg: "No, other code"
@@ -53,6 +57,7 @@ Q3 -> Filt: Yes
 Q3 -> Q4: No
 Q4 -> Range: No
 Q4 -> Rad: Yes
+
 ```
 
 **Related:** 📙 [Configure Operating Mode](/rfid/operating-mode/configure) · 📙 [Configure Filters](/rfid/operating-mode/post-filters-configure) · 📕 [CTRL endpoints](/reference/api-overview) · 📕 [Exception Codes](/reference/api-overview)

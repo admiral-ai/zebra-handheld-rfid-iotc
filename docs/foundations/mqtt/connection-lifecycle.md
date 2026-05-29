@@ -23,7 +23,8 @@ keepalive: while connected {
   C -> B: "PINGREQ (every keepAlive)"
   B -> C: PINGRESP
 }
-C -> B: "DISCONNECT (graceful)"
+C -> B: DISCONNECT (graceful)
+
 ```
 
 ### Keep-alive. PINGREQ and PINGRESP
@@ -41,12 +42,18 @@ A clean-session client tells the broker "do not preserve state for me", no queue
 The handheld sled's MQTT connection rides over its Bluetooth link to the host device. When BT drops — reader pocketed, host moved out of range, the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once BT is re-established and Wi-Fi is reachable, the persistent session resumes and queued QoS 1 messages flow.
 
 ```d2
-start: "" { shape: circle; style.fill: "#333"; width: 16; height: 16 }
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  warn: { style: { fill: "#fef7e0"; stroke: "#f9ab00"; font-color: "#b06000" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
+direction: right
+start: "" { shape: circle; style.fill: "#333333"; width: 18; height: 18 }
 Connecting
-Connected
-Disconnected
-Reconnecting
-done: "" { shape: circle; style.fill: "#333"; width: 16; height: 16 }
+Connected { class: good }
+Disconnected { class: bad }
+Reconnecting { class: warn }
+done: "" { shape: circle; style.fill: "#333333"; width: 18; height: 18 }
 start -> Connecting
 Connecting -> Connected: CONNACK ok
 Connected -> Disconnected: network drop / DISCONNECT
@@ -54,6 +61,7 @@ Disconnected -> Reconnecting: after reconnectDelayMin
 Reconnecting -> Connected: CONNACK ok
 Reconnecting -> Reconnecting: "backoff (capped at\nreconnectDelayMax)"
 Connected -> done: graceful close
+
 ```
 
 ### Battery implications

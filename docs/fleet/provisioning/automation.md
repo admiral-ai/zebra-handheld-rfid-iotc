@@ -62,20 +62,23 @@ CI: CI pipeline
 V: Validate config schema
 Build: Build artifact
 SOTI: SOTI Connect API
-R1: Reader 1
-R2: Reader 2
-Rn: Reader N
+fleet: Target Readers {
+  R1: Reader 1
+  R2: Reader 2
+  Rn: Reader N
+}
 Mon: Monitor mqttConnEVT
 Rep: Rollout report
 Push -> CI
 CI -> V
 V -> Build
 Build -> SOTI
-SOTI -> R1
-SOTI -> R2
-SOTI -> Rn
-R1 -> Mon
+SOTI -> fleet.R1
+SOTI -> fleet.R2
+SOTI -> fleet.Rn
+fleet.R1 -> Mon
 Mon -> Rep
+
 ```
 
 **Related:** 📕 [set_config / get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config)

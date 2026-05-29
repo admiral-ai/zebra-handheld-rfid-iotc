@@ -38,19 +38,22 @@ direction: right
 Adm: Admin
 SOTI: "SOTI Connect\nconsole"
 Prof: Profile assignment
-MDM: MDM endpoint { shape: oval }
-R1: Reader 1
-R2: Reader 2
-Rn: Reader N
+MDM: MDM endpoint { shape: queue }
+fleet: Managed Readers {
+  R1: Reader 1
+  R2: Reader 2
+  Rn: Reader N
+}
 Adm -> SOTI
 SOTI -> Prof
 Prof -> MDM
-MDM -> R1
-MDM -> R2
-MDM -> Rn
-R1 -> SOTI: "alert_short\nmanaged status" { style.stroke-dash: 4 }
-R2 -> SOTI: { style.stroke-dash: 4 }
-Rn -> SOTI: { style.stroke-dash: 4 }
+MDM -> fleet.R1
+MDM -> fleet.R2
+MDM -> fleet.Rn
+fleet.R1 -> SOTI: "alert_short\nmanaged status" { style.stroke-dash: 4 }
+fleet.R2 -> SOTI { style.stroke-dash: 4 }
+fleet.Rn -> SOTI { style.stroke-dash: 4 }
+
 ```
 
 ### Verify

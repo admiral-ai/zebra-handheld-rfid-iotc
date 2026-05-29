@@ -22,12 +22,13 @@ direction: right
 T: RFID Tag
 R: Reader Sled
 H: Host Device
-B: MQTT Broker { shape: oval }
+B: MQTT Broker { shape: queue }
 A: Application
-T -> R: "air\n~µs"
-R -> H: "BT 5.0 LE\n~10-50ms"
-H -> B: "Wi-Fi / Cellular\n~5-200ms"
-B -> A: "network\n~1-50ms"
+T -> R: "air - ~µs"
+R -> H: "BT 5.0 LE - ~10-50 ms" { style.stroke-dash: 4 }
+H -> B: "Wi-Fi / Cellular - ~5-200 ms"
+B -> A: "network - ~1-50 ms"
+
 ```
 
 ### The role of each link

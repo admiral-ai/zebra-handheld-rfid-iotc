@@ -16,10 +16,11 @@ Readers point their MQTT endpoints directly at a cloud-platform broker. AWS IoT 
 ```d2
 direction: right
 R: IOTC Reader
-B: Cloud-hosted MQTT broker { shape: oval }
+B: Cloud-hosted MQTT broker { shape: queue }
 A: Application services
 R -> B
 B -> A
+
 ```
 
 **When:** simple deployments, fleets where Zebra-hosted broker is unnecessary.
@@ -31,12 +32,13 @@ A small MQTT bridge translates between IOTC's topic namespace and the cloud plat
 ```d2
 direction: right
 R: IOTC Reader
-B: IOTC-shaped broker { shape: oval }
+B: IOTC-shaped broker { shape: queue }
 BR: "Bridge\n(topic-namespace translation)"
-CB: "Cloud-native ingest\nAWS IoT Core / Pub/Sub /\nIoT Hub" { shape: oval }
+CB: "Cloud-native ingest\nAWS IoT Core / Pub/Sub /\nIoT Hub" { shape: queue }
 R -> B
 B -> BR
 BR -> CB
+
 ```
 
 **When:** the cloud platform has a specific topic convention you need to honour (e.g., AWS IoT Core's `$aws/things/...`); useful for retrofitting existing pipelines.
@@ -48,7 +50,7 @@ An application service subscribes to IOTC events from the broker, transforms or 
 ```d2
 direction: right
 R: IOTC Reader
-B: MQTT broker { shape: oval }
+B: MQTT broker { shape: queue }
 G: "Gateway service\n(transform + enrich)"
 ST: "Stream platform\n(Kafka / Kinesis)"
 S1: Service 1
@@ -58,6 +60,7 @@ B -> G
 G -> ST
 ST -> S1
 ST -> S2
+
 ```
 
 **When:** the cloud platform's ingest is not MQTT-shaped, or you need to do significant transformation before persistence.

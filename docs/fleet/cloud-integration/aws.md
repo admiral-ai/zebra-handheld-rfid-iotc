@@ -54,18 +54,21 @@ In AWS IoT Core's **Test to MQTT test client**, subscribe to `<tenantId>/data1ev
 ```d2
 direction: right
 R: IOTC Reader
-AWS: AWS IoT Core { shape: oval }
-RU: IoT Rules
-KDS: Kinesis Data Stream
-L: Lambda
-SQ: SQS
-AN: Analytics
-R -> AWS: "MQTT_TLS\nport 8883"
-AWS -> RU
-RU -> KDS
-RU -> L
-RU -> SQ
-KDS -> AN
+AWS: AWS IoT Core { shape: queue }
+cloud: AWS Pipeline {
+  RU: IoT Rules
+  KDS: Kinesis Data Stream
+  L: Lambda
+  SQ: SQS
+  AN: Analytics
+}
+R -> AWS: "MQTT/TLS\nport 8883"
+AWS -> cloud.RU
+cloud.RU -> cloud.KDS
+cloud.RU -> cloud.L
+cloud.RU -> cloud.SQ
+cloud.KDS -> cloud.AN
+
 ```
 
 **Related:** 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure) · 📕 [config_endpoint](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint)

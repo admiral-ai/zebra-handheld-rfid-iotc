@@ -36,35 +36,49 @@ The middle segment (`<topic>`)is **configured per endpoint** via the endpoint's 
 The reader **prepends `tenantId` and appends `deviceSerialNumber` automatically** at runtime. Never include them in the configured `topic` field.
 
 ```d2
+classes: {
+  ident: { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+}
 direction: right
-T: zebra { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-M: MGMT/clients/resp { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-S: RFD40-24190525100255 { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-t1: "tenantId\n(reader prepends)"
-t2: "topic\n(you configure)"
-t3: "deviceSerialNumber\n(reader appends)"
+T: zebra { class: ident }
+M: MGMT/clients/resp { class: ident }
+S: RFD40-24190525100255 { class: ident }
+t1: "tenantId\n(reader prepends)" { shape: hexagon }
+t2: "topic\n(you configure)" { shape: hexagon }
+t3: "deviceSerialNumber\n(reader appends)" { shape: hexagon }
 T -> M -> S
-T -- t1: { style.stroke-dash: 4 }
-M -- t2: { style.stroke-dash: 4 }
-S -- t3: { style.stroke-dash: 4 }
+T -- t1 { style.stroke-dash: 4 }
+M -- t2 { style.stroke-dash: 4 }
+S -- t3 { style.stroke-dash: 4 }
+
 ```
 
 ```d2
+classes: {
+  mgmt: { style: { fill: "#1f3a5f"; stroke: "#11243b"; font-color: "#ffffff" } }
+  ctrl: { style: { fill: "#0b6e6e"; stroke: "#064d4d"; font-color: "#ffffff" } }
+  data: { style: { fill: "#2a5d9f"; stroke: "#1b3e6b"; font-color: "#ffffff" } }
+}
+direction: right
 Mgmt: Management {
+  class: mgmt
   MGMT: "MGMT\ncommands / responses"
   MGMT_EVT: "MGMT_EVT\nevents only"
 }
 Ctrl: Control {
+  class: ctrl
   CTRL: "CTRL\nradio control"
 }
 Data: Data {
+  class: data
   DATA1: "DATA1\ntag data"
-  DATA2: "DATA2\ntag data (second channel)"
+  DATA2: "DATA2\nsecond channel"
 }
 Hybrid: Hybrid / MDM {
   MDM: "MDM\nall roles combined\n(bootstrap default)"
   SOTI: "SOTI\nSOTI Connect variant"
 }
+
 ```
 
 ### The MDM-endpoint-as-bootstrap pattern

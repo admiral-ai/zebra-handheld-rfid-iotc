@@ -38,25 +38,43 @@ Two further endpoint types act as combinations of these:
 The capability is named in the schema's `tag_config.json` and grouped on the API Reference into four top-level tag groups (Management, Control, Events, Data) totalling fourteen sub-tags and twenty-three documented operations and events. See [Pairing the docs with the API Reference](/foundations/docs-and-api-reference).
 
 ```d2
-grid-rows: 2
+classes: {
+  mgmt:  { style: { fill: "#1f3a5f"; stroke: "#11243b"; font-color: "#ffffff" } }
+  event: { style: { fill: "#8a5a00"; stroke: "#5e3d00"; font-color: "#ffffff" } }
+  ctrl:  { style: { fill: "#0b6e6e"; stroke: "#064d4d"; font-color: "#ffffff" } }
+  data:  { style: { fill: "#2a5d9f"; stroke: "#1b3e6b"; font-color: "#ffffff" } }
+}
+grid-rows: 3
 grid-columns: 2
+M: "Management - MGMT" {
+  class: mgmt
+  m1: "get_status\nget_version\nget_current_region"
+  m2: "config_endpoint\nset_wifi\nset_config"
+  m3: "install_certificate\nset_os\nreboot"
+}
+E: "Events - MGMT_EVT" {
+  class: event
+  e1: "heartbeatEVT\nalerts\nalert_short"
+  e2: "mqttConnEVT\nexceptionEVT"
+}
+C: "Control - CTRL" {
+  class: ctrl
+  c1: set_operating_mode
+  c2: "control_operation\nset_post_filter"
+}
+Dta: "Data - DATA1 / DATA2" {
+  class: data
+  d1: "dataEVT tag reads\n(up to 2 channels)"
+}
+H: "Hybrid - MDM" {
+  class: mgmt
+  h1: "Management + Control + Data\non one topic family\n(bootstrap default)"
+}
+S: "Vendor - SOTI" {
+  class: ctrl
+  s1: "MDM variant consumed\nby SOTI Connect"
+}
 
-M: Management Interface {
-  M1: "get_status, get_version,\nget_current_region"
-  M2: "config_endpoint, set_wifi,\nset_config"
-  M3: "install_certificate, set_os,\nreboot"
-}
-E: Event Interface {
-  E1: "heartbeatEVT, alerts,\nalert_short"
-  E2: "mqttConnEVT, exceptionEVT"
-}
-C: Control Interface {
-  C1: set_operating_mode
-  C2: "control_operation,\nset_post_filter"
-}
-D: Data Interface {
-  D1: dataEVT — tag reads
-}
 ```
 
 ### Retention, batching, and reliability built into Data

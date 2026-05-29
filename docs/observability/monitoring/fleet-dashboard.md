@@ -53,44 +53,52 @@ Each architecture's setup is in the relevant cloud-integration how-to ([AWS IoT 
 - **Connection-quality outliers**: readers with reconnect rate above threshold
 
 ```d2
+classes: {
+  warn: { style: { fill: "#fef7e0"; stroke: "#f9ab00"; font-color: "#b06000" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+}
 DB: Fleet Health Dashboard {
   Row1: Overview KPIs {
-    direction: right
+    grid-columns: 4
     KPI1: "Online\n487 / 500"
     KPI2: "Battery avg\n78%"
     KPI3: "Active scans\n23"
     KPI4: "Alerts 24h\n12"
   }
   Row2: Charts {
-    direction: right
-    C1: Battery histogram
-    C2: Connection quality
+    grid-columns: 2
+    C1: "Battery\nhistogram"
+    C2: "Connection\nquality"
   }
   Row3: Outliers {
-    direction: right
-    O1: "Readers reconnecting\n>5x / hr"
-    O2: "Battery < 20%"
+    grid-columns: 2
+    O1: "Readers\nreconnecting\n> 5x / hr" { class: warn }
+    O2: "Battery\n< 20%" { class: bad }
   }
 }
+
 ```
 
 ```d2
 direction: right
-R1: Reader 1
-R2: Reader 2
-Rn: Reader N
-B: Broker { shape: oval }
+fleet: Reader Fleet {
+  R1: Reader 1
+  R2: Reader 2
+  Rn: Reader N
+}
+B: Broker { shape: queue }
 C: MQTT consumer
 SS: "State store\nRedis / Postgres" { shape: cylinder }
 DQ: Dashboard query layer
 UI: Web UI
-R1 -> B
-R2 -> B
-Rn -> B
+fleet.R1 -> B
+fleet.R2 -> B
+fleet.Rn -> B
 B -> C
 C -> SS
 SS -> DQ
 DQ -> UI
+
 ```
 
 ### Alerting integration

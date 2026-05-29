@@ -60,17 +60,21 @@ Three reasons motivated the three-part design:
 - **`tenantId` length is bounded** (exceeding returns error code 27 — `IOT_ERROR_INVALID_TENANTID_LENGTH`).
 
 ```d2
+classes: {
+  ident: { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
+}
 direction: right
-Te: "<tenantId>\ne.g., zebra" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-To: "<topic>\ne.g., MGMT/clients/resp" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-Sn: "<deviceSerialNumber>\ne.g., RFD40-24190525100255" { style: { fill: "#e3eef8"; stroke: "#003a7e"; font-color: "#003a7e" } }
-L1: "reader\nprepends" { shape: cylinder }
-L2: "you\nconfigure" { shape: cylinder }
-L3: "reader\nappends" { shape: cylinder }
+Te: "<tenantId>\ne.g. zebra" { class: ident }
+To: "<topic>\ne.g. MGMT/clients/resp" { class: ident }
+Sn: "<deviceSerialNumber>\ne.g. RFD40-24190525100255" { class: ident }
+L1: "reader\nprepends" { shape: hexagon }
+L2: "you\nconfigure" { shape: hexagon }
+L3: "reader\nappends" { shape: hexagon }
 Te -> To -> Sn
-Te -- L1: { style.stroke-dash: 4 }
-To -- L2: { style.stroke-dash: 4 }
-Sn -- L3: { style.stroke-dash: 4 }
+Te -- L1 { style.stroke-dash: 4 }
+To -- L2 { style.stroke-dash: 4 }
+Sn -- L3 { style.stroke-dash: 4 }
+
 ```
 
 ```d2
@@ -88,6 +92,7 @@ PT -> T1
 PT -> T2
 PT -> T3
 ST -> T4
+
 ```
 
 **Related:** 📘 [Interface Model](/foundations/architecture/interface-model) · 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [Topic Quick Reference](/reference/appendices/topic-quick-reference)
