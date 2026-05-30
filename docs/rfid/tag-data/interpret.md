@@ -1,7 +1,7 @@
 ---
 id: interpret
 title: How to interpret tag-data fields
-sidebar_label: How to Interpret Tag Data Fields
+sidebar_label: How to interpret tag-data fields
 description: "Interpret IOTC dataEVT fields: EPC encoding (hex / GS1), RSSI in dBm, antenna ID (always 1 on handhelds), timestamp, optional embedded user-memory."
 ---
 

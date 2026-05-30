@@ -1,7 +1,7 @@
 ---
 id: drift
 title: How to detect and remediate configuration drift
-sidebar_label: How to Detect and Remediate Configuration Drift
+sidebar_label: How to detect and remediate configuration drift
 description: "Detect IOTC configuration drift across a fleet: periodic per-domain reads, diff against desired state, surface deltas, apply corrective writes."
 ---
 

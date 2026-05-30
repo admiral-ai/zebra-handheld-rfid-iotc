@@ -1,7 +1,7 @@
 ---
 id: fleet
 title: Fleet management FAQs
-sidebar_label: Fleet Management FAQs
+sidebar_label: Fleet management FAQs
 description: "Frequently asked questions about IOTC fleet management: bulk configuration, drift detection, MDM (SOTI / 42Gears), rolling out firmware across readers."
 ---
 

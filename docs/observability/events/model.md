@@ -1,7 +1,7 @@
 ---
 id: model
 title: The IOTC event model
-sidebar_label: About the Event Model
+sidebar_label: The IOTC event model
 description: "The IOTC event model: which events the reader emits, who subscribes (application vs MDM), QoS defaults, retention behaviour, and how to compose event pipelines."
 ---
 

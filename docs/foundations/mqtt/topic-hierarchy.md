@@ -1,7 +1,7 @@
 ---
 id: topic-hierarchy
 title: MQTT topic hierarchy and naming conventions
-sidebar_label: About Topic Hierarchy & Naming Conventions
+sidebar_label: Topic hierarchy & naming conventions
 description: "How IOTC structures MQTT topics: the three-segment pattern (tenantId / topic / deviceSerialNumber), reserved prefixes, fleet-scale topic design."
 ---
 
@@ -98,5 +98,3 @@ ST -> T4
 **Related:** 📘 [Interface Model](/foundations/architecture/interface-model) · 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📕 [Topic Quick Reference](/reference/appendices/topic-quick-reference)
 
 ---
-
-# Part II: Getting Started (corrected)

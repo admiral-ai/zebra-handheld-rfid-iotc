@@ -1,7 +1,7 @@
 ---
 id: execute
 title: How to execute a phased migration
-sidebar_label: How to Execute a Phased Migration
+sidebar_label: How to execute a phased migration
 description: "Execute a phased IOTC migration: ring-deploy by cohort, smoke tests at each ring, rollback triggers, and how to handle stragglers without rolling back."
 ---
 

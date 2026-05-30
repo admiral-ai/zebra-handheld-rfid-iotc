@@ -1,7 +1,7 @@
 ---
 id: azure
 title: How to integrate IOTC with Azure IoT Hub
-sidebar_label: How to Integrate with Azure IoT Hub
+sidebar_label: How to integrate with Azure IoT Hub
 description: "Integrate IOTC readers with Azure IoT Hub: device provisioning via DPS, MQTT endpoint config, SAS vs X.509 auth, route tag data into Event Hubs."
 ---
 

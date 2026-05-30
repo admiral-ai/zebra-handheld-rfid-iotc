@@ -2,12 +2,12 @@
 id: api-overview
 title: MQTT API Reference
 sidebar_label: MQTT API Reference
-description: "Index of the IOTC MQTT API surface: 22 commands and 5 events across MGMT, CTRL, EVT, DATA, MDM. Each operation links to the external API Reference site."
+description: "Index of the IOTC MQTT API surface: 20 commands and 4 events across MGMT, CTRL, EVT, DATA, MDM. Each operation links to the external API Reference site."
 ---
 
 > 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** directory of all 27 commands and events
 
-The IOTC MQTT API surface is **22 commands and 5 events**, organised into 4 top-level tag groups and 14 sub-tags. Every operation listed here is fully documented — payload schema, response schema, field-by-field descriptions, error codes, and worked examples — on the canonical **[MQTT API Reference site](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)**. Click any operation in the tables below to jump straight to its section there.
+The IOTC MQTT API surface is **20 commands and 4 events**, organised into 4 top-level tag groups and 13 sub-tags. Every operation listed here is fully documented — payload schema, response schema, field-by-field descriptions, error codes, and worked examples — on the canonical **[MQTT API Reference site](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)**. Click any operation in the tables below to jump straight to its section there.
 
 ## How every command works
 
@@ -65,7 +65,7 @@ You configure only the **middle segment** in `publishTopics[].topic` and `subscr
 
 ## Management
 
-The **Management** tag group covers device identity, network setup, MQTT endpoints, certificates, configuration, and system operations. Sixteen operations across six sub-tags.
+The **Management** tag group covers device identity, network setup, MQTT endpoints, certificates, and system operations. Fourteen operations across five sub-tags.
 
 ### Device Status
 
@@ -152,7 +152,7 @@ Start and stop RFID inventory (or scanner) operations. See [Start, stop, and the
 
 ## Events
 
-The **Events** tag group covers the reader's asynchronous management-event surface. One command (event configuration) and four event types across five sub-tags.
+The **Events** tag group covers the reader's asynchronous management-event surface. One command (event configuration) and three event types across four sub-tags.
 
 ### Event Configuration
 
@@ -172,7 +172,7 @@ Periodic liveness with optional inventory and battery sub-payloads. See [Watch y
 
 ### Alerts
 
-Threshold-driven and state-transition notifications. Two payload variants. See [When the reader needs to interrupt you](/observability/alerts).
+Threshold-driven and state-transition notifications. See [When the reader needs to interrupt you](/observability/alerts).
 
 | API | Type | Description |
 |---|---|---|

@@ -1,7 +1,7 @@
 ---
 id: verify
 title: How to verify a successful migration
-sidebar_label: How to Verify a Successful Migration
+sidebar_label: How to verify a successful migration
 description: "Verify a successful IOTC migration: per-cohort smoke tests (get_version, get_status, control_operation), fleet drift check, SLO-anchored criteria."
 ---
 

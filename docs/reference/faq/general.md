@@ -1,7 +1,7 @@
 ---
 id: general
 title: General questions
-sidebar_label: General Questions
+sidebar_label: General questions
 description: "General FAQ about IOTC for handheld RFID: what it is, what it isn't, who it's for, how it differs from fixed-reader stacks, and where to start."
 ---
 

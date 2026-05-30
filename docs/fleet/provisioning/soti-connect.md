@@ -1,7 +1,7 @@
 ---
 id: soti-connect
 title: How to set up zero-touch provisioning with SOTI Connect
-sidebar_label: How to Set Up Zero-Touch Provisioning with SOTI Connect
+sidebar_label: How to set up zero-touch provisioning with SOTI Connect
 description: "Zero-touch IOTC provisioning with SOTI Connect: device templates, MDM endpoint enrolment, cert push, mapping SOTI policies to IOTC config_endpoint."
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: automation
 title: How to automate provisioning workflows
-sidebar_label: How to Automate Provisioning Workflows
+sidebar_label: How to automate provisioning workflows
 description: "Automate IOTC provisioning beyond 123RFID Desktop: scripted per-domain config after first-light, MDM template push, CI-driven smoke tests."
 ---
 

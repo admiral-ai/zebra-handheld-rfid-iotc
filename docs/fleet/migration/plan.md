@@ -1,7 +1,7 @@
 ---
 id: plan
 title: How to plan an IOTC migration
-sidebar_label: How to Plan a Migration
+sidebar_label: How to plan a migration
 description: "Plan a migration to (or within) IOTC: inventory readers, choose target firmware and config, define cohorts and rollout rings, set verification gates."
 ---
 

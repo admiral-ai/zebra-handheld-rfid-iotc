@@ -1,7 +1,7 @@
 ---
 id: certificates
 title: Certificate management (MGMT endpoint)
-sidebar_label: "Certificate Management (MGMT)"
+sidebar_label: "Certificate management (MGMT)"
 description: "Reference for the MGMT certificate-management surface: install_certificate (HTTP source), delete_certificate, get_installed_certificates. Trust-store updates."
 ---
 > 📕 **REFERENCE**

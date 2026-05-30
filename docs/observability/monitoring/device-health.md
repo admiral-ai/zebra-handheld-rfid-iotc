@@ -1,7 +1,7 @@
 ---
 id: device-health
 title: How to check device status and health
-sidebar_label: How to Check Device Status & Health
+sidebar_label: How to check device status & health
 description: "Check IOTC reader device health: get_status (battery, temp, antennas), get_version (firmware), and how to combine them into a fleet-wide health metric."
 ---
 

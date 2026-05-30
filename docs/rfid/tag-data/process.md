@@ -1,7 +1,7 @@
 ---
 id: process
 title: How to process tag data in your application
-sidebar_label: How to Process Tag Data in Your Application
+sidebar_label: How to process tag data in your application
 description: "Process IOTC dataEVT in an application: windowed dedup, EPC normalisation, RSSI thresholding, batch vs streaming, absorbing QoS 0 drops gracefully."
 ---
 
@@ -79,5 +79,3 @@ If the application cannot keep up, MQTT QoS 0 silently drops messages, the broke
 **Related:** 📕 [dataEVT Schema](/rfid/dataevt-schema) · 📙 [Interpret Fields](/rfid/tag-data/interpret) · 📘 [Integration Patterns](/fleet/cloud-integration/patterns) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws)
 
 ---
-
-# Part V: Observability & Events

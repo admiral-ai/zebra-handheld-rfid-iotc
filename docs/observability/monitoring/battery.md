@@ -1,7 +1,7 @@
 ---
 id: battery
 title: How to monitor battery lifecycle
-sidebar_label: How to Monitor Battery Lifecycle
+sidebar_label: How to monitor battery lifecycle
 description: "Monitor IOTC reader battery lifecycle: heartbeat battery snapshots (current state) vs alerts (transitions like LOW set / CLEAR). How to pipeline both."
 ---
 
@@ -53,5 +53,3 @@ Per-mode drain figures are deployment-specific. Measure drain over a representat
 **Related:** 📘 [Alert Events](/observability/alerts) · 📕 [alerts schema](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alerts) · 📙 [Battery Troubleshooting](/reference/troubleshooting/battery)
 
 ---
-
-# Part VI: Fleet Operations (corrected)

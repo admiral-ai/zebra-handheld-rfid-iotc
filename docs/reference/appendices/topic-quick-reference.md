@@ -1,7 +1,7 @@
 ---
 id: topic-quick-reference
 title: MQTT topic quick reference
-sidebar_label: MQTT Topic Quick Reference
+sidebar_label: MQTT topic quick reference
 description: Quick-reference card for every IOTC MQTT topic by endpoint type (MDM, MGMT, CTRL, EVT, DATA1, DATA2, ALERT). Three-segment pattern, QoS recs.
 ---
 

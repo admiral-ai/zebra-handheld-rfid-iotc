@@ -4,7 +4,7 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  * Zebra Handheld RFID — IoT Connector
  * Conceptual Documentation Sidebar
  *
- * Voice stance: outcome- / scent-phrased labels throughout.
+ * Voice stance: outcome- / scent-phrased labels throughout, sentence case.
  *
  * Source-of-truth note: chapter labels come from each page's
  * front-matter `sidebar_label`. The sidebar uses short-form doc
@@ -12,15 +12,13 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  * for label text. Part labels live in this file because they are
  * structural (no doc page underlies them).
  *
- * Every Part and sub-category carries `link: { type: 'generated-index' }`
- * so the breadcrumb is fully clickable at every level (not just Home),
- * and each category gets an auto-generated landing page listing its
- * children.
- *
- * Eight Parts, ~46 curated entries (~120 total docs in /docs/**;
- * the rest are reachable via in-page cross-links and the symptom
- * index, by design). Parts 4–6 still map one-to-one to the
- * external MQTT API Reference site's sub-tags.
+ * Eight Parts cover the full doc set (~115 pages). Each Part's
+ * concept/tutorial "spine" is surfaced first; how-to and reference
+ * pages are grouped into collapsed sub-categories so everything is
+ * reachable from the nav (no orphaned pages). Each top-level Part
+ * carries `link: { type: 'generated-index' }` so its breadcrumb is
+ * clickable and it gets an auto-generated landing page. The core
+ * Part 4–6 chapters map to the external MQTT API Reference sub-tags.
  */
 
 const sidebars: SidebarsConfig = {
@@ -55,7 +53,7 @@ const sidebars: SidebarsConfig = {
         type: 'generated-index',
         title: 'Part 2: Foundations',
         description:
-          'The mental models you need before touching the API: what IOTC is, which sled you have, how the actors interact, and which bootstrap tool you will use.',
+          'The mental models you need before touching the API: what IOTC is, which sled you have, how the actors interact, and how the reader is bootstrapped with 123RFID Desktop.',
         slug: '/part-2',
       },
       items: [
@@ -65,6 +63,21 @@ const sidebars: SidebarsConfig = {
         'foundations/bootstrap-tools',
         'foundations/communication-flow',
         'foundations/native-mqtt-vs-openapi',
+        {
+          type: 'category',
+          label: 'Architecture & MQTT internals',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'foundations/architecture/end-to-end',
+            'foundations/architecture/interface-model',
+            'foundations/architecture/handheld-considerations',
+            'foundations/mqtt/topic-hierarchy',
+            'foundations/mqtt/qos',
+            'foundations/mqtt/auth-model',
+            'foundations/mqtt/connection-lifecycle',
+          ],
+        },
       ],
     },
     {
@@ -112,21 +125,53 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Part 4: Manage your reader',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       className: 'sidebar-section-header',
       link: {
         type: 'generated-index',
         title: 'Part 4: Manage your reader',
         description:
-          'Device state, network configuration, MQTT endpoints, TLS and certificate management, and firmware / reboot operations. Each chapter maps to a sub-tag of the external MQTT API Reference.',
+          'Device state, network configuration, MQTT endpoints, TLS and certificate management, and firmware / reboot operations. The core chapters map to sub-tags of the external MQTT API Reference.',
         slug: '/part-4',
       },
       items: [
         'infrastructure/device-state',
-        'infrastructure/network/architecture',
-        'infrastructure/network/wifi',
-        'infrastructure/endpoints/about',
-        'infrastructure/security/model',
+        {
+          type: 'category',
+          label: 'Network',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'infrastructure/network/architecture',
+            'infrastructure/network/wifi',
+            'infrastructure/network/ethernet',
+            'infrastructure/network/troubleshooting',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'MQTT endpoints',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'infrastructure/endpoints/about',
+            'infrastructure/endpoints/configure',
+            'infrastructure/endpoints/multi-endpoint',
+            'infrastructure/endpoints/view',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Security (TLS & certificates)',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'infrastructure/security/model',
+            'infrastructure/security/tls-setup',
+            'infrastructure/security/certificate-management',
+            'infrastructure/security/rotation',
+          ],
+        },
         'infrastructure/system-operations',
       ],
     },
@@ -134,7 +179,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Part 5: Read tags',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       className: 'sidebar-section-header',
       link: {
         type: 'generated-index',
@@ -145,15 +190,18 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'rfid/operating-mode-profiles',
+        'rfid/operating-mode/configure',
+        'rfid/operating-mode/trigger-composition',
         'rfid/start-stop-inventory',
         'rfid/post-filters',
+        'rfid/operating-mode/post-filters-configure',
       ],
     },
     {
       type: 'category',
       label: 'Part 6: Observe and monitor',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       className: 'sidebar-section-header',
       link: {
         type: 'generated-index',
@@ -167,7 +215,41 @@ const sidebars: SidebarsConfig = {
         'observability/heartbeat',
         'observability/alerts',
         'observability/mqtt-connection',
-        'rfid/dataevt-schema',
+        {
+          type: 'category',
+          label: 'Event model & catalog',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'observability/events/model',
+            'observability/events/catalog',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Monitoring how-tos',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'observability/monitoring/device-health',
+            'observability/monitoring/battery',
+            'observability/monitoring/connection-quality',
+            'observability/monitoring/fleet-dashboard',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Tag data',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'rfid/dataevt-schema',
+            'rfid/tag-data/architecture',
+            'rfid/tag-data/interpret',
+            'rfid/tag-data/dual-channels',
+            'rfid/tag-data/process',
+          ],
+        },
       ],
     },
     {
@@ -180,13 +262,50 @@ const sidebars: SidebarsConfig = {
         type: 'generated-index',
         title: 'Part 7: Scale to a fleet',
         description:
-          'Provisioning models (single-reader → MDM-managed fleet), bulk configuration, and reliability under network duress (retention, retry, drift).',
+          'Provisioning models (single-reader → MDM-managed fleet), bulk configuration, drift, reliability under network duress, migration, and cloud integration.',
         slug: '/part-7',
       },
       items: [
         'fleet/provisioning-models',
         'fleet/bulk-management',
+        'fleet/management/drift',
         'fleet/retention-and-retry',
+        {
+          type: 'category',
+          label: 'Provisioning how-tos',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'fleet/provisioning/bulk-123rfid',
+            'fleet/provisioning/soti-connect',
+            'fleet/provisioning/automation',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Migration',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'fleet/migration/plan',
+            'fleet/migration/execute',
+            'fleet/migration/verify',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Cloud integration',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'fleet/cloud-integration/patterns',
+            'fleet/cloud-integration/aws',
+            'fleet/cloud-integration/azure',
+            'fleet/cloud-integration/gcp',
+            'fleet/cloud-integration/custom-broker',
+            'fleet/cloud-integration/tutorial-fleet',
+          ],
+        },
       ],
     },
     {
@@ -199,7 +318,7 @@ const sidebars: SidebarsConfig = {
         type: 'generated-index',
         title: 'Part 8: Diagnose and reference',
         description:
-          'Symptom-first diagnostics, the failure-mode catalogue, the two-edges model, recovery playbooks, common misconceptions, and the glossary of canonical terms and limits.',
+          'Symptom-first diagnostics, the failure-mode catalogue, the where-things-fail model, recovery playbooks, common misconceptions, troubleshooting how-tos, the command reference, FAQs, appendices, and the glossary of canonical terms and limits.',
         slug: '/part-8',
       },
       items: [
@@ -208,7 +327,76 @@ const sidebars: SidebarsConfig = {
         'diagnose/where-things-fail',
         'diagnose/recovery-playbooks',
         'diagnose/misconceptions',
+        {
+          type: 'category',
+          label: 'Troubleshooting how-tos',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'reference/troubleshooting/approach',
+            'reference/troubleshooting/connection',
+            'reference/troubleshooting/rfid',
+            'reference/troubleshooting/tag-data',
+            'reference/troubleshooting/battery',
+          ],
+        },
         'reference/api-overview',
+        {
+          type: 'category',
+          label: 'Command reference',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'reference/mgmt/device-status',
+            'reference/mgmt/network',
+            'reference/mgmt/endpoint',
+            'reference/mgmt/certificates',
+            'reference/mgmt/system-operations',
+            'reference/mgmt/event-configuration',
+            'reference/ctrl/operating-mode',
+            'reference/ctrl/tag-filtering',
+            'reference/ctrl/inventory-control',
+            'reference/data/tag-data-event',
+            'reference/events/all-events',
+            'reference/mdm/about',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Error codes & handling',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'reference/errors/codes',
+            'reference/errors/format',
+            'reference/errors/handling',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'FAQ',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'reference/faq/general',
+            'reference/faq/connectivity',
+            'reference/faq/compatibility',
+            'reference/faq/rfid',
+            'reference/faq/fleet',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Appendices',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'reference/appendices/regulatory',
+            'reference/appendices/firmware-history',
+            'reference/appendices/tag-standards',
+            'reference/appendices/topic-quick-reference',
+          ],
+        },
         'reference/glossary',
         'foundations/v1-1-features',
       ],

@@ -1,7 +1,7 @@
 ---
 id: qos
 title: MQTT QoS levels and delivery guarantees
-sidebar_label: About QoS Levels & Delivery Guarantees
+sidebar_label: QoS levels & delivery guarantees
 description: "MQTT 3.1.1 QoS 0, 1, 2 explained: what each guarantees, what each costs in latency, and which QoS IOTC uses for commands, events, and tag data."
 ---
 

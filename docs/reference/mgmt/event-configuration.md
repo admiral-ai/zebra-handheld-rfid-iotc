@@ -1,7 +1,7 @@
 ---
 id: event-configuration
 title: Event configuration (MGMT endpoint)
-sidebar_label: "Event Configuration (MGMT)"
+sidebar_label: "Event configuration (MGMT)"
 description: "Reference for the MGMT event-configuration surface: config_events payload covering heartbeat interval, alerts, mqttConnEVT, dataEVT."
 ---
 > 📕 **REFERENCE**

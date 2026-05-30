@@ -1,7 +1,7 @@
 ---
 id: rfid
 title: How to troubleshoot RFID operation issues
-sidebar_label: How to Troubleshoot RFID Operation Issues
+sidebar_label: How to troubleshoot RFID operation issues
 description: "Troubleshoot IOTC RFID operations: tags not reading, inventory not starting, dense-reader interference, antenna range, operating-mode behaviour."
 ---
 

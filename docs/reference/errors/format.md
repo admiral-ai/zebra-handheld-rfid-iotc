@@ -1,13 +1,13 @@
 ---
 id: format
 title: Error response format
-sidebar_label: Error Response Format
+sidebar_label: Error response format
 description: "Reference for the IOTC error-response envelope: canonical fields (code, message, command_id) and how every response shape includes them."
 ---
 
 > 📕 **REFERENCE** · **Audience:** API Consumer · **Use:** parse error responses
 
-Every IOTC command response carries a standard envelope. Errors are reported in the `response` object, never via MQTT-level mechanisms such as Last Will. The envelope is identical across all 22 commands.
+Every IOTC command response carries a standard envelope. Errors are reported in the `response` object, never via MQTT-level mechanisms such as Last Will. The envelope is identical across all 20 commands.
 
 ## Response envelope
 
@@ -99,6 +99,6 @@ For per-command error details, including the subset of codes a specific command 
 ## Related
 
 - [Command Response Error Codes](/reference/errors/codes) — the full 0–28 table.
-- [MQTT API Reference](/reference/api-overview) — directory of all 27 operations and events.
+- [MQTT API Reference](/reference/api-overview) — directory of all 24 operations and events.
 - [How commands and responses flow](/foundations/communication-flow) — the three flow types.
 - [Things people get wrong about IOTC](/diagnose/misconceptions) — payload-shape gotchas, including the [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) code discrepancy.

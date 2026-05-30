@@ -1,7 +1,7 @@
 ---
 id: auth-model
 title: MQTT authentication and authorization model
-sidebar_label: About the Authentication & Authorization Model
+sidebar_label: Authentication & authorization model
 description: "How IOTC authenticates MQTT connections: username, password, client ID, TLS client certs, and tenant ID. Per-broker variations and ACL implications."
 ---
 
@@ -51,5 +51,3 @@ The model defends against: eavesdropping on the wire (TLS), unauthorized command
 **Related:** 📘 [Security Model](/infrastructure/security/model) · 📙 [Obtaining Credentials](/quick-start/prerequisites/credentials) · 📙 [Securing MQTT with TLS](/infrastructure/security/tls-setup)
 
 ---
-
-# Part II: Getting Started

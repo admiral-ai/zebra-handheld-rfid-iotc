@@ -1,7 +1,7 @@
 ---
 id: end-to-end
 title: End-to-end IOTC system architecture
-sidebar_label: About the End-to-End System
+sidebar_label: End-to-end system architecture
 description: "End-to-end architecture of an IOTC deployment: sled, broker, application, MDM, and the edges between them. Data and control paths covered."
 ---
 

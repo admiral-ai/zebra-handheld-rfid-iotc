@@ -1,7 +1,7 @@
 ---
 id: fleet-dashboard
 title: How to build a fleet health dashboard
-sidebar_label: How to Build a Fleet Health Dashboard
+sidebar_label: How to build a fleet health dashboard
 description: "Build a fleet-wide IOTC health dashboard: ingest heartbeats and alerts, compute uptime and last-seen, surface drift, visualise per-reader health."
 ---
 
@@ -108,5 +108,3 @@ Route critical alerts (battery critical, sustained connection loss, high excepti
 **Related:** 📕 [events](/reference/api-overview) · 📙 [AWS IoT Core](/fleet/cloud-integration/aws) · 📙 [Azure IoT Hub](/fleet/cloud-integration/azure) · 📘 [Alert Events](/observability/alerts)
 
 ---
-
-# Part VI: Fleet Operations

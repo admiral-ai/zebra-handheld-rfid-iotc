@@ -1,7 +1,7 @@
 ---
 id: certificate-management
 title: How to manage TLS / SSL certificates
-sidebar_label: How to Manage TLS/SSL Certificates
+sidebar_label: How to manage TLS/SSL certificates
 description: "Manage TLS / SSL certificates on IOTC readers: install via install_certificate (HTTP source), inspect with get_installed_certificates, delete and rotate."
 ---
 

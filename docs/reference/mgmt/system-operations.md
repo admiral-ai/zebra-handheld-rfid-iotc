@@ -1,7 +1,7 @@
 ---
 id: system-operations
 title: System operations (MGMT endpoint)
-sidebar_label: "System Operations (MGMT)"
+sidebar_label: "System operations (MGMT)"
 description: "Reference for the MGMT system-operations surface: reboot, set_os (firmware update over HTTP), factory_reset, and the reboot response codes 0, 1, 5."
 ---
 > 📕 **REFERENCE**

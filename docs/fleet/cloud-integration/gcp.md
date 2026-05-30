@@ -1,7 +1,7 @@
 ---
 id: gcp
 title: How to integrate IOTC with Google Cloud IoT
-sidebar_label: How to Integrate with Google Cloud IoT
+sidebar_label: How to integrate with Google Cloud IoT
 description: Integrate IOTC readers with Google Cloud via MQTT bridge or HiveMQ Cloud (GCP IoT Core is sunset). Device registry, JWT auth, tag routing into BigQuery.
 ---
 

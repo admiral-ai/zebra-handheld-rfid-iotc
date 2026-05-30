@@ -1,8 +1,8 @@
 ---
 id: documentation-guide
 title: How to read this documentation
-sidebar_label: About the Structure of This Documentation
-description: "How the IOTC docs are organised: eight Parts, the Diataxis split (concept / how-to / tutorial / reference), and pairing with the MQTT API Reference."
+sidebar_label: How to read this documentation
+description: "How the IOTC docs are organised: eight Parts, the Diátaxis split (concept / how-to / tutorial / reference), and pairing with the MQTT API Reference."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All · **Read time:** ~3 min
@@ -12,9 +12,9 @@ This documentation is organised into eight Parts that follow the developer's act
 ### The eight Parts
 
 - **Part 1: Get oriented**: where to start, the MQTT primer, how this site pairs with the MQTT API Reference
-- **Part 2: Foundations**: what IOTC is, which sled you have, the actors, the bootstrap tools, how commands and responses flow
+- **Part 2: Foundations**: what IOTC is, which sled you have, the actors, the bootstrap tool, how commands and responses flow
 - **Part 3: Quick start**: a seven-phase end-to-end walkthrough from a sealed box to live inventory
-- **Part 4: Manage your reader**: device state, network, MQTT endpoints, TLS, configuration document, firmware
+- **Part 4: Manage your reader**: device state, network, MQTT endpoints, TLS, firmware
 - **Part 5: Read tags**: operating-mode profiles, start/stop, post-filters
 - **Part 6: Observe and monitor**: configure events, heartbeats, alerts, MQTT connection, tag-data event schema
 - **Part 7: Scale to a fleet**: provisioning models, bulk management, retention and retry

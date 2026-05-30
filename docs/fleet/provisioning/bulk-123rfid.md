@@ -1,7 +1,7 @@
 ---
 id: bulk-123rfid
 title: How to provision readers in bulk with 123RFID Desktop
-sidebar_label: How to Provision Readers in Bulk with 123RFID Desktop
+sidebar_label: How to provision readers in bulk with 123RFID Desktop
 description: "Provision IOTC readers in bulk with 123RFID Desktop: connect each sled over USB-C, push a saved profile (Wi-Fi, region, MDM), verify with get_version."
 ---
 

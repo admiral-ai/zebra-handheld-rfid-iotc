@@ -1,7 +1,7 @@
 ---
 id: troubleshooting
 title: How to troubleshoot network issues
-sidebar_label: How to Troubleshoot Network Issues
+sidebar_label: How to troubleshoot network issues
 description: "Troubleshoot IOTC reader network issues: Wi-Fi reconnect loops, Ethernet cradle failures, DNS resolution, broker reachability, signal-strength diagnostics."
 ---
 

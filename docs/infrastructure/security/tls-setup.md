@@ -1,7 +1,7 @@
 ---
 id: tls-setup
 title: How to secure the MQTT connection with TLS
-sidebar_label: How to Secure the MQTT Connection with TLS
+sidebar_label: How to secure the MQTT connection with TLS
 description: "Enable TLS 1.2 on an IOTC reader-broker connection: install CA cert, switch endpoint to MQTT_TLS, verify with mqttConnEVT, troubleshoot handshake errors."
 ---
 
@@ -73,5 +73,3 @@ Watch `mqttConnEVT` arriving on the endpoint's event topic, you should see `conn
 [Configure endpoints](/infrastructure/endpoints/configure) uses the `epConfig` envelope with `add` / `update` / `delete` operations. Sample payload identical in structure to the TLS configuration above. Topic limits (3 publish / 1 subscribe) surface as error codes 25 and 26.
 
 ---
-
-# Part IV: RFID Operations (rewritten)

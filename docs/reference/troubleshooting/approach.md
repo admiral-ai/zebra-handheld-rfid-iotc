@@ -1,7 +1,7 @@
 ---
 id: approach
 title: How to approach troubleshooting systematically
-sidebar_label: How to Approach Troubleshooting Systematically
+sidebar_label: How to approach troubleshooting systematically
 description: "A systematic approach to IOTC troubleshooting: scope the symptom, isolate the edge, eliminate easy causes, then escalate. Pairs with /diagnose/ symptoms."
 ---
 

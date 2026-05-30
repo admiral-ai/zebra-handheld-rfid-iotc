@@ -1,7 +1,7 @@
 ---
 id: configure
 title: How to configure MQTT endpoints
-sidebar_label: How to Configure MQTT Endpoints
+sidebar_label: How to configure MQTT endpoints
 description: "Configure IOTC MQTT endpoints with config_endpoint: add, update, delete operations for the seven endpoint types (MDM, MGMT, CTRL, EVT, DATA1, DATA2, ALERT)."
 ---
 

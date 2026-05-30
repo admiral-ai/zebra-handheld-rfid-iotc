@@ -1,7 +1,7 @@
 ---
 id: endpoint
 title: MQTT endpoint configuration (MGMT)
-sidebar_label: "MQTT Endpoint Configuration (MGMT)"
+sidebar_label: "MQTT endpoint configuration (MGMT)"
 description: "Reference for the MGMT MQTT-endpoint configuration surface: config_endpoint (add/update/delete) and seven endpoint types (MDM, MGMT, CTRL, EVT, DATA, ALERT)."
 ---
 > 📕 **REFERENCE**

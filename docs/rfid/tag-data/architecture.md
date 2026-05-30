@@ -1,7 +1,7 @@
 ---
 id: architecture
 title: Tag-data event architecture
-sidebar_label: About Tag Data Event Architecture
+sidebar_label: Tag-data event architecture
 description: "How IOTC tag-data events are produced: radio singulation, dataEVT composition, dual-channel split (data1event / data2event), end-to-end flow."
 ---
 

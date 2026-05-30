@@ -1,7 +1,7 @@
 ---
 id: connectivity
 title: Connectivity and network FAQs
-sidebar_label: Connectivity & Network FAQs
+sidebar_label: Connectivity & network FAQs
 description: "Frequently asked questions about IOTC connectivity: Wi-Fi reconnect, broker reachability checks, and what each diagnostic signal means."
 ---
 

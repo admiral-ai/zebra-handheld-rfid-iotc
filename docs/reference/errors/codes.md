@@ -1,7 +1,7 @@
 ---
 id: codes
 title: Command response error codes
-sidebar_label: Command Response Error Codes
+sidebar_label: Command response error codes
 description: Reference for IOTC command-response error codes 0-15. Each entry lists the code, canonical name, semantic meaning, and the recovery action to take.
 ---
 
@@ -83,6 +83,6 @@ The [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-
 ## Related
 
 - [Error Response Format](/reference/errors/format) — the response envelope and async-acceptance semantics.
-- [MQTT API Reference](/reference/api-overview) — directory of all 27 operations and events, with per-command schemas on the canonical site.
+- [MQTT API Reference](/reference/api-overview) — directory of all 24 operations and events, with per-command schemas on the canonical site.
 - [Something's broken?](/diagnose/symptoms) — symptom-first index that maps observed errors to recovery playbooks.
 - [Things people get wrong about IOTC](/diagnose/misconceptions) — common integration mistakes and their fixes.

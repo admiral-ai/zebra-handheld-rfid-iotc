@@ -1,7 +1,7 @@
 ---
 id: connection-quality
 title: How to monitor connection quality
-sidebar_label: How to Monitor Connection Quality
+sidebar_label: How to monitor connection quality
 description: "Monitor IOTC reader MQTT connection quality: mqttConnEVT reconnect counts, Wi-Fi RSSI, broker drop signals."
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: device-status
 title: Device status (MGMT endpoint)
-sidebar_label: "Device Status (MGMT)"
+sidebar_label: "Device status (MGMT)"
 description: "Reference for the MGMT device-status surface: get_status, get_version, get_current_region. Returns model, firmware, IP, MAC, battery, antenna, region."
 ---
 > 📕 **REFERENCE**

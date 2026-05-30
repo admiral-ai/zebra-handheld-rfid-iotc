@@ -1,7 +1,7 @@
 ---
 id: tutorial-fleet
 title: "Tutorial: provision a three-reader fleet"
-sidebar_label: "Tutorial: Provision a Three-Reader Fleet"
+sidebar_label: "Tutorial: provision a three-reader fleet"
 description: "Tutorial: provision a three-reader IOTC fleet against a cloud MQTT broker. Naming, certificate setup, MDM endpoint, bulk smoke-testing each reader."
 ---
 
@@ -122,5 +122,3 @@ You provisioned, secured, configured, and monitored a three-reader fleet end-to-
 **Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2) · 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
 
 ---
-
-# Part VII: Reference & Troubleshooting (rewritten)

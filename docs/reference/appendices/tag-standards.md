@@ -1,7 +1,7 @@
 ---
 id: tag-standards
 title: Supported RFID tag types and standards
-sidebar_label: Supported RFID Tag Types & Standards
+sidebar_label: Supported RFID tag types & standards
 description: "RFID tag types and air-interface standards supported by IOTC: EPC Gen2 (UHF), tag memory banks (EPC, TID, USER, RESERVED), session and inventory flags."
 ---
 

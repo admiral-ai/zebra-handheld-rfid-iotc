@@ -1,7 +1,7 @@
 ---
 id: handheld-considerations
 title: Handheld-specific architecture considerations
-sidebar_label: About Handheld-Specific Architecture Considerations
+sidebar_label: Handheld-specific considerations
 description: "Architectural constraints unique to handheld RFID: battery lifecycle, single antenna, intermittent connectivity, trigger button. Why IOTC is shaped this way."
 ---
 
@@ -43,6 +43,6 @@ The sled has a hardware trigger button. Pulling it generates events that map to 
 
 ### What this implies for the rest of this documentation
 
-These constraints surface in Part III (network and security), Part IV (operating modes are tuned to the single antenna), Part V (events focus on battery state), and Part VI (provisioning at scale assumes MDM-managed readers). They are not caveats footnoted on isolated pages; they are structural.
+These constraints surface in Part 4 (network and security), Part 5 (operating modes are tuned to the single antenna), Part 6 (events focus on battery state), and Part 7 (provisioning at scale assumes MDM-managed readers). They are not caveats footnoted on isolated pages; they are structural.
 
 **Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📘 [Trigger Operations](/rfid/operating-mode/trigger-composition) · 📙 [Battery Monitoring](/observability/monitoring/battery)

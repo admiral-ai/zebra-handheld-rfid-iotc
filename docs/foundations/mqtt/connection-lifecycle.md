@@ -1,7 +1,7 @@
 ---
 id: connection-lifecycle
 title: MQTT connection lifecycle and keep-alive
-sidebar_label: About Connection Lifecycle & Keep-Alive
+sidebar_label: Connection lifecycle & keep-alive
 description: "The IOTC reader's MQTT connection lifecycle: CONNECT, keep-alive PING, DISCONNECT, last-will. Covers reconnect cadence and connection-state reporting."
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: aws
 title: How to integrate IOTC with AWS IoT Core
-sidebar_label: How to Integrate with AWS IoT Core
+sidebar_label: How to integrate with AWS IoT Core
 description: "Integrate IOTC readers with AWS IoT Core: register the device, configure the MQTT endpoint, install the AWS CA cert, route data into Lambda or Kinesis."
 ---
 

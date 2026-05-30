@@ -1,7 +1,7 @@
 ---
 id: multi-endpoint
 title: Multi-endpoint architectures
-sidebar_label: About Multi-Endpoint Architectures
+sidebar_label: Multi-endpoint architectures
 description: "When and how to use multiple MQTT endpoints in IOTC: split control vs data brokers, MDM separation, dual data channels, per-endpoint TLS config."
 ---
 
@@ -72,5 +72,3 @@ Separate brokers add operational complexity (two sets of credentials, two health
 **Related:** 📘 [Endpoint Configuration](/infrastructure/endpoints/about) · 📙 [Configure Endpoints](/infrastructure/endpoints/configure) · 📘 [Cloud Integration Patterns](/fleet/cloud-integration/patterns)
 
 ---
-
-# Part IV: RFID Operations
