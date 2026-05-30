@@ -69,10 +69,10 @@ Two commands — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-a
 
 | Command | Acknowledgement | Terminal outcome |
 |---|---|---|
-| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `code: 1` | `alert_short` with id `FIRMWARE_UPDATE_SUCCESS` / `FIRMWARE_UPDATE_FAIL`, plus optional `alerts` events with id `FIRMWARE_UPDATE` showing progress |
-| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | `code: 1` | `alert_short` with `<TYPE>_CERT_INSTALL_SUCCESS` / `<TYPE>_CERT_INSTALL_FAIL` |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `code: 1` | `alerts` with id `FIRMWARE_UPDATE` (`state: SET` → `CLEAR`) showing progress and completion |
+| [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | `code: 1` | `alerts` reporting the certificate-install outcome |
 
-Treat `code: 1` as a successful submission, not as a final result. Your application should subscribe to `alert_short` (and `alerts`, if you want progress detail) before sending either command.
+Treat `code: 1` as a successful submission, not as a final result. Your application should subscribe to `alerts` before sending either command.
 
 ## A documented schema discrepancy
 
@@ -94,7 +94,7 @@ For per-command error details, including the subset of codes a specific command 
 
 ## Events do not use this envelope
 
-`heartbeatEVT`, `alerts`, `alert_short`, `mqttConnEVT`, and `dataEVT` are reader-initiated events and do **not** use the command-response envelope. They have their own root shapes. See the per-event chapters in Part 6 and the [MQTT API Reference](/reference/api-overview).
+`heartbeatEVT`, `alerts`, `mqttConnEVT`, and `dataEVT` are reader-initiated events and do **not** use the command-response envelope. They have their own root shapes. See the per-event chapters in Part 6 and the [MQTT API Reference](/reference/api-overview).
 
 ## Related
 

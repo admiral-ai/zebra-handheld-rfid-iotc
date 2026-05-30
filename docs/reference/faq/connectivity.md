@@ -2,7 +2,7 @@
 id: connectivity
 title: Connectivity and network FAQs
 sidebar_label: Connectivity & Network FAQs
-description: "Frequently asked questions about IOTC connectivity: Wi-Fi reconnect, Bluetooth pairing, broker reachability checks, and what each diagnostic signal means."
+description: "Frequently asked questions about IOTC connectivity: Wi-Fi reconnect, broker reachability checks, and what each diagnostic signal means."
 ---
 
 > 📕 **REFERENCE**
@@ -20,11 +20,5 @@ description: "Frequently asked questions about IOTC connectivity: Wi-Fi reconnec
 ---
 
 **Q:** Does the reader support cellular?
-**A:** Not directly. The reader connects via the host device; the host can use cellular.
-**Details:** [About Network Architecture](/infrastructure/network/architecture)
-
----
-
-**Q:** Can the reader connect to the broker without the host device?
-**A:** Yes, when docked in a cradle that bridges to Ethernet or Wi-Fi independently.
+**A:** Not directly — the reader connects over its own Wi-Fi. For cellular backhaul, put the reader on a Wi-Fi network served by a cellular router or gateway.
 **Details:** [About Network Architecture](/infrastructure/network/architecture)

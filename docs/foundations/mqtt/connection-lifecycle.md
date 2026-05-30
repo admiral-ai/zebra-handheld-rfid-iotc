@@ -39,7 +39,7 @@ A clean-session client tells the broker "do not preserve state for me", no queue
 
 ### Reconnection behaviour on the handheld
 
-The handheld sled's MQTT connection rides over its Bluetooth link to the host device. When BT drops — reader pocketed, host moved out of range, the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once BT is re-established and Wi-Fi is reachable, the persistent session resumes and queued QoS 1 messages flow.
+The handheld sled's MQTT connection rides over its Wi-Fi link. When Wi-Fi drops — reader out of range, access-point handoff — the MQTT connection drops too. The reader's firmware detects this and attempts reconnection with exponential backoff. Once Wi-Fi is reachable again, the persistent session resumes and queued QoS 1 messages flow.
 
 ```d2
 classes: {

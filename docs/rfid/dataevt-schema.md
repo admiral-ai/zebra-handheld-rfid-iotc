@@ -73,7 +73,7 @@ Applications that need per-read fidelity must set `reportFilter duration: 0` (th
 
 ### Per-barcode fields in `barcodeData[]`
 
-When `controlType: SCANNER` operations are run (Premium / Premium Plus only. RFD90 has a scanner; RFD40 Standard doesn't):
+When `controlType: SCANNER` operations are run (Premium / Premium Plus only; RFD90 has a scanner):
 
 | Field | Type | Description |
 |---|---|---|

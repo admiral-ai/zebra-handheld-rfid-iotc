@@ -99,7 +99,7 @@ Note that `status: LOW` and `status: CRITICAL` here are heartbeat *snapshots*. T
 
 ### Out of scope
 
-- **Threshold-driven alerts**, those are `alerts` and `alert_short`, not heartbeats. See [When the reader needs to interrupt you](/observability/alerts).
+- **Threshold-driven alerts**, those are `alerts`, not heartbeats. See [When the reader needs to interrupt you](/observability/alerts).
 - **Configuring which events the reader emits**, see [Choose what the reader tells you](/observability/configure-events).
 - **Connection-state transitions (`mqttConnEVT`)**, see [Knowing when you're connected](/observability/mqtt-connection).
 

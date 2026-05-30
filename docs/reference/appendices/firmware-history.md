@@ -11,7 +11,7 @@ description: "Version history of IOTC firmware: what changed in 3.10.27 (the doc
 |---|---|---|---|---|---|
 | 3.11.x | 2026-Q3 (planned) | TBD | TBD | TBD | V1.1 |
 | 3.10.27 | 2025-12 | IOTC V1.1 baseline: richer event payloads, expanded post-filters, complete bulk-config | — | — | V1.1 (and V1.0) |
-| 3.10.26 | 2025-09 | — | Bluetooth reconnect resilience | — | V1.0 |
+| 3.10.26 | 2025-09 | — | Network reconnect resilience | — | V1.0 |
 | 3.10.25 | 2025-06 | — | DHCP renewal edge case | — | V1.0 |
 | 3.10.20 | 2025-03 | Initial IOTC V1.0 GA | — | — | V1.0 |
 

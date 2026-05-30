@@ -13,12 +13,9 @@ The terminology, limits, and cheat sheets you'll want at your elbow while readin
 
 | Term | Definition |
 |---|---|
-| **123RFID Desktop** | Windows 10/11 bootstrap tool. Used to first-light **Direct** sleds (Premium / Premium Plus / RFD90) over USB-C — sets region, Wi-Fi credentials, and MDM endpoint. Free download from `support.zebra.com`. Authoritative for region. |
-| **123RFID Mobile** | Android 11+ bootstrap tool. Used to first-light **Bridged** sleds (RFD40 Standard) over Bluetooth (NFC tap, scan-and-pair, or manual MAC). Also bootstraps Direct sleds when no Windows laptop is available. Free download from Google Play. Authoritative for region. |
+| **123RFID Desktop** | Windows 10/11 bootstrap tool. Used to first-light sleds (Premium / Premium Plus / RFD90) over USB-C — sets region, Wi-Fi credentials, and MDM endpoint. Free download from `support.zebra.com`. Authoritative for region. |
 | **ADVANCED** | The operating-mode profile that unlocks manual `transmitPower`, `linkProfile`, `session`, `dynamicPower` via `advancedConfigurations`. |
-| **`alert_short`** | Compact alert event with `id`, `priority`, `description`. MDM-facing. Broader `id` enum than `alerts`. |
 | **`alerts`** | Verbose alert event with `alertDetails` block. Application-facing. **Five formal `id` enum values** (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`); `GPI_EVENT` and `ANTENNA_EVENT` are described as trigger conditions but not in the published enum. **Four-value priority enum** (`CRITICAL`, `HIGH`, `MEDIUM`, `LOW`). |
-| **Bridged** | Hardware tier whose sleds have no on-board Wi-Fi and reach the broker via a host device's Wi-Fi (RFD40 Standard). Two physical edges to the broker. Bootstrapped with 123RFID Mobile. The IoTC MQTT surface is identical to Direct after bootstrap. |
 | **CTRL** | Endpoint type for RFID control commands ([`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter)). |
 | **`ctrlOprPayload`** | The named payload object inside [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation). Real canonical field name, not OpenAPI noise. |
 | **DATA1 / DATA2** | Endpoint types for tag-data streams. Up to two concurrent data endpoints per reader. |
@@ -31,7 +28,6 @@ The terminology, limits, and cheat sheets you'll want at your elbow while readin
 | **IoTC** | IoT Connector. The in-firmware MQTT control and data plane on RFD40 / RFD90 sleds. |
 | **MDM** | (1) An endpoint type; hybrid endpoint carrying MGMT + Control + Data on one topic family. Bootstrap default. (2) A class of platform — Mobile Device Management (SOTI Connect, 42Gears SureMDM) that uses the SOTI or MDM endpoint to manage fleets. |
 | **MGMT / MGMT_EVT** | Endpoint types for management commands and management events respectively. |
-| **Direct** | Hardware tier with native Wi-Fi 6 in firmware (RFD40 Premium, Premium Plus, RFD90). One physical edge to the broker. Bootstrapped with 123RFID Desktop (USB-C) or 123RFID Mobile (BT). |
 | **`mqttConnEVT`** | Event published on CONNECTED/DISCONNECTED transitions. `timestamp` is `HH:MM:SS`, not ISO 8601. |
 | **`stateOfHealth` (two enums)** | Battery health field uses two different enums by source: `get_status.batteryStatus.stateOfHealth` is `GOOD \| AVERAGE \| POOR`; `alerts.alertDetails.batteryAlert.stateOfHealth` and `heartbeatEVT.data.batteryAlert.stateOfHealth` are `LOW \| FULL \| CRITICAL \| HIGH \| CHARGING`. Don't conflate the two. |
 | **`operatingMode`** | The named payload object inside [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode). Note: wraps an inner `operatingModes` (plural), the only command with this double nesting. |
@@ -130,7 +126,6 @@ Named-payload map (memorise these):
 | [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | `certDetails` |
 | [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `OSUpdateDetails` |
 | [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) | `wifiConfig` |
-| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | `config` |
 | [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | *(optional)* `endpointDetails` |
 
 Read-only commands (`get_*`, [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)) take only `{command, requestId}`.

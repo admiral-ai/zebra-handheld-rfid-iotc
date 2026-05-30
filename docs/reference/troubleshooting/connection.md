@@ -13,8 +13,8 @@ This guide shows you how to troubleshoot MQTT connection issues on handheld read
 
 The reader has been bootstrapped but does not show up in your MQTT subscriber.
 
-- Verify the reader is powered on and its host device is connected to the network.
-- Verify the host device can resolve the broker hostname.
+- Verify the reader is powered on and connected to Wi-Fi.
+- Verify the reader's network can resolve the broker hostname.
 - Verify the credentials in [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) match the broker's expectations.
 
 #### Symptom: reader connects then immediately disconnects
@@ -30,7 +30,6 @@ The reader has been bootstrapped but does not show up in your MQTT subscriber.
 `mqttConnEVT` shows frequent disconnect/reconnect cycles.
 
 - Wi-Fi roaming: check Wi-Fi RSSI in heartbeats; if it varies wildly, the host is moving between APs.
-- Bluetooth instability: check BT link quality.
 - Keep-alive too aggressive for the network: increase from 30 s to 60 s.
 
 #### Symptom: TLS handshake failures
@@ -52,7 +51,7 @@ The reader has been bootstrapped but does not show up in your MQTT subscriber.
 
 Connection never establishes; no `mqttConnEVT` ever fires.
 
-- Test outbound 8883 from the host device's network using `nc -zv broker.example.com 8883`.
+- Test outbound 8883 from the reader's network using `nc -zv broker.example.com 8883`.
 - Coordinate with network operations to allow outbound MQTT traffic to the broker.
 
 ```d2

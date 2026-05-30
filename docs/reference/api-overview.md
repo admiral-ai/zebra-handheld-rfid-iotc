@@ -45,7 +45,6 @@ Error codes appear in `response.code`; see [Error Response Format](/reference/er
 | [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile) | `wifiConfig` |
 | [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | `epConfig` |
 | [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) · [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) | `certDetails` |
-| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | `configData` |
 | [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | `OSUpdateDetails` |
 | [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | `operatingMode` (wraps an inner `operatingModes`) |
 | [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) | `postFilterPayload` |
@@ -108,22 +107,13 @@ Install, inspect, and remove TLS certificates for MQTT, Wi-Fi, and the file stor
 | [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) | Command | Install a CA, client cert, or client key. Sources: `HTTP` (download) or `DIRECT` (inline). |
 | [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) | Command | Remove an installed certificate by logical name. |
 
-### Device Configuration
-
-Read and write the reader's device-wide configuration document. See [The reader's configuration document](/infrastructure/config-document).
-
-| API | Type | Description |
-|---|---|---|
-| [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) | Command | Comprehensive snapshot of every adjustable device-wide property. |
-| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | Command | Narrow writeback. Fields not supplied retain their current value. |
-
 ### System Operations
 
 Firmware update and warm reset. See [Updating firmware and rebooting](/infrastructure/system-operations).
 
 | API | Type | Description |
 |---|---|---|
-| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | Command | Start a firmware update from a URL. Asynchronous; watch `alert_short` for outcome. |
+| [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) | Command | Start a firmware update from a URL. Asynchronous; watch `alerts` for outcome. |
 | [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) | Command | Warm reset. Rejected with code 5 if an inventory is active. |
 
 ---
@@ -187,7 +177,6 @@ Threshold-driven and state-transition notifications. Two payload variants. See [
 | API | Type | Description |
 |---|---|---|
 | [`alerts`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-alerts) | Event | Verbose alert with category-specific `alertDetails` block. |
-| [`alert_short`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-alert-short) | Event | Compact alert with `id`, `priority`, and `description`. MDM-friendly. |
 
 ### MQTT Connectivity
 
@@ -223,7 +212,6 @@ Every Part 4–6 chapter in these docs ties to one API sub-tag. The pairing is b
 | [Getting on the network (Wi-Fi & Ethernet)](/infrastructure/network/architecture) | Network Configuration |
 | [How the MQTT plumbing fits together](/infrastructure/endpoints/about) | MQTT Endpoint Configuration |
 | [Securing the connection (TLS & certificates)](/infrastructure/security/model) | Certificate Management |
-| [The reader's configuration document](/infrastructure/config-document) | Device Configuration |
 | [Updating firmware and rebooting](/infrastructure/system-operations) | System Operations |
 | [Choose how the reader reads tags](/rfid/operating-mode-profiles) | Operating Mode |
 | [Filter tags before vs after the read](/rfid/post-filters) | Tag Filtering |

@@ -116,7 +116,7 @@ You can now command the reader.
 - **No response within 5 seconds.** Most likely your publish topic is wrong. Confirm the exact `<tenantId>/MDM/clients/cmnd/<serial>` form. The reader subscribes to *exactly* that topic shape; off-by-one segments produce silence.
 - **Response on a different topic than expected.** The MDM endpoint's `publishTopics` configuration uses different names than the defaults. Use the wildcard `zebra/MDM/#` to find where responses are actually arriving, then update your subscriber.
 - **`response.code` is not 0.** [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) only defines code 0 (Success); a different code indicates an unusual condition. Verify firmware version supports IoTC V1.1.
-- **No response, MDM endpoint reports inactive.** Phase 2 didn't complete cleanly. Re-open 123RFID Desktop (Direct) or 123RFID Mobile (Bridged), confirm endpoint state, re-activate if needed.
+- **No response, MDM endpoint reports inactive.** Phase 2 didn't complete cleanly. Re-open 123RFID Desktop, confirm endpoint state, re-activate if needed.
 
 ### A note on `requestId` discipline
 

@@ -47,13 +47,13 @@ The broker's session-retention behavior varies by implementation. Mosquitto pers
 
 ### Layer 3: Reader-side retention buffer
 
-The most IOTC-specific reliability mechanism. When the **broker** is unreachable, the reader buffers `dataEVT` tag reads in flash. Capacity and flush rate are documented in `mqtt-api-reference/set_config.md` and configurable via `set_config.dataConfiguration`:
+The most IOTC-specific reliability mechanism. When the **broker** is unreachable, the reader buffers `dataEVT` tag reads in flash. Capacity and flush rate are firmware defaults:
 
 - **Retention buffer size**: number of tag events the reader holds. Default values are firmware-version specific; the canonical baseline cited in the conceptual TOC corpus is **150,000 events**.
 - **Flush rate on reconnect**: events per second when broker comes back. Canonical baseline **500 TPS**.
 - **Retention overflow**: when full, oldest events are dropped first (FIFO).
 
-The retention buffer is enabled by default. Disabling it (`retention: false`) trades reconnect simplicity for outage tolerance, only do this when the application's broker-side durability is guaranteed.
+The retention buffer is enabled by default and requires no configuration.
 
 ### Layer 4: Application-layer retry
 
@@ -66,14 +66,13 @@ on_response: cancel_timer; done.
 on_timeout: publish(command, requestId="x")  # same requestId
 ```
 
-Reusing the same `requestId` lets the reader treat the retry idempotently. Two identical [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) payloads with the same `requestId` produce the same result; the reader doesn't apply the change twice.
+Reusing the same `requestId` lets the reader treat the retry idempotently. Two identical [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) payloads with the same `requestId` produce the same result; the reader doesn't apply the change twice.
 
 **Idempotence by operation:**
 
 | Operation | Safe to retry with same requestId? |
 |---|---|
 | `get_*` (any read) | Yes; pure reads |
-| [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) | Yes; same payload, same result |
 | [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) | Yes; same payload, same result |
 | `config_endpoint add` | **No** — second attempt returns error 10 (already exists) |
 | `config_endpoint update` | Yes |
@@ -121,8 +120,7 @@ For deployments where any of these failure modes is unacceptable, the applicatio
 
 ### Out of scope
 
-- **Configuring retention parameters**: covered in [The reader's configuration document](/infrastructure/config-document).
 - **Broker selection for durability**, see the broker selection guide in the MQTT knowledge folder.
 - **End-to-end pipeline reliability**, by definition outside IOTC.
 
-**Related:** 📘 [Knowing when you're connected](/observability/mqtt-connection) · 📘 [The reader's configuration document](/infrastructure/config-document) · 📘 [How commands and responses flow](/foundations/communication-flow) · 📕 [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)
+**Related:** 📘 [Knowing when you're connected](/observability/mqtt-connection) · 📘 [How commands and responses flow](/foundations/communication-flow) · 📘 [Keeping a fleet in sync](/fleet/bulk-management)

@@ -14,7 +14,6 @@ IOTC defines **five** events emitted by the reader:
 | `dataEVT` | Tag-data stream during inventory |
 | `heartbeatEVT` | Periodic liveness beacon |
 | `alerts` | Threshold-driven full alert payload |
-| `alert_short` | Compact alert format primarily consumed by MDM platforms |
 | `mqttConnEVT` | MQTT connection state transitions |
 
 ### What is not currently emitted

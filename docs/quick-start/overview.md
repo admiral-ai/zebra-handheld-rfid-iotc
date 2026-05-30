@@ -2,10 +2,10 @@
 id: overview
 title: Your first 30 minutes
 sidebar_label: Your first 30 minutes
-description: A 30-minute IOTC walkthrough — from sealed box to live tag reads in seven phases. Phase 0 prerequisites; Phase 2 splits Direct (Desktop) vs Bridged (Mobile).
+description: A 30-minute IOTC walkthrough — from sealed box to live tag reads in seven phases. Phase 0 prerequisites; Phase 2 bootstraps the reader with 123RFID Desktop.
 ---
 
-> 📗 **TUTORIAL** · **Audience:** New Integrator · **Time:** ~30 min hands-on, ~45 min full chapter · **Path:** 🅓 Direct or 🅑 Bridged
+> 📗 **TUTORIAL** · **Audience:** New Integrator · **Time:** ~30 min hands-on, ~45 min full chapter
 
 In the next thirty minutes you will take a sled out of its box, give it a network identity, and watch tag reads stream over MQTT. The Quick Start is **seven phases plus a Phase 0 prerequisites bundle**. Each phase ends with a verifiable artifact you can see, a confirmed broker reachability check, an active MDM endpoint, a [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) response, a configured CTRL endpoint, a live `dataEVT` stream. **If the artifact appears, the phase succeeded. If it doesn't, you don't proceed.**
 
@@ -13,7 +13,7 @@ This is the only Tutorial in the conceptual docs. Everything else is Explanation
 
 ### The non-negotiable rule
 
-A Zebra reader **cannot participate in any MQTT command workflow until its initial MDM endpoint has been provisioned through the bootstrap tool (123RFID Desktop on Direct sleds, 123RFID Mobile on Bridged sleds) and is active.** That means:
+A Zebra reader **cannot participate in any MQTT command workflow until its initial MDM endpoint has been provisioned through 123RFID Desktop and is active.** That means:
 
 - [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) only works after Phase 2 succeeds.
 - [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint), [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), [`control_operation`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-control-operation), [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot) all wait on the MDM endpoint.
@@ -32,9 +32,9 @@ The MDM endpoint is the bootstrap connection. Everything else depends on it.
 
 | Phase | Outcome | Who does it | Time |
 |---|---|---|---|
-| [Phase 0: Prerequisites](/quick-start/phase-0) | Hardware in hand, credentials in vault, sled paired to a host (Bridged only) | New integrator | ~15 min |
+| [Phase 0: Prerequisites](/quick-start/phase-0) | Hardware in hand, credentials in vault | New integrator | ~15 min |
 | [Phase 1: Prepare network and broker](/quick-start/phase-1) | Reachable broker on 1883/8883 from the sled's network segment | IT / Network admin | 5 min (or 30 if firewall change needed) |
-| [Phase 2: Bootstrap (Direct or Bridged)](/quick-start/phase-2) | Sled with region set and an active MDM endpoint pointing at your broker — via 123RFID Desktop (Direct, USB-C) or 123RFID Mobile (Bridged or Direct, Bluetooth) | Operator with a Windows laptop or Android mobile computer | 8 min |
+| [Phase 2: Bootstrap the reader](/quick-start/phase-2) | Sled with region set and an active MDM endpoint pointing at your broker — via 123RFID Desktop over USB-C | Operator with a Windows laptop | 8 min |
 | [Phase 3: Verify the bootstrap connection](/quick-start/phase-3) | A [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) response with model, serial, firmware, IoTC version | Integrator | 3 min |
 | [Phase 4: Inspect endpoint state](/quick-start/phase-4) | A list of the sled's active and saved endpoints via [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) | Integrator | 4 min |
 | [Phase 5: Add remote endpoints](/quick-start/phase-5) | CTRL and DATA1 endpoints active and routable via [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) | Integrator | 8 min |
@@ -49,10 +49,9 @@ The MDM endpoint is the bootstrap connection. Everything else depends on it.
 
 ### What you need before you start
 
-- **Hardware (Direct path):** an RFD40 Premium, Premium Plus, or RFD90 sled, charged. A USB-C cable. A Windows laptop (for 123RFID Desktop). A few EPC Gen2 RFID tags.
-- **Hardware (Bridged path):** an RFD40 Standard sled, charged. A compatible Zebra Android mobile computer (TC52, TC72, MC93xx, etc.) or a consumer Android 7+ phone with 123RFID Mobile installed. A few EPC Gen2 RFID tags.
-- **Software:** 123RFID Desktop (Direct) or 123RFID Mobile (Bridged), free from `support.zebra.com` or Google Play. [MQTTX](https://mqttx.app) (GUI) or `mosquitto_sub` / `mosquitto_pub` (CLI) for validation. A reachable MQTT broker — Mosquitto on localhost, HiveMQ Cloud, or AWS IoT Core.
-- **Access:** the credentials for your broker (if any), and outbound 1883/8883 from the sled's network segment (Direct) or the host's network segment (Bridged).
+- **Hardware:** an RFD40 Premium, Premium Plus, or RFD90 sled, charged. A USB-C cable. A Windows laptop (for 123RFID Desktop). A few EPC Gen2 RFID tags.
+- **Software:** 123RFID Desktop, free from `support.zebra.com`. [MQTTX](https://mqttx.app) (GUI) or `mosquitto_sub` / `mosquitto_pub` (CLI) for validation. A reachable MQTT broker — Mosquitto on localhost, HiveMQ Cloud, or AWS IoT Core.
+- **Access:** the credentials for your broker (if any), and outbound 1883/8883 from the sled's network segment.
 
 See [Phase 0: Prerequisites](/quick-start/phase-0) for the full checklist.
 
@@ -62,4 +61,4 @@ Each phase has a "Didn't work?" footer. If you can't unblock from there, jump to
 
 ### Where to go next
 
-Start at [Phase 0: Prerequisites](/quick-start/phase-0) if you have not yet gathered hardware, credentials, and (Bridged only) a Bluetooth-paired host. Otherwise jump straight to [Phase 1: Prepare network and broker](/quick-start/phase-1).
+Start at [Phase 0: Prerequisites](/quick-start/phase-0) if you have not yet gathered hardware and credentials. Otherwise jump straight to [Phase 1: Prepare network and broker](/quick-start/phase-1).

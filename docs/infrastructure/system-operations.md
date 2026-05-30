@@ -71,7 +71,7 @@ Three install patterns are supported:
 | Firmware file exists at the URL | `9` (File not found) |
 | Battery sufficiently charged | `14` (Battery is low, cannot update firmware) |
 
-[`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is **asynchronous**. The command may return code `0` (Success) or **`1` (Command payload is accepted)**, the device accepted the work and is processing in the background. Watch `alert_short` for `FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`, and watch `alerts` for `id: "FIRMWARE_UPDATE"` with `state: "SET"` (in progress) followed by `state: "CLEAR"` (completed). The `firmwareUpdateEVT` event (when enabled in [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events)) carries progress percentages along the way.
+[`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is **asynchronous**. The command may return code `0` (Success) or **`1` (Command payload is accepted)**, the device accepted the work and is processing in the background. Watch `alerts` for `id: "FIRMWARE_UPDATE"` with `state: "SET"` (in progress) followed by `state: "CLEAR"` (completed). The `firmwareUpdateEVT` event (when enabled in [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events)) carries progress percentages along the way.
 
 `13` (Firmware update Failed) appears in a follow-up notification when the install itself fails after acceptance.
 
@@ -90,7 +90,7 @@ After a successful reboot:
 
 - The reader automatically reconnects to its previously connected broker.
 - **All management endpoint configurations are restored.** MGMT, MGMT_EVT, CTRL endpoints, certificate installs, Wi-Fi profiles, region, all survive.
-- **Only radio operation configurations from the control endpoint are lost.** Any operating mode set at runtime and not persisted via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) will need to be re-applied.
+- **Only radio operation configurations from the control endpoint are lost.** Any operating mode set at runtime will need to be re-applied after a reboot.
 
 ### Pre-condition for [`reboot`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-reboot)
 
@@ -126,7 +126,7 @@ Each transition emits an event when event flags allow it. Subscribers consuming 
 - **Pre-stage the firmware on a reachable HTTP server**, ideally on the same LAN as the readers. Cross-WAN downloads on hundreds of readers saturate the link.
 - **Use `VERIFY_HOST_PEER` for production firmware servers.** Trusting `NONE` opens the door to a malicious firmware push.
 - **Stagger fleet rollouts.** A simultaneous [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) to a thousand readers crushes both the firmware server and the broker (concurrent `firmwareUpdateEVT` traffic). Roll in waves of 50–100.
-- **Verify the new version with [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) after reconnect.** Don't trust the `alert_short` alone.
+- **Verify the new version with [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) after reconnect.** Don't trust the alert alone.
 
 ### Out of scope
 

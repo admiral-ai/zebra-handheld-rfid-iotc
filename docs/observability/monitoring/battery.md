@@ -36,7 +36,7 @@ Watch the `alerts` event with `id: BATTERY`:
 }
 ```
 
-For SOTI-connected fleets, `alert_short` with predefined `id` values surfaces battery thresholds: `BATTERY_LOW_SET`, `BATTERY_LOW_CLEAR`, `BATTERY_CRITICAL_SET`, `BATTERY_FULL`.
+For SOTI-connected fleets, `alerts` surface battery thresholds: `BATTERY_LOW_SET`, `BATTERY_LOW_CLEAR`, `BATTERY_CRITICAL_SET`, `BATTERY_FULL`.
 
 ### Interpret `stateOfHealth`
 

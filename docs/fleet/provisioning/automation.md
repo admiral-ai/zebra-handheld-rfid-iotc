@@ -2,7 +2,7 @@
 id: automation
 title: How to automate provisioning workflows
 sidebar_label: How to Automate Provisioning Workflows
-description: "Automate IOTC provisioning beyond 123RFID Desktop / Mobile: scripted set_config after first-light, MDM template push, CI-driven smoke tests."
+description: "Automate IOTC provisioning beyond 123RFID Desktop: scripted per-domain config after first-light, MDM template push, CI-driven smoke tests."
 ---
 
 > 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~60 min for first build
@@ -27,20 +27,21 @@ def on_mqtt_conn_evt(topic, payload):
 
 ```python
 def provision(serial):
-    golden_config = load_golden_config()  # shaped as {wifiConfig?, epConfig?, applyAfterReboot?}
+    golden = load_golden_config()  # {epConfig, wifiConfig, operatingMode}
     publish_command(serial, {
-        "command": "set_config",
+        "command": "config_endpoint",
         "requestId": f"prov-{serial}",
-        "configData": golden_config
+        "epConfig": golden["epConfig"]
     })
+    # follow with set_wifi and set_operating_mode as the golden config requires
 ```
 
 ### Step 3: Verify
 
 ```python
 def verify(serial):
-    publish_command(serial, {"command": "get_config", "command_id": f"verify-{serial}"})
-    # Match response against golden_config
+    publish_command(serial, {"command": "get_endpoint_config", "command_id": f"verify-{serial}"})
+    # Match response against the golden endpoint config
 ```
 
 ### Step 4: Promote to production fleet
@@ -51,7 +52,7 @@ After successful verification: tag the serial in your fleet database, route the 
 
 Store the golden config in version control. Build a CI pipeline that, on push to `main`:
 
-1. Validates the golden config against the schema in [Config schema](/reference/appendices/config-schema).
+1. Validates the golden config against your declared schema.
 2. Tests it against a canary reader in a lab environment.
 3. Promotes to production for the next round of provisioning.
 
@@ -81,4 +82,4 @@ Mon -> Rep
 
 ```
 
-**Related:** 📕 [set_config / get_config](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config)
+**Related:** 📕 [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) · 📕 [mqttConnEVT](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-mqttconnevt) · 📘 [Keeping a fleet in sync](/fleet/bulk-management)

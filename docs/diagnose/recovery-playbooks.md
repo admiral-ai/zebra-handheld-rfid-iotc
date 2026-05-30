@@ -15,9 +15,8 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 1. Confirm the USB-C cable is data-capable (not charge-only). Many cheap cables are charge-only; substitute a known-good cable.
 2. Power-cycle the sled (hold trigger + power for 5 s).
-3. Confirm Bluetooth is enabled on the laptop if discovering wirelessly.
-4. Restart 123RFID Desktop.
-5. **Success check:** the sled appears in the Discovery view with its serial number and current firmware.
+3. Restart 123RFID Desktop.
+4. **Success check:** the sled appears in the Discovery view with its serial number and current firmware.
 
 ### RP-02: Activate the bootstrap MDM endpoint {#rp-02}
 
@@ -66,11 +65,11 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 1. Run [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version). The reader may have rolled back to the previous firmware automatically; verify which version is active now.
 2. Run [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status). Confirm `batteryStatus.chargePercentage` ≥ 50 and `powerSource` is `WALLCHARGER` or `USB` — battery-low gates firmware updates.
-3. Confirm flash space — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns code 8 if insufficient flash. If unsure, [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) to reduce retention buffer to a smaller value temporarily.
+3. Confirm flash space — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) returns code 8 if insufficient flash. Delete unused certificates or Wi-Fi profiles to free space if needed.
 4. Verify the firmware URL is reachable from the sled's network — try downloading it from the sled's Wi-Fi segment.
 5. Re-issue [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) with the same URL.
-6. Watch `alert_short` for `FIRMWARE_DOWNLOAD_*` and `FIRMWARE_UPDATE_*` events.
-7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short. Then [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) confirms the new firmware.
+6. Watch `alerts` for `FIRMWARE_UPDATE` progress and completion.
+7. **Success check:** `alerts` reports `FIRMWARE_UPDATE` complete. Then [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) confirms the new firmware.
 
 ### RP-07: Diagnose silent-offline state {#rp-07}
 
@@ -87,7 +86,7 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 **When:** A reader's configuration differs from the canonical for its class.
 
-1. Run [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config), capture the snapshot.
+1. Run [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), capture the Wi-Fi profiles.
 2. Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), capture the endpoint list.
 3. Run [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode) (note: this is *expected* to differ after every reboot — radio-operation state doesn't persist).
 4. Diff each against canonical. For each differing field that *should* be persistent, push with the relevant `set_*` operation.
@@ -99,18 +98,17 @@ Nine recovery playbooks. Each is a tested sequence of steps that brings a failin
 
 **When:** Fleet-wide firmware update failed on some readers.
 
-1. Identify which readers failed via `alert_short` `FIRMWARE_UPDATE_FAIL` events.
+1. Identify which readers failed via `alerts` `FIRMWARE_UPDATE` failure events.
 2. Group failures by reason — battery-low, flash-insufficient, firmware-source-unreachable have different fixes.
 3. For battery-low readers (FM-FW-04): defer until charged; group them into a charging-station-mounted batch and retry.
-4. For flash-insufficient (FM-FW-02): [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) to find what's consuming flash. Adjust retention buffer downward via [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config), then retry.
+4. For flash-insufficient (FM-FW-02): delete unused certificates and Wi-Fi profiles to free flash, then retry.
 5. For source-unreachable (FM-FW-03): verify the firmware URL is reachable from the failing readers' Wi-Fi segment. Often a different segment than the successful readers'.
 6. Re-issue [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) against the failed subset only.
-7. **Success check:** `FIRMWARE_UPDATE_SUCCESS` alert_short events arrive for all targeted readers within a sensible window.
+7. **Success check:** `alerts` `FIRMWARE_UPDATE` completion events arrive for all targeted readers within a sensible window.
 
 ### Out of scope
 
 - **Why the failures happened**: explanation belongs in the matching FM page or concept chapter.
-- **Bridged-specific recovery**: covered in FM-DEV-* entries off the symptom index.
 - **Recovery from regulatory-region misconfiguration**: requires factory reset + 123RFID Desktop reboot; out of scope for routine recovery.
 
 **Related:** 📘 [Something's broken?](/diagnose/symptoms) · 📘 [Where things fail](/diagnose/where-things-fail) · 📘 [Things people get wrong about IOTC](/diagnose/misconceptions)

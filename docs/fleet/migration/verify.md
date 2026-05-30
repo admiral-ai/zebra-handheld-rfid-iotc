@@ -8,6 +8,6 @@ description: "Verify a successful IOTC migration: per-cohort smoke tests (get_ve
 > 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~30 min
 
 1. [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-version) on every reader — confirm `firmwareVersion` matches target.
-2. [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) on every reader — diff against pre-migration baseline.
+2. Per-domain reads ([`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config)) on every reader — diff against pre-migration baseline.
 3. Watch `alerts` rates over a representative shift, no firmware-related elevations.
 4. Define "migration complete" exit criteria: 100% on target firmware; configuration drift score nominal; alert rates within baseline.

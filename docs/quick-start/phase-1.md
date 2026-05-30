@@ -11,7 +11,7 @@ description: "Phase 1 of the IOTC Quick Start: prepare the network and broker. B
 
 ### Why this phase exists
 
-A Direct sled (RFD40 Premium / Premium Plus / RFD90) connects to Wi-Fi and then **directly** to your MQTT broker over TCP. There is no proxy, no tunnel, no HTTP fall-back. If the path is blocked, the sled cannot complete its initial bootstrap connection and Phase 2 will appear to succeed locally while the broker sees nothing.
+An IOTC sled (RFD40 Premium / Premium Plus / RFD90) connects to Wi-Fi and then **directly** to your MQTT broker over TCP. There is no proxy, no tunnel, no HTTP fall-back. If the path is blocked, the sled cannot complete its initial bootstrap connection and Phase 2 will appear to succeed locally while the broker sees nothing.
 
 Three patterns block this path more often than any others:
 
@@ -89,4 +89,4 @@ You can `nc -vz` the broker on the MQTT port from a host on the sled's Wi-Fi seg
 
 ### Where to go next
 
-[Phase 2: Bootstrap (Direct or Bridged)](/quick-start/phase-2) — pick the [Direct (123RFID Desktop)](/quick-start/phase-2/direct) walkthrough for a Premium / Premium Plus / RFD90 sled with a Windows laptop, or the [Bridged (123RFID Mobile)](/quick-start/phase-2/bridged) walkthrough for an RFD40 Standard sled (or a Direct sled when no Windows laptop is available).
+[Phase 2: Bootstrap the reader](/quick-start/phase-2) — use 123RFID Desktop on a Windows laptop to set the region, Wi-Fi, and the MDM endpoint over USB-C.

@@ -40,7 +40,7 @@ Certificates are stored on the device under logical names that you choose at ins
 
 ### Certificate format and size
 
-The reader's certificate parser accepts a narrow format envelope. Mismatches here are a common cause of [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) failures (`alert_short` IDs `MQTT_INSTALL_CERTIFICATE_FAIL`, `WIFI_INSTALL_CERTIFICATE_FAIL`, `FILESTORE_INSTALL_CERTIFICATE_FAIL`).
+The reader's certificate parser accepts a narrow format envelope. Mismatches here are a common cause of [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) failures (`alerts` IDs `MQTT_INSTALL_CERTIFICATE_FAIL`, `WIFI_INSTALL_CERTIFICATE_FAIL`, `FILESTORE_INSTALL_CERTIFICATE_FAIL`).
 
 | Constraint | Value |
 |---|---|
@@ -101,9 +101,9 @@ For HTTP-sourced installs, replace `certificateBundle` with a `url` array per ce
 - **[`get_installed_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-installed-certificate)**: returns the logical names of installed certificates by type. Use before [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate) to confirm the target exists.
 - **[`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate)**: removes a certificate by logical name. The reader rejects deletion if an active endpoint still references the cert.
 
-### Confirmation via `alert_short`
+### Confirmation via `alerts`
 
-Successful and failed certificate operations generate `alert_short` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/alerts).
+Successful and failed certificate operations generate `alerts` events with IDs like `MQTT_ROOT_CERT_INSTALL_SUCCESS`, `WIFI_CLIENT_CERT_DOWNLOAD_FAIL`, `FILESTORE_CLIENT_KEY_INSTALL_FAIL`. An MDM platform that drives certificate installs at scale should consume these events on the SOTI or MDM endpoint and treat them as the canonical install-outcome signal. See [When the reader needs to interrupt you](/observability/alerts).
 
 ### Out of scope
 

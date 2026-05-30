@@ -27,7 +27,6 @@ RA: radioActivity
 RC: radioConnection
 NT: ntp.reach
 ST: systemTime
-TC: terminalConnection
 TM: temperature
 BC: chargePercentage
 BH: stateOfHealth
@@ -39,7 +38,6 @@ DS -> RA
 DS -> RC
 DS -> NT
 DS -> ST
-DS -> TC
 DS -> TM
 BS -> BC
 BS -> BH

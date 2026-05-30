@@ -7,11 +7,7 @@ description: "Architectural constraints unique to handheld RFID: battery lifecyc
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~6 min
 
-Five architectural facts make handheld IOTC different from fixed-reader IOTC. They are not edge cases. Every operational decision rests on them.
-
-### Bluetooth dependency
-
-The sled reaches the network only through its paired host device, over Bluetooth 5.0 LE. The BT link has its own failure modes (pairing churn, interference, range)separate from Wi-Fi and MQTT. A "disconnected reader" might be a Wi-Fi outage, an MQTT broker problem, or a Bluetooth drop. [Bluetooth Troubleshooting](/reference/troubleshooting/bluetooth) treats this as a first-class category.
+Three architectural facts make handheld IOTC different from fixed-reader IOTC. They are not edge cases. Every operational decision rests on them.
 
 ### Battery is the primary constraint
 
@@ -21,31 +17,23 @@ Persistent MQTT connections, frequent heartbeats, high-throughput tag reads, all
 
 There is one antenna. There are no antenna ports to choose between, no cable losses to compensate, no per-port power settings. RF parameters (power, sensitivity, Q-value) apply to the single antenna for all reads. This simplifies the API significantly compared with fixed readers, but it also means range is fixed at hardware design time. The RFD90's longer range is a hardware property, not a configuration.
 
-### The host device is the network gateway
-
-The reader has no externally-visible IP address. The host device's network is the path to MQTT. This means: the host's Wi-Fi credentials matter (the reader uses them indirectly), the host's firewall posture matters, and the host's app lifecycle matters — when the OS suspends the host app, the reader's MQTT traffic suspends with it.
-
 ```d2
 direction: right
 T: Tag
-R: "Reader\n(single antenna)"
-H: "Host or\ndirect Wi-Fi"
+R: "Reader\n(single antenna, Wi-Fi 6)"
 B: Broker { shape: queue }
 A: Application
 T -> R
-R -> H
-H -> B
+R -> B
 B -> A
 c1: "Battery\n(every PINGREQ wakes radio)" { shape: hexagon }
 c2: "Single antenna\n(no port selection)" { shape: hexagon }
 c3: "Hardware trigger\n(input source)" { shape: hexagon }
 c4: "Mobility\n(roaming Wi-Fi)" { shape: hexagon }
-c5: "Tier choice\n(Direct vs Bridged)" { shape: hexagon }
 c1 -- R { style.stroke-dash: 4 }
 c2 -- R { style.stroke-dash: 4 }
 c3 -- R { style.stroke-dash: 4 }
-c4 -- H { style.stroke-dash: 4 }
-c5 -- R { style.stroke-dash: 4 }
+c4 -- R { style.stroke-dash: 4 }
 
 ```
 
@@ -55,6 +43,6 @@ The sled has a hardware trigger button. Pulling it generates events that map to 
 
 ### What this implies for the rest of this documentation
 
-These constraints surface in Part III (network and security must work through the host), Part IV (operating modes are tuned to the single antenna), Part V (events focus on battery and BT state), and Part VI (provisioning at scale assumes MDM-managed host devices). They are not caveats footnoted on isolated pages; they are structural.
+These constraints surface in Part III (network and security), Part IV (operating modes are tuned to the single antenna), Part V (events focus on battery state), and Part VI (provisioning at scale assumes MDM-managed readers). They are not caveats footnoted on isolated pages; they are structural.
 
-**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📙 [Bluetooth Pairing](/quick-start/prerequisites/bluetooth-pairing) · 📘 [Trigger Operations](/rfid/operating-mode/trigger-composition) · 📙 [Battery Monitoring](/observability/monitoring/battery)
+**Related:** 📘 [Network Architecture](/infrastructure/network/architecture) · 📘 [Trigger Operations](/rfid/operating-mode/trigger-composition) · 📙 [Battery Monitoring](/observability/monitoring/battery)

@@ -23,7 +23,6 @@ Issue [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-refere
 
 - The Wi-Fi network's DHCP scope has free leases
 - The reader's MAC address is not blocked by MAC filtering
-- The host device, if relaying, has its own IP and can reach DHCP
 
 ### Symptom: DNS resolution failure
 

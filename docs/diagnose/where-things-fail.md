@@ -1,59 +1,44 @@
 ---
 id: where-things-fail
-title: Where things fail (the two-edges model)
+title: Where things fail
 sidebar_label: Where things fail
-description: "The two-edges mental model for IOTC fault isolation: reader-host edge (Bridged) vs host-broker edge. How terminalConnection events show which edge broke."
+description: "A layered mental model for IOTC fault isolation: the Wi-Fi link, the MQTT/broker session, and the application. How get_status, mqttConnEVT, and heartbeat absence show which layer broke."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** All personas in incident response · **Read time:** ~4 min
 
-Diagnose any IOTC failure by first identifying **which physical edge is broken.** The number of edges depends on hardware tier. Get this right and the symptom maps to one of a small set of failure modes. Get it wrong and you debug the symptom in the wrong subsystem.
+Diagnose any IOTC failure by first identifying **which layer of the connection path is broken.** A reader runs IOTC in its own firmware and reaches the broker over a single Wi-Fi edge, so the path is short — but each layer fails differently. Get the layer right and the symptom maps to a small set of failure modes. Get it wrong and you debug in the wrong subsystem.
 
-### Two tiers, different edge counts
-
-**🅓 Direct, one edge**
+### One path, three layers
 
 ```
-   Reader  ──[Wi-Fi]──  AP  ──[LAN]──  WAN  ──[broker]──  Broker
-   ↑                                                          ↑
-   IOTC firmware runs here                          MQTT terminates here
+   Reader  ──[Wi-Fi]──  AP  ──[LAN/WAN]──  Broker  ──[pub/sub]──  Application
+   ↑                                          ↑                        ↑
+   IOTC firmware runs here          MQTT terminates here      consumes events
 ```
 
-A Direct sled (RFD40 Premium / Premium Plus / RFD90) has one physical edge: **Reader ↔ Broker over Wi-Fi.** Everything between the AP and the broker is IT infrastructure outside IOTC's surface.
+The reader (RFD40 Premium / Premium Plus / RFD90) has one physical network edge: **Reader ↔ Broker over Wi-Fi.** Everything between the AP and the broker is IT infrastructure outside IOTC's surface. Failures cluster into three layers: the **Wi-Fi link**, the **MQTT/broker session**, and the **application**.
 
-**🅑 Bridged, two edges**
+### Layer-to-signal mapping
 
-```
-   Reader  ──[Bluetooth/eConnex]──  Host  ──[Wi-Fi or USB]──  Broker
-   ↑                                ↑                                  ↑
-   Sled hardware                    MQTT client runs here     MQTT terminates here
-```
+Each layer produces characteristic signals when it fails. Diagnose by checking these signals in order.
 
-A Bridged sled (RFD40 Standard) has two physical edges: **Reader ↔ Host** (Bluetooth) and **Host ↔ Broker** (any network the host can reach). The host bridges. Failures cluster differently across the two edges.
-
-### Edge-to-signal mapping
-
-Each edge produces characteristic signals when it fails. Diagnose by checking these signals in order.
-
-#### Reader ↔ Wi-Fi (Direct)
+#### Reader ↔ Wi-Fi
 
 - **`get_status.deviceStatus.radioConnection`**: `CONNECTED` means radio firmware sees the Wi-Fi controller.
-- **No `mqttConnEVT`**, the reader cannot reach the broker. Most likely a path-layer problem above Wi-Fi.
-- **`alert_short` `WIFI_*`** — Wi-Fi association failures.
-- **Heartbeats stop, no DISCONNECTED event**: soft failure; reader still has TCP but is internally stuck. Power-cycle.
+- **`alerts` `NETWORK_EVENT`**: Wi-Fi association or network failures.
+- **Heartbeats stop, no DISCONNECTED event**: soft failure; the reader still has TCP but is internally stuck. Power-cycle.
 
-#### Reader ↔ Host (Bridged)
+#### Reader ↔ Broker (MQTT)
 
-- **`get_status.deviceStatus.terminalConnection.status`**: `CONNECTED` or `DISCONNECTED`. This is the Bluetooth state.
-- **`terminalConnection.type`**: `BLUETOOTH`, `CIO`, or `USB`. Which bridge is active.
-- **No commands reach the reader**: host is connected to the broker but the Bluetooth side is broken.
-- **No `dataEVT`** when inventory is running on the host — bridge is dropping events.
+- **`mqttConnEVT`**: broker-perceived connection state (CONNECTED / DISCONNECTED).
+- **No `mqttConnEVT` at all**: the reader cannot reach the broker — firewall, wrong endpoint, or bad credentials.
+- **No commands reach the reader**: subscription-topic mismatch on the CTRL/MGMT endpoint.
 
-#### Host ↔ Broker (Bridged)
+#### Broker ↔ Application
 
-- **`mqttConnEVT`**: same as Direct; reflects the broker-side view of the host's connection.
-- **Host's own MQTT client logs**, the host bridge has its own client with its own observability.
-- **Application sees nothing**, even though the host reports connection, the topic routing may be wrong.
+- **Application sees nothing even though `mqttConnEVT` is CONNECTED**: topic routing or broker ACLs are wrong.
+- **No `dataEVT`** while inventory is running: the DATA endpoint is inactive or a post-filter is excluding tags.
 
 ### A decision tree
 
@@ -62,30 +47,24 @@ Symptom: no tag data arriving in application
   ↓
 1. Are heartbeats arriving?
    No  → Reader is offline. Go to step 2.
-   Yes → Reader is online; problem is downstream. Go to step 4.
+   Yes → Reader is online; problem is downstream. Go to step 3.
   ↓
-2. Bridged or Direct?
-   Direct → Check Reader↔Wi-Fi (via Wi-Fi status / get_status when reachable). Go to FM-NET-01.
-   Bridged  → Go to step 3.
+2. Is mqttConnEVT showing CONNECTED (or arriving at all)?
+   No  → Wi-Fi or broker-reachability problem. Go to FM-NET-01.
+   Yes → Reader reconnected; check the MGMT/CTRL endpoint subscription.
   ↓
-3. Is host showing terminalConnection: CONNECTED?
-   Yes → Bridge problem (host → broker). Go to FM-NET-02.
-   No  → Reader-host problem. Go to FM-DEV-01.
-  ↓
-4. Is inventory running? (get_status.radioActivity)
+3. Is inventory running? (get_status.radioActivity)
    No  → control_operation START hasn't fired. Verify CTRL endpoint and command.
-   Yes → Inventory is running but no events arrive. Go to step 5.
+   Yes → Inventory is running but no events arrive. Go to step 4.
   ↓
-5. Is the DATA endpoint active? (get_endpoint_config)
+4. Is the DATA endpoint active? (get_endpoint_config)
    No  → Activate the DATA endpoint. Go to RP-05.
    Yes → Filter is excluding tags. Check post-filters and metadata enable. Go to FM-DATA-01.
 ```
 
-### Why "edge count" comes first
+### Why "which layer" comes first
 
-Failures are scoped by edge. A Wi-Fi authentication failure on a Direct sled has nothing to do with the broker; you waste time inspecting broker logs. A Bluetooth dropout on a Bridged sled has nothing to do with Wi-Fi; you waste time inspecting AP logs.
-
-Starting with "which tier?" → "which edge?" → "which signal?" gets you to a one-page failure mode quickly. The symptom index in [Something's broken?](/diagnose/symptoms) is organised around exactly this hierarchy.
+Failures are scoped by layer. A Wi-Fi authentication failure has nothing to do with the broker; you waste time inspecting broker logs. A broker ACL problem has nothing to do with the radio; you waste time power-cycling the reader. Starting with "which layer?" → "which signal?" gets you to a one-page failure mode quickly. The symptom index in [Something's broken?](/diagnose/symptoms) is organised around exactly this hierarchy.
 
 ### Three signals to learn
 
@@ -93,7 +72,7 @@ Three commands and events together cover most of the diagnostic surface:
 
 | Signal | What it tells you | When to use |
 |---|---|---|
-| [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) | Power, radio, terminal connection, NTP, battery | First check on any new symptom |
+| [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) | Power, radio, NTP, battery, connection state | First check on any new symptom |
 | `mqttConnEVT` | Broker-perceived connection state | When the application can't tell whether the reader is offline |
 | `heartbeatEVT` (absence) | Heartbeats stopping is a signal of silent offline | When `mqttConnEVT` and [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-status) disagree |
 
@@ -101,7 +80,7 @@ If all three are healthy and the symptom persists, the problem is downstream of 
 
 ### Out of scope
 
-- **Specific failure modes per edge**: covered as FM-XX-YY entries in the symptom index and failure-mode pages.
+- **Specific failure modes per layer**: covered as FM-XX-YY entries in the symptom index and failure-mode pages.
 - **Recovery procedures**: covered in [Playbooks for getting back online](/diagnose/recovery-playbooks).
 - **Why the system fails the way it does**: covered in the relevant explanation chapters in Parts 4–6.
 

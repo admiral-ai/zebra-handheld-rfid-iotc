@@ -121,4 +121,4 @@ A future IOTC version may adopt 5.0; today, every example in these docs is 3.1.1
 - For the `mqttConnEVT` event that surfaces connection state: [Knowing when you're connected](/observability/mqtt-connection).
 - For the protocol itself, the standard reference is the MQTT 3.1.1 OASIS standard at [docs.oasis-open.org/mqtt](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/mqtt-v3.1.1.html).
 
-**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [How commands and responses flow](/foundations/communication-flow)
+**Related:** 📘 [Roles: Reader, Broker, Application](/foundations/actors) · 📘 [How commands and responses flow](/foundations/communication-flow)

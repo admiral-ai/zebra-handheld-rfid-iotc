@@ -77,7 +77,7 @@ const sidebars: SidebarsConfig = {
         type: 'generated-index',
         title: 'Part 3: Quick start',
         description:
-          'A seven-phase, end-to-end walkthrough from a sealed box to live inventory and back. Phase 0 covers prerequisites; Phase 2 splits into Direct (123RFID Desktop) and Bridged (123RFID Mobile) variants.',
+          'A seven-phase, end-to-end walkthrough from a sealed box to live inventory and back. Phase 0 covers prerequisites.',
         slug: '/part-3',
       },
       items: [
@@ -91,33 +91,16 @@ const sidebars: SidebarsConfig = {
             type: 'generated-index',
             title: 'Phase 0: Prerequisites',
             description:
-              'Hardware, software, credentials, and a Bluetooth pair (when required). Get these in place before Phase 1.',
+              'Hardware, software, and credentials. Get these in place before Phase 1.',
             slug: '/quick-start/phase-0',
           },
           items: [
             'quick-start/prerequisites/requirements',
             'quick-start/prerequisites/credentials',
-            'quick-start/prerequisites/bluetooth-pairing',
           ],
         },
         'quick-start/phase-1',
-        {
-          type: 'category',
-          label: 'Phase 2: Bootstrap (Direct or Bridged)',
-          collapsible: true,
-          collapsed: false,
-          link: {
-            type: 'generated-index',
-            title: 'Phase 2: Bootstrap (Direct or Bridged)',
-            description:
-              'Pick the tier-matched walkthrough: Direct sleds via 123RFID Desktop on Windows, or Bridged (RFD40 Standard) via 123RFID Mobile on Android.',
-            slug: '/quick-start/phase-2',
-          },
-          items: [
-            'quick-start/phase-2/direct',
-            'quick-start/phase-2/bridged',
-          ],
-        },
+        'quick-start/phase-2',
         'quick-start/phase-3',
         'quick-start/phase-4',
         'quick-start/phase-5',
@@ -135,7 +118,7 @@ const sidebars: SidebarsConfig = {
         type: 'generated-index',
         title: 'Part 4: Manage your reader',
         description:
-          'Device state, network configuration, MQTT endpoints, TLS and certificate management, the unified config document, and firmware / reboot operations. Each chapter maps to a sub-tag of the external MQTT API Reference.',
+          'Device state, network configuration, MQTT endpoints, TLS and certificate management, and firmware / reboot operations. Each chapter maps to a sub-tag of the external MQTT API Reference.',
         slug: '/part-4',
       },
       items: [
@@ -144,7 +127,6 @@ const sidebars: SidebarsConfig = {
         'infrastructure/network/wifi',
         'infrastructure/endpoints/about',
         'infrastructure/security/model',
-        'infrastructure/config-document',
         'infrastructure/system-operations',
       ],
     },

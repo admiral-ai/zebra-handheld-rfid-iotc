@@ -15,7 +15,7 @@ A failing IOTC interaction lives in one of four layers:
 
 - **Application**, your code, your environment, your assumptions
 - **MQTT**: broker, credentials, ACLs, TLS, topics
-- **Network**: Wi-Fi, Bluetooth, firewall, DNS
+- **Network**: Wi-Fi, firewall, DNS
 - **RFID**: radio subsystem, antenna, tag population
 
 Asking "which layer?" first is more productive than "what's wrong?", most problems become tractable once the layer is identified.
@@ -35,7 +35,7 @@ Change one thing at a time. If you suspect a Wi-Fi profile, test by switching to
 
 #### Step 4: Test the hypothesis
 
-State the hypothesis concretely ("the reader cannot resolve `iotc-broker.zebra.com`"). Identify a test that would confirm or refute it (DNS query from the host device). Execute the test. The hypothesis is right or it's not — design the test so the answer is unambiguous.
+State the hypothesis concretely ("the reader cannot resolve `iotc-broker.zebra.com`"). Identify a test that would confirm or refute it (DNS query from a host on the network). Execute the test. The hypothesis is right or it's not — design the test so the answer is unambiguous.
 
 #### Step 5: Verify the fix
 

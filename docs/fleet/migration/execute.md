@@ -23,7 +23,7 @@ Watch for reconnection via `mqttConnEVT: CONNECTED` and resumed `heartbeatEVT`.
 
 | Wave | % of fleet | Wait | Pass criteria |
 |---|---:|---|---|
-| 1 | 1–5% canary | 24h | Reconnect; baseline match per [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) |
+| 1 | 1–5% canary | 24h | Reconnect; baseline match per [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) |
 | 2 | 10% | 24h | Same |
 | 3 | 50% | 12h | Same |
 | 4 | 100% | — | Same |

@@ -11,7 +11,7 @@ A handheld-reader migration is firmware-version-based. The IOTC V1.0 and V1.1 AP
 
 ### Pre-migration baseline
 
-For each reader in scope, issue [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) and store the response as the baseline. This captures the full state including endpoints, Wi-Fi profiles, certificates (by reference), and the active operating-mode configuration.
+For each reader in scope, issue the per-domain read commands ([`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config), [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi), [`get_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-operating-mode)) and store the responses as the baseline. This captures the full state including endpoints, Wi-Fi profiles, certificates (by reference), and the active operating-mode configuration.
 
 ### Risk register
 
@@ -21,7 +21,7 @@ For each reader in scope, issue [`get_config`](https://aa5123.github.io/RFID-40-
 
 ### Go/no-go checklist
 
-- [ ] Baseline [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) captured for every reader
+- [ ] Baseline per-domain reads ([`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config)) captured for every reader
 - [ ] Canary cohort identified
 - [ ] Firmware URL reachable from the reader's network
 - [ ] Sufficient battery (else error code 14) and flash (else code 8) on canary devices

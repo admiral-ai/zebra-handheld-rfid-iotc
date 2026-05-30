@@ -32,7 +32,7 @@ Profiles are portable: the same `.iotcprofile` file works across compatible firm
 
 ### Verify post-apply
 
-After provisioning, power on each reader and pair with its host device. The reader should connect to MQTT within seconds. Subscribe to `mqttConnEVT` with a wildcard to confirm all batch members are online.
+After provisioning, power on each reader. It should connect to MQTT within seconds over its own Wi-Fi. Subscribe to `mqttConnEVT` with a wildcard to confirm all batch members are online.
 
 ```d2
 direction: right
@@ -54,4 +54,4 @@ Imp -> fleet.Rn
 
 ```
 
-**Related:** 📘 [Provisioning Models](/fleet/provisioning-models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct)
+**Related:** 📘 [Provisioning Models](/fleet/provisioning-models) · 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2)

@@ -2,7 +2,7 @@
 id: connection-quality
 title: How to monitor connection quality
 sidebar_label: How to Monitor Connection Quality
-description: "Monitor IOTC reader MQTT connection quality: mqttConnEVT reconnect counts, terminalConnection bounces (Bridged), Wi-Fi RSSI, broker drop signals."
+description: "Monitor IOTC reader MQTT connection quality: mqttConnEVT reconnect counts, Wi-Fi RSSI, broker drop signals."
 ---
 
 > 📙 **HOW-TO** · **Audience:** Fleet Operator · **Time:** ~10 min
@@ -13,13 +13,9 @@ This guide shows you how to monitor the connection quality of a handheld reader 
 
 The `heartbeatEVT.data.wifi_rssi` field reports the current Wi-Fi signal strength. Typical operational range: −40 to −70 dBm. Sustained values below −75 dBm indicate marginal Wi-Fi; the reader may roam between APs frequently.
 
-### Bluetooth link quality
-
-The `heartbeatEVT.data.bt_link_quality` field reports the BT link health (0–100 scale). Values below 40 indicate degraded BT — operator may be moving in and out of range or operating in an RF-noisy environment.
-
 ### MQTT connection stability
 
-Maintain a count of `mqttConnEVT` transitions per reader over rolling windows. A reader with more than 10 reconnects per hour likely has a connectivity issue — Wi-Fi roaming, BT instability, or broker capacity.
+Maintain a count of `mqttConnEVT` transitions per reader over rolling windows. A reader with more than 10 reconnects per hour likely has a connectivity issue — Wi-Fi roaming or broker capacity.
 
 ```d2
 classes: {

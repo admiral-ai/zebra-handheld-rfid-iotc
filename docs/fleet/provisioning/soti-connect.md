@@ -15,7 +15,7 @@ A configured SOTI Connect instance with MQTT broker integration, administrator c
 
 ### Step 1: Configure the MDM endpoint on readers
 
-During 123RFID Desktop bootstrap ([Phase 2 of the Quick Start](/quick-start/phase-2/direct)), set the MDM endpoint URL to your SOTI Connect MQTT-broker hostname and credentials.
+During 123RFID Desktop bootstrap ([Phase 2 of the Quick Start](/quick-start/phase-2)), set the MDM endpoint URL to your SOTI Connect MQTT-broker hostname and credentials.
 
 ### Step 2: Enroll devices in SOTI Connect
 
@@ -50,7 +50,7 @@ Prof -> MDM
 MDM -> fleet.R1
 MDM -> fleet.R2
 MDM -> fleet.Rn
-fleet.R1 -> SOTI: "alert_short\nmanaged status" { style.stroke-dash: 4 }
+fleet.R1 -> SOTI: "managed status" { style.stroke-dash: 4 }
 fleet.R2 -> SOTI { style.stroke-dash: 4 }
 fleet.Rn -> SOTI { style.stroke-dash: 4 }
 
@@ -58,6 +58,6 @@ fleet.Rn -> SOTI { style.stroke-dash: 4 }
 
 ### Verify
 
-Watch `alert_short` events on the MDM interface: a successfully managed reader emits a "managed" status alert. SOTI Connect's device-detail view shows the same.
+Watch `alerts` events on the MDM interface: a successfully managed reader emits a "managed" status alert. SOTI Connect's device-detail view shows the same.
 
-**Related:** 📘 [Provisioning Models](/fleet/provisioning-models) · 📕 [MDM Interface](/reference/api-overview) · 📕 [alert_short](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#tag-alert-short) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)
+**Related:** 📘 [Provisioning Models](/fleet/provisioning-models) · 📕 [MDM Interface](/reference/api-overview) · 📙 [Endpoint Configuration](/infrastructure/endpoints/configure)

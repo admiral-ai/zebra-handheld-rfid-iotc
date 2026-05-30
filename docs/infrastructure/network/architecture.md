@@ -2,7 +2,7 @@
 id: architecture
 title: Getting on the network (Wi-Fi and Ethernet)
 sidebar_label: Getting on the network (Wi-Fi & Ethernet)
-description: "How IOTC sleds get on the network: Direct-tier Wi-Fi 6 in firmware, Bridged-tier Bluetooth bridging via the host. Includes Ethernet cradle support."
+description: "How IOTC sleds get on the network: native Wi-Fi 6 in firmware, plus the read-only broker-side Ethernet view. Includes Wi-Fi profiles, security types, and limits."
 ---
 
 > 📘 **EXPLANATION** · **Audience:** Solution Builder · **Read time:** ~5 min · **Ties to:** Network Configuration sub-tag of the API Reference
@@ -11,19 +11,17 @@ description: "How IOTC sleds get on the network: Direct-tier Wi-Fi 6 in firmware
 Sub-tag: Network Configuration. Operations: [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) · [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) · [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) · [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
 :::
 
-A sled gets to the broker over **Wi-Fi** (Direct tier — Premium, Premium Plus, RFD90) or **Bluetooth bridged through a host** (Bridged tier — RFD40 Standard). Ethernet does not exist on the sled itself; [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
+A sled gets to the broker over its own **Wi-Fi** (Premium, Premium Plus, RFD90). Ethernet does not exist on the sled itself; [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) reads the *broker-side* Ethernet posture when that is what's reachable. This chapter is the Wi-Fi-on-the-sled surface plus the read-only Ethernet view.
 
 ### What lives where
 
-On a Direct sled, Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
+Wi-Fi credentials and IPv4 strategy live in firmware. They were provisioned by 123RFID Desktop during Phase 2 of the Quick Start. After that, you can:
 
 - **Read** them with [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) (lists configured profiles).
 - **Add or modify** them with [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) (operation `CREATE` or `MODIFY`).
 - **Remove** them with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile).
 
-On a Bridged sled, there is no on-sled Wi-Fi. The host device runs the MQTT client and provides the network path. Wi-Fi configuration lives on the host, not on the sled.
-
-### Wi-Fi limits on Direct sleds
+### Wi-Fi limits
 
 | Constraint | Value | Returned as |
 |---|---|---|
@@ -109,13 +107,12 @@ Radio  →  Access Point  →  LAN  →  WAN / VPN  →  Broker
   set_wifi    Wi-Fi env   IT-managed  IT-managed   broker config
 ```
 
-Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/diagnose/where-things-fail) for the edge-isolation diagnostic frame.
+Each segment has its own failure profile. The sled controls only the first; the rest are IT / network domain. See [Where things fail](/diagnose/where-things-fail) for the layered diagnostic frame.
 
 ### Out of scope
 
 - **TLS over MQTT**, see [Securing the connection (TLS & certificates)](/infrastructure/security/model).
 - **The full configuration of an MQTT endpoint**, see [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
 - **Network failure modes**, see [Where things fail](/diagnose/where-things-fail).
-- **Bridged host-bridge configuration**: host-side configuration of the BT bridge is out of IOTC scope; it lives in the host application or SDK.
 
 **Related:** 📘 [Securing the connection (TLS & certificates)](/infrastructure/security/model) · 📘 [How the MQTT plumbing fits together](/infrastructure/endpoints/about) · 📕 [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

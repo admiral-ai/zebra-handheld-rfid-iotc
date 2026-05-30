@@ -31,7 +31,6 @@ Two-field payload; the response carries `readerVersion.detailedVersions.iotcVers
 
 - **Power and battery**: `powerSource` (DC / WALLCHARGER / USB / CRADLE), `batteryStatus.chargePercentage`, `batteryStatus.stateOfHealth`.
 - **Radio state**: `radioActivity` (INACTIVE / ACTIVE), `radioConnection` (CONNECTED / DISCONNECTED).
-- **Terminal connection**, for Bridged sleds, the Bluetooth bridge state in `terminalConnection.status`.
 - **NTP synchronisation**: `ntp.reach` (non-zero means NTP is reaching its server).
 - **Time and temperature**: `systemTime` ISO 8601, `temperature` in °C.
 
@@ -78,10 +77,9 @@ If a freshly-bootstrapped reader reports a region that does not match the deploy
 
 ### Out of scope
 
-- The full configuration document, that's [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) / [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) in [The reader's configuration document](/infrastructure/config-document).
 - Network configuration — [`get_eth`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-eth) / [`get_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-wifi) in [Getting on the network](/infrastructure/network/architecture).
 - Endpoint listing — [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) in [How the MQTT plumbing fits together](/infrastructure/endpoints/about).
 
 Each of those is a deeper surface. This chapter is the lightweight introspection set you should run first whenever a reader feels wrong.
 
-**Related:** 📘 [Roles: Reader, Host, Broker, Application](/foundations/actors) · 📘 [The reader's configuration document](/infrastructure/config-document) · 📕 [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)
+**Related:** 📘 [Roles: Reader, Broker, Application](/foundations/actors) · 📕 [`get_version`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_status`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/) · 📕 [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/)

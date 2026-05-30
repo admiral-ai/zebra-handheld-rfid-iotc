@@ -67,7 +67,7 @@ For each reader, add three dedicated endpoints (only the MGMT example shown; CTR
 ### Step 4: Capture golden baseline from reader 1
 
 ```json
-{"command": "get_config", "requestId": "step4"}
+{"command": "get_endpoint_config", "requestId": "step4"}
 ```
 
 Save the response (full snapshot), this is the golden config.
@@ -83,7 +83,7 @@ For each of readers 2 and 3, send the following sequence of commands derived fro
 - [`set_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-post-filter) reproducing the post-filter set (captured via [`get_post_filter`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-post-filter))
 - [`config_events`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-events) reproducing the event configuration
 
-**You should see** subsequent [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) outputs on readers 2 and 3 match the baseline on every domain.
+**You should see** subsequent [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) outputs on readers 2 and 3 match the baseline on every domain.
 
 ### Step 6: Enable heartbeats fleet-wide
 
@@ -117,9 +117,9 @@ mosquitto_sub -h iotc-broker.zebra.com -p 8883 \
 
 ### Recap
 
-You provisioned, secured, configured, and monitored a three-reader fleet end-to-end. The replay pattern in Step 5 — per-domain commands derived from a [`get_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-config) baseline — scales to fleets of any size; only the orchestration changes.
+You provisioned, secured, configured, and monitored a three-reader fleet end-to-end. The replay pattern in Step 5 — per-domain commands derived from a [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) baseline — scales to fleets of any size; only the orchestration changes.
 
-**Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct) · 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [Apply Bulk Configuration](/fleet/management/apply-config) · 📙 [Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
+**Related:** 📗 [Phase 2: Single-Reader Bootstrap with 123RFID Desktop](/quick-start/phase-2) · 📙 [Certificate Management](/infrastructure/security/certificate-management) · 📙 [TLS Setup](/infrastructure/security/tls-setup) · 📙 [SOTI Provisioning](/fleet/provisioning/soti-connect) · 📙 [Fleet Health Dashboard](/observability/monitoring/fleet-dashboard)
 
 ---
 

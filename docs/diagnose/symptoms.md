@@ -13,7 +13,7 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 
 | Symptom | Likely cause | Go to |
 |---|---|---|
-| 123RFID Desktop can't find my sled | USB cable is charge-only; sled is asleep; Bluetooth disabled | [RP-01: Connect a sled to 123RFID Desktop](/diagnose/recovery-playbooks#rp-01) |
+| 123RFID Desktop can't find my sled | USB cable is charge-only; sled is asleep | [RP-01: Connect a sled to 123RFID Desktop](/diagnose/recovery-playbooks#rp-01) |
 | Wi-Fi associates but sled doesn't reach the broker | DNS, routing, firewall on the sled's segment | [FM-NET-01: Network path between sled and broker](/diagnose/failure-modes#fm-net-01) |
 | MDM endpoint configured but no broker connection | Wrong credentials, wrong port, broker not accepting client | [FM-NET-02: MDM endpoint won't connect](/diagnose/failure-modes#fm-net-02) |
 | No MQTT command works after bootstrap | MDM endpoint isn't active | [RP-02: Activate the bootstrap MDM endpoint](/diagnose/recovery-playbooks#rp-02) |
@@ -62,7 +62,6 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 | `mqttConnEVT.timestamp` parser failing | Format is `HH:MM:SS`, not ISO 8601 | [MM-05: mqttConnEVT timestamp is not ISO 8601](/diagnose/misconceptions#mm-05) |
 | Heartbeats stop arriving | Reader offline (broker may still show connected) | [RP-07: Diagnose silent-offline state](/diagnose/recovery-playbooks#rp-07) |
 | Heartbeat `inventoryStatus` block missing | `heartbeatConfiguration.inventoryStatus: false` | [FM-EVT-02: Heartbeat verbosity](/diagnose/failure-modes#fm-evt-02) |
-| `alert_short` arriving but `alerts` not | Endpoint routing; they're separate streams | [FM-EVT-03: Two alert variants, two routes](/diagnose/failure-modes#fm-evt-03) |
 
 ### TLS, certificates, network
 
@@ -77,18 +76,10 @@ Pick the symptom that matches what you are actually seeing. Each row links to a 
 
 | Symptom | Likely cause | Go to |
 |---|---|---|
-| One reader's configuration differs from canonical | Local operator edit; failed [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) push | [RP-08: Reconcile drift](/diagnose/recovery-playbooks#rp-08) |
+| One reader's configuration differs from canonical | Local operator edit; failed config push | [RP-08: Reconcile drift](/diagnose/recovery-playbooks#rp-08) |
 | Operating mode lost after reboot | Expected; radio-operation config doesn't survive reboot | [MM-06: Not all configuration survives reboot](/diagnose/misconceptions#mm-06) |
 | Fleet-wide firmware update failed on some readers | Mixed firmware/hardware; battery-low gate | [RP-09: Stagger and retry rollout](/diagnose/recovery-playbooks#rp-09) |
 | Two readers fight over same serial number | Should not happen; serial is unique. Check device labelling | [FM-FLEET-01: Identity collision](/diagnose/failure-modes#fm-fleet-01) |
-
-### Bridged-specific (RFD40 Standard) 🅑
-
-| Symptom | Likely cause | Go to |
-|---|---|---|
-| `terminalConnection.status: DISCONNECTED` | Bluetooth link to host lost | [FM-DEV-01: BT bridge dropped](/diagnose/failure-modes#fm-dev-01) |
-| Host bridges to broker but reader silent | Host's MQTT client mis-wired | [FM-DEV-02: Bridge routing](/diagnose/failure-modes#fm-dev-02) |
-| Reader works from Bridged host but not when host moves | Bluetooth range; AP isolation | [FM-DEV-03: Mobility breaks bridge](/diagnose/failure-modes#fm-dev-03) |
 
 ### Catch-all
 

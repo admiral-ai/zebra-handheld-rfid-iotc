@@ -8,7 +8,7 @@ description: "General FAQ about IOTC for handheld RFID: what it is, what it isn'
 > 📕 **REFERENCE**
 
 **Q:** What hardware does IOTC for Handheld RFID support?
-**A:** The RFD40 (Standard and Premium) and RFD90 sleds running firmware 3.10.27 or later.
+**A:** The RFD40 (Premium and Premium Plus) and RFD90 sleds running firmware 3.10.27 or later.
 **Details:** [About Supported Hardware](/foundations/hardware-tiers)
 
 ---

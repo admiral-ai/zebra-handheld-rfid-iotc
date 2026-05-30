@@ -1,21 +1,13 @@
 ---
-id: direct
-title: "Phase 2: Bootstrap (Direct, 123RFID Desktop)"
-sidebar_label: "Direct (123RFID Desktop)"
-description: "Phase 2 (Direct tier) of the IOTC Quick Start: use 123RFID Desktop on Windows to set Wi-Fi, region, and the MDM endpoint over USB-C. Bridged: phase-2/bridged."
+id: phase-2
+title: "Phase 2: Bootstrap the reader (123RFID Desktop)"
+sidebar_label: "Phase 2: Bootstrap the reader"
+description: "Phase 2 of the IOTC Quick Start: use 123RFID Desktop on Windows to set the region, Wi-Fi, and the MDM endpoint over USB-C."
 ---
 
-> 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with a Windows laptop · **Time:** ~8 min · **Path:** 🅓 Direct (USB-C)
+> 📗 **TUTORIAL** · **Phase:** 2 of 7 · **Audience:** Operator with a Windows laptop · **Time:** ~8 min
 
 **Artifact this phase produces:** an **active MDM endpoint** on the sled, connected to your broker. The MDM endpoint is the bootstrap connection, the first live MQTT path into and out of the reader. **Until this is active, no MQTT command works.**
-
-:::tip[Bridged sled?]
-**Bootstrapping a Bridged (RFD40 Standard) sled?** Use **123RFID Mobile** on an Android device instead — see the sibling page [Phase 2: Bridged (123RFID Mobile)](/quick-start/phase-2/bridged). The Standard sled has no USB-C bootstrap path and no on-sled Wi-Fi radio — its host phone supplies the network. The logical bootstrap steps are identical (region → endpoint → activate); only the transport and UI differ.
-:::
-
-:::tip[No Windows laptop?]
-**Premium / Premium Plus / RFD90 operator without a Windows laptop?** 123RFID Mobile also bootstraps Direct sleds over Bluetooth. Use either page; the post-bootstrap MQTT surface is identical.
-:::
 
 ### Why this phase exists
 
@@ -32,7 +24,7 @@ Download from `support.zebra.com` (search "123RFID Desktop"). Latest is v3.0.0.6
 
 ### Discover and connect the reader
 
-Before configuring Wi-Fi or MQTT, discover and connect the reader to your PC via a direct connection (USB-C cable, or Bluetooth if the reader is paired with the host).
+Before configuring Wi-Fi or MQTT, discover and connect the reader to your PC over USB-C.
 
 #### Initiate discovery
 
@@ -42,9 +34,9 @@ Click the **FIND READERS** button on the main screen.
 
 #### Select the connection type
 
-In the Reader Discovery screen, click the **Bluetooth** icon (or **USB** if connecting via cable) to scan for nearby devices.
+In the Reader Discovery screen, click the **USB** icon to scan for the connected reader.
 
-![Reader Discovery screen showing Bluetooth and USB connection-type icons](/img/quick-start/02-discovery-bluetooth-usb.png)
+![Reader Discovery screen showing the USB connection-type icon](/img/quick-start/02-discovery-bluetooth-usb.png)
 
 #### Choose your device
 

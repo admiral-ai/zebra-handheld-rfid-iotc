@@ -7,7 +7,7 @@ description: "Catalogue of IOTC failure modes (FM-NN): canonical faults covering
 
 > 🩺 **FAILURE MODE CATALOGUE** · **Audience:** All personas in incident response · **Use:** explain *why* a symptom is happening
 
-Twenty-four catalogued failure modes covering bootstrap, network, configuration, inventory, data, firmware, events, security, the Bridged host bridge, and fleet identity. Each entry names the failure, explains the underlying cause, lists the signals that confirm it, gives the corrective steps (or points to a recovery playbook), and links to the concept chapter that explains the surface in depth.
+Twenty catalogued failure modes covering bootstrap, network, configuration, inventory, data, firmware, events, security, and fleet identity. Each entry names the failure, explains the underlying cause, lists the signals that confirm it, gives the corrective steps (or points to a recovery playbook), and links to the concept chapter that explains the surface in depth.
 
 Identifiers are stable. `FM-XX-NN` codes do not change as new entries are added; link to them directly.
 
@@ -20,7 +20,6 @@ The entries are grouped:
 - [Firmware (FM-FW)](#fm-fw) — [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) rejection conditions.
 - [Events (FM-EVT)](#fm-evt) — heartbeats, alerts, and connection events.
 - [Security (FM-SEC)](#fm-sec) — TLS handshake and certificate install issues.
-- [Device link (FM-DEV)](#fm-dev) — Bridged-only Bluetooth bridge problems.
 - [Fleet (FM-FLEET)](#fm-fleet) — identity-level cross-device anomalies.
 
 ---
@@ -49,7 +48,7 @@ The entries are grouped:
 
 **Fix.** Drop to plain `MQTT` on `1883` first to isolate TLS from authentication issues. Verify credentials against what the broker expects. If TLS is required, install the broker CA via [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) (type `mqtt`) before activating. See also [FM-NET-03](#fm-net-03) for the reconnect loop variant.
 
-**See.** [Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct) · [Securing the connection](/infrastructure/security/model)
+**See.** [Bootstrap with 123RFID Desktop](/quick-start/phase-2) · [Securing the connection](/infrastructure/security/model)
 
 ### FM-NET-03: Reconnect loop {#fm-net-03}
 
@@ -65,7 +64,7 @@ The entries are grouped:
 
 ### FM-NET-04: Wi-Fi Enterprise auth failure {#fm-net-04}
 
-**Symptom.** Wi-Fi profile configured for `WPA2Enterprise` or `WPA3Enterprise`; sled associates briefly then drops. `alert_short` emits `WIFI_CONFIG_FAIL`.
+**Symptom.** Wi-Fi profile configured for `WPA2Enterprise` or `WPA3Enterprise`; sled associates briefly then drops. `alerts` reports the Wi-Fi config failure.
 
 **Cause.** Missing or expired certificate chain on the device, wrong logical name referenced in `set_wifi.security.certificate[].name`, EAP method mismatch (the AP requires PEAP but the profile uses TLS), or revoked client certificate.
 
@@ -161,7 +160,7 @@ The entries are grouped:
 
 **Cause.** Another firmware update is already running. [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) is asynchronous; once accepted (code `1`), it runs to completion (success or `FIRMWARE_UPDATE_FAIL`). A second [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os) during that window is rejected.
 
-**Fix.** Wait for the terminal `alert_short` (`FIRMWARE_UPDATE_SUCCESS` or `FIRMWARE_UPDATE_FAIL`) before sending another [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os). If you need to interrupt an in-progress update, the safe path is to wait it out; there is no documented cancel command.
+**Fix.** Wait for the terminal `alerts` `FIRMWARE_UPDATE` (`state: SET` → `CLEAR`) before sending another [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os). If you need to interrupt an in-progress update, the safe path is to wait it out; there is no documented cancel command.
 
 **See.** [Updating firmware and rebooting](/infrastructure/system-operations)
 
@@ -171,9 +170,9 @@ The entries are grouped:
 
 **Cause.** Free flash storage on the device is insufficient to download the firmware file. Common consumers of flash: large retention buffer for tag data, installed certificates, saved Wi-Fi profiles.
 
-**Fix.** Reduce the retention buffer in `set_config.dataConfiguration.retention`. Delete unused certificates with [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate). Delete unused Wi-Fi profiles with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile). Then retry [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os).
+**Fix.** Delete unused certificates with [`delete_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-certificate). Delete unused Wi-Fi profiles with [`delete_wifi_profile`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-delete-wifi-profile). Then retry [`set_os`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-os).
 
-**See.** [Updating firmware and rebooting](/infrastructure/system-operations) · [The reader's configuration document](/infrastructure/config-document)
+**See.** [Updating firmware and rebooting](/infrastructure/system-operations)
 
 ### FM-FW-03: Firmware source unreachable {#fm-fw-03}
 
@@ -207,9 +206,9 @@ The entries are grouped:
 
 **Symptom.** Broker logs show the sled connecting and disconnecting, but the application's subscriber to `mqttConnEVT` receives nothing.
 
-**Cause.** Two possible mismatches. (a) No active endpoint routes events of type `network` or `terminalConnection`. (b) The endpoint's `eventConfiguration` flag is `false`.
+**Cause.** Two possible mismatches. (a) No active endpoint routes events of type `network`. (b) The endpoint's `eventConfiguration` flag is `false`.
 
-**Confirm.** Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) and inspect each active endpoint's `eventConfiguration`. Look for `network: true` and (for Bridged) `terminalConnection: true`.
+**Confirm.** Run [`get_endpoint_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-endpoint-config) and inspect each active endpoint's `eventConfiguration`. Look for `network: true`.
 
 **Fix.** Set the flags via `config_events.eventConfiguration` or per-endpoint via `config_endpoint.configuration.eventConfiguration`. Ensure at least one active endpoint of type `MGMT_EVT` or `MDM` carries the event stream.
 
@@ -224,16 +223,6 @@ The entries are grouped:
 **Fix.** Set `heartbeatConfiguration.inventoryStatus: true` and `.batteryStatus: true` via `config_events.eventConfiguration.heartbeatConfiguration`. The next heartbeat will include the sub-blocks.
 
 **See.** [Watch your reader's pulse](/observability/heartbeat)
-
-### FM-EVT-03: Two alert variants, two routes {#fm-evt-03}
-
-**Symptom.** Application receives `alert_short` but not `alerts`, or vice versa.
-
-**Cause.** `alert_short` and `alerts` are two distinct event streams with overlapping but not identical trigger sets. `alert_short` is optimised for MDM consumption (compact, broad `id` enum); `alerts` is application-facing (verbose, with `alertDetails`). Each is published on the endpoint(s) configured to carry it, and they can be routed independently.
-
-**Fix.** To receive both, ensure two endpoints (or one endpoint with both event flags) subscribe. Inspect each active endpoint's `eventConfiguration` to confirm both alert paths are enabled where you expect them.
-
-**See.** [When the reader needs to interrupt you](/observability/alerts)
 
 ---
 
@@ -251,7 +240,7 @@ The entries are grouped:
 
 ### FM-SEC-02: Certificate install failure {#fm-sec-02}
 
-**Symptom.** [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) returns response code `9` (file not found), or `alert_short` emits `MQTT_INSTALL_CERTIFICATE_FAIL` / `WIFI_INSTALL_CERTIFICATE_FAIL` / `FILESTORE_INSTALL_CERTIFICATE_FAIL`.
+**Symptom.** [`install_certificate`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-install-certificate) returns response code `9` (file not found), or `alerts` reports the certificate-install failure.
 
 **Cause.** With `certSource: HTTP`, the source URL is unreachable or the file is missing. With `certSource: DIRECT`, the inline PEM content is malformed. For HTTPS sources, the filestore CA is required before the chain can be verified.
 
@@ -270,40 +259,6 @@ The entries are grouped:
 **Fix.** Either reinstall the certificate under the expected name, or update the endpoint configuration to reference the actual installed name. Pick a naming convention and apply it consistently.
 
 **See.** [Securing the connection](/infrastructure/security/model)
-
----
-
-## Device link (Bridged only) {#fm-dev}
-
-### FM-DEV-01: BT bridge dropped {#fm-dev-01}
-
-**Symptom.** `get_status.deviceStatus.terminalConnection.status: DISCONNECTED` on an RFD40 Standard sled. Commands sent to the sled get no response.
-
-**Cause.** The Bluetooth link between the sled and its host device has been lost. Common triggers: host went out of range (~10 m), host's OS suspended Bluetooth, OS Bluetooth stack reset, or interference on the 2.4 GHz band.
-
-**Fix.** Bring the host within range, wake it, and re-pair via 123RFID Desktop if needed. If the problem is chronic, audit the host's Bluetooth power-management settings.
-
-**See.** [Roles: Reader, Host, Broker, Application](/foundations/actors)
-
-### FM-DEV-02: Bridge routing {#fm-dev-02}
-
-**Symptom.** Host reports active broker connection; sled's Bluetooth link is connected; but commands published from the application don't reach the sled, or responses don't return.
-
-**Cause.** The host's MQTT-to-Bluetooth bridge software is not forwarding correctly. Possible causes: bridge subscribed to the wrong topic prefix on the broker side, bridge bug, or the bridge's outbound queue overflowed and started dropping messages.
-
-**Fix.** Inspect host bridge logs to confirm it sees incoming commands. Verify the bridge subscribes to the same topic shape as [`config_endpoint`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-config-endpoint) defined. Restart the bridge process. If the bridge is custom-built, add logging on both Bluetooth and MQTT sides.
-
-**See.** [Roles: Reader, Host, Broker, Application](/foundations/actors)
-
-### FM-DEV-03: Mobility breaks bridge {#fm-dev-03}
-
-**Symptom.** Sled works when the operator is stationary, fails intermittently or completely when the operator walks with the host.
-
-**Cause.** Bluetooth has limited range (~10 m) and is sensitive to body absorption. When the host moves between Wi-Fi APs, the new AP may have AP-isolation enabled (blocking backend access from that segment). Some host BT chips throttle under motion.
-
-**Fix.** Keep sled and host within 5 m of each other on the body, with the host on the same side as the sled (line-of-sight, not blocked by torso). Disable AP isolation on the relevant Wi-Fi infrastructure. For mobility-critical deployments, switch to a Direct sled (RFD40 Premium / Premium Plus / RFD90), which removes the host dependency entirely.
-
-**See.** [Which sled do you have?](/foundations/hardware-tiers)
 
 ---
 
@@ -328,5 +283,5 @@ The entries are grouped:
 - [Something's broken?](/diagnose/symptoms) — the symptom-first index that points here.
 - [Playbooks for getting back online](/diagnose/recovery-playbooks) — the corresponding recovery playbooks (RP-01 through RP-09).
 - [Things people get wrong about IOTC](/diagnose/misconceptions) — recurring misconceptions and their corrections (MM-01 through MM-15).
-- [Where things fail](/diagnose/where-things-fail) — the edge-isolation framework underlying every FM in this catalogue.
+- [Where things fail](/diagnose/where-things-fail) — the layered framework underlying every FM in this catalogue.
 - [Command Response Error Codes](/reference/errors/codes) — full table of response codes referenced by many FM entries.

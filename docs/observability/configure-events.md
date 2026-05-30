@@ -2,7 +2,7 @@
 id: configure-events
 title: Choose what the reader tells you
 sidebar_label: Choose what the reader tells you
-description: "Configure which IOTC events a reader emits via config_events: heartbeats, alerts, mqttConnEVT, terminalConnection, dataEVT enable / interval / verbosity."
+description: "Configure which IOTC events a reader emits via config_events: heartbeats, alerts, mqttConnEVT, dataEVT enable / interval / verbosity."
 ---
 
 > 📙 **HOW-TO** · **Audience:** Solution Builder · **Time:** ~10 min · **Ties to:** Event Configuration sub-tag of the API Reference
@@ -20,7 +20,6 @@ Each boolean flag in `eventConfiguration` controls one event stream:
 | Flag | Stream |
 |---|---|
 | `antenna` | Antenna connection / disconnection events |
-| `terminalConnection` | Terminal (BT bridge / USB) state changes |
 | `firmwareUpdate` | Firmware-update progress events |
 | `gpi` | General Purpose Input state changes |
 | `network` | Network interface state and IP changes |
@@ -47,7 +46,7 @@ Four flags require companion threshold values:
 - **`flashThreshold`**: flash percent that triggers a flash usage alert.
 - **`temperatureThreshold`**: temperature in °C that triggers a temperature alert.
 
-These are *thresholds*, not poll rates. The reader checks against them internally and emits an alert when the value crosses. The alert is `alerts` (verbose) or `alert_short` (compact), depending on the consumer.
+These are *thresholds*, not poll rates. The reader checks against them internally and emits an alert when the value crosses. The alert is published as `alerts`.
 
 ### `heartbeatConfiguration`: what the heartbeat carries
 
@@ -76,7 +75,7 @@ Heartbeat is the "the reader is alive" signal. Disabling it loses your liveness 
   "command": "config_events",
   "requestId": "events-all",
   "eventConfiguration": {
-    "antenna": true, "terminalConnection": true, "firmwareUpdate": true,
+    "antenna": true, "firmwareUpdate": true,
     "gpi": true, "network": true, "exceptions": true, "ntp": true,
     "userApp": true, "heartbeat": true, "power": true, "battery": true,
     "temperature": true, "fileDownload": true, "cpuUsage": true,
@@ -99,7 +98,7 @@ Useful while you map your application to the event stream. Turn off what you don
   "command": "config_events",
   "requestId": "events-prod",
   "eventConfiguration": {
-    "antenna": false, "terminalConnection": true, "firmwareUpdate": true,
+    "antenna": false, "firmwareUpdate": true,
     "gpi": false, "network": true, "exceptions": false, "ntp": false,
     "userApp": false, "heartbeat": false, "power": true, "battery": true,
     "temperature": true, "fileDownload": true, "cpuUsage": false,

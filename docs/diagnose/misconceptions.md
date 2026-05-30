@@ -48,12 +48,12 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 #### MM-06: Not all configuration survives reboot {#mm-06}
 
 - *Wrong:* Everything I set with `set_*` is persistent.
-- *Right:* **All management endpoint configurations survive reboot** (Wi-Fi, endpoints, certs, event config, device-wide config). **Only radio operation configurations from the control endpoint are lost.** Re-apply [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) after every reboot if you need a specific mode.
-- *See:* [The reader's configuration document](/infrastructure/config-document)
+- *Right:* **All management endpoint configurations survive reboot** (Wi-Fi, endpoints, certs, event config). **Only radio operation configurations from the control endpoint are lost.** Re-apply [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) after every reboot if you need a specific mode.
+- *See:* [Updating firmware and rebooting](/infrastructure/system-operations)
 
 #### MM-07: Region cannot be set or changed over MQTT {#mm-07}
 
-- *Wrong:* [`set_config`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-config) includes region somewhere.
+- *Wrong:* Some `set_*` command includes region somewhere.
 - *Right:* **Region cannot be set over MQTT.** It is locked at first boot via 123RFID Desktop. To change region, factory-reset and re-bootstrap. [`get_current_region`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-get-current-region) reads it; nothing writes it remotely.
 - *See:* [What your reader knows about itself](/infrastructure/device-state)
 
@@ -61,7 +61,7 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 
 - *Wrong:* MDM is structurally equivalent to MGMT or CTRL; just a different `epType`.
 - *Right:* The MDM endpoint is the **bootstrap default**, the only endpoint 123RFID Desktop creates, and the path through which every other endpoint is added remotely. You cannot run any MQTT command before the MDM endpoint is active.
-- *See:* [How the MQTT plumbing fits together](/infrastructure/endpoints/about) and [Bootstrap with 123RFID Desktop](/quick-start/phase-2/direct)
+- *See:* [How the MQTT plumbing fits together](/infrastructure/endpoints/about) and [Bootstrap with 123RFID Desktop](/quick-start/phase-2)
 
 ### Topics and routing
 
@@ -85,12 +85,6 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 
 ### Event semantics
 
-#### MM-12: `alerts` and `alert_short` are not duplicates {#mm-12}
-
-- *Wrong:* I can consume either one and get the same information.
-- *Right:* `alert_short` has a much broader `id` enum (every certificate operation, both Wi-Fi and Ethernet config outcomes, multiple firmware lifecycle states), but it does NOT carry an `alertDetails` block. `alerts` has only five formal `id` enum values (`BATTERY`, `FIRMWARE_UPDATE`, `NETWORK_EVENT`, `TEMPERATURE`, `POWER`) per the canonical schema (the canonical reference also describes `GPI_EVENT` and `ANTENNA_EVENT` as trigger conditions, but they are not in the published enum), and it DOES carry a structured `alertDetails` block. They are different surfaces, typically `alerts` to applications and `alert_short` to MDM.
-- *See:* [When the reader needs to interrupt you](/observability/alerts)
-
 #### MM-13: Heartbeat battery snapshot is not the same as a battery alert {#mm-13}
 
 - *Wrong:* Same battery condition, same field.
@@ -111,13 +105,6 @@ Recurring misconceptions that produce wrong integration code. Each entry pairs t
 - *Right:* It is rejected with error code 11 during active inventory. Stop the inventory with `control_operation STOP`, apply the new mode, then restart.
 - *See:* [Choose how the reader reads tags](/rfid/operating-mode-profiles)
 
-### Tiers and bootstrap
-
-#### MM-16: The Direct/Bridged tier names describe the bootstrap and network topology, not the MQTT API surface {#mm-16}
-
-- *Wrong:* Bridged sleds run a different IoTC API, or the host translates between two protocols, or [`set_operating_mode`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-operating-mode) behaves differently across tiers.
-- *Right:* The tier name reflects (a) which **bootstrap tool** you use for first-light (123RFID Desktop on Direct, 123RFID Mobile on Bridged) and (b) the **network topology** (sled-owns-Wi-Fi on Direct, host-owns-Wi-Fi-and-carries-BT-bridge on Bridged). **Once the MDM endpoint is active, every IoTC MQTT command, response, event, topic, retention behavior, and TLS behavior is identical across tiers.** The only operational asymmetries are: (i) Bridged sleds emit `terminalConnection` events because there's a host link to report on; (ii) [`set_wifi`](https://aa5123.github.io/RFID-40-90-handled-reader-api-reference-documentatiion/#op-set-wifi) is a no-op surface on Bridged because there's no on-sled Wi-Fi radio to configure. Build your application against the API contract, not the tier.
-- *See:* [Two bootstrap tools: 123RFID Desktop and 123RFID Mobile](/foundations/bootstrap-tools) and [Which sled do you have?](/foundations/hardware-tiers)
 
 ---
 
