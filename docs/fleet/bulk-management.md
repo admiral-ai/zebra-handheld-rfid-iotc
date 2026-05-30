@@ -25,24 +25,34 @@ Read each surface, compare it with the canonical target for that device class, a
 
 ### The reconciliation loop
 
-```
-                                ┌───────────────────────┐
-   Per device, on schedule:     │                       │
-                                ▼                       │
-   read each surface  →  current_state                  │
-                              ↓                          │
-   canonical_for(device)  →   target_state              │
-                              ↓                          │
-                   diff = target - current              │
-                              ↓                          │
-        if diff:  write the affected surface(s)         │
-                              ↓                          │
-   re-read affected surfaces  →  verify_state           │
-                              ↓                          │
-              if verify_state ≠ target_state:           │
-                   alert("reconcile failed")            │
-                              │                          │
-                              └─────  next interval ────┘
+```d2
+classes: {
+  good: { style: { fill: "#e6f4ea"; stroke: "#1e8e3e"; font-color: "#137333" } }
+  bad:  { style: { fill: "#fce8e6"; stroke: "#d93025"; font-color: "#c5221f" } }
+  loop: { style: { fill: "#1f3a5f"; stroke: "#11243b"; font-color: "#ffffff" } }
+}
+direction: down
+start: "Per device,\neach interval" { shape: circle; class: loop }
+cur: "Read each surface\ncurrent_state" { shape: step }
+tgt: "Load canonical\ntarget_state" { shape: step }
+qdiff: "Any diff?\n(target vs current)" { shape: diamond }
+write: "Write affected\nsurface(s)" { shape: step }
+qverify: "Re-read verify_state\nmatches target?" { shape: diamond }
+synced: "In sync" { class: good }
+alert: "alert:\nreconcile failed" { class: bad }
+done: "Cycle complete" { shape: circle; class: loop }
+start -> cur
+start -> tgt
+cur -> qdiff
+tgt -> qdiff
+qdiff -> write: yes
+qdiff -> synced: no
+write -> qverify
+qverify -> synced: yes
+qverify -> alert: no
+synced -> done
+alert -> done
+done -> start: "next interval" { style.stroke-dash: 4 }
 ```
 
 Three knobs:
